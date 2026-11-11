@@ -1,0 +1,296 @@
+{
+  "version": 1,
+  "about": "Tap-to-describe hints, based on Semantic Feature Analysis (group, use, action, properties, location, association). Each chip adds one clue. 'clue' is the plain-English text sent to the model. Rows listed under a group id are shown after that group is picked; 'any' rows are shown for every group.",
+  "group": {
+    "ask": "It is…",
+    "chips": [
+      { "id": "thing", "label": "a thing", "emoji": "📦", "clue": "it is an object" },
+      { "id": "person", "label": "a person", "emoji": "🧑", "clue": "it is a person" },
+      { "id": "food", "label": "food or drink", "emoji": "🍽️", "clue": "it is something to eat or drink" },
+      { "id": "place", "label": "a place", "emoji": "📍", "clue": "it is a place" },
+      { "id": "animal", "label": "an animal", "emoji": "🐾", "clue": "it is an animal" },
+      { "id": "clothes", "label": "clothing", "emoji": "👕", "clue": "it is something you wear" },
+      { "id": "body", "label": "part of the body", "emoji": "🖐️", "clue": "it is a part of the body" },
+      { "id": "action", "label": "something you do", "emoji": "🏃", "clue": "it is an action, something you do" },
+      { "id": "feeling", "label": "a feeling", "emoji": "💭", "clue": "it is a feeling or how you are" },
+      { "id": "nature", "label": "nature or weather", "emoji": "🌦️", "clue": "it is something in nature or the weather" },
+      { "id": "travel", "label": "transport", "emoji": "🚗", "clue": "it is a vehicle or a way to travel" },
+      { "id": "time", "label": "a time", "emoji": "🕒", "clue": "it is a time, a day or a date" }
+    ]
+  },
+  "rows": {
+    "thing": [
+      {
+        "id": "where", "ask": "You find it…",
+        "chips": [
+          { "id": "kitchen", "label": "in the kitchen", "emoji": "🍳", "clue": "you find it in the kitchen" },
+          { "id": "bathroom", "label": "in the bathroom", "emoji": "🛁", "clue": "you find it in the bathroom" },
+          { "id": "bedroom", "label": "in the bedroom", "emoji": "🛏️", "clue": "you find it in the bedroom" },
+          { "id": "living", "label": "in the living room", "emoji": "🛋️", "clue": "you find it in the living room" },
+          { "id": "garden", "label": "outside the house", "emoji": "🏡", "clue": "you find it outside the house or in the garden" },
+          { "id": "pocket", "label": "in a pocket or bag", "emoji": "👜", "clue": "you carry it in a pocket or a bag" },
+          { "id": "desk", "label": "on a desk", "emoji": "🖥️", "clue": "you find it on a desk or in an office" },
+          { "id": "car", "label": "in a car", "emoji": "🚘", "clue": "you find it in a car" },
+          { "id": "shop", "label": "in a shop", "emoji": "🏪", "clue": "you find it in a shop" },
+          { "id": "hospital", "label": "at the doctor's", "emoji": "🏥", "clue": "you find it at the doctor's or in a hospital" }
+        ]
+      },
+      {
+        "id": "use", "ask": "You use it to…",
+        "chips": [
+          { "id": "eat", "label": "eat or drink", "emoji": "🍴", "clue": "you use it to eat or drink" },
+          { "id": "cook", "label": "cook", "emoji": "🥘", "clue": "you use it to cook" },
+          { "id": "cut", "label": "cut", "emoji": "✂️", "clue": "you use it to cut" },
+          { "id": "clean", "label": "clean or wash", "emoji": "🧽", "clue": "you use it to clean or wash" },
+          { "id": "write", "label": "write or read", "emoji": "✍️", "clue": "you use it to write or read" },
+          { "id": "call", "label": "talk to someone", "emoji": "📞", "clue": "you use it to talk to someone who is far away" },
+          { "id": "watch", "label": "watch or listen", "emoji": "📺", "clue": "you use it to watch or listen to something" },
+          { "id": "open", "label": "open or close", "emoji": "🔓", "clue": "you use it to open, close or lock something" },
+          { "id": "carry", "label": "carry or keep things", "emoji": "🧺", "clue": "you use it to carry or keep things in" },
+          { "id": "rest", "label": "sit or sleep", "emoji": "🪑", "clue": "you sit, lie or sleep on it" },
+          { "id": "fix", "label": "fix or build", "emoji": "🔧", "clue": "you use it to fix or build things" },
+          { "id": "pay", "label": "pay", "emoji": "💳", "clue": "you use it to pay for things" },
+          { "id": "see", "label": "see or light", "emoji": "💡", "clue": "it helps you see, or it gives light" },
+          { "id": "time", "label": "tell the time", "emoji": "⏰", "clue": "it tells you the time" },
+          { "id": "health", "label": "feel better", "emoji": "💊", "clue": "you use it when you are ill or in pain" }
+        ]
+      },
+      {
+        "id": "look", "ask": "It is…",
+        "chips": [
+          { "id": "small", "label": "small", "emoji": "🤏", "clue": "it is small, it fits in a hand" },
+          { "id": "big", "label": "big", "emoji": "🐘", "clue": "it is big" },
+          { "id": "long", "label": "long and thin", "emoji": "📏", "clue": "it is long and thin" },
+          { "id": "round", "label": "round", "emoji": "⚪", "clue": "it is round" },
+          { "id": "flat", "label": "flat", "emoji": "▭", "clue": "it is flat" },
+          { "id": "metal", "label": "metal", "emoji": "🔩", "clue": "it is made of metal" },
+          { "id": "wood", "label": "wood", "emoji": "🪵", "clue": "it is made of wood" },
+          { "id": "glass", "label": "glass", "emoji": "🥛", "clue": "it is made of glass" },
+          { "id": "paper", "label": "paper", "emoji": "📄", "clue": "it is made of paper" },
+          { "id": "cloth", "label": "cloth, soft", "emoji": "🧶", "clue": "it is soft, made of cloth" },
+          { "id": "sharp", "label": "sharp", "emoji": "📌", "clue": "it is sharp" },
+          { "id": "hot", "label": "hot", "emoji": "♨️", "clue": "it gets hot" },
+          { "id": "cold", "label": "cold", "emoji": "🧊", "clue": "it is cold or keeps things cold" },
+          { "id": "electric", "label": "electric", "emoji": "🔌", "clue": "it is electric, you plug it in or charge it" }
+        ]
+      }
+    ],
+    "person": [
+      {
+        "id": "who", "ask": "They are…",
+        "chips": [
+          { "id": "family", "label": "in my family", "emoji": "👪", "clue": "they are in my family" },
+          { "id": "friend", "label": "a friend or neighbour", "emoji": "🤝", "clue": "they are a friend or a neighbour" },
+          { "id": "health", "label": "a health worker", "emoji": "🩺", "clue": "they work in health care" },
+          { "id": "shop", "label": "in a shop or café", "emoji": "🛒", "clue": "they work in a shop, a café or a restaurant" },
+          { "id": "fixer", "label": "someone who fixes things", "emoji": "🛠️", "clue": "their job is to fix or build things" },
+          { "id": "office", "label": "in an office", "emoji": "💼", "clue": "they work in an office, a bank or with the law" },
+          { "id": "school", "label": "at a school", "emoji": "🏫", "clue": "they work at a school" },
+          { "id": "safety", "label": "police or rescue", "emoji": "🚒", "clue": "they work for the police, fire or rescue service" },
+          { "id": "driver", "label": "a driver", "emoji": "🚌", "clue": "their job is to drive or deliver" },
+          { "id": "famous", "label": "famous", "emoji": "⭐", "clue": "they are famous" }
+        ]
+      },
+      {
+        "id": "which", "ask": "And…",
+        "chips": [
+          { "id": "man", "label": "a man", "emoji": "👨", "clue": "a man" },
+          { "id": "woman", "label": "a woman", "emoji": "👩", "clue": "a woman" },
+          { "id": "child", "label": "a child", "emoji": "🧒", "clue": "a child" },
+          { "id": "older", "label": "older than me", "emoji": "🧓", "clue": "older than me, a generation above" },
+          { "id": "younger", "label": "younger than me", "emoji": "👶", "clue": "younger than me, a generation below" },
+          { "id": "married", "label": "by marriage", "emoji": "💍", "clue": "related by marriage" },
+          { "id": "teeth", "label": "teeth", "emoji": "🦷", "clue": "they look after teeth" },
+          { "id": "eyes", "label": "eyes", "emoji": "👓", "clue": "they look after eyes" },
+          { "id": "hair", "label": "hair", "emoji": "💇", "clue": "they cut hair" },
+          { "id": "medicine", "label": "medicine", "emoji": "💊", "clue": "they give out medicine" }
+        ]
+      }
+    ],
+    "food": [
+      {
+        "id": "kind", "ask": "It is…",
+        "chips": [
+          { "id": "fruit", "label": "a fruit", "emoji": "🍎", "clue": "it is a fruit" },
+          { "id": "veg", "label": "a vegetable", "emoji": "🥕", "clue": "it is a vegetable" },
+          { "id": "meat", "label": "meat or fish", "emoji": "🍗", "clue": "it is meat or fish" },
+          { "id": "dairy", "label": "from milk", "emoji": "🧀", "clue": "it is made from milk" },
+          { "id": "bread", "label": "bread or grain", "emoji": "🍞", "clue": "it is bread, rice, pasta or grain" },
+          { "id": "sweet", "label": "sweet", "emoji": "🍰", "clue": "it is sweet" },
+          { "id": "drink", "label": "a drink", "emoji": "🥤", "clue": "it is a drink" },
+          { "id": "hotdrink", "label": "a hot drink", "emoji": "☕", "clue": "it is a hot drink" },
+          { "id": "meal", "label": "a meal", "emoji": "🍲", "clue": "it is a cooked meal or dish" },
+          { "id": "spice", "label": "adds taste", "emoji": "🧂", "clue": "you add it to food for taste" }
+        ]
+      },
+      {
+        "id": "look", "ask": "And it is…",
+        "chips": [
+          { "id": "red", "label": "red", "emoji": "🔴", "clue": "it is red" },
+          { "id": "yellow", "label": "yellow", "emoji": "🟡", "clue": "it is yellow" },
+          { "id": "green", "label": "green", "emoji": "🟢", "clue": "it is green" },
+          { "id": "orange", "label": "orange", "emoji": "🟠", "clue": "it is orange" },
+          { "id": "white", "label": "white", "emoji": "⚪", "clue": "it is white" },
+          { "id": "brown", "label": "brown", "emoji": "🟤", "clue": "it is brown" },
+          { "id": "round", "label": "round", "emoji": "⚽", "clue": "it is round" },
+          { "id": "long", "label": "long", "emoji": "📏", "clue": "it is long" },
+          { "id": "morning", "label": "for breakfast", "emoji": "🌅", "clue": "you have it in the morning" },
+          { "id": "cold", "label": "cold", "emoji": "🧊", "clue": "you have it cold" },
+          { "id": "hot", "label": "hot", "emoji": "♨️", "clue": "you have it hot" }
+        ]
+      }
+    ],
+    "place": [
+      {
+        "id": "kind", "ask": "You go there to…",
+        "chips": [
+          { "id": "buy", "label": "buy things", "emoji": "🛍️", "clue": "you go there to buy things" },
+          { "id": "food", "label": "eat or drink", "emoji": "🍽️", "clue": "you go there to eat or drink" },
+          { "id": "health", "label": "get well", "emoji": "🏥", "clue": "you go there when you are ill or for your health" },
+          { "id": "medicine", "label": "get medicine", "emoji": "💊", "clue": "you go there to get medicine" },
+          { "id": "money", "label": "get money", "emoji": "🏦", "clue": "you go there for money" },
+          { "id": "travel", "label": "travel", "emoji": "✈️", "clue": "you go there to start a journey" },
+          { "id": "learn", "label": "learn or read", "emoji": "📚", "clue": "you go there to learn or to read" },
+          { "id": "pray", "label": "pray", "emoji": "🕌", "clue": "you go there to pray" },
+          { "id": "fun", "label": "have fun", "emoji": "🎬", "clue": "you go there for fun" },
+          { "id": "sport", "label": "exercise", "emoji": "🏊", "clue": "you go there for sport or exercise" },
+          { "id": "post", "label": "send things", "emoji": "📮", "clue": "you go there to send letters or parcels" },
+          { "id": "room", "label": "a room at home", "emoji": "🏠", "clue": "it is a room in a home" },
+          { "id": "outside", "label": "outdoors", "emoji": "🌳", "clue": "it is outdoors" }
+        ]
+      }
+    ],
+    "animal": [
+      {
+        "id": "kind", "ask": "It…",
+        "chips": [
+          { "id": "pet", "label": "lives with people", "emoji": "🏠", "clue": "it lives with people as a pet" },
+          { "id": "farm", "label": "lives on a farm", "emoji": "🚜", "clue": "it lives on a farm" },
+          { "id": "wild", "label": "is wild", "emoji": "🌍", "clue": "it is a wild animal" },
+          { "id": "flies", "label": "flies", "emoji": "🪽", "clue": "it flies" },
+          { "id": "swims", "label": "swims", "emoji": "🌊", "clue": "it lives in water" },
+          { "id": "big", "label": "is big", "emoji": "⬆️", "clue": "it is big" },
+          { "id": "small", "label": "is small", "emoji": "🤏", "clue": "it is small" },
+          { "id": "milk", "label": "gives milk or eggs", "emoji": "🥚", "clue": "it gives milk or eggs" },
+          { "id": "insect", "label": "is an insect", "emoji": "🐜", "clue": "it is an insect" },
+          { "id": "stripes", "label": "has stripes or spots", "emoji": "🦓", "clue": "it has stripes or spots" }
+        ]
+      }
+    ],
+    "clothes": [
+      {
+        "id": "where", "ask": "You wear it…",
+        "chips": [
+          { "id": "head", "label": "on the head", "emoji": "🧢", "clue": "you wear it on your head" },
+          { "id": "top", "label": "on the top half", "emoji": "👕", "clue": "you wear it on the top half of your body" },
+          { "id": "legs", "label": "on the legs", "emoji": "👖", "clue": "you wear it on your legs" },
+          { "id": "feet", "label": "on the feet", "emoji": "🧦", "clue": "you wear it on your feet" },
+          { "id": "hands", "label": "on the hands", "emoji": "🧤", "clue": "you wear it on your hands or wrist" },
+          { "id": "neck", "label": "round the neck", "emoji": "🧣", "clue": "you wear it round your neck" },
+          { "id": "cold", "label": "when it is cold", "emoji": "❄️", "clue": "you wear it when it is cold" },
+          { "id": "rain", "label": "when it rains", "emoji": "🌧️", "clue": "you wear or use it when it rains" },
+          { "id": "sleep", "label": "in bed", "emoji": "🌙", "clue": "you wear it in bed" },
+          { "id": "smart", "label": "to look smart", "emoji": "👔", "clue": "you wear it to look smart" }
+        ]
+      }
+    ],
+    "body": [
+      {
+        "id": "where", "ask": "It is…",
+        "chips": [
+          { "id": "head", "label": "on the head", "emoji": "🙂", "clue": "it is on the head or face" },
+          { "id": "arm", "label": "on the arm or hand", "emoji": "💪", "clue": "it is part of the arm or hand" },
+          { "id": "leg", "label": "on the leg or foot", "emoji": "🦵", "clue": "it is part of the leg or foot" },
+          { "id": "middle", "label": "in the middle", "emoji": "🧍", "clue": "it is in the middle of the body" },
+          { "id": "inside", "label": "inside", "emoji": "🫀", "clue": "it is inside the body" },
+          { "id": "bends", "label": "it bends", "emoji": "↩️", "clue": "it is a joint, it bends" },
+          { "id": "hurts", "label": "it hurts", "emoji": "🤕", "clue": "it hurts" }
+        ]
+      }
+    ],
+    "action": [
+      {
+        "id": "how", "ask": "You do it…",
+        "chips": [
+          { "id": "hands", "label": "with your hands", "emoji": "✋", "clue": "you do it with your hands" },
+          { "id": "legs", "label": "with your legs", "emoji": "🦵", "clue": "you do it with your legs" },
+          { "id": "mouth", "label": "with your mouth", "emoji": "👄", "clue": "you do it with your mouth" },
+          { "id": "home", "label": "at home", "emoji": "🏠", "clue": "you do it at home" },
+          { "id": "kitchen", "label": "in the kitchen", "emoji": "🍳", "clue": "you do it in the kitchen" },
+          { "id": "bathroom", "label": "in the bathroom", "emoji": "🚿", "clue": "you do it in the bathroom" },
+          { "id": "outside", "label": "outside", "emoji": "🌳", "clue": "you do it outside" },
+          { "id": "others", "label": "with other people", "emoji": "👥", "clue": "you do it with other people" },
+          { "id": "daily", "label": "every day", "emoji": "📅", "clue": "you do it every day" },
+          { "id": "night", "label": "at night", "emoji": "🌙", "clue": "you do it at night" },
+          { "id": "money", "label": "with money", "emoji": "💵", "clue": "it has to do with money" },
+          { "id": "water", "label": "with water", "emoji": "💧", "clue": "you do it with water" }
+        ]
+      }
+    ],
+    "feeling": [
+      {
+        "id": "kind", "ask": "It feels…",
+        "chips": [
+          { "id": "good", "label": "good", "emoji": "🙂", "clue": "it is a good feeling" },
+          { "id": "bad", "label": "bad", "emoji": "🙁", "clue": "it is a bad feeling" },
+          { "id": "body", "label": "in the body", "emoji": "🧍", "clue": "you feel it in your body" },
+          { "id": "tired", "label": "low on energy", "emoji": "🔋", "clue": "you have no energy" },
+          { "id": "food", "label": "about food or drink", "emoji": "🍽️", "clue": "it is about needing food or drink" },
+          { "id": "fear", "label": "afraid", "emoji": "😨", "clue": "it is about being afraid or worried" },
+          { "id": "anger", "label": "cross", "emoji": "😠", "clue": "it is about being cross" },
+          { "id": "alone", "label": "alone", "emoji": "🚶", "clue": "it is about being on your own" },
+          { "id": "strong", "label": "very strong", "emoji": "‼️", "clue": "it is a very strong feeling" },
+          { "id": "temp", "label": "too hot or cold", "emoji": "🌡️", "clue": "it is about being too hot or too cold" }
+        ]
+      }
+    ],
+    "nature": [
+      {
+        "id": "kind", "ask": "It is…",
+        "chips": [
+          { "id": "sky", "label": "in the sky", "emoji": "☁️", "clue": "it is in the sky" },
+          { "id": "water", "label": "water", "emoji": "💧", "clue": "it is water or made of water" },
+          { "id": "plant", "label": "a plant", "emoji": "🌱", "clue": "it is a plant" },
+          { "id": "land", "label": "part of the land", "emoji": "⛰️", "clue": "it is part of the land" },
+          { "id": "hot", "label": "hot", "emoji": "☀️", "clue": "it is hot" },
+          { "id": "cold", "label": "cold", "emoji": "❄️", "clue": "it is cold" },
+          { "id": "falls", "label": "it falls", "emoji": "⬇️", "clue": "it falls from the sky" },
+          { "id": "night", "label": "at night", "emoji": "🌙", "clue": "you see it at night" },
+          { "id": "loud", "label": "loud", "emoji": "🔊", "clue": "it is loud" },
+          { "id": "grows", "label": "it grows", "emoji": "🌳", "clue": "it grows" }
+        ]
+      }
+    ],
+    "travel": [
+      {
+        "id": "kind", "ask": "It goes…",
+        "chips": [
+          { "id": "road", "label": "on the road", "emoji": "🛣️", "clue": "it goes on the road" },
+          { "id": "rails", "label": "on rails", "emoji": "🛤️", "clue": "it goes on rails" },
+          { "id": "air", "label": "in the air", "emoji": "☁️", "clue": "it goes in the air" },
+          { "id": "water", "label": "on water", "emoji": "🌊", "clue": "it goes on water" },
+          { "id": "two", "label": "on two wheels", "emoji": "2️⃣", "clue": "it has two wheels" },
+          { "id": "many", "label": "with many people", "emoji": "👥", "clue": "it carries many people" },
+          { "id": "pay", "label": "you pay a driver", "emoji": "💵", "clue": "you pay a driver to take you" },
+          { "id": "help", "label": "for emergencies", "emoji": "🚨", "clue": "it comes in an emergency" },
+          { "id": "goods", "label": "carries goods", "emoji": "📦", "clue": "it carries goods" }
+        ]
+      }
+    ],
+    "time": [
+      {
+        "id": "kind", "ask": "It is…",
+        "chips": [
+          { "id": "day", "label": "a day of the week", "emoji": "📅", "clue": "it is a day of the week" },
+          { "id": "month", "label": "a month", "emoji": "🗓️", "clue": "it is a month" },
+          { "id": "season", "label": "a season", "emoji": "🍂", "clue": "it is a season of the year" },
+          { "id": "part", "label": "a part of the day", "emoji": "🌅", "clue": "it is a part of the day" },
+          { "id": "before", "label": "before now", "emoji": "⬅️", "clue": "it is before today" },
+          { "id": "after", "label": "after now", "emoji": "➡️", "clue": "it is after today" },
+          { "id": "special", "label": "a special day", "emoji": "🎂", "clue": "it is a special day or a holiday" },
+          { "id": "weekend", "label": "the weekend", "emoji": "🛋️", "clue": "it is at the weekend" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "about": "One prompt pack for every platform (web, Android, iOS). Placeholders in {braces} are filled in by the app. The same text runs on the on-device model and on the cloud model, so results can be compared like for like.",
+  "cloudModel": "gemini-3.5-flash-lite",
+  "voiceModel": "gemini-3.1-flash-tts-preview",
+  "guessCount": 6,
+  "find": {
+    "system": "You help a person with aphasia. They know what they want to say but cannot find the word. They give clues in a few broken words, sometimes misspelled or in the wrong order. Reply with the {count} words or short names they most likely mean, most likely first. Prefer common everyday words. Each guess is one to three words, lower case unless it is a name. Never repeat a guess. For each guess add one emoji that shows it.",
+    "user": "Clues: {clues}",
+    "known": "\nWords this person uses a lot (use one only if it fits the clues): {known}",
+    "exclude": "\nIt is none of these: {exclude}"
+  },
+  "image": {
+    "system": "You help a person with aphasia. They cannot find a word, so they show you a quick drawing or a photo of the thing they mean. Reply with the {count} words they most likely mean, most likely first. Prefer common everyday words. Each guess is one to three words. Never repeat a guess. For each guess add one emoji that shows it.",
+    "sketch": "This is my quick drawing of the thing I mean. What is the word?",
+    "photo": "This photo shows the thing I mean. What is the word?",
+    "exclude": "\nIt is none of these: {exclude}"
+  },
+  "sentences": {
+    "system": "You help a person with aphasia say a full sentence. They give a few key words. Write {count} different short sentences they most likely want to say, in the first person, in plain everyday English. Use all the key words. Do not add facts they did not give.",
+    "user": "Key words: {words}\nStyle: {tone}",
+    "tones": {
+      "plain": "plain and friendly",
+      "polite": "polite, as a request",
+      "firm": "clear and firm"
+    },
+    "count": 3
+  },
+  "cue": {
+    "system": "You are helping with word-finding practice for a person with aphasia. For the target word, write two hints that never contain the word itself or any part of it. 'meaning' says what it is or what it is for, in at most ten simple words. 'sentence' is a short everyday sentence that ends where the word would go, written with ___ in place of the word.",
+    "user": "Target word: {word}"
+  },
+  "listen": {
+    "system": "A person with aphasia is describing a word they cannot find. Their speech may be slow, broken, or have wrong words. Write down only the clues they give about the thing, as a short comma-separated list in plain English. Leave out fillers like 'um' and 'you know'. Do not guess the word.",
+    "user": "Here is the recording."
+  },
+  "voice": {
+    "style": "Say this clearly, warmly and a little slowly, in a natural adult voice: {text}",
+    "name": "Kore"
+  },
+  "schemas": {
+    "guesses": {
+      "type": "object",
+      "properties": {
+        "guesses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "word": { "type": "string" },
+              "emoji": { "type": "string" }
+            },
+            "required": ["word", "emoji"]
+          }
+        }
+      },
+      "required": ["guesses"]
+    },
+    "sentences": {
+      "type": "object",
+      "properties": {
+        "sentences": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["sentences"]
+    },
+    "cue": {
+      "type": "object",
+      "properties": {
+        "meaning": { "type": "string" },
+        "sentence": { "type": "string" }
+      },
+      "required": ["meaning", "sentence"]
+    }
+  }
+}
