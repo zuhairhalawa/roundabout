@@ -151,7 +151,7 @@ h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0
 .tally { color: var(--ink-soft); text-align: center; }
 
 /* bottom tabs */
-.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; gap: 8px; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); background: var(--white); border-top: 3px solid var(--ink); z-index: 5; }
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; gap: 8px; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); background: var(--white); box-shadow: 0 -3px 0 var(--ink); z-index: 5; }
 .tab { flex: 1; max-width: 200px; display: grid; justify-items: center; gap: 2px; padding: 8px 6px; min-height: 64px; border-radius: 12px; border: 0; background: transparent; font-weight: 700; font-size: .95rem; }
 .tab-on { background: var(--ink); color: var(--white); }
 
