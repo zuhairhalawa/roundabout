@@ -36,3 +36,4 @@ export const IconGear = ({ size = 24, class: c }: P) => svg(size, c, [<circle cx
 export const IconClose = ({ size = 24, class: c }: P) => svg(size, c, [<path d="M6 6l12 12M18 6L6 18" />]);
 export const IconUndo = ({ size = 22, class: c }: P) => svg(size, c, [<path d="M8 7L4 11l4 4" />, <path d="M4 11h10a5 5 0 0 1 0 10h-3" />]);
 export const IconPlus = ({ size = 22, class: c }: P) => svg(size, c, [<path d="M12 5v14M5 12h14" />]);
+export const IconPractice = ({ size = 26, class: c }: P) => svg(size, c, [<circle cx="12" cy="12" r="8.5" />, <circle cx="12" cy="12" r="4.5" />, <circle cx="12" cy="12" r="0.8" fill="currentColor" />]);

@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { cloudConfigured, settings } from '../core/ai';
 import type { Guess } from '../core/guess';
 import { Find } from './Find';
-import { IconClose, IconCloud, IconDevice, IconFind, IconGear, IconSay, IconWords, Ring } from './icons';
+import { IconClose, IconCloud, IconDevice, IconFind, IconGear, IconPractice, IconSay, IconWords, Ring } from './icons';
+import { Practice } from './Practice';
 import { Say } from './Say';
 import { newId, situationOf, useCloudUp, useDevice, useOnline, usePersisted, type Device } from './store';
 import { Words } from './Words';
 
-type Tab = 'find' | 'say' | 'words';
+type Tab = 'find' | 'say' | 'practice' | 'words';
 
 export function App() {
   const [s, set] = usePersisted();
@@ -39,11 +40,12 @@ export function App() {
             onSave={save} onWhy={() => setSheet('how')} onGoSay={() => setTab('say')} />
         )}
         {tab === 'say' && <Say strip={s.strip} situation={situation} onStrip={(strip) => set((x) => ({ ...x, strip }))} />}
+        {tab === 'practice' && <Practice saved={s.words} situation={situation} tally={s.practice} onTally={(practice) => set((x) => ({ ...x, practice }))} />}
         {tab === 'words' && <Words words={s.words} onChange={(words) => set((x) => ({ ...x, words }))} />}
       </main>
 
       <nav class="tabs" aria-label="Sections">
-        {([['find', 'Find a word', IconFind], ['say', 'Say a sentence', IconSay], ['words', 'My words', IconWords]] as const).map(([id, label, Icon]) => (
+        {([['find', 'Find a word', IconFind], ['say', 'Say a sentence', IconSay], ['practice', 'Practice', IconPractice], ['words', 'My words', IconWords]] as const).map(([id, label, Icon]) => (
           <button class={`tab ${tab === id ? 'tab-on' : ''}`} aria-current={tab === id ? 'page' : undefined} onClick={() => setTab(id)}>
             <Icon /><span>{label}</span>
           </button>

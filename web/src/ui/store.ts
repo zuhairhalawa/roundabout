@@ -11,10 +11,11 @@ export interface Saved {
   strip: string[];          // key words for the sentence being built
   privateOnly: boolean;
   seenWelcome: boolean;
+  practice: { done: number; noHint: number };
 }
 
 const KEY = 'roundabout:v1';
-const fresh = (): Saved => ({ words: [], strip: [], privateOnly: false, seenWelcome: false });
+const fresh = (): Saved => ({ words: [], strip: [], privateOnly: false, seenWelcome: false, practice: { done: 0, noHint: 0 } });
 
 function load(): Saved {
   try {
