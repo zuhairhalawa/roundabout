@@ -1,0 +1,101 @@
+# Roundabout
+
+**A word-finding aid for people with aphasia.** When a word will not come, describe it, tap a few hints, draw it or show a photo. Roundabout offers the word and says it aloud. It answers on the device when it can, and uses the cloud when the device cannot.
+
+Live: https://roundabout-words.web.app
+<!-- VIDEO -->
+
+Built for #BuildHybridAI 2026 with **Firebase AI Logic hybrid inference** (Gemini Nano on the device, Gemini in the cloud).
+
+## The problem
+
+Aphasia is a language disorder, most often caused by a stroke. Studies put it at 18–38% of stroke survivors, and estimates for the United States run from one to two and a half million people. Intelligence is intact. The most common symptom is *anomia*: the person knows exactly what they mean, and the word will not come.
+
+Speech therapists teach a way round: **talk around the word** (describe it, say what it is for, where it lives), or draw it. That works when the listener is patient and good at guessing. Roundabout is that listener, in a pocket.
+
+> When the direct road to a word is closed, take the roundabout.
+
+## Why this needs both an on-device model and the cloud
+
+A voice that needs Wi-Fi is not a voice.
+
+| | On the device (Gemini Nano) | In the cloud (Gemini) |
+|---|---|---|
+| Speed | Answers at the pace of a conversation | A network round trip |
+| Offline | Works on a hospital ward, in a car park, outdoors | Needs a connection |
+| Privacy | What a person is trying to say never leaves the device | Sent to Google's servers |
+| Cost | Free, however many times a day it is used | Free tier, with limits |
+| Reach | Only recent, capable devices | Every device with a browser |
+| Knowledge | Everyday words | Names, rare words, harder pictures |
+
+So neither side is enough alone. Roundabout uses each for what it is good at, and says which one answered.
+
+## How a request is routed
+
+One function, [`web/src/core/route.ts`](web/src/core/route.ts), picks a Firebase AI Logic inference mode for each job. The SDK then does the switching and reports the side that answered (`inferenceSource`).
+
+| Job | Mode | Why |
+|---|---|---|
+| Find a word, name a drawing or photo, build a sentence, practice hints | `PREFER_ON_DEVICE` | Short jobs. The device answers; the cloud covers devices with no on-device model. |
+| Guesses while typing, tapping hints or drawing | `ONLY_ON_DEVICE` | Many small requests. They cost nothing and stay private, so they never go to the cloud. |
+| Same jobs while the on-device model is still loading | `PREFER_IN_CLOUD` | Do not make the person wait for a model to load. The SDK falls back to the device if the cloud fails or its quota runs out. |
+| "None of these": a second opinion | `ONLY_IN_CLOUD` | The bigger model looks again, told what was already offered. |
+| Private mode (a setting) | `ONLY_ON_DEVICE` | Nothing leaves the device, ever. |
+
+On top of the SDK's own fallback, [`web/src/core/find.ts`](web/src/core/find.ts) adds two things the SDK does not do: if an on-device call fails or takes too long, the same request is sent to the cloud; and after a "quota used up" reply the cloud is rested for a minute while the device carries on.
+
+Before any model runs, saved words are matched against the clues in plain code, so "my granddaughter" finds *Layla* instantly, offline, on any device.
+
+Tiles are coloured like road signs: **green** found on this device, **blue** from the cloud, **brown** one of your saved words.
+
+## What it does
+
+- **Find a word**, four ways:
+  - *Describe it*: any words, in any order, misspelled is fine.
+  - *Tap hints*: one question at a time (what kind of thing, where, what for, what it is like). This follows Semantic Feature Analysis, a standard therapy technique for anomia.
+  - *Draw it*: drawing is a recognised strategy when words fail.
+  - *Show a photo*.
+- **Say a sentence**: a few key words become three full sentences to choose from, plain, polite or firm.
+- **My words**: names and words that matter (family, places). They are offered first when a clue matches.
+- **Speaks every word and sentence aloud**, also slowly.
+
+## One prompt pack for every platform
+
+[`shared/prompts.json`](shared/prompts.json) holds every system prompt and JSON schema, and [`shared/hints.json`](shared/hints.json) the hint chips. The same schema is passed to Gemini Nano as `responseConstraint` and to the cloud model as `responseSchema`, so both sides return the same shape and can be compared like for like.
+
+## Firebase
+
+- **Firebase AI Logic**: all model calls ([`web/src/core/ai.ts`](web/src/core/ai.ts)): hybrid inference in all four modes, structured output, image input.
+- **App Check** with reCAPTCHA Enterprise, enforced for AI Logic, with limited-use tokens. A request without a token is refused (`node scripts/check-appcheck.mjs` shows the 401).
+- **Hosting** for the web app.
+- Project set-up is scripted in [`scripts/`](scripts): `fetch-web-config.mjs`, `provision-ailogic.cjs`, `setup-appcheck.cjs`.
+
+The project is on the free Spark plan with no billing account, so the cloud side cannot cost money.
+
+## Run it
+
+```bash
+cd web
+npm install
+cp .env.example .env.local     # then fill it in, or run the two set-up scripts from the repo root
+npm run dev                    # http://localhost:5196
+npm test                       # unit tests
+```
+
+On-device answers need Chrome on a desktop computer that can run Gemini Nano. Everywhere else Roundabout works through the cloud.
+
+## Tests
+
+- `npm test` (in `web/`): unit tests for the routing rule, cleaning model output into tiles, saved-word matching and the hint chips.
+- `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, saved words, private mode, offline, and a check that every model request goes to Firebase AI Logic.
+- `node scripts/eval.mjs cloud|device eval/pnt.json`: accuracy on an independent test set (see `eval/`).
+
+## Limits, stated plainly
+
+- Roundabout has not yet been tested with people who have aphasia. It is built from published therapy techniques and aphasia-friendly design guidance, not from clinical trials.
+- It is a communication aid, not a medical device, and it does not replace speech and language therapy.
+- Similar tools exist (naming-therapy apps, and at least one app that suggests words from sketches). Roundabout's contribution is finding a word from a loose description or tapped hints, working offline on the device, and falling back to the cloud on devices that cannot.
+
+## Licence
+
+Apache-2.0. All names and examples in this repository are fictional.

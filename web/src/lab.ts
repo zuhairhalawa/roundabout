@@ -54,3 +54,14 @@ async function main() {
 }
 let started = false;
 document.getElementById('go')!.addEventListener('click', () => { if (!started) { started = true; main(); } });
+
+// Used by scripts/eval.mjs: one call per test item, same code path as the app.
+(window as unknown as { rb: unknown }).rb = {
+  availability: deviceAvailability,
+  wake: () => wakeDevice(() => undefined),
+  async find(clues: string, device: Situation['device'], privateOnly = false) {
+    const s: Situation = { device, online: true, cloud: true, privateOnly };
+    const a = await findWord(clues, { saved: [], situation: s });
+    return { words: a.guesses.map((g) => g.word), side: a.side, ms: a.ms, fellBack: a.fellBack ?? false, blocked: a.blocked ?? null };
+  },
+};
