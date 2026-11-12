@@ -116,8 +116,13 @@ class Finder(
         } catch (e: CancellationException) {
             throw e
         } catch (e: Throwable) {
-            // Only when every cloud model is resting is the cloud as a whole paused.
-            if (isQuotaError(e) && noCloudModelAwake()) cloudPausedUntil = now() + 60_000
+            if (isQuotaError(e)) {
+                // Only when every cloud model is resting is the cloud as a whole paused. If one
+                // model is over its quota and the others failed for another reason, that is not
+                // "the cloud is resting": the next try may well be answered.
+                if (noCloudModelAwake()) cloudPausedUntil = now() + 60_000
+                else throw CloudUnavailable("One cloud model has no requests left for now and the others did not answer.")
+            }
             throw e
         }
     }

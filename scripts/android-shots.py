@@ -115,8 +115,33 @@ shot("3-typed")
 if not configured:
     print("NOTE this build has no Firebase settings, so no word is asked for.", flush=True)
 else:
-    check("the find button is tapped", tap("Find the word"))
-    tile = find("Tap to hear it", 90)
+    # The free cloud tier is sometimes busy, so a refused request is tried again, up to three times.
+    tile, refused = None, ""
+    for attempt in range(3):
+        tapped = tap("Find the word")
+        if attempt == 0:
+            check("the find button is tapped", tapped)
+        for _ in range(90):
+            seen = nodes()
+            tile = next((n for n in seen if "Tap to hear it" in words(n)), None)
+            refused = next((words(n) for n in seen if re.search(r"did not work|resting|No word came back", words(n))), "")
+            if tile or refused:
+                break
+            time.sleep(1)
+        if tile:
+            break
+        print(f"NOTE try {attempt + 1}: no tiles. The app says: {refused or '(nothing yet)'}", flush=True)
+        time.sleep(25)
+    if tile is None:
+        # Say why, from the app's own log (keys and tokens are never printed).
+        log = adb("logcat", "-d", "-t", "600")
+        for line in [l for l in log.splitlines() if re.search(r"Roundabout|FirebaseAI|GenerativeModel|quota|RESOURCE_EXHAUSTED", l) and "secret" not in l.lower()][-12:]:
+            print("LOG " + re.sub(r"AIza[0-9A-Za-z_-]{20,}", "<api-key>", line)[:300], flush=True)
+    if tile is None and "resting" in refused:
+        shot("4-cloud-resting")
+        print("SKIPPED the word tiles: every free cloud model said that its quota is used up, and the app said so. The daily quota resets at midnight Pacific time.", flush=True)
+        print(f"\n{sum(results)}/{len(results)} passed, the cloud answer was skipped", flush=True)
+        sys.exit(0 if all(results) else 1)
     time.sleep(3)  # the app scrolls the answer into view
     shot("4-answer")
     texts = on_screen()

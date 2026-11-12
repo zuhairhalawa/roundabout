@@ -108,6 +108,19 @@ class FinderTest {
     }
 
     @Test
+    fun oneModelOverItsQuotaAndAnotherFailingIsNotCalledResting() = runTest {
+        val rig = rig { _, model ->
+            delay(100)
+            if (model == main) throw QuotaError("requests per day limit exceeded. Please retry in 12h0m0s.")
+            throw IllegalStateException("This model is currently experiencing high demand.")
+        }
+        val error = runCatching { rig.finder.find("anything", noModel, hard = false, scope = this) }.exceptionOrNull()
+        assertTrue(error is CloudUnavailable)
+        assertFalse(isQuotaError(error))
+        assertTrue("the cloud is not paused: the next try may be answered", rig.finder.cloudUp())
+    }
+
+    @Test
     fun anActionGoesToTheCloudFirst() = runTest {
         val rig = rig { mode, _ -> if (mode == Mode.ONLY_ON_DEVICE) { delay(500); device("talk") } else { delay(900); cloud("whisper", "sing") } }
         val a = rig.finder.find("it is something you do; with your mouth", ready, hard = true, scope = this)

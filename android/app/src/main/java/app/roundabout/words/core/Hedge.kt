@@ -123,6 +123,7 @@ fun restAfterQuota(message: String): Long {
 fun isQuotaError(e: Throwable?): Boolean {
     var cause = e
     while (cause != null) {
+        if (cause is CloudUnavailable) return false
         if (cause is QuotaError) return true
         val text = "${cause::class.simpleName} ${cause.message}"
         if (Regex("""\b429\b|RESOURCE_EXHAUSTED|quota""", RegexOption.IGNORE_CASE).containsMatchIn(text)) return true
@@ -133,3 +134,6 @@ fun isQuotaError(e: Throwable?): Boolean {
 
 /** A cloud model said that its quota is used up. The message carries the service's own words. */
 class QuotaError(message: String, cause: Throwable? = null) : Exception(message, cause)
+
+/** No cloud model answered, and not because all of them are over their quota. Trying again may work. */
+class CloudUnavailable(message: String) : Exception(message)

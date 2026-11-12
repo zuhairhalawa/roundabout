@@ -236,6 +236,7 @@ class FindViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     private fun problemText(e: Throwable): String {
+        android.util.Log.w("Roundabout", "A request was not answered", e)
         if (isQuotaError(e)) return "The cloud is resting for a minute. Try again soon."
         // In a debug build the usual reason is a phone that App Check does not know yet.
         ui = ui.copy(debugToken = appCheckDebugToken(getApplication()))
