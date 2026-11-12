@@ -8,6 +8,15 @@ const EXE = process.env.CHROME_EXE || 'C:/Program Files/Google/Chrome/Applicatio
 export const PROFILE = process.env.RB_PROFILE || 'C:/Users/ZUHAIR/.chrome-hybrid-profile';
 
 export async function startChrome({ port = 9334, size = '1320,940', extra = [] } = {}) {
+  // RB_KEEP_CHROME=1: reuse a test Chrome that is already running and leave it running, so the
+  // on-device model (slow to load) stays warm between runs.
+  const keep = process.env.RB_KEEP_CHROME === '1';
+  const running = keep ? await chromium.connectOverCDP(`http://127.0.0.1:${port}`).catch(() => null) : null;
+  if (running) {
+    const ctx = running.contexts()[0];
+    const page = await ctx.newPage();
+    return { browser: running, ctx, page, stop: async () => { await page.close().catch(() => {}); } };
+  }
   const proc = spawn(EXE, [
     `--user-data-dir=${PROFILE}`, `--remote-debugging-port=${port}`, '--no-first-run', '--no-default-browser-check',
     `--window-size=${size}`, ...extra, 'about:blank',
@@ -21,6 +30,7 @@ export async function startChrome({ port = 9334, size = '1320,940', extra = [] }
   const ctx = browser.contexts()[0];
   const page = ctx.pages()[0] || (await ctx.newPage());
   const stop = async () => {
+    if (keep) return;
     await browser.close().catch(() => {});
     spawn('taskkill', ['/PID', String(proc.pid), '/T', '/F'], { stdio: 'ignore' });
     await new Promise((r) => setTimeout(r, 800));

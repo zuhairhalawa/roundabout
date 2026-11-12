@@ -10,7 +10,7 @@ export const REMOTE_DEFAULTS = {
   cloud_model: PACK.cloudModel,
   voice_model: PACK.voiceModel,
   guess_count: PACK.guessCount,
-  device_timeout_ms: 12_000,
+  device_timeout_ms: 8_000,
   cloud_thinking: 'MINIMAL',
   limited_use_tokens: false,
   natural_voice: true,

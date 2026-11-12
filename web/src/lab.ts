@@ -1,9 +1,11 @@
 // Dev-only harness: runs the real jobs (same code as the app) and prints what came back.
 // ?device=none|ready  ?cases=<json array of [clues, target]>  ?job=find|sentences|cue
 import { deviceAvailability, settings, wakeDevice } from './core/ai';
+import { loadPictures } from './core/pictures';
 import { findWord, makeCues, makeSentences, moreFromCloud } from './core/find';
 import type { Situation } from './core/route';
 
+void loadPictures();
 const out = document.getElementById('out')!;
 const log = (s: string) => { out.textContent += s + '\n'; console.log('LAB ' + s); };
 const q = new URLSearchParams(location.search);
@@ -62,7 +64,7 @@ async function main() {
       const a = await findWord(clues, { saved: [], situation: s });
       const words = a.guesses.map((g) => g.word.toLowerCase());
       const idx = words.findIndex((w) => target.split('|').some((t) => w.includes(t)));
-      log(`${idx >= 0 ? 'HIT' + (idx + 1) : 'MISS'} ${a.side} ${a.ms}ms [${target}] <- ${clues} => ${a.guesses.map((g) => g.word + ' ' + g.emoji).join(', ')}${a.blocked ? ' BLOCKED ' + a.blocked : ''}`);
+      log(`${idx >= 0 ? 'HIT' + (idx + 1) : 'MISS'} ${a.side} first=${a.firstMs}ms all=${a.ms}ms [${target}] <- ${clues} => ${a.guesses.map((g) => g.word + ' ' + g.emoji).join(', ')}${a.blocked ? ' BLOCKED ' + a.blocked : ''}`);
       rows.push({ clues, target, idx, side: a.side, ms: a.ms, guesses: a.guesses, fellBack: a.fellBack });
       if (idx < 0 && q.get('more') === '1') {
         const m = await moreFromCloud(clues, a.guesses, { saved: [], situation: s });
@@ -90,11 +92,13 @@ document.getElementById('go')!.addEventListener('click', () => { if (!started) {
 // Used by scripts/eval.mjs: one call per test item, same code path as the app.
 (window as unknown as { rb: unknown }).rb = {
   availability: deviceAvailability,
+  // Try a prompt wording without rebuilding: same mechanism as the Remote Config override.
+  async override(json: string) { const { applyPromptOverrides } = await import('./core/remote'); const { resetModels } = await import('./core/ai'); const changed = applyPromptOverrides(json); resetModels(); return changed; },
   wake: () => wakeDevice(() => undefined),
   async find(clues: string, device: Situation['device'], privateOnly = false) {
     const s: Situation = { device, online: true, cloud: true, privateOnly };
     const a = await findWord(clues, { saved: [], situation: s });
-    return { words: a.guesses.map((g) => g.word), side: a.side, ms: a.ms, fellBack: a.fellBack ?? false, blocked: a.blocked ?? null };
+    return { words: a.guesses.map((g) => g.word), pictures: a.guesses.filter((g) => g.emoji).length, side: a.side, ms: a.ms, firstMs: a.firstMs, fellBack: a.fellBack ?? false, blocked: a.blocked ?? null };
   },
 };
 

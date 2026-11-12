@@ -22,13 +22,13 @@ export function Tiles({ guesses, chosen, onChoose }: { guesses: Guess[]; chosen:
 }
 
 /** One plain line saying where the answer came from. */
-export function SourceLine({ side, ms, why, onWhy }: { side: Side | null; ms: number; why: string; onWhy: () => void }) {
+export function SourceLine({ side, ms, why, added, onWhy }: { side: Side | null; ms: number; why: string; added?: boolean; onWhy: () => void }) {
   if (!side) return null;
   const secs = (ms / 1000).toFixed(1);
   return (
     <p class={`source source-${side}`}>
       {side === 'device' ? <IconDevice /> : <IconCloud />}
-      <span>{side === 'device' ? `Found on this device in ${secs} s. Nothing was sent.` : `Found in the cloud in ${secs} s.`}</span>
+      <span>{side === 'device' ? (added ? `Found on this device in ${secs} s. The clue was short, so the cloud added the blue ones.` : `Found on this device in ${secs} s. Nothing was sent.`) : `Found in the cloud in ${secs} s.`}</span>
       <button class="textlink" onClick={onWhy} title={why}>Why?</button>
     </p>
   );

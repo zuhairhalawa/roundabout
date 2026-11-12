@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { StaleError } from '../core/ai';
-import { findWord, isQuotaError, moreFromCloud, nameImage, type Answer } from '../core/find';
+import { fillPictures, findWord, isQuotaError, moreFromCloud, nameImage, type Answer } from '../core/find';
 import type { Guess, SavedWord } from '../core/guess';
 import { cluesFromChips, HINTS, rowsFor, type Chip } from '../core/pack';
 import type { Situation } from '../core/route';
@@ -17,6 +17,11 @@ const WAYS: Array<{ id: Way; label: string; icon: typeof IconDescribe }> = [
   { id: 'draw', label: 'Draw it', icon: IconDraw },
   { id: 'photo', label: 'Show a photo', icon: IconPhoto },
 ];
+
+const EXAMPLES = ['sharp, cuts bread, kitchen', 'the man who fixes teeth', 'thing for the rain, over your head'];
+
+/** Very short clues are the hard case for a small on-device model, so the cloud is asked to add ideas. */
+const isShort = (clues: string) => clues.split(/[\s,;]+/).filter(Boolean).length <= 3;
 
 interface Props {
   saved: SavedWord[];
@@ -37,6 +42,8 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
   const [photo, setPhoto] = useState<string | null>(null);
   const [answer, setAnswer] = useState<Answer | null>(null);
   const [busy, setBusy] = useState<'find' | 'more' | null>(null);
+  const [partial, setPartial] = useState(false); // words are still arriving
+  const [added, setAdded] = useState(false);     // the cloud added ideas to a device answer
   const [note, setNote] = useState<string | null>(null);
   const [chosen, setChosen] = useState<string | null>(null);
   const seq = useRef(0);
@@ -49,7 +56,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
   const picture = way === 'draw' ? sketch : way === 'photo' ? photo : null;
   const hasInput = way === 'describe' || way === 'hints' ? clues.length > 0 : Boolean(picture);
 
-  function reset() { seq.current++; setAnswer(null); setChosen(null); setNote(null); setBusy(null); }
+  function reset() { seq.current++; setAnswer(null); setChosen(null); setNote(null); setBusy(null); setPartial(false); setAdded(false); }
 
   async function run(live: boolean) {
     if (!hasInput) return;
@@ -57,20 +64,47 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
     const stale = () => id !== seq.current;
     setBusy('find');
     setNote(null);
+    setAdded(false);
     try {
-      const opts = { saved: savedRef.current, situation: sit.current, live, stale };
+      const opts = {
+        saved: savedRef.current, situation: sit.current, live, stale,
+        // Tiles appear one by one as the words stream in.
+        onPartial: (guesses: Guess[], side: Answer['side']) => {
+          if (stale() || !guesses.length) return;
+          setPartial(true);
+          setChosen(null);
+          setAnswer({ guesses, side, ms: 0, firstMs: 0, mode: null, why: '', canAskCloud: false });
+        },
+      };
       const a = picture
         ? await nameImage({ data: picture, mimeType: way === 'draw' ? 'image/png' : 'image/jpeg', kind: way === 'draw' ? 'sketch' : 'photo' }, opts)
         : await findWord(clues, opts);
       if (stale()) return;
       if (live && a.blocked) return; // live guesses are a bonus; say nothing when they cannot run
+      setPartial(false);
       setAnswer(a);
-      setChosen(null);
+      // A short clue answered on the device: the cloud adds its ideas without being asked.
+      if (!live && !picture && a.side === 'device' && a.canAskCloud && isShort(clues)) {
+        setBusy('more');
+        moreFromCloud(clues, a.guesses, { saved: savedRef.current, situation: sit.current })
+          .then((m) => {
+            if (stale() || m.blocked || m.guesses.length <= a.guesses.length) return;
+            setAnswer({ ...a, guesses: m.guesses, canAskCloud: false, why: 'The clue was short, which is hard for the small on-device model, so the cloud added ideas.' });
+            setAdded(true);
+          })
+          .catch(() => undefined)
+          .finally(() => { if (!stale()) setBusy(null); });
+        return;
+      }
+      // Words the picture table does not know get a picture from one short follow-up request.
+      if (!live && a.guesses.some((g) => !g.emoji)) {
+        fillPictures(a.guesses, sit.current).then((guesses) => { if (!stale()) setAnswer((cur) => (cur ? { ...cur, guesses: cur.guesses.map((g) => guesses.find((x) => x.word === g.word) ?? g) } : cur)); });
+      }
     } catch (e) {
       if (e instanceof StaleError || stale()) return;
       if (!live) setNote(friendly(e));
     } finally {
-      if (!stale()) setBusy(null);
+      if (!stale()) { setBusy((cur) => (cur === 'find' ? null : cur)); setPartial(false); }
     }
   }
 
@@ -134,6 +168,8 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
     <section class="find" aria-labelledby="find-h">
       <h1 id="find-h">What is it like?</h1>
 
+      <div class="find-grid">
+      <div class="find-in">
       <div class="ways" role="tablist" aria-label="Ways to find the word">
         {WAYS.map((w) => (
           <button role="tab" aria-selected={way === w.id} class={`way ${way === w.id ? 'way-on' : ''}`} onClick={() => { setWay(w.id); reset(); }}>
@@ -149,6 +185,12 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
             onInput={(e) => setText((e.target as HTMLTextAreaElement).value)}
             onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); run(false); } }} />
           <p class="tip">Any words will do. Spelling does not matter.</p>
+          {!text && (
+            <div class="examples">
+              <span>Try one:</span>
+              {EXAMPLES.map((ex) => <button class="example" onClick={() => setText(ex)}>{ex}</button>)}
+            </div>
+          )}
         </div>
       )}
 
@@ -186,6 +228,8 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
         </button>
       </div>
 
+      </div>
+
       <div class="results" aria-live="polite">
         {note && <p class="note" role="status">{note}</p>}
         {answer?.blocked && !answer.guesses.length && <p class="note" role="status">{answer.blocked}</p>}
@@ -193,7 +237,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
         {answer && answer.guesses.length > 0 && (
           <>
             <Tiles guesses={answer.guesses} chosen={chosen} onChoose={choose} />
-            <SourceLine side={answer.side} ms={answer.ms} why={answer.why} onWhy={onWhy} />
+            {!partial && <SourceLine side={answer.side} ms={answer.ms} why={answer.why} added={added && answer.guesses.some((g) => g.source === 'cloud')} onWhy={onWhy} />}
 
             {chosenGuess ? (
               <div class="chosen">
@@ -201,7 +245,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
                 <button class="btn btn-quiet" onClick={() => onUse(chosenGuess.word)}><IconPlus /> Use in a sentence</button>
                 <button class="btn btn-quiet" disabled={alreadySaved} onClick={() => onSave(chosenGuess)}><IconStar size={22} /> {alreadySaved ? 'Saved' : 'Save to my words'}</button>
               </div>
-            ) : (
+            ) : partial ? null : (
               <div class="chosen">
                 <button class="btn btn-quiet" disabled={busy === 'more'} onClick={more}>
                   {busy === 'more' ? <Ring size={22} spin /> : null} None of these
@@ -212,6 +256,8 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
         )}
 
         {answer && !answer.blocked && answer.guesses.length === 0 && <p class="note" role="status">No ideas yet. Add one more clue.</p>}
+      </div>
+
       </div>
 
       {strip.length > 0 && (

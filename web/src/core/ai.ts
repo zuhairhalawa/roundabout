@@ -16,8 +16,8 @@ export const settings = {
   cloudModel: PACK.cloudModel,
   voiceModel: PACK.voiceModel,
   guessCount: PACK.guessCount,
-  /** How long to wait for the on-device model before asking the cloud instead. */
-  deviceTimeoutMs: 12_000,
+  /** How long to wait for the on-device model to start answering before asking the cloud instead. */
+  deviceTimeoutMs: 8_000,
   /**
    * One-time-use App Check tokens (replay protection). Measured cost: about half a second per
    * cloud request, which is a lot in a conversation, so it is off by default. It can be turned
@@ -69,7 +69,7 @@ export function firebaseAI(): AI {
   return ai;
 }
 
-export type Kind = 'find' | 'image' | 'sentences' | 'cue';
+export type Kind = 'find' | 'image' | 'sentences' | 'cue' | 'picture';
 
 const MODES: Record<Mode, InferenceMode> = {
   only_on_device: InferenceMode.ONLY_ON_DEVICE,
@@ -82,8 +82,9 @@ const TEXT_EN = { type: 'text' as const, languages: ['en'] };
 
 function spec(kind: Kind): { system: string; schema: object; maxTokens: number } {
   switch (kind) {
-    case 'find': return { system: fill(PACK.find.system, { count: settings.guessCount }), schema: PACK.schemas.guesses, maxTokens: 300 };
-    case 'image': return { system: fill(PACK.image.system, { count: settings.guessCount }), schema: PACK.schemas.guesses, maxTokens: 300 };
+    case 'find': return { system: fill(PACK.find.system, { count: settings.guessCount }), schema: PACK.schemas.words, maxTokens: 200 };
+    case 'image': return { system: fill(PACK.image.system, { count: settings.guessCount }), schema: PACK.schemas.words, maxTokens: 200 };
+    case 'picture': return { system: PACK.picture.system, schema: PACK.schemas.emoji, maxTokens: 120 };
     case 'sentences': return { system: fill(PACK.sentences.system, { count: PACK.sentences.count }), schema: PACK.schemas.sentences, maxTokens: 400 };
     case 'cue': return { system: PACK.cue.system, schema: PACK.schemas.cue, maxTokens: 200 };
   }

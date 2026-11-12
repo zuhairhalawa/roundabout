@@ -1,0 +1,1421 @@
+{
+ "set": "eval/dev.json",
+ "side": "device",
+ "at": "2026-11-12T11:14:40.699Z",
+ "report": {
+  "all": {
+   "n": 78,
+   "top1": 70.5,
+   "top3": 79.5,
+   "top6": 87.2,
+   "medianFirstMs": 665,
+   "medianMs": 1390,
+   "p90Ms": 2817
+  },
+  "plain": {
+   "n": 26,
+   "top1": 88.5,
+   "top3": 88.5,
+   "top6": 92.3,
+   "medianFirstMs": 674,
+   "medianMs": 1421,
+   "p90Ms": 2829
+  },
+  "broken": {
+   "n": 26,
+   "top1": 76.9,
+   "top3": 84.6,
+   "top6": 88.5,
+   "medianFirstMs": 663,
+   "medianMs": 1389,
+   "p90Ms": 2817
+  },
+  "sparse": {
+   "n": 26,
+   "top1": 46.2,
+   "top3": 65.4,
+   "top6": 80.8,
+   "medianFirstMs": 659,
+   "medianMs": 1364,
+   "p90Ms": 2503
+  },
+  "errors": 0,
+  "sides": [
+   "device"
+  ]
+ },
+ "rows": [
+  {
+   "id": "d01",
+   "style": "plain",
+   "target": "kettle",
+   "rank": 0,
+   "side": "device",
+   "ms": 2829,
+   "firstMs": 2012,
+   "words": [
+    "kettle",
+    "water",
+    "tea",
+    "boil",
+    "steam",
+    "hot"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d01",
+   "style": "broken",
+   "target": "kettle",
+   "rank": 0,
+   "side": "device",
+   "ms": 2915,
+   "firstMs": 2104,
+   "words": [
+    "kettle",
+    "hot water",
+    "tea",
+    "plug",
+    "electric",
+    "cup"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d01",
+   "style": "sparse",
+   "target": "kettle",
+   "rank": -1,
+   "side": "device",
+   "ms": 2503,
+   "firstMs": 2096,
+   "words": [
+    "tea",
+    "water",
+    "boil"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d02",
+   "style": "plain",
+   "target": "passport",
+   "rank": 0,
+   "side": "device",
+   "ms": 2855,
+   "firstMs": 2084,
+   "words": [
+    "passport",
+    "guidebook",
+    "travel",
+    "book",
+    "map",
+    "visa"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d02",
+   "style": "broken",
+   "target": "passport",
+   "rank": 0,
+   "side": "device",
+   "ms": 2817,
+   "firstMs": 2092,
+   "words": [
+    "passport",
+    "book",
+    "photo",
+    "airport",
+    "travel",
+    "wallet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d02",
+   "style": "sparse",
+   "target": "passport",
+   "rank": 3,
+   "side": "device",
+   "ms": 3052,
+   "firstMs": 2261,
+   "words": [
+    "travel",
+    "photo",
+    "border crossing",
+    "passport",
+    "vacation",
+    "pictures"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d03",
+   "style": "plain",
+   "target": "charger",
+   "rank": 0,
+   "side": "device",
+   "ms": 2859,
+   "firstMs": 2143,
+   "words": [
+    "charger",
+    "plug",
+    "power",
+    "phone",
+    "battery",
+    "cable"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d03",
+   "style": "broken",
+   "target": "charger",
+   "rank": -1,
+   "side": "device",
+   "ms": 3830,
+   "firstMs": 3058,
+   "words": [
+    "phone cord",
+    "phone line",
+    "wire",
+    "telephone",
+    "cable",
+    "antenna"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d03",
+   "style": "sparse",
+   "target": "charger",
+   "rank": 1,
+   "side": "device",
+   "ms": 3183,
+   "firstMs": 2396,
+   "words": [
+    "power cable",
+    "phone charger",
+    "electricity",
+    "cable power",
+    "charge",
+    "device"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d04",
+   "style": "plain",
+   "target": "wallet",
+   "rank": 0,
+   "side": "device",
+   "ms": 1421,
+   "firstMs": 665,
+   "words": [
+    "wallet",
+    "card",
+    "pocket",
+    "money",
+    "purse",
+    "billboard"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d04",
+   "style": "broken",
+   "target": "wallet",
+   "rank": 0,
+   "side": "device",
+   "ms": 1375,
+   "firstMs": 657,
+   "words": [
+    "wallet",
+    "cards",
+    "leather",
+    "pocket",
+    "money",
+    "currency"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d04",
+   "style": "sparse",
+   "target": "wallet",
+   "rank": 1,
+   "side": "device",
+   "ms": 1390,
+   "firstMs": 667,
+   "words": [
+    "cash",
+    "wallet",
+    "bill",
+    "hand",
+    "card",
+    "game"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d05",
+   "style": "plain",
+   "target": "blanket",
+   "rank": 0,
+   "side": "device",
+   "ms": 1427,
+   "firstMs": 684,
+   "words": [
+    "blanket",
+    "cover",
+    "warm",
+    "sleep",
+    "bed",
+    "sheets"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d05",
+   "style": "broken",
+   "target": "blanket",
+   "rank": 0,
+   "side": "device",
+   "ms": 1414,
+   "firstMs": 663,
+   "words": [
+    "blanket",
+    "warm",
+    "soft",
+    "bed",
+    "cover",
+    "big"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d05",
+   "style": "sparse",
+   "target": "blanket",
+   "rank": 0,
+   "side": "device",
+   "ms": 1435,
+   "firstMs": 640,
+   "words": [
+    "blanket",
+    "warm",
+    "bed",
+    "cover",
+    "snug",
+    "sleep"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d07",
+   "style": "plain",
+   "target": "dishwasher",
+   "rank": 0,
+   "side": "device",
+   "ms": 824,
+   "firstMs": 643,
+   "words": [
+    "dishwasher"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d07",
+   "style": "broken",
+   "target": "dishwasher",
+   "rank": 0,
+   "side": "device",
+   "ms": 1346,
+   "firstMs": 650,
+   "words": [
+    "dishwasher",
+    "plates",
+    "dirty",
+    "wash",
+    "water",
+    "kitchen"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d07",
+   "style": "sparse",
+   "target": "dishwasher",
+   "rank": 0,
+   "side": "device",
+   "ms": 1321,
+   "firstMs": 627,
+   "words": [
+    "dishwasher",
+    "plates",
+    "kitchen",
+    "wash",
+    "clean",
+    "table"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d08",
+   "style": "plain",
+   "target": "receipt",
+   "rank": 0,
+   "side": "device",
+   "ms": 1340,
+   "firstMs": 637,
+   "words": [
+    "receipt",
+    "invoice",
+    "bill",
+    "paper",
+    "proof",
+    "record"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d08",
+   "style": "broken",
+   "target": "receipt",
+   "rank": 0,
+   "side": "device",
+   "ms": 1406,
+   "firstMs": 652,
+   "words": [
+    "receipt",
+    "bill",
+    "price",
+    "invoice",
+    "cost",
+    "tag"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d08",
+   "style": "sparse",
+   "target": "receipt",
+   "rank": 3,
+   "side": "device",
+   "ms": 1304,
+   "firstMs": 623,
+   "words": [
+    "pay",
+    "bill",
+    "store",
+    "receipt",
+    "invoice",
+    "cash"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d09",
+   "style": "plain",
+   "target": "elevator",
+   "rank": 0,
+   "side": "device",
+   "ms": 1366,
+   "firstMs": 654,
+   "words": [
+    "elevator",
+    "stairs",
+    "lift",
+    "escalator"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d09",
+   "style": "broken",
+   "target": "elevator",
+   "rank": 0,
+   "side": "device",
+   "ms": 1336,
+   "firstMs": 652,
+   "words": [
+    "elevator",
+    "up",
+    "building",
+    "number",
+    "press",
+    "box"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d09",
+   "style": "sparse",
+   "target": "elevator",
+   "rank": 4,
+   "side": "device",
+   "ms": 1349,
+   "firstMs": 659,
+   "words": [
+    "up",
+    "down",
+    "building",
+    "stairs",
+    "elevator",
+    "ladder"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d10",
+   "style": "plain",
+   "target": "seatbelt",
+   "rank": -1,
+   "side": "device",
+   "ms": 1365,
+   "firstMs": 679,
+   "words": [
+    "insurance",
+    "coverage",
+    "car",
+    "safe",
+    "across",
+    "put"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d10",
+   "style": "broken",
+   "target": "seatbelt",
+   "rank": 0,
+   "side": "device",
+   "ms": 1381,
+   "firstMs": 640,
+   "words": [
+    "seatbelt",
+    "car",
+    "click",
+    "safe",
+    "strap",
+    "lock"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d10",
+   "style": "sparse",
+   "target": "seatbelt",
+   "rank": 1,
+   "side": "device",
+   "ms": 1299,
+   "firstMs": 651,
+   "words": [
+    "car seat",
+    "seat belt",
+    "car",
+    "strap",
+    "safe"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d11",
+   "style": "plain",
+   "target": "microwave",
+   "rank": 0,
+   "side": "device",
+   "ms": 1357,
+   "firstMs": 669,
+   "words": [
+    "microwave",
+    "oven",
+    "bake",
+    "cook",
+    "timer",
+    "ding"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d11",
+   "style": "broken",
+   "target": "microwave",
+   "rank": 0,
+   "side": "device",
+   "ms": 1367,
+   "firstMs": 657,
+   "words": [
+    "microwave",
+    "oven",
+    "hot",
+    "cook",
+    "timer",
+    "alarm"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d11",
+   "style": "sparse",
+   "target": "microwave",
+   "rank": 5,
+   "side": "device",
+   "ms": 1390,
+   "firstMs": 674,
+   "words": [
+    "hot",
+    "soup",
+    "fast",
+    "dinner",
+    "lunch",
+    "microwave"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d13",
+   "style": "plain",
+   "target": "stairs",
+   "rank": 0,
+   "side": "device",
+   "ms": 1071,
+   "firstMs": 662,
+   "words": [
+    "stairs",
+    "elevator",
+    "elevator ride"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d13",
+   "style": "broken",
+   "target": "stairs",
+   "rank": 5,
+   "side": "device",
+   "ms": 1351,
+   "firstMs": 667,
+   "words": [
+    "bedroom",
+    "up",
+    "house",
+    "walk",
+    "go",
+    "stairs"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d13",
+   "style": "sparse",
+   "target": "stairs",
+   "rank": 0,
+   "side": "device",
+   "ms": 1382,
+   "firstMs": 678,
+   "words": [
+    "stairs",
+    "elevator",
+    "room",
+    "floor",
+    "upstairs",
+    "walking"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d14",
+   "style": "plain",
+   "target": "heater",
+   "rank": 0,
+   "side": "device",
+   "ms": 1491,
+   "firstMs": 660,
+   "words": [
+    "heater",
+    "fire",
+    "stove",
+    "radiator",
+    "furnace",
+    "blanket"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d14",
+   "style": "broken",
+   "target": "heater",
+   "rank": 2,
+   "side": "device",
+   "ms": 1436,
+   "firstMs": 659,
+   "words": [
+    "blanket",
+    "fire",
+    "radiator",
+    "heater",
+    "sweater",
+    "warm"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d14",
+   "style": "sparse",
+   "target": "heater",
+   "rank": 0,
+   "side": "device",
+   "ms": 1444,
+   "firstMs": 672,
+   "words": [
+    "heater",
+    "warm",
+    "room",
+    "winter",
+    "cold",
+    "fireplace"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d15",
+   "style": "plain",
+   "target": "suitcase",
+   "rank": 0,
+   "side": "device",
+   "ms": 1539,
+   "firstMs": 676,
+   "words": [
+    "suitcase",
+    "luggage",
+    "bag",
+    "travel bag",
+    "rolling bag",
+    "carry-on"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d15",
+   "style": "broken",
+   "target": "suitcase",
+   "rank": 0,
+   "side": "device",
+   "ms": 1389,
+   "firstMs": 670,
+   "words": [
+    "suitcase",
+    "bag",
+    "travel",
+    "holiday",
+    "clothes",
+    "vacation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d15",
+   "style": "sparse",
+   "target": "suitcase",
+   "rank": 2,
+   "side": "device",
+   "ms": 1332,
+   "firstMs": 655,
+   "words": [
+    "car",
+    "travel",
+    "suitcase",
+    "wheels",
+    "dress",
+    "pants"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d16",
+   "style": "plain",
+   "target": "doorbell",
+   "rank": 0,
+   "side": "device",
+   "ms": 1334,
+   "firstMs": 650,
+   "words": [
+    "doorbell",
+    "door",
+    "house",
+    "ring",
+    "press",
+    "outside"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d16",
+   "style": "broken",
+   "target": "doorbell",
+   "rank": 0,
+   "side": "device",
+   "ms": 1380,
+   "firstMs": 680,
+   "words": [
+    "doorbell",
+    "knock",
+    "door",
+    "outside",
+    "press",
+    "hello"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d16",
+   "style": "sparse",
+   "target": "doorbell",
+   "rank": 0,
+   "side": "device",
+   "ms": 1487,
+   "firstMs": 681,
+   "words": [
+    "bell",
+    "doorbell",
+    "ring",
+    "door",
+    "press",
+    "push"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d17",
+   "style": "plain",
+   "target": "headache",
+   "rank": 0,
+   "side": "device",
+   "ms": 1630,
+   "firstMs": 689,
+   "words": [
+    "headache",
+    "pain",
+    "hurt",
+    "feel bad",
+    "throbbing",
+    "sore"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d17",
+   "style": "broken",
+   "target": "headache",
+   "rank": 0,
+   "side": "device",
+   "ms": 1473,
+   "firstMs": 629,
+   "words": [
+    "headache",
+    "hurt",
+    "pain",
+    "throbbing",
+    "tension",
+    "sore"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d17",
+   "style": "sparse",
+   "target": "headache",
+   "rank": 0,
+   "side": "device",
+   "ms": 1308,
+   "firstMs": 667,
+   "words": [
+    "headache",
+    "pain",
+    "hurt",
+    "throb",
+    "ache"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d18",
+   "style": "plain",
+   "target": "haircut",
+   "rank": 5,
+   "side": "device",
+   "ms": 1415,
+   "firstMs": 681,
+   "words": [
+    "cut",
+    "hair",
+    "shorter",
+    "salon",
+    "scissors",
+    "trim"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d18",
+   "style": "broken",
+   "target": "haircut",
+   "rank": 1,
+   "side": "device",
+   "ms": 1493,
+   "firstMs": 643,
+   "words": [
+    "shave",
+    "haircut",
+    "barber",
+    "shorten",
+    "trim",
+    "cut"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d18",
+   "style": "sparse",
+   "target": "haircut",
+   "rank": 0,
+   "side": "device",
+   "ms": 1193,
+   "firstMs": 647,
+   "words": [
+    "haircut",
+    "barber",
+    "shorter hair"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d19",
+   "style": "plain",
+   "target": "breakfast",
+   "rank": 0,
+   "side": "device",
+   "ms": 1483,
+   "firstMs": 699,
+   "words": [
+    "breakfast",
+    "morning",
+    "coffee",
+    "eggs",
+    "toast",
+    "cereal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d19",
+   "style": "broken",
+   "target": "breakfast",
+   "rank": 0,
+   "side": "device",
+   "ms": 1398,
+   "firstMs": 656,
+   "words": [
+    "breakfast",
+    "eggs",
+    "toast",
+    "morning",
+    "food",
+    "eat"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d19",
+   "style": "sparse",
+   "target": "breakfast",
+   "rank": 0,
+   "side": "device",
+   "ms": 1398,
+   "firstMs": 678,
+   "words": [
+    "breakfast",
+    "morning",
+    "meal",
+    "first",
+    "food",
+    "dish"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d20",
+   "style": "plain",
+   "target": "laundry",
+   "rank": 0,
+   "side": "device",
+   "ms": 1410,
+   "firstMs": 655,
+   "words": [
+    "laundry",
+    "clothes",
+    "wash",
+    "dirty",
+    "clean",
+    "hamper"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d20",
+   "style": "broken",
+   "target": "laundry",
+   "rank": 0,
+   "side": "device",
+   "ms": 1285,
+   "firstMs": 640,
+   "words": [
+    "laundry",
+    "wash",
+    "clothes",
+    "basket",
+    "dirty"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d20",
+   "style": "sparse",
+   "target": "laundry",
+   "rank": -1,
+   "side": "device",
+   "ms": 893,
+   "firstMs": 627,
+   "words": [
+    "dirty clothes basket"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d21",
+   "style": "plain",
+   "target": "traffic light",
+   "rank": -1,
+   "side": "device",
+   "ms": 1320,
+   "firstMs": 636,
+   "words": [
+    "light",
+    "signal",
+    "traffic",
+    "stop",
+    "go",
+    "red"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d21",
+   "style": "broken",
+   "target": "traffic light",
+   "rank": 0,
+   "side": "device",
+   "ms": 1323,
+   "firstMs": 673,
+   "words": [
+    "traffic lights",
+    "red",
+    "green",
+    "stop",
+    "road"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d21",
+   "style": "sparse",
+   "target": "traffic light",
+   "rank": -1,
+   "side": "device",
+   "ms": 1473,
+   "firstMs": 652,
+   "words": [
+    "stop sign",
+    "red light",
+    "green light",
+    "traffic",
+    "road",
+    "signal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d22",
+   "style": "plain",
+   "target": "vacuum cleaner",
+   "rank": 0,
+   "side": "device",
+   "ms": 1398,
+   "firstMs": 677,
+   "words": [
+    "vacuum",
+    "dust",
+    "floor",
+    "clean",
+    "sweep",
+    "broom"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d22",
+   "style": "broken",
+   "target": "vacuum cleaner",
+   "rank": 0,
+   "side": "device",
+   "ms": 1427,
+   "firstMs": 669,
+   "words": [
+    "vacuum",
+    "carpet",
+    "dust",
+    "suck",
+    "floor",
+    "noisy"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d22",
+   "style": "sparse",
+   "target": "vacuum cleaner",
+   "rank": 0,
+   "side": "device",
+   "ms": 1364,
+   "firstMs": 659,
+   "words": [
+    "vacuum",
+    "clean",
+    "dust",
+    "floor",
+    "machine",
+    "sweep"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d24",
+   "style": "plain",
+   "target": "taxi",
+   "rank": 0,
+   "side": "device",
+   "ms": 1437,
+   "firstMs": 707,
+   "words": [
+    "taxi",
+    "driver",
+    "ride",
+    "vehicle",
+    "transport",
+    "car"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d24",
+   "style": "broken",
+   "target": "taxi",
+   "rank": -1,
+   "side": "device",
+   "ms": 1341,
+   "firstMs": 665,
+   "words": [
+    "driver",
+    "car",
+    "home",
+    "pay",
+    "take",
+    "you"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d24",
+   "style": "sparse",
+   "target": "taxi",
+   "rank": -1,
+   "side": "device",
+   "ms": 1346,
+   "firstMs": 646,
+   "words": [
+    "driver",
+    "car",
+    "payment",
+    "pay",
+    "vehicle",
+    "automobile"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d25",
+   "style": "plain",
+   "target": "password",
+   "rank": 0,
+   "side": "device",
+   "ms": 1401,
+   "firstMs": 683,
+   "words": [
+    "password",
+    "code",
+    "PIN",
+    "security",
+    "access",
+    "login"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d25",
+   "style": "broken",
+   "target": "password",
+   "rank": 0,
+   "side": "device",
+   "ms": 1362,
+   "firstMs": 665,
+   "words": [
+    "password",
+    "secret",
+    "computer",
+    "type",
+    "internet",
+    "access"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d25",
+   "style": "sparse",
+   "target": "password",
+   "rank": 0,
+   "side": "device",
+   "ms": 1342,
+   "firstMs": 668,
+   "words": [
+    "password",
+    "secret",
+    "login",
+    "code",
+    "type",
+    "system"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d26",
+   "style": "plain",
+   "target": "wheelchair",
+   "rank": 0,
+   "side": "device",
+   "ms": 1425,
+   "firstMs": 648,
+   "words": [
+    "wheelchair",
+    "chair",
+    "wheel",
+    "person",
+    "sit",
+    "move"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d26",
+   "style": "broken",
+   "target": "wheelchair",
+   "rank": 0,
+   "side": "device",
+   "ms": 1518,
+   "firstMs": 713,
+   "words": [
+    "wheelchair",
+    "push",
+    "walk",
+    "chair",
+    "someone",
+    "move"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d26",
+   "style": "sparse",
+   "target": "wheelchair",
+   "rank": 1,
+   "side": "device",
+   "ms": 1368,
+   "firstMs": 649,
+   "words": [
+    "chair",
+    "wheelchair",
+    "push",
+    "move",
+    "sit",
+    "assist"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d28",
+   "style": "plain",
+   "target": "lunch",
+   "rank": 0,
+   "side": "device",
+   "ms": 1420,
+   "firstMs": 638,
+   "words": [
+    "lunch",
+    "meal",
+    "sushi",
+    "salad",
+    "sandwich",
+    "break"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d28",
+   "style": "broken",
+   "target": "lunch",
+   "rank": 0,
+   "side": "device",
+   "ms": 1412,
+   "firstMs": 651,
+   "words": [
+    "lunch",
+    "sandwich",
+    "eat",
+    "food",
+    "noon",
+    "midday"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d28",
+   "style": "sparse",
+   "target": "lunch",
+   "rank": 0,
+   "side": "device",
+   "ms": 1036,
+   "firstMs": 648,
+   "words": [
+    "lunch",
+    "eat",
+    "meal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d29",
+   "style": "plain",
+   "target": "newspaper",
+   "rank": 0,
+   "side": "device",
+   "ms": 1460,
+   "firstMs": 661,
+   "words": [
+    "newspaper",
+    "paper",
+    "broadsheet",
+    "edition",
+    "magazine",
+    "billboard"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d29",
+   "style": "broken",
+   "target": "newspaper",
+   "rank": 0,
+   "side": "device",
+   "ms": 1357,
+   "firstMs": 661,
+   "words": [
+    "newspaper",
+    "paper",
+    "morning",
+    "read",
+    "news",
+    "pages"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d29",
+   "style": "sparse",
+   "target": "newspaper",
+   "rank": 0,
+   "side": "device",
+   "ms": 1033,
+   "firstMs": 655,
+   "words": [
+    "newspaper",
+    "read",
+    "daily"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d30",
+   "style": "plain",
+   "target": "bus stop",
+   "rank": 0,
+   "side": "device",
+   "ms": 1481,
+   "firstMs": 674,
+   "words": [
+    "bus stop",
+    "stop",
+    "shelter",
+    "corner",
+    "stand",
+    "waiting"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d30",
+   "style": "broken",
+   "target": "bus stop",
+   "rank": -1,
+   "side": "device",
+   "ms": 1231,
+   "firstMs": 667,
+   "words": [
+    "bus",
+    "wait",
+    "street",
+    "sign",
+    "come"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "d30",
+   "style": "sparse",
+   "target": "bus stop",
+   "rank": -1,
+   "side": "device",
+   "ms": 1333,
+   "firstMs": 665,
+   "words": [
+    "bus",
+    "street",
+    "wait",
+    "stop",
+    "ride",
+    "route"
+   ],
+   "blocked": null
+  }
+ ]
+}

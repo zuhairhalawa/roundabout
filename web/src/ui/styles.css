@@ -55,6 +55,10 @@ h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0
 .clues::placeholder, .kw::placeholder { color: #7b8389; font-weight: 500; }
 .clues:focus-visible { box-shadow: none; outline-offset: 10px; }
 
+/* example clues */
+.examples { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; color: var(--ink-soft); font-size: .95rem; }
+.example { min-height: 40px; padding: 4px 12px; border-radius: 999px; border: 2px dashed var(--ink-soft); background: transparent; font-weight: 600; font-size: .95rem; }
+
 /* hint chips: white regulatory-sign plates */
 .chiprow + .chiprow { margin-top: 16px; }
 .chiprow legend { font-weight: 800; font-size: 1.2rem; margin-bottom: 8px; padding: 0; }
@@ -190,6 +194,15 @@ h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0
 
 .ring-spin { animation: go-round 1.3s linear infinite; }
 @keyframes go-round { to { transform: rotate(360deg); } }
+
+/* wide screens: what you put in on the left, the words on the right */
+@media (min-width: 1120px) {
+  .shell { max-width: 1240px; }
+  .find-grid { display: grid; grid-template-columns: minmax(0, 11fr) minmax(0, 9fr); gap: 28px; align-items: start; }
+  .find-grid .results { position: sticky; top: 16px; min-height: 300px; }
+  .find-grid .go-row { margin-bottom: 0; }
+  .find-grid .tiles { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+}
 
 @media (max-width: 560px) {
   body { font-size: 18px; }

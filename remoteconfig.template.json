@@ -23,9 +23,9 @@
     },
     "device_timeout_ms": {
       "defaultValue": {
-        "value": "12000"
+        "value": "8000"
       },
-      "description": "How long to wait for the on-device model before asking the cloud.",
+      "description": "How long to wait for the on-device model to start answering before asking the cloud.",
       "valueType": "NUMBER"
     },
     "cloud_thinking": {

@@ -1,0 +1,2534 @@
+{
+ "set": "eval/pnt.json",
+ "side": "device",
+ "at": "2026-11-12T10:58:49.205Z",
+ "rows": [
+  {
+   "id": "p001",
+   "style": "plain",
+   "target": "candle",
+   "rank": 0,
+   "side": "device",
+   "ms": 4164,
+   "words": [
+    "candle",
+    "light",
+    "wick",
+    "burn",
+    "wax",
+    "lamp"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p001",
+   "style": "broken",
+   "target": "candle",
+   "rank": 0,
+   "side": "device",
+   "ms": 3584,
+   "words": [
+    "candle",
+    "cake",
+    "burn",
+    "birthday",
+    "flame",
+    "wax"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p001",
+   "style": "sparse",
+   "target": "candle",
+   "rank": 0,
+   "side": "device",
+   "ms": 3575,
+   "words": [
+    "candle",
+    "light",
+    "burn",
+    "glow",
+    "heat",
+    "wood"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p002",
+   "style": "plain",
+   "target": "ghost",
+   "rank": 0,
+   "side": "device",
+   "ms": 3971,
+   "words": [
+    "ghost",
+    "spirit",
+    "phantom",
+    "dead",
+    "house",
+    "haunt"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p002",
+   "style": "broken",
+   "target": "ghost",
+   "rank": 0,
+   "side": "device",
+   "ms": 3441,
+   "words": [
+    "ghost",
+    "spirit",
+    "dead",
+    "phantom",
+    "boo",
+    "sheet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p002",
+   "style": "sparse",
+   "target": "ghost",
+   "rank": 0,
+   "side": "device",
+   "ms": 4162,
+   "words": [
+    "ghost",
+    "spirit",
+    "phantom",
+    "funeral",
+    "white shroud",
+    "death"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p003",
+   "style": "plain",
+   "target": "dinosaur",
+   "rank": 0,
+   "side": "device",
+   "ms": 3718,
+   "words": [
+    "dinosaur",
+    "reptile",
+    "extinct",
+    "ancient",
+    "giant",
+    "mammoth"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p003",
+   "style": "broken",
+   "target": "dinosaur",
+   "rank": 0,
+   "side": "device",
+   "ms": 4055,
+   "words": [
+    "dinosaur",
+    "bones",
+    "museum",
+    "fossils",
+    "ancient",
+    "prehistoric"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p003",
+   "style": "sparse",
+   "target": "dinosaur",
+   "rank": 0,
+   "side": "device",
+   "ms": 4112,
+   "words": [
+    "dinosaur",
+    "pterodactyl",
+    "reptile",
+    "saurus",
+    "extinct",
+    "huge"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p004",
+   "style": "plain",
+   "target": "tree",
+   "rank": 0,
+   "side": "device",
+   "ms": 3449,
+   "words": [
+    "tree",
+    "plant",
+    "bush",
+    "stem",
+    "trunk",
+    "foliage"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p004",
+   "style": "broken",
+   "target": "tree",
+   "rank": 0,
+   "side": "device",
+   "ms": 3906,
+   "words": [
+    "tree",
+    "garden",
+    "leaves",
+    "birds",
+    "tall",
+    "wood"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p004",
+   "style": "sparse",
+   "target": "tree",
+   "rank": 0,
+   "side": "device",
+   "ms": 3411,
+   "words": [
+    "tree",
+    "oak",
+    "garden",
+    "yard",
+    "plant",
+    "nature"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p005",
+   "style": "plain",
+   "target": "pen",
+   "rank": 0,
+   "side": "device",
+   "ms": 3435,
+   "words": [
+    "pen",
+    "pocket",
+    "write",
+    "ink",
+    "carry",
+    "pencil"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p005",
+   "style": "broken",
+   "target": "pen",
+   "rank": 0,
+   "side": "device",
+   "ms": 4196,
+   "words": [
+    "pen",
+    "ink",
+    "write",
+    "clicker",
+    "ballpoint",
+    "fountain pen"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p005",
+   "style": "sparse",
+   "target": "pen",
+   "rank": -1,
+   "side": "device",
+   "ms": 4138,
+   "words": [
+    "sign",
+    "write",
+    "ink",
+    "paper",
+    "hand",
+    "name"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p006",
+   "style": "plain",
+   "target": "scissors",
+   "rank": 0,
+   "side": "device",
+   "ms": 3993,
+   "words": [
+    "scissors",
+    "blades",
+    "cut",
+    "paper",
+    "join",
+    "two"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p006",
+   "style": "broken",
+   "target": "scissors",
+   "rank": 0,
+   "side": "device",
+   "ms": 4059,
+   "words": [
+    "scissors",
+    "holes",
+    "finger",
+    "paper",
+    "cut",
+    "two fingers"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p006",
+   "style": "sparse",
+   "target": "scissors",
+   "rank": 0,
+   "side": "device",
+   "ms": 2190,
+   "words": [
+    "scissors",
+    "snip",
+    "cut"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p007",
+   "style": "plain",
+   "target": "cane",
+   "rank": 0,
+   "side": "device",
+   "ms": 4072,
+   "words": [
+    "cane",
+    "walker",
+    "chair",
+    "support",
+    "handrail",
+    "bench"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p007",
+   "style": "broken",
+   "target": "cane",
+   "rank": 1,
+   "side": "device",
+   "ms": 3361,
+   "words": [
+    "crutches",
+    "cane",
+    "walker",
+    "support",
+    "beam",
+    "post"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p007",
+   "style": "sparse",
+   "target": "cane",
+   "rank": 0,
+   "side": "device",
+   "ms": 3665,
+   "words": [
+    "cane",
+    "walker",
+    "chair",
+    "rest",
+    "support",
+    "elderly"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p008",
+   "style": "plain",
+   "target": "comb",
+   "rank": 0,
+   "side": "device",
+   "ms": 3444,
+   "words": [
+    "comb",
+    "brush",
+    "strip",
+    "hair",
+    "neaten",
+    "small"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p008",
+   "style": "broken",
+   "target": "comb",
+   "rank": 0,
+   "side": "device",
+   "ms": 4067,
+   "words": [
+    "comb",
+    "scissors",
+    "razor",
+    "blade",
+    "haircut",
+    "wallet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p008",
+   "style": "sparse",
+   "target": "comb",
+   "rank": -1,
+   "side": "device",
+   "ms": 4206,
+   "words": [
+    "hairbrush",
+    "teeth brush",
+    "tidy up",
+    "neatness",
+    "grooming",
+    "bathroom"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p009",
+   "style": "plain",
+   "target": "thermometer",
+   "rank": 0,
+   "side": "device",
+   "ms": 3558,
+   "words": [
+    "thermometer",
+    "fever",
+    "temperature",
+    "measure",
+    "illness",
+    "sick"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p009",
+   "style": "broken",
+   "target": "thermometer",
+   "rank": -1,
+   "side": "device",
+   "ms": 4105,
+   "words": [
+    "tongue",
+    "nurse",
+    "fever",
+    "numbers",
+    "tooth",
+    "throat"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p009",
+   "style": "sparse",
+   "target": "thermometer",
+   "rank": 3,
+   "side": "device",
+   "ms": 4096,
+   "words": [
+    "temperature",
+    "fever",
+    "measure",
+    "thermometer",
+    "illness",
+    "sick"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p010",
+   "style": "plain",
+   "target": "well",
+   "rank": 0,
+   "side": "device",
+   "ms": 3513,
+   "words": [
+    "well",
+    "pump",
+    "water",
+    "ground",
+    "hole",
+    "draw"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p010",
+   "style": "broken",
+   "target": "well",
+   "rank": 0,
+   "side": "device",
+   "ms": 3638,
+   "words": [
+    "well",
+    "water",
+    "bucket",
+    "rope",
+    "deep",
+    "old"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p010",
+   "style": "sparse",
+   "target": "well",
+   "rank": 0,
+   "side": "device",
+   "ms": 4218,
+   "words": [
+    "well",
+    "water",
+    "bucket",
+    "deep",
+    "hole",
+    "draw"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p011",
+   "style": "plain",
+   "target": "grapes",
+   "rank": 0,
+   "side": "device",
+   "ms": 3479,
+   "words": [
+    "grapes",
+    "vine",
+    "wine",
+    "bunches",
+    "grow",
+    "press"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p011",
+   "style": "broken",
+   "target": "grapes",
+   "rank": 0,
+   "side": "device",
+   "ms": 3344,
+   "words": [
+    "grapes",
+    "fruit",
+    "purple",
+    "green",
+    "vine",
+    "wine"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p011",
+   "style": "sparse",
+   "target": "grapes",
+   "rank": 0,
+   "side": "device",
+   "ms": 3905,
+   "words": [
+    "grape",
+    "grapes",
+    "vineyard",
+    "wine",
+    "alcohol",
+    "drink"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p012",
+   "style": "plain",
+   "target": "strawberries",
+   "rank": 0,
+   "side": "device",
+   "ms": 3426,
+   "words": [
+    "strawberry",
+    "cherry",
+    "raspberry",
+    "grape",
+    "berry",
+    "fruit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p012",
+   "style": "broken",
+   "target": "strawberries",
+   "rank": 0,
+   "side": "device",
+   "ms": 3321,
+   "words": [
+    "strawberry",
+    "raspberry",
+    "watermelon",
+    "grape",
+    "cherry",
+    "peach"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p012",
+   "style": "sparse",
+   "target": "strawberries",
+   "rank": 2,
+   "side": "device",
+   "ms": 3990,
+   "words": [
+    "watermelon",
+    "ice cream",
+    "strawberries",
+    "raspberry",
+    "grapes",
+    "cherry"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p013",
+   "style": "plain",
+   "target": "bread",
+   "rank": 0,
+   "side": "device",
+   "ms": 3603,
+   "words": [
+    "bread",
+    "loaf",
+    "sandwich",
+    "toast",
+    "baguette",
+    "crust"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p013",
+   "style": "broken",
+   "target": "bread",
+   "rank": 0,
+   "side": "device",
+   "ms": 3356,
+   "words": [
+    "bread",
+    "toast",
+    "butter",
+    "slice",
+    "baker",
+    "sweet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p013",
+   "style": "sparse",
+   "target": "bread",
+   "rank": 0,
+   "side": "device",
+   "ms": 2080,
+   "words": [
+    "bread",
+    "toast",
+    "sandwich"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p014",
+   "style": "plain",
+   "target": "football",
+   "rank": 0,
+   "side": "device",
+   "ms": 3879,
+   "words": [
+    "football",
+    "ball",
+    "leather",
+    "oval",
+    "kick",
+    "game"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p014",
+   "style": "broken",
+   "target": "football",
+   "rank": 0,
+   "side": "device",
+   "ms": 3575,
+   "words": [
+    "football",
+    "pigskin",
+    "touchdown",
+    "super bowl",
+    "brown",
+    "pointy stick"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p014",
+   "style": "sparse",
+   "target": "football",
+   "rank": 1,
+   "side": "device",
+   "ms": 3422,
+   "words": [
+    "wallet",
+    "football",
+    "rugby",
+    "ball",
+    "skin",
+    "tablet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p015",
+   "style": "plain",
+   "target": "pig",
+   "rank": 0,
+   "side": "device",
+   "ms": 3501,
+   "words": [
+    "pig",
+    "cow",
+    "sheep",
+    "chicken",
+    "turkey"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p015",
+   "style": "broken",
+   "target": "pig",
+   "rank": 0,
+   "side": "device",
+   "ms": 3764,
+   "words": [
+    "pig",
+    "pink",
+    "bacon",
+    "farm",
+    "sow",
+    "oink"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p015",
+   "style": "sparse",
+   "target": "pig",
+   "rank": 0,
+   "side": "device",
+   "ms": 4037,
+   "words": [
+    "pig",
+    "pink",
+    "snout",
+    "bacon",
+    "pinkish",
+    "animal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p016",
+   "style": "plain",
+   "target": "apple",
+   "rank": 0,
+   "side": "device",
+   "ms": 3618,
+   "words": [
+    "apple",
+    "fruit",
+    "red",
+    "green",
+    "core",
+    "orchard"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p016",
+   "style": "broken",
+   "target": "apple",
+   "rank": 0,
+   "side": "device",
+   "ms": 4546,
+   "words": [
+    "apple",
+    "red",
+    "fruit",
+    "crunchy",
+    "vitamin",
+    "doctor"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p016",
+   "style": "sparse",
+   "target": "apple",
+   "rank": 0,
+   "side": "device",
+   "ms": 4057,
+   "words": [
+    "apple",
+    "cranberry",
+    "grapes",
+    "pistachio",
+    "cherry",
+    "raspberry"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p017",
+   "style": "plain",
+   "target": "hand",
+   "rank": 0,
+   "side": "device",
+   "ms": 3510,
+   "words": [
+    "hand",
+    "arm",
+    "forearm",
+    "wrist",
+    "elbow",
+    "shoulder"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p017",
+   "style": "broken",
+   "target": "hand",
+   "rank": 0,
+   "side": "device",
+   "ms": 3791,
+   "words": [
+    "hand",
+    "wave",
+    "finger",
+    "arm",
+    "this",
+    "here"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p017",
+   "style": "sparse",
+   "target": "hand",
+   "rank": 0,
+   "side": "device",
+   "ms": 3549,
+   "words": [
+    "hand",
+    "wrist",
+    "palm",
+    "finger",
+    "touch",
+    "wave"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p018",
+   "style": "plain",
+   "target": "towel",
+   "rank": 0,
+   "side": "device",
+   "ms": 4324,
+   "words": [
+    "towel",
+    "bath",
+    "dry",
+    "shower",
+    "cloth",
+    "soft"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p018",
+   "style": "broken",
+   "target": "towel",
+   "rank": 0,
+   "side": "device",
+   "ms": 3470,
+   "words": [
+    "towel",
+    "bath",
+    "dry",
+    "cloth",
+    "shower",
+    "room"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p018",
+   "style": "sparse",
+   "target": "towel",
+   "rank": 1,
+   "side": "device",
+   "ms": 4017,
+   "words": [
+    "wash",
+    "towels",
+    "drying",
+    "clean",
+    "shower",
+    "towel"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p019",
+   "style": "plain",
+   "target": "lion",
+   "rank": 0,
+   "side": "device",
+   "ms": 3977,
+   "words": [
+    "lion",
+    "africa",
+    "mane",
+    "animal",
+    "wild"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p019",
+   "style": "broken",
+   "target": "lion",
+   "rank": 0,
+   "side": "device",
+   "ms": 3459,
+   "words": [
+    "lion",
+    "africa",
+    "king",
+    "jungle",
+    "mane",
+    "roar"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p019",
+   "style": "sparse",
+   "target": "lion",
+   "rank": 0,
+   "side": "device",
+   "ms": 4558,
+   "words": [
+    "lion",
+    "wild",
+    "animal",
+    "jungle",
+    "africa",
+    "savanna"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p020",
+   "style": "plain",
+   "target": "glass",
+   "rank": 0,
+   "side": "device",
+   "ms": 3389,
+   "words": [
+    "glass",
+    "cup",
+    "bottle",
+    "vase",
+    "bowl",
+    "jar"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p020",
+   "style": "broken",
+   "target": "glass",
+   "rank": 0,
+   "side": "device",
+   "ms": 4326,
+   "words": [
+    "glass",
+    "water",
+    "fluid",
+    "bottle",
+    "vase",
+    "mirror"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p020",
+   "style": "sparse",
+   "target": "glass",
+   "rank": 0,
+   "side": "device",
+   "ms": 3899,
+   "words": [
+    "glass",
+    "water",
+    "liquid",
+    "broken",
+    "drink",
+    "crystal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p021",
+   "style": "plain",
+   "target": "fork",
+   "rank": 0,
+   "side": "device",
+   "ms": 4141,
+   "words": [
+    "fork",
+    "spoon",
+    "knife",
+    "table",
+    "eat",
+    "dinner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p021",
+   "style": "broken",
+   "target": "fork",
+   "rank": 1,
+   "side": "device",
+   "ms": 4553,
+   "words": [
+    "knife",
+    "fork",
+    "dinner",
+    "eat",
+    "food",
+    "spoon"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p021",
+   "style": "sparse",
+   "target": "fork",
+   "rank": 0,
+   "side": "device",
+   "ms": 3331,
+   "words": [
+    "fork",
+    "knife",
+    "food",
+    "dinner",
+    "eat",
+    "meal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p022",
+   "style": "plain",
+   "target": "plant",
+   "rank": 0,
+   "side": "device",
+   "ms": 3641,
+   "words": [
+    "plant",
+    "fern",
+    "weed",
+    "grass",
+    "salad",
+    "leaves"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p022",
+   "style": "broken",
+   "target": "plant",
+   "rank": 0,
+   "side": "device",
+   "ms": 3215,
+   "words": [
+    "plant",
+    "tree",
+    "grass",
+    "flower",
+    "bush",
+    "herb"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p022",
+   "style": "sparse",
+   "target": "plant",
+   "rank": 0,
+   "side": "device",
+   "ms": 3692,
+   "words": [
+    "plant",
+    "tree",
+    "garden",
+    "grass",
+    "leaves",
+    "green"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p023",
+   "style": "plain",
+   "target": "garage",
+   "rank": 0,
+   "side": "device",
+   "ms": 3887,
+   "words": [
+    "garage",
+    "carport",
+    "shed",
+    "side building",
+    "parking structure",
+    "driveway"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p023",
+   "style": "broken",
+   "target": "garage",
+   "rank": 0,
+   "side": "device",
+   "ms": 3614,
+   "words": [
+    "garage",
+    "door",
+    "lift",
+    "house",
+    "night",
+    "car"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p023",
+   "style": "sparse",
+   "target": "garage",
+   "rank": 0,
+   "side": "device",
+   "ms": 3543,
+   "words": [
+    "garage",
+    "parking",
+    "park",
+    "automobile",
+    "vehicle",
+    "building"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p024",
+   "style": "plain",
+   "target": "can",
+   "rank": 0,
+   "side": "device",
+   "ms": 4155,
+   "words": [
+    "can",
+    "tin",
+    "bowl",
+    "bin",
+    "jar",
+    "bag"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p024",
+   "style": "broken",
+   "target": "can",
+   "rank": 0,
+   "side": "device",
+   "ms": 3893,
+   "words": [
+    "can",
+    "lid",
+    "tin",
+    "soup",
+    "opener",
+    "supermarket"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p024",
+   "style": "sparse",
+   "target": "can",
+   "rank": 0,
+   "side": "device",
+   "ms": 4628,
+   "words": [
+    "can opener",
+    "metal can",
+    "soup can",
+    "tin can",
+    "opener",
+    "metal lid"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p025",
+   "style": "plain",
+   "target": "table",
+   "rank": 0,
+   "side": "device",
+   "ms": 4179,
+   "words": [
+    "table",
+    "chair",
+    "desk",
+    "counter",
+    "bench",
+    "stool"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p025",
+   "style": "broken",
+   "target": "table",
+   "rank": 0,
+   "side": "device",
+   "ms": 4336,
+   "words": [
+    "table",
+    "dining room",
+    "chairs",
+    "eat",
+    "room",
+    "round"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p025",
+   "style": "sparse",
+   "target": "table",
+   "rank": 0,
+   "side": "device",
+   "ms": 4540,
+   "words": [
+    "table",
+    "chair",
+    "couch",
+    "stool",
+    "bench",
+    "desk"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p026",
+   "style": "plain",
+   "target": "waterfall",
+   "rank": 0,
+   "side": "device",
+   "ms": 4441,
+   "words": [
+    "waterfall",
+    "cliff",
+    "drop",
+    "river",
+    "down",
+    "straight"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p026",
+   "style": "broken",
+   "target": "waterfall",
+   "rank": 0,
+   "side": "device",
+   "ms": 3579,
+   "words": [
+    "waterfall",
+    "river",
+    "fall",
+    "drop",
+    "crash",
+    "niagara"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p026",
+   "style": "sparse",
+   "target": "waterfall",
+   "rank": 3,
+   "side": "device",
+   "ms": 4496,
+   "words": [
+    "Niagara",
+    "cliff",
+    "river",
+    "waterfall",
+    "travel",
+    "vacation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p027",
+   "style": "plain",
+   "target": "king",
+   "rank": 0,
+   "side": "device",
+   "ms": 4462,
+   "words": [
+    "king",
+    "queen",
+    "president",
+    "leader",
+    "ruler",
+    "man"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p027",
+   "style": "broken",
+   "target": "king",
+   "rank": 0,
+   "side": "device",
+   "ms": 4248,
+   "words": [
+    "king",
+    "crown",
+    "father",
+    "husband",
+    "prince",
+    "queen"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p027",
+   "style": "sparse",
+   "target": "king",
+   "rank": 1,
+   "side": "device",
+   "ms": 3764,
+   "words": [
+    "queen",
+    "king",
+    "royal",
+    "throne",
+    "crown",
+    "royal family"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p028",
+   "style": "plain",
+   "target": "boot",
+   "rank": 0,
+   "side": "device",
+   "ms": 5245,
+   "words": [
+    "boots",
+    "ankle boots",
+    "rain boots",
+    "hiking boots",
+    "shoes",
+    "footwear"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p028",
+   "style": "broken",
+   "target": "boot",
+   "rank": 0,
+   "side": "device",
+   "ms": 4430,
+   "words": [
+    "boots",
+    "snow",
+    "mud",
+    "heavy",
+    "laces",
+    "higher"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p028",
+   "style": "sparse",
+   "target": "boot",
+   "rank": 0,
+   "side": "device",
+   "ms": 4260,
+   "words": [
+    "boots",
+    "hiking boots",
+    "shoes",
+    "ankle boots",
+    "stairs",
+    "socks"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p029",
+   "style": "plain",
+   "target": "foot",
+   "rank": 0,
+   "side": "device",
+   "ms": 3819,
+   "words": [
+    "foot",
+    "shoe",
+    "sock",
+    "heel",
+    "toe",
+    "human"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p029",
+   "style": "broken",
+   "target": "foot",
+   "rank": 3,
+   "side": "device",
+   "ms": 3789,
+   "words": [
+    "sole",
+    "shoe",
+    "socks",
+    "foot",
+    "heel",
+    "ankle"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p029",
+   "style": "sparse",
+   "target": "foot",
+   "rank": 0,
+   "side": "device",
+   "ms": 4145,
+   "words": [
+    "foot",
+    "shoe",
+    "pain",
+    "plantar fasciitis",
+    "band aid",
+    "doctor"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p030",
+   "style": "plain",
+   "target": "chair",
+   "rank": 0,
+   "side": "device",
+   "ms": 4212,
+   "words": [
+    "chair",
+    "bench",
+    "stool",
+    "ottoman",
+    "cafe",
+    "couch"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p030",
+   "style": "broken",
+   "target": "chair",
+   "rank": 0,
+   "side": "device",
+   "ms": 6473,
+   "words": [
+    "chair",
+    "table",
+    "back",
+    "leg",
+    "desk",
+    "stool"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p030",
+   "style": "sparse",
+   "target": "chair",
+   "rank": 0,
+   "side": "device",
+   "ms": 4943,
+   "words": [
+    "chair",
+    "sofa",
+    "bench",
+    "table",
+    "stool",
+    "cabinet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p031",
+   "style": "plain",
+   "target": "banana",
+   "rank": 0,
+   "side": "device",
+   "ms": 4154,
+   "words": [
+    "banana",
+    "yellow",
+    "fruit",
+    "peel",
+    "monkey",
+    "long"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p031",
+   "style": "broken",
+   "target": "banana",
+   "rank": 0,
+   "side": "device",
+   "ms": 4168,
+   "words": [
+    "banana",
+    "yellow",
+    "peel",
+    "monkey",
+    "bend",
+    "fruit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p031",
+   "style": "sparse",
+   "target": "banana",
+   "rank": 0,
+   "side": "device",
+   "ms": 3051,
+   "words": [
+    "banana",
+    "yellow",
+    "curved",
+    "peel"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p032",
+   "style": "plain",
+   "target": "ring",
+   "rank": 0,
+   "side": "device",
+   "ms": 3929,
+   "words": [
+    "ring",
+    "wedding",
+    "marriage",
+    "band",
+    "finger",
+    "gold"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p032",
+   "style": "broken",
+   "target": "ring",
+   "rank": 0,
+   "side": "device",
+   "ms": 4183,
+   "words": [
+    "ring",
+    "wedding",
+    "gold",
+    "diamond",
+    "finger",
+    "gave"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p032",
+   "style": "sparse",
+   "target": "ring",
+   "rank": 0,
+   "side": "device",
+   "ms": 3908,
+   "words": [
+    "ring",
+    "wedding",
+    "gold",
+    "finger",
+    "marriage",
+    "partner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p033",
+   "style": "plain",
+   "target": "dice",
+   "rank": 0,
+   "side": "device",
+   "ms": 4055,
+   "words": [
+    "dice",
+    "dots",
+    "cubes",
+    "game",
+    "board",
+    "roll"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p033",
+   "style": "broken",
+   "target": "dice",
+   "rank": 0,
+   "side": "device",
+   "ms": 3849,
+   "words": [
+    "dice",
+    "game",
+    "roll",
+    "dots",
+    "cube",
+    "six"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p033",
+   "style": "sparse",
+   "target": "dice",
+   "rank": 0,
+   "side": "device",
+   "ms": 3612,
+   "words": [
+    "dice",
+    "snake",
+    "board",
+    "game",
+    "roll",
+    "dots"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p034",
+   "style": "plain",
+   "target": "calendar",
+   "rank": 0,
+   "side": "device",
+   "ms": 5207,
+   "words": [
+    "calendar",
+    "clock",
+    "schedule",
+    "wall clock",
+    "calendar book",
+    "clock face"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p034",
+   "style": "broken",
+   "target": "calendar",
+   "rank": 0,
+   "side": "device",
+   "ms": 3923,
+   "words": [
+    "calendar",
+    "appointments",
+    "agenda",
+    "diary",
+    "schedule",
+    "dates"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p034",
+   "style": "sparse",
+   "target": "calendar",
+   "rank": 0,
+   "side": "device",
+   "ms": 3974,
+   "words": [
+    "calendar",
+    "clock",
+    "chart",
+    "pictures",
+    "wall art",
+    "timeline"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p035",
+   "style": "plain",
+   "target": "knife",
+   "rank": 0,
+   "side": "device",
+   "ms": 2333,
+   "words": [
+    "knife",
+    "scissors",
+    "scalpel"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p035",
+   "style": "broken",
+   "target": "knife",
+   "rank": 0,
+   "side": "device",
+   "ms": 5191,
+   "words": [
+    "knife",
+    "cutting board",
+    "fork",
+    "drawer",
+    "sharp",
+    "careful"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p035",
+   "style": "sparse",
+   "target": "knife",
+   "rank": 0,
+   "side": "device",
+   "ms": 4102,
+   "words": [
+    "knife",
+    "scissors",
+    "tool",
+    "edge",
+    "shiny",
+    "frost"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p036",
+   "style": "plain",
+   "target": "vest",
+   "rank": -1,
+   "side": "device",
+   "ms": 4011,
+   "words": [
+    "blouse",
+    "sweater",
+    "shirt",
+    "jacket",
+    "button-up",
+    "outerwear"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p036",
+   "style": "broken",
+   "target": "vest",
+   "rank": 3,
+   "side": "device",
+   "ms": 3764,
+   "words": [
+    "shirt",
+    "sweater",
+    "undershirt",
+    "vest",
+    "pullover",
+    "sleeveless top"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p036",
+   "style": "sparse",
+   "target": "vest",
+   "rank": 5,
+   "side": "device",
+   "ms": 3409,
+   "words": [
+    "sweater",
+    "shirt",
+    "jacket",
+    "top",
+    "blouse",
+    "vest"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p037",
+   "style": "plain",
+   "target": "turkey",
+   "rank": 0,
+   "side": "device",
+   "ms": 4032,
+   "words": [
+    "turkey",
+    "bird",
+    "thanksgiving",
+    "roast",
+    "dinner",
+    "large"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p037",
+   "style": "broken",
+   "target": "turkey",
+   "rank": 0,
+   "side": "device",
+   "ms": 3913,
+   "words": [
+    "turkey",
+    "Thanksgiving",
+    "oven",
+    "feast",
+    "dinner",
+    "bird"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p037",
+   "style": "sparse",
+   "target": "turkey",
+   "rank": 0,
+   "side": "device",
+   "ms": 4619,
+   "words": [
+    "turkey",
+    "roast",
+    "bird",
+    "thanksgiving",
+    "dinner",
+    "family"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p038",
+   "style": "plain",
+   "target": "rake",
+   "rank": 0,
+   "side": "device",
+   "ms": 3413,
+   "words": [
+    "rake",
+    "yard",
+    "leaves",
+    "garden",
+    "tool",
+    "broom"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p038",
+   "style": "broken",
+   "target": "rake",
+   "rank": 1,
+   "side": "device",
+   "ms": 3386,
+   "words": [
+    "leaves",
+    "rake",
+    "yard",
+    "autumn",
+    "pull",
+    "teeth"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p038",
+   "style": "sparse",
+   "target": "rake",
+   "rank": -1,
+   "side": "device",
+   "ms": 3487,
+   "words": [
+    "garden",
+    "leaves",
+    "teeth",
+    "gather",
+    "yard",
+    "plants"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p039",
+   "style": "plain",
+   "target": "balloon",
+   "rank": 0,
+   "side": "device",
+   "ms": 3413,
+   "words": [
+    "balloon",
+    "party",
+    "inflate",
+    "air",
+    "rubber",
+    "bag"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p039",
+   "style": "broken",
+   "target": "balloon",
+   "rank": 4,
+   "side": "device",
+   "ms": 3586,
+   "words": [
+    "fireworks",
+    "explode",
+    "crackers",
+    "party",
+    "balloon",
+    "sound"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p039",
+   "style": "sparse",
+   "target": "balloon",
+   "rank": -1,
+   "side": "device",
+   "ms": 2316,
+   "words": [
+    "party",
+    "pop",
+    "blow up"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p040",
+   "style": "plain",
+   "target": "duck",
+   "rank": 0,
+   "side": "device",
+   "ms": 4432,
+   "words": [
+    "duck",
+    "swan",
+    "goose",
+    "duckling",
+    "quack",
+    "water bird"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p040",
+   "style": "broken",
+   "target": "duck",
+   "rank": 0,
+   "side": "device",
+   "ms": 4267,
+   "words": [
+    "duck",
+    "pond",
+    "swim",
+    "bread",
+    "quack",
+    "bird"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p040",
+   "style": "sparse",
+   "target": "duck",
+   "rank": 0,
+   "side": "device",
+   "ms": 4096,
+   "words": [
+    "duck",
+    "water",
+    "swim",
+    "pond",
+    "fowl",
+    "bird"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p041",
+   "style": "plain",
+   "target": "fireplace",
+   "rank": 0,
+   "side": "device",
+   "ms": 3656,
+   "words": [
+    "fireplace",
+    "hearth",
+    "chimney",
+    "door",
+    "window",
+    "wall"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p041",
+   "style": "broken",
+   "target": "fireplace",
+   "rank": 0,
+   "side": "device",
+   "ms": 3934,
+   "words": [
+    "fireplace",
+    "hearth",
+    "warm",
+    "logs",
+    "cozy",
+    "chimney"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p041",
+   "style": "sparse",
+   "target": "fireplace",
+   "rank": 1,
+   "side": "device",
+   "ms": 3367,
+   "words": [
+    "fire",
+    "fireplace",
+    "wood",
+    "burn",
+    "warm",
+    "hearth"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p042",
+   "style": "plain",
+   "target": "pineapple",
+   "rank": 0,
+   "side": "device",
+   "ms": 4826,
+   "words": [
+    "pineapple",
+    "fruit",
+    "yellow",
+    "tropical",
+    "spiky",
+    "crown"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p042",
+   "style": "broken",
+   "target": "pineapple",
+   "rank": 0,
+   "side": "device",
+   "ms": 4287,
+   "words": [
+    "pineapple",
+    "coconut",
+    "fruit",
+    "yellow",
+    "tin can",
+    "rind"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p042",
+   "style": "sparse",
+   "target": "pineapple",
+   "rank": 0,
+   "side": "device",
+   "ms": 3887,
+   "words": [
+    "pineapple",
+    "coconut",
+    "mango",
+    "banana",
+    "sunshine",
+    "island"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p043",
+   "style": "plain",
+   "target": "fan",
+   "rank": 0,
+   "side": "device",
+   "ms": 3514,
+   "words": [
+    "fan",
+    "cooling",
+    "air conditioner",
+    "blade",
+    "electric",
+    "blower"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p043",
+   "style": "broken",
+   "target": "fan",
+   "rank": 0,
+   "side": "device",
+   "ms": 3575,
+   "words": [
+    "fan",
+    "plug",
+    "blades",
+    "round",
+    "hot",
+    "air"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p043",
+   "style": "sparse",
+   "target": "fan",
+   "rank": 0,
+   "side": "device",
+   "ms": 4324,
+   "words": [
+    "fan",
+    "blade",
+    "cool",
+    "wind",
+    "spin",
+    "air"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p044",
+   "style": "plain",
+   "target": "window",
+   "rank": 0,
+   "side": "device",
+   "ms": 6736,
+   "words": [
+    "window",
+    "door",
+    "view",
+    "look",
+    "outside",
+    "screen"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p044",
+   "style": "broken",
+   "target": "window",
+   "rank": 0,
+   "side": "device",
+   "ms": 4715,
+   "words": [
+    "window",
+    "curtains",
+    "glass",
+    "wall",
+    "look",
+    "open"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p044",
+   "style": "sparse",
+   "target": "window",
+   "rank": 1,
+   "side": "device",
+   "ms": 4832,
+   "words": [
+    "outside",
+    "window",
+    "view",
+    "look",
+    "glass door",
+    "mirror"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p045",
+   "style": "plain",
+   "target": "lamp",
+   "rank": 0,
+   "side": "device",
+   "ms": 4149,
+   "words": [
+    "lamp",
+    "night light",
+    "table lamp",
+    "book",
+    "light source",
+    "reading"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p045",
+   "style": "broken",
+   "target": "lamp",
+   "rank": 0,
+   "side": "device",
+   "ms": 3524,
+   "words": [
+    "lamp",
+    "light",
+    "shade",
+    "bulb",
+    "read",
+    "bed"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p045",
+   "style": "sparse",
+   "target": "lamp",
+   "rank": 0,
+   "side": "device",
+   "ms": 3937,
+   "words": [
+    "lamp",
+    "light",
+    "nightstand",
+    "table",
+    "room",
+    "sleep"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p046",
+   "style": "plain",
+   "target": "drum",
+   "rank": 0,
+   "side": "device",
+   "ms": 4341,
+   "words": [
+    "drum",
+    "tambourine",
+    "xylophone",
+    "marimba",
+    "cymbal",
+    "snare"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p046",
+   "style": "broken",
+   "target": "drum",
+   "rank": 0,
+   "side": "device",
+   "ms": 4319,
+   "words": [
+    "drum",
+    "drums",
+    "band",
+    "stick",
+    "bang",
+    "music"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p046",
+   "style": "sparse",
+   "target": "drum",
+   "rank": 0,
+   "side": "device",
+   "ms": 3930,
+   "words": [
+    "drum",
+    "beat",
+    "sticks",
+    "bang",
+    "music",
+    "rhythm"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p047",
+   "style": "plain",
+   "target": "skull",
+   "rank": 0,
+   "side": "device",
+   "ms": 4397,
+   "words": [
+    "skull",
+    "brain",
+    "head",
+    "protect",
+    "bone",
+    "inner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p047",
+   "style": "broken",
+   "target": "skull",
+   "rank": 0,
+   "side": "device",
+   "ms": 3474,
+   "words": [
+    "skull",
+    "bone",
+    "brain",
+    "pirate",
+    "death"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p047",
+   "style": "sparse",
+   "target": "skull",
+   "rank": 0,
+   "side": "device",
+   "ms": 3482,
+   "words": [
+    "skull",
+    "brain",
+    "bone",
+    "head",
+    "think",
+    "memory"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p048",
+   "style": "plain",
+   "target": "bridge",
+   "rank": 0,
+   "side": "device",
+   "ms": 3364,
+   "words": [
+    "bridge",
+    "arch",
+    "span",
+    "beam",
+    "cross",
+    "river"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p048",
+   "style": "broken",
+   "target": "bridge",
+   "rank": 0,
+   "side": "device",
+   "ms": 3876,
+   "words": [
+    "bridge",
+    "river",
+    "bay",
+    "golden gate",
+    "water",
+    "cross"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p048",
+   "style": "sparse",
+   "target": "bridge",
+   "rank": 0,
+   "side": "device",
+   "ms": 2601,
+   "words": [
+    "bridge",
+    "ford",
+    "river crossing"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p049",
+   "style": "plain",
+   "target": "eskimo",
+   "rank": 2,
+   "side": "device",
+   "ms": 5919,
+   "words": [
+    "polar bear",
+    "arctic fox",
+    "inuit",
+    "snow wolf",
+    "winter coat",
+    "siberia"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p049",
+   "style": "broken",
+   "target": "eskimo",
+   "rank": -1,
+   "side": "device",
+   "ms": 4196,
+   "words": [
+    "arctic",
+    "snow",
+    "winter",
+    "polar",
+    "clothing",
+    "blanket"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p049",
+   "style": "sparse",
+   "target": "eskimo",
+   "rank": -1,
+   "side": "device",
+   "ms": 4275,
+   "words": [
+    "cold",
+    "winter",
+    "snow",
+    "clothing",
+    "coat",
+    "warm"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p050",
+   "style": "plain",
+   "target": "dog",
+   "rank": 0,
+   "side": "device",
+   "ms": 4413,
+   "words": [
+    "dog",
+    "puppy",
+    "cat",
+    "bird",
+    "rabbit",
+    "fish"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p050",
+   "style": "broken",
+   "target": "dog",
+   "rank": 0,
+   "side": "device",
+   "ms": 3595,
+   "words": [
+    "dog",
+    "walk",
+    "tail",
+    "pet",
+    "animal",
+    "friend"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p050",
+   "style": "sparse",
+   "target": "dog",
+   "rank": 0,
+   "side": "device",
+   "ms": 2045,
+   "words": [
+    "dog",
+    "animal",
+    "friend"
+   ],
+   "blocked": null
+  }
+ ]
+}

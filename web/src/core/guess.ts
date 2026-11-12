@@ -47,28 +47,48 @@ function usable(w: string): boolean {
 }
 
 /**
- * Parse a model reply into guesses. Accepts the schema shape {guesses:[{word,emoji}]}, a bare
- * array, or (if the model ignored the schema) a comma- or line-separated list.
+ * Parse a model reply into guesses. The shape asked for is {"words": ["key", "lock"]}. Also
+ * accepted: a bare array, objects with a word and an emoji, or (if the model ignored the schema)
+ * a comma- or line-separated list. `picture` supplies the tile picture for a word.
  */
-export function parseGuesses(text: string, source: Source, opts: { limit: number; exclude?: string[] }): Guess[] {
-  const banned = new Set((opts.exclude ?? []).map(wordKey));
-  let items: Array<{ word?: unknown; emoji?: unknown } | string> = [];
+export function parseGuesses(text: string, source: Source, opts: { limit: number; exclude?: string[]; picture?: (word: string) => string }): Guess[] {
+  let items: unknown[] = [];
   const trimmed = text.trim().replace(/^```(?:json)?\s*|\s*```$/g, '');
   try {
     const j = JSON.parse(trimmed);
-    items = Array.isArray(j) ? j : Array.isArray(j?.guesses) ? j.guesses : [];
+    items = Array.isArray(j) ? j : Array.isArray(j?.words) ? j.words : Array.isArray(j?.guesses) ? j.guesses : [];
   } catch {
     items = trimmed.split(/[\n,;]+/);
   }
+  return toGuesses(items, source, opts);
+}
+
+/**
+ * The same, for a reply that is still arriving: returns the words that are already complete,
+ * so tiles can appear one by one instead of all at the end.
+ */
+export function parsePartialGuesses(textSoFar: string, source: Source, opts: { limit: number; exclude?: string[]; picture?: (word: string) => string }): Guess[] {
+  const start = textSoFar.indexOf('[');
+  if (start < 0) return [];
+  const done: string[] = [];
+  for (const m of textSoFar.slice(start).matchAll(/"((?:[^"\\]|\\.)*)"\s*(?=[,\]])/g)) {
+    try { done.push(JSON.parse(`"${m[1]}"`)); } catch { /* an unfinished escape: skip */ }
+  }
+  return toGuesses(done, source, opts);
+}
+
+function toGuesses(items: unknown[], source: Source, opts: { limit: number; exclude?: string[]; picture?: (word: string) => string }): Guess[] {
+  const banned = new Set((opts.exclude ?? []).map(wordKey));
   const out: Guess[] = [];
   const seen = new Set<string>();
   for (const it of items) {
-    const rawWord = typeof it === 'string' ? it : String(it?.word ?? '');
+    const obj = it && typeof it === 'object' ? (it as { word?: unknown; emoji?: unknown }) : null;
+    const rawWord = obj ? String(obj.word ?? '') : String(it ?? '');
     const word = normaliseWord(rawWord);
     const k = wordKey(word);
     if (!usable(word) || !k || seen.has(k) || banned.has(k)) continue;
     seen.add(k);
-    const emoji = firstEmoji(typeof it === 'string' ? it : String(it?.emoji ?? '')) || firstEmoji(rawWord);
+    const emoji = opts.picture?.(word) || firstEmoji(obj ? String(obj.emoji ?? '') : '') || firstEmoji(rawWord);
     out.push({ word, emoji, source });
     if (out.length >= opts.limit) break;
   }

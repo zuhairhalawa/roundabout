@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { cluesFromChips, fill, HINTS, PACK, rowsFor } from '../src/core/pack';
-import { applySaved, firstEmoji, matchSaved, mergeGuesses, normaliseWord, parseGuesses, wordKey, type SavedWord } from '../src/core/guess';
+import { applySaved, firstEmoji, matchSaved, mergeGuesses, normaliseWord, parseGuesses, parsePartialGuesses, wordKey, type SavedWord } from '../src/core/guess';
+import { pictureFor, setPictures } from '../src/core/pictures';
 import { route, type Situation } from '../src/core/route';
 
 describe('prompt pack', () => {
@@ -11,7 +12,8 @@ describe('prompt pack', () => {
 
   it('has a system prompt and schema for every task', () => {
     expect(PACK.find.system).toContain('{count}');
-    expect(PACK.schemas.guesses.properties.guesses.type).toBe('array');
+    expect(PACK.schemas.words.properties.words.type).toBe('array');
+    expect(PACK.schemas.words.properties.words.items.type).toBe('string');
     expect(PACK.sentences.count).toBe(3);
     expect(PACK.cue.user).toContain('{word}');
   });
@@ -66,6 +68,23 @@ describe('guesses', () => {
       { word: 'door handle', emoji: '', source: 'device' },
       { word: 'padlock', emoji: '🔐', source: 'device' },
     ]);
+  });
+
+  it('parses the short shape and takes pictures from the look-up table', () => {
+    setPictures({ key: '🔑', clock: '🕰️', sock: '🧦', 'alarm clock': '⏰' });
+    const g = parseGuesses('{"words": ["key", "wall clock", "alarm clock", "socks", "gizmo"]}', 'device', { limit: 6, picture: pictureFor });
+    expect(g.map((x) => `${x.word}${x.emoji}`)).toEqual(['key🔑', 'wall clock🕰️', 'alarm clock⏰', 'socks🧦', 'gizmo']);
+    expect(pictureFor('nothing here')).toBe('');
+  });
+
+  it('shows the words that are complete while the reply is still arriving', () => {
+    const opts = { limit: 6 };
+    expect(parsePartialGuesses('{"wor', 'device', opts)).toEqual([]);
+    expect(parsePartialGuesses('{"words": ["ke', 'device', opts)).toEqual([]);
+    expect(parsePartialGuesses('{"words": ["key"', 'device', opts)).toEqual([]);               // not known to be complete yet
+    expect(parsePartialGuesses('{"words": ["key", "lo', 'device', opts).map((g) => g.word)).toEqual(['key']);
+    expect(parsePartialGuesses('{"words": ["key", "door \\"lock\\"", "latch"]}', 'cloud', opts).map((g) => g.word)).toEqual(['key', 'door "lock', 'latch']);
+    expect(parsePartialGuesses('{"words": ["key", "key", "lock"', 'device', opts).map((g) => g.word)).toEqual(['key']);
   });
 
   it('copes with a model that ignores the schema', () => {
