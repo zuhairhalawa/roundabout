@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,13 +38,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -60,6 +66,7 @@ import app.roundabout.words.core.DeviceState
 import app.roundabout.words.core.Guess
 import app.roundabout.words.core.Side
 import app.roundabout.words.core.Source
+import kotlinx.coroutines.delay
 import java.util.Locale
 
 private val Paper = Color(0xFFF6F7F5)
@@ -105,13 +112,24 @@ fun RoundaboutScreen(vm: FindViewModel) {
     val ui = vm.ui
     val focus = LocalFocusManager.current
     var showWhy by remember { mutableStateOf(false) }
+    val scroll = rememberScrollState()
+    var resultsTop by remember { mutableIntStateOf(0) }
+
+    // On a phone the answer lands below the fold. When it arrives, bring the tiles and the line
+    // that says where they came from to the top of the screen.
+    LaunchedEffect(ui.guesses.size, ui.busy) {
+        if (ui.guesses.isNotEmpty() && !ui.busy) {
+            delay(80) // let the new tiles be laid out first
+            scroll.animateScrollTo(resultsTop)
+        }
+    }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Paper)
             .safeDrawingPadding()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(scroll)
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
@@ -168,14 +186,19 @@ fun RoundaboutScreen(vm: FindViewModel) {
         }
 
         if (ui.guesses.isNotEmpty()) {
-            Tiles(ui.guesses, ui.chosen, vm::choose)
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(sourceText(ui), fontSize = 17.sp, fontWeight = FontWeight.SemiBold, color = if (ui.side == Side.DEVICE) Green else Blue, modifier = Modifier.weight(1f))
-                TextButton(onClick = { showWhy = true }) { Text("Why?", fontSize = 17.sp, color = Ink) }
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
-                if (ui.chosen != null) SmallButton("Say it slowly", Modifier.weight(1f)) { vm.saySlowly() }
-                if (ui.canAskMore) SmallButton("None of these", Modifier.weight(1f), enabled = !ui.busy) { vm.noneOfThese() }
+            Column(
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.onGloballyPositioned { resultsTop = it.positionInParent().y.toInt() },
+            ) {
+                Tiles(ui.guesses, ui.chosen, vm::choose)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(sourceText(ui), fontSize = 17.sp, fontWeight = FontWeight.SemiBold, color = if (ui.side == Side.DEVICE) Green else Blue, modifier = Modifier.weight(1f))
+                    TextButton(onClick = { showWhy = true }) { Text("Why?", fontSize = 17.sp, color = Ink) }
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
+                    if (ui.chosen != null) SmallButton("Say it slowly", Modifier.weight(1f)) { vm.saySlowly() }
+                    if (ui.canAskMore) SmallButton("None of these", Modifier.weight(1f), enabled = !ui.busy) { vm.noneOfThese() }
+                }
             }
         }
 
@@ -333,8 +356,9 @@ private fun ChipButton(chip: Chip, selected: Boolean, onClick: () -> Unit) {
 private fun Tiles(guesses: List<Guess>, chosen: String?, onChoose: (String) -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         for (pair in guesses.chunked(2)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
-                for (g in pair) Tile(g, g.word == chosen, Modifier.weight(1f)) { onChoose(g.word) }
+            // Both signs in a row are as tall as the taller one.
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min)) {
+                for (g in pair) Tile(g, g.word == chosen, Modifier.weight(1f).fillMaxHeight()) { onChoose(g.word) }
                 if (pair.size == 1) Spacer(Modifier.weight(1f))
             }
         }
@@ -365,9 +389,12 @@ private fun Tile(g: Guess, selected: Boolean, modifier: Modifier = Modifier, onC
     ) {
         Box(Modifier.padding(6.dp).border(2.5.dp, Color.White, RoundedCornerShape(9.dp)), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth().padding(horizontal = 6.dp, vertical = 12.dp)) {
-                Text(g.emoji.ifEmpty { "·" }, fontSize = 36.sp)
-                Spacer(Modifier.height(4.dp))
-                Text(g.word, fontSize = 23.sp, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
+                // A word the picture table does not know is shown without a picture, not with a wrong one.
+                if (g.emoji.isNotEmpty()) {
+                    Text(g.emoji, fontSize = 36.sp)
+                    Spacer(Modifier.height(4.dp))
+                }
+                Text(g.word, fontSize = if (g.emoji.isEmpty()) 26.sp else 23.sp, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
             }
         }
     }

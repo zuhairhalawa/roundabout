@@ -117,9 +117,15 @@ if not configured:
 else:
     check("the find button is tapped", tap("Find the word"))
     tile = find("Tap to hear it", 90)
-    time.sleep(2)
+    time.sleep(3)  # the app scrolls the answer into view
     shot("4-answer")
     texts = on_screen()
+    if not any(t.startswith("Found ") for t in texts):
+        # The line under the tiles may still be below the fold on a small screen: scroll down.
+        adb("shell", "input", "swipe", "540", "1700", "540", "700", "400")
+        time.sleep(1.5)
+        texts += [t for t in on_screen() if t not in texts]
+        shot("4-answer-lower")
     tiles = [t.split(",")[0] for t in texts if "Tap to hear it" in t]
     source = next((t for t in texts if t.startswith("Found ")), "")
     note = next((t for t in texts if "did not work" in t or "resting" in t or "debug token" in t), "")
