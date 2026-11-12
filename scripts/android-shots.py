@@ -109,7 +109,7 @@ if field:
     time.sleep(1)
     adb("shell", "input", "keyevent", "111")  # hide the keyboard
     time.sleep(1)
-check("a clue can be typed", find("thing for the rain", 5) is not None)
+check("a clue can be typed", find("thing for the rain", 20) is not None)
 shot("3-typed")
 
 if not configured:

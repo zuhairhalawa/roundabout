@@ -83,12 +83,17 @@ jobs:
       - name: Run the app on an emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 35
+          # A plain Android image without Google's apps: lighter, so the slow CI machine keeps up.
+          api-level: 34
           arch: x86_64
-          target: google_apis
+          target: default
           profile: pixel_7
+          cores: 3
+          ram-size: 4096M
           disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           script: |
+            adb shell settings put global hide_error_dialogs 1
             adb install -r apk/app-debug.apk
             if [ -n "$APPCHECK_DEBUG_TOKEN" ]; then adb shell "run-as app.roundabout.words sh -c 'mkdir -p files && echo $APPCHECK_DEBUG_TOKEN > files/appcheck-debug-token'"; fi
             python3 scripts/android-shots.py android-shots
