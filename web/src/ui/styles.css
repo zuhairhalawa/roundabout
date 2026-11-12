@@ -110,6 +110,13 @@ h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0
 .chosen { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 .note { background: var(--white); border: 2.5px solid var(--ink); border-radius: var(--r); padding: 12px 14px; font-weight: 600; margin-bottom: 12px; }
 .results { min-height: 40px; }
+.waiting { display: none; }
+.waiting-title { font-weight: 800; font-size: 1.25rem; margin: 0 0 14px; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-weight: 600; }
+.legend li { display: flex; align-items: center; gap: 12px; }
+.swatch { --bg: var(--green); display: grid; place-items: center; flex: none; width: 44px; height: 36px; border-radius: 9px; background: var(--bg); color: var(--white); box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4.5px var(--white); }
+.swatch-cloud { --bg: var(--blue); }
+.swatch-saved { --bg: var(--brown); }
 
 .stripbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 20px; padding: 12px 14px; background: var(--white); border: 2.5px dashed var(--ink); border-radius: var(--r); }
 
@@ -200,6 +207,8 @@ h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0
   .shell { max-width: 1240px; }
   .find-grid { display: grid; grid-template-columns: minmax(0, 11fr) minmax(0, 9fr); gap: 28px; align-items: start; }
   .find-grid .results { position: sticky; top: 16px; min-height: 300px; }
+  .find-grid .waiting { display: block; padding: 22px 24px; border: 2.5px dashed var(--ink-soft); border-radius: var(--r); color: var(--ink-soft); }
+  .find-grid .waiting-title { color: var(--ink); }
   .find-grid .go-row { margin-bottom: 0; }
   .find-grid .tiles { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
 }

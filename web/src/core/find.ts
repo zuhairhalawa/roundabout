@@ -94,7 +94,11 @@ async function ask(kind: Kind, mode: Mode, request: Request, s: Situation, opts:
   let abandoned = false;
   let started = false;
   const onText: OnText = (text, side) => { started = true; if (!abandoned) opts.onText?.(text, side); };
-  const call = serial(() => stream(kind, mode, request, t0, onText), opts.stale);
+  // Cloud-first calls do not wait in the on-device queue. They are used while the device model
+  // is still loading, and its first prompt can hold that queue for minutes: the whole point of
+  // asking the cloud first is that nobody waits for it.
+  const run = () => stream(kind, mode, request, t0, onText);
+  const call = mode === 'prefer_in_cloud' ? (opts.stale?.() ? Promise.reject<never>(new StaleError()) : run()) : serial(run, opts.stale);
   try {
     const reply = canFallBack && s.device === 'ready'
       ? await Promise.race([call, new Promise<never>((_, no) => setTimeout(() => { if (!started) no(new SlowError()); }, settings.deviceTimeoutMs))])

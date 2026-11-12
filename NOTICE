@@ -4,3 +4,18 @@ Copyright 2026 Zuhair Halawa
 Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 The fictional names, notes and examples in this repository are made up.
+
+Third-party material
+--------------------
+
+shared/emoji.json (the word-to-picture table) is built by scripts/build-emoji.mjs from:
+  - unicode-emoji-json 0.9.0, Copyright (c) 2019 Mu-An Chiou, MIT License
+  - emojilib 4.0.3, Copyright (c) 2014 Mu-An Chiou, MIT License
+Emoji names and characters come from the Unicode Standard (Unicode License v3).
+
+The web app bundles the Overpass typeface (via @fontsource-variable/overpass),
+Copyright 2021 The Overpass Project Authors, SIL Open Font License 1.1.
+
+eval/pnt.json uses the 175 target words of the Philadelphia Naming Test
+(Moss Rehabilitation Research Institute). Only the list of target words is used;
+the clues were written for this project.

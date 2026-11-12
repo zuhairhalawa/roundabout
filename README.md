@@ -41,6 +41,7 @@ One function, [`web/src/core/route.ts`](web/src/core/route.ts), picks a Firebase
 | Find a word, name a drawing or photo, build a sentence, practice hints | `PREFER_ON_DEVICE` | Short jobs. The device answers; the cloud covers devices with no on-device model. |
 | Guesses while typing, tapping hints or drawing | `ONLY_ON_DEVICE` | Many small requests. They cost nothing and stay private, so they never go to the cloud. |
 | Same jobs while the on-device model is still loading | `PREFER_IN_CLOUD` | Do not make the person wait for a model to load. The SDK falls back to the device if the cloud fails or its quota runs out. |
+| A clue of three words or fewer, answered on the device | then `ONLY_IN_CLOUD` | Very short clues are the hard case for a small model (see the numbers below), so the cloud adds its ideas as blue tiles beside the green ones. |
 | "None of these": a second opinion | `ONLY_IN_CLOUD` | The bigger model looks again, told what was already offered. |
 | Private mode (a setting) | `ONLY_ON_DEVICE` | Nothing leaves the device, ever. |
 
@@ -49,6 +50,18 @@ On top of the SDK's own fallback, [`web/src/core/find.ts`](web/src/core/find.ts)
 Before any model runs, saved words are matched against the clues in plain code, so "my granddaughter" finds *Layla* instantly, offline, on any device.
 
 Tiles are coloured like road signs: **green** found on this device, **blue** from the cloud, **brown** one of your saved words.
+
+## Fast enough for a conversation
+
+The first version asked the model for six words, each with a picture, as JSON objects. On the device that took about four seconds, slower than the cloud. Three changes brought the first word to under a second:
+
+- **Ask for less.** The model returns only `{"words": [...]}`. Fewer tokens out is the one thing that makes a small on-device model faster.
+- **Look pictures up, do not generate them.** [`shared/emoji.json`](shared/emoji.json) maps 2,485 everyday words to a picture ([`web/src/core/pictures.ts`](web/src/core/pictures.ts)). Only a word the table does not know costs one more small request.
+- **Stream.** Tiles appear as each word arrives (`generateContentStream`, read while still incomplete in [`web/src/core/guess.ts`](web/src/core/guess.ts)), so the likeliest word is on screen first.
+
+## Offline
+
+A small service worker ([`web/public/sw.js`](web/public/sw.js)) keeps a copy of the app itself after the first visit. With an on-device model, Roundabout then opens and finds words with no connection at all. Saved words, practice and the device's own voice work offline on every device.
 
 ## What it does
 
@@ -96,10 +109,11 @@ On-device answers need Chrome on a desktop computer that can run Gemini Nano. Ev
 ## Tests
 
 - `npm test` (in `web/`): unit tests for the routing rule, cleaning model output into tiles, saved-word matching, the hint chips and the remote settings checks.
+- `node scripts/e2e-device.mjs`: drives the live site in real Chrome with Gemini Nano: answers on the device with no model request leaving the machine, the cloud adding ideas for a short clue, private mode, hints, drawing, sentences, and finding a word after a reload with the network off.
 - `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, the natural voice, saved words, private mode, offline, Remote Config, and a check that every model request goes to Firebase AI Logic.
 - `node scripts/rules-test.mjs`: three real anonymous users (owner, helper, stranger) try 45 operations against the deployed security rules.
 - `node scripts/e2e-share.mjs`: two browsers on the live site, one person and one helper: invite code, a name added by the helper appears on the other device, removal cuts access.
-- `node scripts/eval.mjs cloud|device eval/pnt.json`: accuracy on an independent test set (see `eval/`).
+- `node scripts/eval.mjs cloud|device eval/pnt.json`: accuracy on an independent test set (see [`docs/ACCURACY.md`](docs/ACCURACY.md)).
 
 ## Limits, stated plainly
 

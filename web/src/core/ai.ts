@@ -174,7 +174,10 @@ export async function wakeDevice(onDownload: (fraction: number) => void): Promis
   const t0 = performance.now();
   const m = model('find', 'only_on_device');
   await m.initializeDeviceModel(onDownload);
-  await serial(() => m.generateContent(fill(PACK.find.user, { clues: 'you sit on it' })));
+  const warm = () => serial(() => m.generateContent(fill(PACK.find.user, { clues: 'you sit on it' })));
+  // A cloud-first request that had to fall back to the device can cut this first prompt off
+  // (the SDK ends the old session when a new call starts), so it gets a second try.
+  await warm().catch(warm);
   return Math.round(performance.now() - t0);
 }
 

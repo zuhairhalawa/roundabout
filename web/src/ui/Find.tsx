@@ -6,7 +6,7 @@ import { cluesFromChips, HINTS, rowsFor, type Chip } from '../core/pack';
 import type { Situation } from '../core/route';
 import { speak } from '../core/speech';
 import { DrawPad, photoToJpeg } from './Draw';
-import { IconDescribe, IconDraw, IconHints, IconPhoto, IconPlus, IconSpeak, IconStar, Ring } from './icons';
+import { IconCloud, IconDescribe, IconDevice, IconDraw, IconHints, IconPhoto, IconPlus, IconSpeak, IconStar, Ring } from './icons';
 import { SourceLine, Tiles } from './Tiles';
 
 type Way = 'describe' | 'hints' | 'draw' | 'photo';
@@ -256,6 +256,18 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
         )}
 
         {answer && !answer.blocked && answer.guesses.length === 0 && <p class="note" role="status">No ideas yet. Add one more clue.</p>}
+
+        {/* Wide screens only: before the first answer, the empty side explains the sign colours. */}
+        {!answer && !note && (
+          <div class="waiting">
+            <p class="waiting-title">Words will appear here</p>
+            <ul class="legend">
+              <li><span class="swatch swatch-device"><IconDevice size={18} /></span> Green: found on this device</li>
+              <li><span class="swatch swatch-cloud"><IconCloud size={18} /></span> Blue: from the cloud</li>
+              <li><span class="swatch swatch-saved"><IconStar size={18} /></span> Brown: one of your saved words</li>
+            </ul>
+          </div>
+        )}
       </div>
 
       </div>
