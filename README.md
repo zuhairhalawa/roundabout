@@ -110,9 +110,23 @@ A small service worker ([`web/public/sw.js`](web/public/sw.js)) keeps a copy of 
 - **A helper can add words from their own device**: the person shows an 8-character code that works for 15 minutes; a family member types it in and can then add names to the list, which appear on the person's device at once. Sharing is off until the person turns it on.
 - **Private mode**: one switch, and nothing is ever sent to the cloud.
 
+## Android
+
+The Android app is in [`android/`](android/): Kotlin and Jetpack Compose, with the same word-finding flow as the web app.
+
+- **Hybrid inference.** [`ai/Hybrid.kt`](android/app/src/main/java/app/roundabout/words/ai/Hybrid.kt) builds Firebase AI Logic models with `OnDeviceConfig(mode = ...)` in all four inference modes. On a phone with Gemini Nano (through the Prompt API from ML Kit) the answer comes from the phone; on any other phone the SDK falls back to the cloud model. `inferenceSource` decides the colour of the tiles.
+- **One answer shape for both sides.** The answer is a `@Generable` data class ([`ai/Schemas.kt`](android/app/src/main/java/app/roundabout/words/ai/Schemas.kt)). The SDK turns it into an output constraint for the on-device model and a JSON schema for the cloud model.
+- **The same rules and the same words as the web app.** The routing rule, the covers for a slow side and the asking-again logic are plain Kotlin in [`core/`](android/app/src/main/java/app/roundabout/words/core/), written to match `web/src/core`. The app reads the files in [`shared/`](shared/) as its assets, so both platforms send the same prompts and show the same hint chips and pictures.
+- **App Check.** Debug builds use the debug provider: the token is made on the phone, shown on screen when a request is refused, and registered in the console. Release builds use Play Integrity.
+- **Built and tested in GitHub Actions** ([`.github/workflows/android.yml`](.github/workflows/android.yml)), with no Firebase settings in the repository. 34 unit tests cover routing, the covers and word cleaning with a stand-in model. The app is then installed on an emulator, tapped through and screenshotted by [`scripts/android-shots.py`](scripts/android-shots.py).
+
+Status on 13 November: the app builds, its 34 unit tests pass, and it opens and responds on the emulator (7 of 7 checks). Real answers on Android have not been verified yet, neither from the cloud nor from a phone with Gemini Nano. Describing and tapping hints are in the Android app; drawing, photos, sentences, practice and saved words are in the web app only.
+
+To build it yourself: put `FB_API_KEY`, `FB_APP_ID`, `FB_PROJECT_ID` and `FB_SENDER_ID` in `android/.env` (`node scripts/fetch-android-config.mjs` writes that file for your own Firebase project), then run `./gradlew :app:assembleDebug` in `android/`.
+
 ## One prompt pack for every platform
 
-[`shared/prompts.json`](shared/prompts.json) holds every system prompt and JSON schema, and [`shared/hints.json`](shared/hints.json) the hint chips. The same schema is passed to Gemini Nano as `responseConstraint` and to the cloud model as `responseSchema`, so both sides return the same shape and can be compared like for like.
+[`shared/prompts.json`](shared/prompts.json) holds every system prompt and JSON schema, and [`shared/hints.json`](shared/hints.json) the hint chips. On the web the same schema is passed to Gemini Nano as `responseConstraint` and to the cloud model as `responseSchema`, so both sides return the same shape and can be compared like for like. The Android app reads the same files.
 
 ## Firebase
 
@@ -147,6 +161,7 @@ On-device answers need Chrome on a desktop computer that can run Gemini Nano. Ev
 - `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, the natural voice, saved words, a saved word still found when every model request fails, a slow cloud, a slow cloud model covered by a second request, private mode, offline, Remote Config, and a check that every model request goes to Firebase AI Logic.
 - `node scripts/rules-test.mjs`: three real anonymous users (owner, helper, stranger) try 45 operations against the deployed security rules.
 - `node scripts/e2e-share.mjs`: two browsers on the live site, one person and one helper: invite code, a name added by the helper appears on the other device, removal cuts access.
+- `./gradlew :app:testDebugUnitTest` (in `android/`): 34 unit tests of the Android app's routing, covers, asking again and word cleaning. GitHub Actions runs them on every change, then runs the app on an emulator.
 - `node scripts/eval.mjs cloud|device eval/pnt.json`: accuracy on an independent test set (see [`docs/ACCURACY.md`](docs/ACCURACY.md)).
 
 ## Limits, stated plainly

@@ -16,3 +16,5 @@ android/app/google-services.json
 ios/**/GoogleService-Info.plist
 *.keystore
 *.jks
+android/.kotlin
+android/app/.cxx
