@@ -11,6 +11,7 @@ export const REMOTE_DEFAULTS = {
   voice_model: PACK.voiceModel,
   guess_count: PACK.guessCount,
   device_timeout_ms: 8_000,
+  cloud_patience_ms: 1_500,
   cloud_thinking: 'MINIMAL',
   limited_use_tokens: false,
   natural_voice: true,
@@ -41,6 +42,7 @@ export function applyRemote(v: Values): string[] {
   if (/^gemini-[\w.-]+$/.test(v.voice_model ?? '')) set('voiceModel', v.voice_model, 'voice_model');
   set('guessCount', num(v.guess_count, 3, 8, settings.guessCount), 'guess_count');
   set('deviceTimeoutMs', num(v.device_timeout_ms, 2000, 60_000, settings.deviceTimeoutMs), 'device_timeout_ms');
+  set('cloudPatienceMs', num(v.cloud_patience_ms, 300, 20_000, settings.cloudPatienceMs), 'cloud_patience_ms');
   const thinking = (v.cloud_thinking ?? '').toUpperCase();
   if (v.cloud_thinking !== undefined && THINKING.includes(thinking)) set('cloudThinking', thinking as typeof settings.cloudThinking, 'cloud_thinking');
   set('limitedUseTokens', bool(v.limited_use_tokens, settings.limitedUseTokens), 'limited_use_tokens');

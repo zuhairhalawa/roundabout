@@ -82,6 +82,10 @@ try {
   await sam.getByRole('button', { name: 'Turn off sharing' }).click();
   check('test data cleaned up', (await words(sam)).length === 0);
 } catch (e) {
+  // Say what the app was showing when it went wrong, so a rare failure can be understood.
+  const notes = [];
+  for (const ctx of browser.contexts()) for (const p of ctx.pages()) notes.push(await p.evaluate(() => `${document.querySelector('h1')?.textContent ?? ''} | note: ${document.querySelector('.note')?.textContent ?? 'none'} | tiles: ${[...document.querySelectorAll('.tiles .sign-word')].map((x) => x.textContent).join(', ')}`).catch(() => 'page gone'));
+  console.log('on screen when it failed:', notes.join(' || '));
   check('no crash', false, String(e).slice(0, 300));
 } finally {
   writeFileSync(`${out}/results.json`, JSON.stringify({ at: new Date().toISOString(), base, results }, null, 2));

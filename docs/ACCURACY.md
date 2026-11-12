@@ -189,7 +189,7 @@ These are not test results. They are the measurements that guided the build, sho
 | Adds one rule: "work out the one thing all the clues point to" | 78 | 82.1% | 85.9% | 85.9% |
 | That rule plus three worked examples (the wording now in the app) | 78 | 84.6% | 88.5% | 91.0% |
 
-The test sets were only run after the wording was fixed.
+The test runs reported above were made after the wording was fixed. Before that, only the first answer format had been run on part of the noun test set, to measure its speed (the paragraph above).
 
 ## What these numbers do and do not show
 

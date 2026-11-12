@@ -71,10 +71,14 @@ describe('guesses', () => {
   });
 
   it('parses the short shape and takes pictures from the look-up table', () => {
-    setPictures({ key: '🔑', clock: '🕰️', sock: '🧦', 'alarm clock': '⏰' });
-    const g = parseGuesses('{"words": ["key", "wall clock", "alarm clock", "socks", "gizmo"]}', 'device', { limit: 6, picture: pictureFor });
-    expect(g.map((x) => `${x.word}${x.emoji}`)).toEqual(['key🔑', 'wall clock🕰️', 'alarm clock⏰', 'socks🧦', 'gizmo']);
+    setPictures({ key: '🔑', clock: '🕰️', sock: '🧦', 'alarm clock': '⏰', gear: '⚙️', lion: '🦁' });
+    const g = parseGuesses('{"words": ["key", "clock", "alarm clock", "socks", "gizmo"]}', 'device', { limit: 6, picture: pictureFor });
+    expect(g.map((x) => `${x.word}${x.emoji}`)).toEqual(['key🔑', 'clock🕰️', 'alarm clock⏰', 'socks🧦', 'gizmo']);
     expect(pictureFor('nothing here')).toBe('');
+    // A phrase never borrows the picture of its last word: that would mislead.
+    expect(pictureFor('rain gear')).toBe('');
+    expect(pictureFor('sea lion')).toBe('');
+    expect(pictureFor('Alarm Clocks')).toBe('⏰');
   });
 
   it('shows the words that are complete while the reply is still arriving', () => {
@@ -213,7 +217,7 @@ describe('remote settings', () => {
 
   it('ignores values that would break the app', () => {
     const before = { ...settings };
-    const changed = applyRemote({ cloud_model: 'not a model!', guess_count: '99', device_timeout_ms: 'soon', cloud_thinking: 'EXTREME', limited_use_tokens: 'maybe' });
+    const changed = applyRemote({ cloud_model: 'not a model!', guess_count: '99', device_timeout_ms: 'soon', cloud_patience_ms: '-5', cloud_thinking: 'EXTREME', limited_use_tokens: 'maybe' });
     expect(changed).toEqual([]);
     expect(settings).toEqual(before);
   });

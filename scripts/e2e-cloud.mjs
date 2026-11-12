@@ -132,6 +132,27 @@ try {
   t = await waitTiles();
   check('a saved word that matches the clue is offered first, as a brown sign', t[0] === 'layla' && (await page.locator('.tiles li').first().locator('.sign-saved').count()) === 1, t.join(', '));
 
+  // 7b. a saved word needs no model: it is still found when every model request fails
+  const failModel = (r) => r.abort();
+  await page.route(/generateContent/i, failModel);
+  await page.fill('#clues', 'the granddaughter');
+  await page.getByRole('button', { name: 'Find the word' }).click();
+  await page.waitForFunction(() => !/Looking/.test(document.querySelector('.btn-go')?.textContent ?? ''), null, { timeout: 60_000 });
+  await page.waitForTimeout(500);
+  const brown = (await page.locator('.tiles .sign-word').allTextContents()).map((x) => x.trim().toLowerCase());
+  check('with every model request failing, the saved word is still found', brown.length === 1 && brown[0] === 'layla' && (await page.locator('.tiles .sign-saved').count()) === 1 && (await page.locator('.note').count()) === 0, `${brown.join(', ')} | note: ${(await page.locator('.note').count()) ? await page.textContent('.note') : 'none'}`);
+  await page.unroute(/generateContent/i, failModel);
+
+  // 7c. a slow cloud (7 s added to every model request): the app says it is still looking, then answers
+  const slowModel = async (r) => { await new Promise((res) => setTimeout(res, 7000)); await r.continue().catch(() => {}); };
+  await page.route(/generateContent/i, slowModel);
+  await page.fill('#clues', 'you write with it, it has ink');
+  await page.getByRole('button', { name: 'Find the word' }).click();
+  const said = await page.waitForFunction(() => /taking longer than usual/.test(document.querySelector('.results')?.textContent ?? ''), null, { timeout: 6500 }).then(() => true, () => false);
+  t = await waitTiles();
+  check('when the cloud is slow, the app says it is still looking, and then answers', said && t.some((w) => /pen/.test(w)) && !/taking longer/.test(await page.textContent('.results')), `note shown: ${said}; ${t.slice(0, 4).join(', ')}`);
+  await page.unroute(/generateContent/i, slowModel);
+
   // 8. private mode never uses the cloud
   const reqBefore = [...aiHosts.values()].reduce((a, b) => a + b, 0);
   await page.getByRole('button', { name: 'Settings' }).click();

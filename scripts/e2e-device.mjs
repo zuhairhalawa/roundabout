@@ -44,7 +44,7 @@ try {
   await page.setViewportSize({ width: 1300, height: 900 });
   await page.goto(base);
   await page.evaluate(() => { const t = localStorage.getItem('roundabout:appcheck-debug'); localStorage.clear(); if (t) localStorage.setItem('roundabout:appcheck-debug', t); });
-  await page.reload();
+  await page.reload({ waitUntil: 'domcontentloaded', timeout: 60_000 });
   // Just after Chrome starts, asking whether a model is on the device can itself take a while.
   const tCheck = Date.now();
   await until(() => !/Checking/.test(document.querySelector('.pill')?.textContent ?? 'Checking'), 5 * 60_000, 'the status pill');
@@ -78,7 +78,7 @@ try {
   // A very short clue: the device answers first, then the cloud adds ideas (blue tiles).
   before = modelRequests.length;
   await find('money, cards, pocket');
-  await until(() => Boolean(document.querySelector('.tiles .sign-cloud')), 30_000, 'blue tiles from the cloud').catch(() => {});
+  await until(() => Boolean(document.querySelector('.tiles .sign-cloud')), 90_000, 'blue tiles from the cloud').catch(() => {});
   src = (await page.textContent('.source')).trim();
   check('for a short clue the cloud adds ideas to the device answer', (await page.locator('.tiles .sign-device').count()) > 0 && (await page.locator('.tiles .sign-cloud').count()) > 0 && modelRequests.length > before, `${src} [${(await tiles()).join(', ')}]`);
   await page.screenshot({ path: `${out}/2-cloud-adds.png` });
@@ -106,14 +106,45 @@ try {
   t = await tiles();
   check('hints (thing, kitchen, cut) find "knife" on the device', t.includes('knife') && /this device/.test(await page.textContent('.source')), t.join(', '));
 
-  // Actions and feelings are the small model's weak spot (measured), so those go to the cloud first.
+  // Actions and feelings are the small model's weak spot (measured), so the cloud is asked first.
+  // (a) A stand-in cloud reply that arrives 6 s late (so this step does not depend on how busy
+  //     the real cloud is): this device answers meanwhile, and the cloud's words are added in
+  //     blue when they arrive.
+  const cors = { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'POST, OPTIONS' };
+  const lateCloud = async (route) => {
+    if (route.request().method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors }).catch(() => {});
+    await new Promise((r) => setTimeout(r, 6000));
+    const reply = { candidates: [{ content: { role: 'model', parts: [{ text: JSON.stringify({ words: ['whisper', 'sing', 'yawn', 'talk', 'chew', 'kiss'] }) }] }, finishReason: 'STOP', index: 0 }] };
+    await route.fulfill({ status: 200, headers: { ...cors, 'content-type': 'text/event-stream' }, body: `data: ${JSON.stringify(reply)}\r\n\r\n` }).catch(() => {});
+  };
+  await page.route(/generateContent/i, lateCloud);
   before = modelRequests.length;
   await page.getByRole('button', { name: /a thing\. Tap to change/ }).click();
   await page.getByRole('button', { name: 'something you do' }).click();
   await page.getByRole('button', { name: 'with your mouth' }).click();
+  const tCover = Date.now();
+  await until(() => Boolean(document.querySelector('.tiles .sign-device')) && /Found on this device/.test(document.querySelector('.source')?.textContent ?? ''), 20_000, 'device tiles while the cloud is slow').catch(() => {});
+  const coverMs = Date.now() - tCover;
+  src = ((await page.textContent('.source').catch(() => '')) ?? '').trim();
+  check('an action is sent to the cloud first; while the cloud is slow, this device answers', (await page.locator('.tiles .sign-device').count()) > 0 && modelRequests.length > before && /cloud was asked too/.test(src) && coverMs < 6000, `${src} (after ${coverMs} ms) [${(await tiles()).slice(0, 4).join(', ')}]`);
+  await until(() => Boolean(document.querySelector('.tiles .sign-cloud')), 30_000, "the late cloud reply's words").catch(() => {});
+  src = ((await page.textContent('.source').catch(() => '')) ?? '').trim();
+  t = await tiles();
+  check('the late cloud reply is then added in blue, after the green tiles', (await page.locator('.tiles .sign-cloud').count()) > 0 && (await page.locator('.tiles .sign-device').count()) > 0 && t.includes('whisper') && /cloud was slow/.test(src), `${src} [${t.join(', ')}]`);
+  await page.unroute(/generateContent/i, lateCloud);
+
+  // (b) The cloud at its own speed: an action gets the cloud's words (first, if it answers in time).
+  const oldTiles = (await tiles()).join('|');
+  before = modelRequests.length;
   await page.getByRole('button', { name: 'at night' }).click();
-  await until(() => Boolean(document.querySelector('.tiles .sign-cloud')) && /cloud/.test(document.querySelector('.source')?.textContent ?? ''), 30_000, 'a cloud answer for an action').catch(() => {});
-  check('an action goes to the cloud first, though the on-device model is ready', (await page.locator('.tiles .sign-cloud').count()) > 0 && (await page.locator('.tiles .sign-device').count()) === 0 && modelRequests.length > before, `${(await page.textContent('.source'))?.trim()} [${(await tiles()).slice(0, 4).join(', ')}]`);
+  const tOwn = Date.now();
+  // Wait for a new answer (the tiles change), finished, with the cloud's words in it.
+  await page.evaluate((old) => { window.__oldTiles = old; }, oldTiles);
+  await until(() => [...document.querySelectorAll('.tiles .sign-word')].map((e) => e.textContent.trim().toLowerCase()).join('|') !== window.__oldTiles
+    && Boolean(document.querySelector('.tiles .sign-cloud')) && Boolean(document.querySelector('.source')) && !/asked too/.test(document.querySelector('.source').textContent), 90_000, 'cloud words for a new action clue').catch(() => {});
+  src = ((await page.textContent('.source').catch(() => '')) ?? '').trim();
+  const cloudFirst = /Found in the cloud/.test(src);
+  check('with the cloud at its own speed, a new action clue gets the cloud\'s words', (await tiles()).join('|') !== oldTiles && (await page.locator('.tiles .sign-cloud').count()) > 0 && modelRequests.length > before, `${cloudFirst ? 'the cloud answered in time' : 'the cloud was slow again, so the device covered'}: ${src} (after ${Date.now() - tOwn} ms) [${(await tiles()).slice(0, 5).join(', ')}]`);
 
   await page.getByRole('tab', { name: 'Draw it' }).click();
   const box = await page.locator('.pad-canvas').boundingBox();

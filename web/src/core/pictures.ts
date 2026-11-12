@@ -18,9 +18,10 @@ export function pictureFor(word: string): string {
   if (!table) return '';
   const w = word.toLowerCase().replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim();
   if (!w) return '';
-  const last = w.split(' ').pop()!;
-  // The whole phrase first ("alarm clock"), then its head word ("wall clock" -> clock).
-  return table[w] ?? table[singular(w)] ?? (last !== w ? table[last] ?? table[singular(last)] : undefined) ?? '';
+  // Only the whole word or phrase counts. Its last word alone is not safe: "rain gear" is not a
+  // gear and a "sea lion" is not a lion, and a wrong picture is worse than none. A phrase the
+  // table does not know gets its picture from the model instead (fillPictures in find.ts).
+  return table[w] ?? table[singular(w)] ?? '';
 }
 
 /** For tests. */

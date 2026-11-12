@@ -28,6 +28,13 @@
       "description": "How long to wait for the on-device model to start answering before asking the cloud.",
       "valueType": "NUMBER"
     },
+    "cloud_patience_ms": {
+      "defaultValue": {
+        "value": "1500"
+      },
+      "description": "Actions and feelings go to the cloud first. If the cloud has not started answering after this long and the on-device model is ready, the device answers and the cloud's words are added later.",
+      "valueType": "NUMBER"
+    },
     "cloud_thinking": {
       "defaultValue": {
         "value": "MINIMAL"

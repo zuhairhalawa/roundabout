@@ -41,6 +41,10 @@ for (const [emoji, info] of Object.entries(names)) {
 
 // A few everyday words the sources name differently.
 const EXTRA = {
+  // common phrases whose picture is the same thing (a phrase never borrows its last word's picture)
+  'wall clock': '🕰️', 'traffic light': '🚦', 'sea lion': '🦭', parasol: '⛱️', 'dining chair': '🪑', 'kitchen chair': '🪑',
+  'wine glass': '🍷', 'mobile phone': '📱', 'cell phone': '📱', 'front door': '🚪', 'door key': '🔑', 'house key': '🔑',
+  'reading glasses': '👓', 'kitchen knife': '🔪', 'bread knife': '🔪', 'coffee cup': '☕', 'tea cup': '🍵',
   fridge: '🧊', refrigerator: '🧊', tv: '📺', remote: '📺', 'remote control': '📺', sofa: '🛋️', couch: '🛋️', phone: '📱',
   glasses: '👓', doctor: '🩺', nurse: '🩺', pharmacy: '💊', medicine: '💊', pill: '💊', pills: '💊', prescription: '💊',
   hospital: '🏥', dentist: '🦷', kitchen: '🍳', bathroom: '🛁', bedroom: '🛏️', garden: '🏡', shop: '🏪', supermarket: '🛒',

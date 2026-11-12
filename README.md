@@ -41,22 +41,53 @@ One function, [`web/src/core/route.ts`](web/src/core/route.ts), picks a Firebase
 | Find a word, name a drawing or photo, build a sentence, practice hints | `PREFER_ON_DEVICE` | Short jobs. The device answers; the cloud covers devices with no on-device model. |
 | Guesses while typing, tapping hints or drawing | `ONLY_ON_DEVICE` | Many small requests. They cost nothing and stay private, so they never go to the cloud. |
 | Same jobs while the on-device model is still loading | `PREFER_IN_CLOUD` | Do not make the person wait for a model to load. The SDK falls back to the device if the cloud fails or its quota runs out. |
-| A clue of three words or fewer, answered on the device | then `ONLY_IN_CLOUD` | Very short clues are the hard case for a small model (see the numbers below), so the cloud adds its ideas as blue tiles beside the green ones. |
+| The person tapped "something you do" or "a feeling" | `PREFER_IN_CLOUD` | Measured: the small model finds objects and places well, actions and feelings poorly (numbers below). So these two go to the cloud first, and to the device when the cloud cannot be reached. |
+| A clue of three words or fewer, answered on the device | then `ONLY_IN_CLOUD` | Very short clues are also hard for a small model, so the cloud adds its ideas as blue tiles beside the green ones. |
 | "None of these": a second opinion | `ONLY_IN_CLOUD` | The bigger model looks again, told what was already offered. |
 | Private mode (a setting) | `ONLY_ON_DEVICE` | Nothing leaves the device, ever. |
 
-On top of the SDK's own fallback, [`web/src/core/find.ts`](web/src/core/find.ts) adds two things the SDK does not do: if an on-device call fails or takes too long, the same request is sent to the cloud; and after a "quota used up" reply the cloud is rested for a minute while the device carries on.
+On top of the SDK's own fallback, [`web/src/core/find.ts`](web/src/core/find.ts) adds three things the SDK does not do:
+
+- **A slow device is covered by the cloud.** If an on-device call fails or does not start answering in time, the same request is sent to the cloud.
+- **A slow cloud is covered by the device.** When the cloud is asked first and has not started answering after 1.5 seconds, the on-device model answers meanwhile (green tiles), and the cloud's words are added in blue when they arrive. The free cloud tier is not always quick: on the day of the accuracy test, replies that took about a second in the morning were taking about 20 seconds by the evening, after a day of heavy testing.
+- **A used-up quota does not stop the app.** After a "quota used up" reply the cloud is rested for a minute while the device carries on.
+
+The line under the tiles always says what happened, including when the cloud was asked as well. "Nothing was sent" is shown only when that is true.
 
 Before any model runs, saved words are matched against the clues in plain code, so "my granddaughter" finds *Layla* instantly, offline, on any device.
 
 Tiles are coloured like road signs: **green** found on this device, **blue** from the cloud, **brown** one of your saved words.
+
+## How often it finds the word
+
+Measured on two test sets whose clues were written by someone who had not seen the prompts: the 175 nouns of the Philadelphia Naming Test (a standard naming test in aphasia research) and 80 everyday words that are not simple objects. Each word has a clear clue, a broken and halting one, and one of two to four key words. The test runs the app's own code. Full tables, every miss and the scoring rule are in [`docs/ACCURACY.md`](docs/ACCURACY.md), which is generated from the raw results in [`eval/`](eval).
+
+| Test set | Side | Tries | Right word first | In the first three | Among the six tiles | First tile after |
+|---|---|---|---|---|---|---|
+| 175 naming-test nouns | Device (Gemini Nano) | 525 | 89.5% | 95.6% | 96.0% | 0.9 s |
+| 175 naming-test nouns | Cloud | 175 | 99.4% | 100% | 100% | 1.1 s |
+| 80 everyday words | Device (Gemini Nano) | 240 | 57.9% | 69.6% | 74.6% | 0.9 s |
+| 80 everyday words | Cloud | 80 | 82.5% | 92.5% | 95.0% | 1.8 s |
+
+The second set shows where the small model stops. Among the six tiles, on the device and in the cloud:
+
+| Kind of word | Device | Cloud |
+|---|---|---|
+| Places | 100% | 100% |
+| People (dentist, nephew, landlord) | 90% | 100% |
+| Actions (borrow, apologise, yawn) | 57% | 90% |
+| Feelings and times (worried, relieved, tomorrow) | 52% | 90% |
+
+So the device is the right first answer for things and places: nearly as accurate as the cloud, a little faster to the first tile, free, private and offline. For actions and feelings the cloud is clearly better, and the routing rule above sends those there first. That rule came from this measurement, not the other way round.
+
+These numbers say how often a model finds a word from a written clue. They do not say whether Roundabout helps a person with aphasia in a real conversation; that needs testing with people who have aphasia, which has not been done.
 
 ## Fast enough for a conversation
 
 The first version asked the model for six words, each with a picture, as JSON objects. On the device that took about four seconds, slower than the cloud. Three changes brought the first word to under a second:
 
 - **Ask for less.** The model returns only `{"words": [...]}`. Fewer tokens out is the one thing that makes a small on-device model faster.
-- **Look pictures up, do not generate them.** [`shared/emoji.json`](shared/emoji.json) maps 2,485 everyday words to a picture ([`web/src/core/pictures.ts`](web/src/core/pictures.ts)). Only a word the table does not know costs one more small request.
+- **Look pictures up, do not generate them.** [`shared/emoji.json`](shared/emoji.json) maps about 2,500 everyday words to a picture ([`web/src/core/pictures.ts`](web/src/core/pictures.ts)). Only a word the table does not know costs one more small request.
 - **Stream.** Tiles appear as each word arrives (`generateContentStream`, read while still incomplete in [`web/src/core/guess.ts`](web/src/core/guess.ts)), so the likeliest word is on screen first.
 
 ## Offline
@@ -109,8 +140,8 @@ On-device answers need Chrome on a desktop computer that can run Gemini Nano. Ev
 ## Tests
 
 - `npm test` (in `web/`): unit tests for the routing rule, cleaning model output into tiles, saved-word matching, the hint chips and the remote settings checks.
-- `node scripts/e2e-device.mjs`: drives the live site in real Chrome with Gemini Nano: answers on the device with no model request leaving the machine, the cloud adding ideas for a short clue, private mode, hints, drawing, sentences, and finding a word after a reload with the network off.
-- `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, the natural voice, saved words, private mode, offline, Remote Config, and a check that every model request goes to Firebase AI Logic.
+- `node scripts/e2e-device.mjs`: drives the live site in real Chrome with Gemini Nano, 18 checks: the cloud answering while the on-device model loads, answers on the device with no model request leaving the machine, guesses while typing, the cloud adding ideas for a short clue, private mode, hints, an action going to the cloud first with the device covering for a late cloud reply, drawing, sentences, and finding a word after a reload with the network off.
+- `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, the natural voice, saved words, a saved word still found when every model request fails, a slow cloud, private mode, offline, Remote Config, and a check that every model request goes to Firebase AI Logic.
 - `node scripts/rules-test.mjs`: three real anonymous users (owner, helper, stranger) try 45 operations against the deployed security rules.
 - `node scripts/e2e-share.mjs`: two browsers on the live site, one person and one helper: invite code, a name added by the helper appears on the other device, removal cuts access.
 - `node scripts/eval.mjs cloud|device eval/pnt.json`: accuracy on an independent test set (see [`docs/ACCURACY.md`](docs/ACCURACY.md)).

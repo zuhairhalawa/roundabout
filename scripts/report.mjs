@@ -117,7 +117,7 @@ These are not test results. They are the measurements that guided the build, sho
     md += `**The wording was chosen on a separate practice set**, 30 words with clues written by the app's author (\`eval/dev.json\`; words that also appear in a test set are left out). On the device:\n\n`;
     md += '| Wording | Tries | Right word first | In the first three | Among the six |\n|---|---|---|---|---|\n';
     for (const [label, r] of devRuns) md += `| ${label} | ${r.rows.length} | ${pct(r.rows, (x) => x.rank === 0)} | ${pct(r.rows, (x) => x.rank >= 0 && x.rank < 3)} | ${pct(r.rows, (x) => x.rank >= 0)} |\n`;
-    md += '\nThe test sets were only run after the wording was fixed.\n\n';
+    md += '\nThe test runs reported above were made after the wording was fixed. Before that, only the first answer format had been run on part of the noun test set, to measure its speed (the paragraph above).\n\n';
   }
 }
 

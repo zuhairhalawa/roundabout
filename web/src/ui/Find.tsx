@@ -7,7 +7,7 @@ import type { Situation } from '../core/route';
 import { speak } from '../core/speech';
 import { DrawPad, photoToJpeg } from './Draw';
 import { IconCloud, IconDescribe, IconDevice, IconDraw, IconHints, IconPhoto, IconPlus, IconSpeak, IconStar, Ring } from './icons';
-import { SourceLine, Tiles } from './Tiles';
+import { SourceLine, Tiles, type CloudPart } from './Tiles';
 
 type Way = 'describe' | 'hints' | 'draw' | 'photo';
 
@@ -43,8 +43,9 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
   const [answer, setAnswer] = useState<Answer | null>(null);
   const [busy, setBusy] = useState<'find' | 'more' | null>(null);
   const [partial, setPartial] = useState(false); // words are still arriving
-  const [added, setAdded] = useState(false);     // the cloud added ideas to a device answer
+  const [cloudPart, setCloudPart] = useState<CloudPart>(null); // what the cloud did for an answer this device gave
   const [note, setNote] = useState<string | null>(null);
+  const [waiting, setWaiting] = useState(false); // the answer is taking longer than usual
   const [chosen, setChosen] = useState<string | null>(null);
   const seq = useRef(0);
   const asked = useRef<string | null>(null);                              // the clues "Find the word" was last pressed for
@@ -58,7 +59,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
   const picture = way === 'draw' ? sketch : way === 'photo' ? photo : null;
   const hasInput = way === 'describe' || way === 'hints' ? clues.length > 0 : Boolean(picture);
 
-  function reset() { seq.current++; asked.current = null; shown.current = null; setAnswer(null); setChosen(null); setNote(null); setBusy(null); setPartial(false); setAdded(false); }
+  function reset() { seq.current++; asked.current = null; shown.current = null; setAnswer(null); setChosen(null); setNote(null); setBusy(null); setPartial(false); setCloudPart(null); setWaiting(false); }
 
   async function run(live: boolean) {
     if (!hasInput) return;
@@ -74,7 +75,10 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
     const stale = () => id !== seq.current;
     setBusy('find');
     setNote(null);
-    setAdded(false);
+    setCloudPart(null);
+    setWaiting(false);
+    // A busy cloud can take many seconds. Say so, rather than leave a silent spinner.
+    const slowTimer = setTimeout(() => { if (!stale()) setWaiting(true); }, 4000);
     try {
       const opts = {
         saved: savedRef.current, situation: sit.current, live, stale,
@@ -97,30 +101,57 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
       if (live && a.blocked) return; // live guesses are a bonus; say nothing when they cannot run
       setPartial(false);
       setAnswer(a);
-      shown.current = !picture && a.side === 'device' && a.guesses.length ? { clues, answer: a } : null;
-      // A short clue answered on the device: the cloud adds its ideas without being asked.
-      if (!live && !picture && a.side === 'device' && a.canAskCloud && isShort(clues)) {
+      shown.current = !picture && a.side === 'device' && a.guesses.length && !a.later ? { clues, answer: a } : null;
+      // Words the picture table does not know get a picture from one short follow-up request.
+      const pictures = (gs: Guess[]) => {
+        if (live || !gs.some((g) => !g.emoji)) return;
+        fillPictures(gs, sit.current).then((filled) => { if (!stale()) setAnswer((cur) => (cur ? { ...cur, guesses: cur.guesses.map((g) => (g.emoji ? g : filled.find((x) => x.word === g.word) ?? g)) } : cur)); });
+      };
+      // The cloud's words join the tiles already on screen (which may have gained pictures meanwhile).
+      const addFromCloud = (all: Guess[], part: CloudPart, why: string) => {
+        setAnswer((cur) => {
+          if (!cur) return cur;
+          const have = new Set(cur.guesses.map((g) => g.word));
+          return { ...cur, later: undefined, canAskCloud: false, why, guesses: [...cur.guesses, ...all.filter((g) => !have.has(g.word))] };
+        });
+        setCloudPart(part);
+        shown.current = null;
+        pictures(all);
+      };
+      pictures(a.guesses);
+      // The cloud was slow, so this device answered first: the cloud's words are added when they arrive.
+      if (a.later) {
         setBusy('more');
-        moreFromCloud(clues, a.guesses, { saved: savedRef.current, situation: sit.current })
-          .then((m) => {
-            if (stale() || m.blocked || m.guesses.length <= a.guesses.length) return;
-            setAnswer({ ...a, guesses: m.guesses, canAskCloud: false, why: 'The clue was short, which is hard for the small on-device model, so the cloud added ideas.' });
-            setAdded(true);
-            shown.current = null;
+        setCloudPart('asking');
+        a.later
+          .then((all) => {
+            if (stale()) return;
+            if (all && all.length > a.guesses.length) addFromCloud(all, 'slow', 'The cloud was slow to answer, so this device answered first. The cloud then added its ideas.');
+            else setCloudPart(all ? 'none' : 'failed');
           })
-          .catch(() => undefined)
           .finally(() => { if (!stale()) setBusy(null); });
         return;
       }
-      // Words the picture table does not know get a picture from one short follow-up request.
-      if (!live && a.guesses.some((g) => !g.emoji)) {
-        fillPictures(a.guesses, sit.current).then((guesses) => { if (!stale()) setAnswer((cur) => (cur ? { ...cur, guesses: cur.guesses.map((g) => guesses.find((x) => x.word === g.word) ?? g) } : cur)); });
+      // A short clue answered on the device: the cloud adds its ideas without being asked.
+      if (!live && !picture && a.side === 'device' && a.canAskCloud && isShort(clues)) {
+        setBusy('more');
+        setCloudPart('asking');
+        moreFromCloud(clues, a.guesses, { saved: savedRef.current, situation: sit.current })
+          .then((m) => {
+            if (stale()) return;
+            if (m.blocked) setCloudPart(null); // the cloud could not be asked after all, so nothing was sent
+            else if (m.guesses.length > a.guesses.length) addFromCloud(m.guesses, 'short', 'The clue was short, which is hard for the small on-device model, so the cloud added ideas.');
+            else setCloudPart('none');
+          })
+          .catch(() => { if (!stale()) setCloudPart('failed'); })
+          .finally(() => { if (!stale()) setBusy(null); });
       }
     } catch (e) {
       if (e instanceof StaleError || stale()) return;
       if (!live) setNote(friendly(e));
     } finally {
-      if (!stale()) { setBusy((cur) => (cur === 'find' ? null : cur)); setPartial(false); }
+      clearTimeout(slowTimer);
+      if (!stale()) { setBusy((cur) => (cur === 'find' ? null : cur)); setPartial(false); setWaiting(false); }
     }
   }
 
@@ -265,7 +296,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
         {answer && answer.guesses.length > 0 && (
           <>
             <Tiles guesses={answer.guesses} chosen={chosen} onChoose={choose} />
-            {!partial && <SourceLine side={answer.side} ms={answer.ms} why={answer.why} added={added && answer.guesses.some((g) => g.source === 'cloud')} onWhy={onWhy} />}
+            {!partial && <SourceLine side={answer.side} ms={answer.ms} why={answer.why} cloud={cloudPart} onWhy={onWhy} />}
 
             {chosenGuess ? (
               <div class="chosen">
@@ -284,6 +315,10 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
         )}
 
         {answer && !answer.blocked && answer.guesses.length === 0 && <p class="note" role="status">No ideas yet. Add one more clue.</p>}
+
+        {busy === 'find' && waiting && !partial && situation.device !== 'loading' && (
+          <p class="note" role="status">This is taking longer than usual. Still looking…</p>
+        )}
 
         {/* Wide screens only: before the first answer, the empty side explains the sign colours. */}
         {!answer && !note && (

@@ -24,6 +24,11 @@ export interface Answer {
   blocked?: string;
   /** The device was tried first and the cloud had to step in. */
   fellBack?: boolean;
+  /**
+   * Set when this device answered because the cloud was slow: the cloud's request is still
+   * open. Resolves with the tiles plus the cloud's words, or null if the cloud never answered.
+   */
+  later?: Promise<Guess[] | null>;
 }
 
 // ---- cloud pause after "quota used up" ----
@@ -139,7 +144,7 @@ export interface FindOptions {
   hard?: boolean;
   stale?: () => boolean;
   /** Called as words arrive, so tiles can appear one by one. */
-  onPartial?: (guesses: Guess[], side: Side) => void;
+  onPartial?: (guesses: Guess[], side: Side | null) => void;
 }
 
 const FELL_BACK = 'The on-device model could not answer, so the cloud did.';
@@ -149,19 +154,63 @@ export async function findWord(clues: string, o: FindOptions): Promise<Answer> {
   const mine = matchSaved(clues, o.saved);
   const r = route(o.live ? 'live' : o.hard ? 'hard' : 'find', o.situation);
   if (!r.mode) return blocked(r.why, mine);
+  const mode = r.mode;
   const limit = settings.guessCount;
+  const prompt = findPrompt(clues, o.saved, []);
   const finish = (gs: Guess[]) => mergeGuesses(mine, applySaved(gs, o.saved), limit + mine.length);
-  const reply = await ask('find', r.mode, findPrompt(clues, o.saved, []), o.situation, {
-    stale: o.stale,
-    onText: o.onPartial && ((text, side) => o.onPartial!(finish(parsePartialGuesses(text, side, { limit, picture: pictureFor })), side)),
-  });
-  return {
+  const partial = (text: string, side: Side) => o.onPartial?.(finish(parsePartialGuesses(text, side, { limit, picture: pictureFor })), side);
+  const answer = (reply: Reply, why: string): Answer => ({
     guesses: finish(parseGuesses(reply.text, reply.side, { limit, picture: pictureFor })),
-    side: reply.side, ms: reply.ms, firstMs: reply.firstMs, mode: r.mode, fellBack: reply.fellBack,
-    why: reply.fellBack ? FELL_BACK : r.why,
+    side: reply.side, ms: reply.ms, firstMs: reply.firstMs, mode, fellBack: reply.fellBack, why,
     // After a device answer the cloud can still add a second opinion.
     canAskCloud: reply.side === 'device' && o.situation.online && cloudUp() && !o.situation.privateOnly,
+  });
+
+  /**
+   * The cloud is asked first although the on-device model is ready (actions and feelings).
+   * The cloud gets a short head start. If it has not begun to answer by then, this device
+   * answers, and the cloud's words are added when they arrive.
+   */
+  const cloudFirstCovered = async (): Promise<Answer> => {
+    const t0 = performance.now();
+    let covering = false;
+    let cloudStarted = false;
+    const cloud = ask('find', 'prefer_in_cloud', prompt, o.situation, { stale: o.stale, onText: (text, side) => { cloudStarted = true; if (!covering) partial(text, side); } });
+    const slow = await Promise.race([
+      cloud.then(() => false, () => true),
+      new Promise<boolean>((yes) => setTimeout(() => yes(!cloudStarted), settings.cloudPatienceMs)),
+    ]);
+    if (!slow) return answer(await cloud, r.why);
+    covering = true;
+    let first: Answer;
+    try {
+      const reply = await serial(() => stream('find', 'only_on_device', prompt, t0, partial), o.stale);
+      first = { ...answer({ ...reply, fellBack: false }, 'The cloud was slow to answer, so this device answered first.'), canAskCloud: false };
+    } catch (e) {
+      if (e instanceof StaleError) throw e;
+      covering = false;
+      return answer(await cloud, r.why); // the device could not answer either: wait for the cloud after all
+    }
+    const shown = first.guesses;
+    first.later = cloud.then(
+      // If the cloud call failed and the SDK fell back to this device, there is no cloud answer.
+      (reply) => (reply.side === 'cloud' ? mergeGuesses(shown, applySaved(parseGuesses(reply.text, 'cloud', { limit, exclude: shown.map((g) => g.word), picture: pictureFor }), o.saved), shown.length + limit) : null),
+      () => null,
+    );
+    return first;
   };
+
+  // A saved word that matches needs no model, so it is shown at once and does not wait for one.
+  if (mine.length) o.onPartial?.(mine, null);
+  try {
+    if (mode === 'prefer_in_cloud' && o.situation.device === 'ready') return await cloudFirstCovered();
+    const reply = await ask('find', mode, prompt, o.situation, { stale: o.stale, onText: partial });
+    return answer(reply, reply.fellBack ? FELL_BACK : r.why);
+  } catch (e) {
+    // No model could answer. A saved word that matched is still an answer.
+    if (e instanceof StaleError || !mine.length) throw e;
+    return { guesses: mine, side: null, ms: 0, firstMs: 0, mode, why: 'This is one of your saved words. No model was needed.', canAskCloud: false };
+  }
 }
 
 /** "None of these": the cloud model looks again, told what was already offered. */

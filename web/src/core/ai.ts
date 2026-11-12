@@ -19,6 +19,12 @@ export const settings = {
   /** How long to wait for the on-device model to start answering before asking the cloud instead. */
   deviceTimeoutMs: 8_000,
   /**
+   * When the cloud is asked first although the on-device model is ready: how long the cloud
+   * gets to start answering before this device answers instead (the cloud's words are then
+   * added when they arrive).
+   */
+  cloudPatienceMs: 1_500,
+  /**
    * One-time-use App Check tokens (replay protection). Measured cost: about half a second per
    * cloud request, which is a lot in a conversation, so it is off by default. It can be turned
    * on from Remote Config without a release.
