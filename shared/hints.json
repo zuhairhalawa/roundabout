@@ -1,6 +1,7 @@
 {
-  "version": 1,
-  "about": "Tap-to-describe hints, based on Semantic Feature Analysis (group, use, action, properties, location, association). Each chip adds one clue. 'clue' is the plain-English text sent to the model. Rows listed under a group id are shown after that group is picked; 'any' rows are shown for every group.",
+  "version": 2,
+  "about": "Tap-to-describe hints, based on Semantic Feature Analysis (group, use, action, properties, location, association). Each chip adds one clue. 'clue' is the plain-English text sent to the model. Rows listed under a group id are shown after that group is picked; 'any' rows are shown for every group. 'cloudFirst' lists the groups where the small on-device model is measurably weak (see docs/ACCURACY.md): for those the cloud is asked first when it can be reached.",
+  "cloudFirst": ["action", "feeling"],
   "group": {
     "ask": "It is…",
     "chips": [

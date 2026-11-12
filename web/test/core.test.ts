@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cluesFromChips, fill, HINTS, PACK, rowsFor } from '../src/core/pack';
+import { cluesFromChips, fill, HINTS, isCloudFirstGroup, PACK, rowsFor } from '../src/core/pack';
 import { applySaved, firstEmoji, matchSaved, mergeGuesses, normaliseWord, parseGuesses, parsePartialGuesses, wordKey, type SavedWord } from '../src/core/guess';
 import { pictureFor, setPictures } from '../src/core/pictures';
 import { route, type Situation } from '../src/core/route';
@@ -134,6 +134,22 @@ describe('routing', () => {
       expect(r.mode).toBe('prefer_on_device');
       expect(r.canAskCloud).toBe(true);
     }
+  });
+
+  it('asks the cloud first for actions and feelings, where the on-device model is weak, but only when the cloud can be used', () => {
+    expect(route('hard', base)).toMatchObject({ mode: 'prefer_in_cloud', canAskCloud: false });
+    expect(route('hard', { ...base, online: false }).mode).toBe('prefer_on_device');
+    expect(route('hard', { ...base, cloud: false }).mode).toBe('prefer_on_device');
+    expect(route('hard', { ...base, privateOnly: true }).mode).toBe('only_on_device');
+    expect(route('hard', { ...base, device: 'none' }).mode).toBe('prefer_on_device');
+    expect(route('hard', { ...base, device: 'loading' }).mode).toBe('prefer_in_cloud');
+  });
+
+  it('marks the hint groups that go to the cloud first', () => {
+    expect(isCloudFirstGroup('action')).toBe(true);
+    expect(isCloudFirstGroup('feeling')).toBe(true);
+    expect(isCloudFirstGroup('thing')).toBe(false);
+    expect(isCloudFirstGroup(null)).toBe(false);
   });
 
   it('uses the cloud first while the on-device model is still loading, and waits for it when offline', () => {

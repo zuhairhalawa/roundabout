@@ -1,0 +1,1489 @@
+{
+ "set": "eval/everyday.json",
+ "side": "cloud",
+ "at": "2026-11-12T12:02:41.546Z",
+ "report": {
+  "all": {
+   "n": 80,
+   "top1": 82.5,
+   "top3": 92.5,
+   "top6": 95,
+   "medianFirstMs": 1754,
+   "medianMs": 1908,
+   "p90Ms": 4928
+  },
+  "plain": {
+   "n": 27,
+   "top1": 100,
+   "top3": 100,
+   "top6": 100,
+   "medianFirstMs": 1754,
+   "medianMs": 1907,
+   "p90Ms": 5491
+  },
+  "broken": {
+   "n": 27,
+   "top1": 70.4,
+   "top3": 88.9,
+   "top6": 88.9,
+   "medianFirstMs": 1872,
+   "medianMs": 2018,
+   "p90Ms": 8545
+  },
+  "sparse": {
+   "n": 26,
+   "top1": 76.9,
+   "top3": 88.5,
+   "top6": 96.2,
+   "medianFirstMs": 1669,
+   "medianMs": 1820,
+   "p90Ms": 3697
+  },
+  "errors": 0,
+  "sides": [
+   "cloud"
+  ]
+ },
+ "rows": [
+  {
+   "id": "e001",
+   "style": "plain",
+   "target": "dentist",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 8458,
+   "firstMs": 8287,
+   "words": [
+    "dentist",
+    "dental hygienist",
+    "orthodontist",
+    "tooth doctor",
+    "dental surgeon",
+    "endodontist"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e002",
+   "style": "broken",
+   "target": "neighbour",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 12563,
+   "firstMs": 12410,
+   "words": [
+    "neighbor",
+    "woman",
+    "friend",
+    "lady",
+    "person",
+    "homeowner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e003",
+   "style": "sparse",
+   "target": "plumber",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1908,
+   "firstMs": 1718,
+   "words": [
+    "plumber",
+    "wrench",
+    "pipe wrench",
+    "toolbox",
+    "leak",
+    "plumbing"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e004",
+   "style": "plain",
+   "target": "grandson",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1627,
+   "firstMs": 1490,
+   "words": [
+    "grandson",
+    "grandchild",
+    "boy",
+    "child",
+    "grandson's son",
+    "descendant"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e005",
+   "style": "broken",
+   "target": "pharmacist",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1784,
+   "firstMs": 1640,
+   "words": [
+    "pharmacist",
+    "chemist",
+    "druggist",
+    "pharmacy worker",
+    "dispenser",
+    "apothecary"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e006",
+   "style": "sparse",
+   "target": "teacher",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1622,
+   "firstMs": 1502,
+   "words": [
+    "teacher",
+    "school",
+    "class",
+    "professor",
+    "education",
+    "lesson"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e007",
+   "style": "plain",
+   "target": "waiter",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 5491,
+   "firstMs": 5362,
+   "words": [
+    "waiter",
+    "server",
+    "waitperson",
+    "host",
+    "staff",
+    "employee"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e008",
+   "style": "broken",
+   "target": "barber",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1192,
+   "firstMs": 1093,
+   "words": [
+    "barber",
+    "hairdresser",
+    "salon",
+    "haircut",
+    "stylist",
+    "shop"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e009",
+   "style": "sparse",
+   "target": "surgeon",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 4575,
+   "firstMs": 4526,
+   "words": [
+    "surgeon",
+    "surgery",
+    "hospital",
+    "medicine",
+    "operating room",
+    "scalpel"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e010",
+   "style": "plain",
+   "target": "lawyer",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1513,
+   "firstMs": 1402,
+   "words": [
+    "lawyer",
+    "attorney",
+    "counsel",
+    "advocate",
+    "solicitor",
+    "defender"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e011",
+   "style": "broken",
+   "target": "nephew",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2158,
+   "firstMs": 1997,
+   "words": [
+    "nephew",
+    "sister son",
+    "boy",
+    "child",
+    "relative",
+    "family"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e012",
+   "style": "sparse",
+   "target": "widow",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3099,
+   "firstMs": 2979,
+   "words": [
+    "widow",
+    "wife",
+    "spouse",
+    "partner",
+    "bereaved",
+    "matriarch"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e013",
+   "style": "plain",
+   "target": "mechanic",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1081,
+   "firstMs": 855,
+   "words": [
+    "mechanic",
+    "car repairman",
+    "garage worker",
+    "auto mechanic",
+    "repairman",
+    "technician"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e014",
+   "style": "broken",
+   "target": "landlord",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 955,
+   "firstMs": 810,
+   "words": [
+    "landlord",
+    "owner",
+    "boss",
+    "man",
+    "lettor",
+    "slumlord"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e015",
+   "style": "sparse",
+   "target": "cashier",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1392,
+   "firstMs": 1282,
+   "words": [
+    "cashier",
+    "clerk",
+    "checker",
+    "store worker",
+    "employee",
+    "seller"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e016",
+   "style": "plain",
+   "target": "carer",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1397,
+   "firstMs": 1304,
+   "words": [
+    "caregiver",
+    "caretaker",
+    "nurse",
+    "helper",
+    "assistant",
+    "aid"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e017",
+   "style": "broken",
+   "target": "cousin",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1588,
+   "firstMs": 1440,
+   "words": [
+    "cousin",
+    "niece",
+    "relative",
+    "family",
+    "peer",
+    "kin"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e018",
+   "style": "sparse",
+   "target": "electrician",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1687,
+   "firstMs": 1597,
+   "words": [
+    "electrician",
+    "wire",
+    "fuse box",
+    "outlet",
+    "circuit breaker",
+    "power"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e019",
+   "style": "plain",
+   "target": "optician",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1612,
+   "firstMs": 1473,
+   "words": [
+    "optometrist",
+    "eye doctor",
+    "optician",
+    "eye exam",
+    "glasses",
+    "vision test"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e020",
+   "style": "broken",
+   "target": "boss",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2240,
+   "firstMs": 2078,
+   "words": [
+    "boss",
+    "manager",
+    "supervisor",
+    "employer",
+    "director",
+    "owner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e021",
+   "style": "sparse",
+   "target": "pharmacy",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1759,
+   "firstMs": 1624,
+   "words": [
+    "pharmacy",
+    "chemist",
+    "drugstore",
+    "apothecary",
+    "dispensary",
+    "prescription shop"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e022",
+   "style": "plain",
+   "target": "airport",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1475,
+   "firstMs": 1375,
+   "words": [
+    "airport",
+    "terminal",
+    "gate",
+    "departure lounge",
+    "airplane",
+    "flight"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e023",
+   "style": "broken",
+   "target": "bank",
+   "rank": 1,
+   "side": "cloud",
+   "ms": 1045,
+   "firstMs": 941,
+   "words": [
+    "atm",
+    "bank",
+    "cash machine",
+    "bank machine",
+    "vault",
+    "wallet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e024",
+   "style": "sparse",
+   "target": "hospital",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1383,
+   "firstMs": 1236,
+   "words": [
+    "hospital",
+    "clinic",
+    "surgery",
+    "medical center",
+    "emergency room",
+    "healthcare"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e025",
+   "style": "plain",
+   "target": "library",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1924,
+   "firstMs": 1850,
+   "words": [
+    "library",
+    "bookstore",
+    "archive",
+    "museum",
+    "school",
+    "study"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e026",
+   "style": "broken",
+   "target": "supermarket",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1091,
+   "firstMs": 989,
+   "words": [
+    "supermarket",
+    "grocery shopping",
+    "food store",
+    "market",
+    "hypermarket",
+    "grocer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e027",
+   "style": "sparse",
+   "target": "restaurant",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1551,
+   "firstMs": 1387,
+   "words": [
+    "restaurant",
+    "menu",
+    "cafe",
+    "diner",
+    "lunch",
+    "dinner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e028",
+   "style": "plain",
+   "target": "bakery",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 834,
+   "firstMs": 675,
+   "words": [
+    "bakery",
+    "bakeshop",
+    "bread shop",
+    "patisserie",
+    "cake shop",
+    "bread store"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e029",
+   "style": "broken",
+   "target": "cemetery",
+   "rank": 1,
+   "side": "cloud",
+   "ms": 963,
+   "firstMs": 860,
+   "words": [
+    "grave",
+    "cemetery",
+    "graveyard",
+    "tomb",
+    "headstone",
+    "memorial"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e030",
+   "style": "sparse",
+   "target": "post office",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2430,
+   "firstMs": 2329,
+   "words": [
+    "post office",
+    "mail",
+    "package",
+    "letters",
+    "shipping",
+    "envelope"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e031",
+   "style": "plain",
+   "target": "mosque",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3986,
+   "firstMs": 3896,
+   "words": [
+    "mosque",
+    "temple",
+    "house of worship",
+    "church",
+    "sanctuary",
+    "shrine"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e032",
+   "style": "broken",
+   "target": "school",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1732,
+   "firstMs": 1593,
+   "words": [
+    "school",
+    "primary school",
+    "class",
+    "kindergarten",
+    "high school",
+    "classroom"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e033",
+   "style": "sparse",
+   "target": "gym",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1549,
+   "firstMs": 1366,
+   "words": [
+    "gym",
+    "fitness center",
+    "workout",
+    "health club",
+    "exercise room",
+    "training"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e034",
+   "style": "plain",
+   "target": "beach",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1907,
+   "firstMs": 1743,
+   "words": [
+    "beach",
+    "shore",
+    "coast",
+    "sand",
+    "seashore",
+    "waterfront"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e035",
+   "style": "broken",
+   "target": "garden",
+   "rank": 1,
+   "side": "cloud",
+   "ms": 3643,
+   "firstMs": 3444,
+   "words": [
+    "lawn",
+    "yard",
+    "garden",
+    "grass",
+    "backyard",
+    "patio"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e036",
+   "style": "sparse",
+   "target": "cinema",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 946,
+   "firstMs": 783,
+   "words": [
+    "cinema",
+    "movie theater",
+    "movies",
+    "film",
+    "theater",
+    "screen"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e037",
+   "style": "plain",
+   "target": "hotel",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 4825,
+   "firstMs": 4644,
+   "words": [
+    "hotel",
+    "motel",
+    "inn",
+    "hostel",
+    "resort",
+    "lodge"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e038",
+   "style": "broken",
+   "target": "park",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2018,
+   "firstMs": 1850,
+   "words": [
+    "park",
+    "playground",
+    "village green",
+    "pond",
+    "square",
+    "garden"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e039",
+   "style": "sparse",
+   "target": "museum",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1820,
+   "firstMs": 1617,
+   "words": [
+    "museum",
+    "gallery",
+    "exhibit",
+    "display case",
+    "history room",
+    "archives"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e040",
+   "style": "plain",
+   "target": "office",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1468,
+   "firstMs": 1334,
+   "words": [
+    "office",
+    "workplace",
+    "business",
+    "cubicle",
+    "agency",
+    "workspace"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e041",
+   "style": "broken",
+   "target": "borrow",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 997,
+   "firstMs": 896,
+   "words": [
+    "borrow",
+    "lend",
+    "loan",
+    "take",
+    "use",
+    "keep"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e042",
+   "style": "sparse",
+   "target": "swallow",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1765,
+   "firstMs": 1669,
+   "words": [
+    "swallow",
+    "drink",
+    "eat",
+    "neck",
+    "choke",
+    "food"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e043",
+   "style": "plain",
+   "target": "apologise",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2643,
+   "firstMs": 2540,
+   "words": [
+    "apologize",
+    "sorry",
+    "apology",
+    "regret",
+    "forgiveness",
+    "admit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e044",
+   "style": "broken",
+   "target": "remember",
+   "rank": 1,
+   "side": "cloud",
+   "ms": 2494,
+   "firstMs": 2365,
+   "words": [
+    "memory",
+    "recall",
+    "brain",
+    "thought",
+    "mind",
+    "remembrance"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e045",
+   "style": "sparse",
+   "target": "forget",
+   "rank": 1,
+   "side": "cloud",
+   "ms": 1114,
+   "firstMs": 1003,
+   "words": [
+    "memory",
+    "forget",
+    "amnesia",
+    "dementia",
+    "brain",
+    "thought"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e046",
+   "style": "plain",
+   "target": "promise",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1970,
+   "firstMs": 1831,
+   "words": [
+    "promise",
+    "swear",
+    "guarantee",
+    "commit",
+    "pledge",
+    "assure"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e047",
+   "style": "broken",
+   "target": "complain",
+   "rank": -1,
+   "side": "cloud",
+   "ms": 4928,
+   "firstMs": 4879,
+   "words": [
+    "complaint",
+    "refund",
+    "bad service",
+    "return",
+    "manager",
+    "apology"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e048",
+   "style": "sparse",
+   "target": "cancel",
+   "rank": 1,
+   "side": "cloud",
+   "ms": 3385,
+   "firstMs": 3275,
+   "words": [
+    "cancellation",
+    "cancel",
+    "refund",
+    "appointment",
+    "reservation",
+    "postpone"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e049",
+   "style": "plain",
+   "target": "repair",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 5392,
+   "firstMs": 5256,
+   "words": [
+    "fix",
+    "repair",
+    "mend",
+    "restore",
+    "patch",
+    "service"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e050",
+   "style": "broken",
+   "target": "whisper",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 9863,
+   "firstMs": 9745,
+   "words": [
+    "whisper",
+    "mumble",
+    "murmur",
+    "confide",
+    "speak softly",
+    "hush"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e051",
+   "style": "sparse",
+   "target": "argue",
+   "rank": 4,
+   "side": "cloud",
+   "ms": 3775,
+   "firstMs": 3621,
+   "words": [
+    "argument",
+    "fight",
+    "yelling",
+    "dispute",
+    "quarrel",
+    "bicker"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e052",
+   "style": "plain",
+   "target": "sneeze",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 4586,
+   "firstMs": 4450,
+   "words": [
+    "sneeze",
+    "cold",
+    "allergy",
+    "sick",
+    "achoo",
+    "cough"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e053",
+   "style": "broken",
+   "target": "yawn",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3619,
+   "firstMs": 3435,
+   "words": [
+    "yawn",
+    "tiredness",
+    "sleepy",
+    "contagious",
+    "boredom",
+    "sleep"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e054",
+   "style": "sparse",
+   "target": "chew",
+   "rank": 3,
+   "side": "cloud",
+   "ms": 3697,
+   "firstMs": 3608,
+   "words": [
+    "molars",
+    "jaw",
+    "bite",
+    "chew",
+    "mouth",
+    "tooth"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e055",
+   "style": "plain",
+   "target": "pour",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3934,
+   "firstMs": 3804,
+   "words": [
+    "pour",
+    "pouring",
+    "tip",
+    "empty",
+    "serve",
+    "spill"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e056",
+   "style": "broken",
+   "target": "shave",
+   "rank": 2,
+   "side": "cloud",
+   "ms": 4646,
+   "firstMs": 4493,
+   "words": [
+    "shaving",
+    "razor",
+    "shave",
+    "beard",
+    "cream",
+    "grooming"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e057",
+   "style": "sparse",
+   "target": "celebrate",
+   "rank": -1,
+   "side": "cloud",
+   "ms": 2100,
+   "firstMs": 1981,
+   "words": [
+    "celebration",
+    "toast",
+    "party",
+    "cheers",
+    "anniversary",
+    "wedding"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e058",
+   "style": "plain",
+   "target": "explain",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1316,
+   "firstMs": 1224,
+   "words": [
+    "explain",
+    "demonstrate",
+    "clarify",
+    "describe",
+    "illustrate",
+    "teach"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e059",
+   "style": "broken",
+   "target": "choose",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3239,
+   "firstMs": 3127,
+   "words": [
+    "choose",
+    "decide",
+    "select",
+    "pick",
+    "option",
+    "preference"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e060",
+   "style": "sparse",
+   "target": "hug",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2143,
+   "firstMs": 2044,
+   "words": [
+    "hug",
+    "cuddle",
+    "embrace",
+    "squeeze",
+    "hold",
+    "affection"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e061",
+   "style": "plain",
+   "target": "exhausted",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 7433,
+   "firstMs": 7270,
+   "words": [
+    "exhausted",
+    "worn out",
+    "drained",
+    "fatigued",
+    "dead tired",
+    "sleepy"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e062",
+   "style": "broken",
+   "target": "dizzy",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 8545,
+   "firstMs": 8437,
+   "words": [
+    "dizzy",
+    "vertigo",
+    "spinning",
+    "lightheaded",
+    "fainting",
+    "unsteady"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e063",
+   "style": "sparse",
+   "target": "yesterday",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3030,
+   "firstMs": 2839,
+   "words": [
+    "yesterday",
+    "past",
+    "night",
+    "former",
+    "history",
+    "elapsed"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e064",
+   "style": "plain",
+   "target": "appointment",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1838,
+   "firstMs": 1754,
+   "words": [
+    "doctor appointment",
+    "appointment",
+    "visit",
+    "consultation",
+    "booking",
+    "schedule"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e065",
+   "style": "broken",
+   "target": "tomorrow",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1982,
+   "firstMs": 1872,
+   "words": [
+    "tomorrow",
+    "next day",
+    "day after",
+    "future",
+    "morning",
+    "wake up"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e066",
+   "style": "sparse",
+   "target": "lonely",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1046,
+   "firstMs": 935,
+   "words": [
+    "lonely",
+    "alone",
+    "isolation",
+    "solitude",
+    "abandoned",
+    "friendless"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e067",
+   "style": "plain",
+   "target": "embarrassed",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1643,
+   "firstMs": 1535,
+   "words": [
+    "embarrassed",
+    "humiliated",
+    "ashamed",
+    "foolish",
+    "awkward",
+    "shy"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e068",
+   "style": "broken",
+   "target": "worried",
+   "rank": -1,
+   "side": "cloud",
+   "ms": 1601,
+   "firstMs": 1454,
+   "words": [
+    "worry",
+    "anxiety",
+    "stress",
+    "fear",
+    "panic",
+    "nervous"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e069",
+   "style": "sparse",
+   "target": "jealous",
+   "rank": 2,
+   "side": "cloud",
+   "ms": 2469,
+   "firstMs": 2335,
+   "words": [
+    "jealousy",
+    "envy",
+    "jealous",
+    "covetous",
+    "resentment",
+    "bitter"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e070",
+   "style": "plain",
+   "target": "proud",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 4452,
+   "firstMs": 4299,
+   "words": [
+    "proud",
+    "accomplished",
+    "satisfied",
+    "glory",
+    "achievement",
+    "smug"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e071",
+   "style": "broken",
+   "target": "confused",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2678,
+   "firstMs": 2530,
+   "words": [
+    "confused",
+    "lost",
+    "puzzled",
+    "disoriented",
+    "unsure",
+    "baffled"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e072",
+   "style": "sparse",
+   "target": "thirsty",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3138,
+   "firstMs": 3006,
+   "words": [
+    "thirsty",
+    "water",
+    "drink",
+    "dehydrated",
+    "glass of water",
+    "beverage"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e073",
+   "style": "plain",
+   "target": "frustrated",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3102,
+   "firstMs": 3012,
+   "words": [
+    "frustrated",
+    "annoyed",
+    "stuck",
+    "giving up",
+    "failing",
+    "angry"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e074",
+   "style": "broken",
+   "target": "relieved",
+   "rank": -1,
+   "side": "cloud",
+   "ms": 2153,
+   "firstMs": 1976,
+   "words": [
+    "relief",
+    "good news",
+    "safe",
+    "all clear",
+    "happiness",
+    "healthy"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e075",
+   "style": "sparse",
+   "target": "bored",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1336,
+   "firstMs": 1230,
+   "words": [
+    "bored",
+    "waiting",
+    "lazy",
+    "boredom",
+    "stuck",
+    "empty"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e076",
+   "style": "plain",
+   "target": "weekend",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1481,
+   "firstMs": 1388,
+   "words": [
+    "weekend",
+    "days off",
+    "holiday",
+    "vacation",
+    "rest days",
+    "saturday"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e077",
+   "style": "broken",
+   "target": "midnight",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 896,
+   "firstMs": 746,
+   "words": [
+    "midnight",
+    "twelve",
+    "night",
+    "clock",
+    "darkness",
+    "evening"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e078",
+   "style": "sparse",
+   "target": "birthday",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1068,
+   "firstMs": 969,
+   "words": [
+    "birthday",
+    "birthday party",
+    "celebration",
+    "age",
+    "party",
+    "growing up"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e079",
+   "style": "plain",
+   "target": "anniversary",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 945,
+   "firstMs": 801,
+   "words": [
+    "anniversary",
+    "wedding date",
+    "marriage date",
+    "couple day",
+    "yearly celebration",
+    "remembrance day"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e080",
+   "style": "broken",
+   "target": "numb",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1464,
+   "firstMs": 1331,
+   "words": [
+    "numb",
+    "pins and needles",
+    "asleep",
+    "tingling",
+    "paralyzed",
+    "anesthesia"
+   ],
+   "blocked": null
+  }
+ ]
+}

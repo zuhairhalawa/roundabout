@@ -52,6 +52,9 @@ type OnText = (textSoFar: string, side: Side) => void;
 /** One streamed call in one mode. Resolves when the whole answer is in. */
 async function stream(kind: Kind, mode: Mode, request: Request, t0: number, onText?: OnText): Promise<Omit<Reply, 'fellBack'>> {
   const result = await model(kind, mode).generateContentStream(request);
+  // The stream is read below; a failure is reported there. Without this, the SDK's second
+  // promise for the same response would fail with nobody listening.
+  result.response.catch(() => undefined);
   let text = '';
   let firstMs = 0;
   let side: Side = mode === 'only_in_cloud' ? 'cloud' : 'device';
@@ -132,6 +135,8 @@ export interface FindOptions {
   situation: Situation;
   /** 'live' = guesses while typing or tapping; they only ever run on the device. */
   live?: boolean;
+  /** The person said it is an action or a feeling: kinds of word the on-device model is weak at. */
+  hard?: boolean;
   stale?: () => boolean;
   /** Called as words arrive, so tiles can appear one by one. */
   onPartial?: (guesses: Guess[], side: Side) => void;
@@ -142,7 +147,7 @@ const FELL_BACK = 'The on-device model could not answer, so the cloud did.';
 /** Clues in, word tiles out. Saved words that match come first, with no model involved. */
 export async function findWord(clues: string, o: FindOptions): Promise<Answer> {
   const mine = matchSaved(clues, o.saved);
-  const r = route(o.live ? 'live' : 'find', o.situation);
+  const r = route(o.live ? 'live' : o.hard ? 'hard' : 'find', o.situation);
   if (!r.mode) return blocked(r.why, mine);
   const limit = settings.guessCount;
   const finish = (gs: Guess[]) => mergeGuesses(mine, applySaved(gs, o.saved), limit + mine.length);

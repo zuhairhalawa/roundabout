@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { StaleError } from '../core/ai';
 import { fillPictures, findWord, isQuotaError, moreFromCloud, nameImage, type Answer } from '../core/find';
 import type { Guess, SavedWord } from '../core/guess';
-import { cluesFromChips, HINTS, rowsFor, type Chip } from '../core/pack';
+import { cluesFromChips, HINTS, isCloudFirstGroup, rowsFor, type Chip } from '../core/pack';
 import type { Situation } from '../core/route';
 import { speak } from '../core/speech';
 import { DrawPad, photoToJpeg } from './Draw';
@@ -47,6 +47,8 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
   const [note, setNote] = useState<string | null>(null);
   const [chosen, setChosen] = useState<string | null>(null);
   const seq = useRef(0);
+  const asked = useRef<string | null>(null);                              // the clues "Find the word" was last pressed for
+  const shown = useRef<{ clues: string; answer: Answer } | null>(null);   // a finished on-device answer, and the clues it is for
   const sit = useRef(situation);
   sit.current = situation;
   const savedRef = useRef(saved);
@@ -56,10 +58,18 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
   const picture = way === 'draw' ? sketch : way === 'photo' ? photo : null;
   const hasInput = way === 'describe' || way === 'hints' ? clues.length > 0 : Boolean(picture);
 
-  function reset() { seq.current++; setAnswer(null); setChosen(null); setNote(null); setBusy(null); setPartial(false); setAdded(false); }
+  function reset() { seq.current++; asked.current = null; shown.current = null; setAnswer(null); setChosen(null); setNote(null); setBusy(null); setPartial(false); setAdded(false); }
 
   async function run(live: boolean) {
     if (!hasInput) return;
+    if (live && !picture) {
+      // "Find the word" was pressed for exactly these clues: a type-ahead guess that fires a
+      // moment later must not replace that answer (it would also skip the cloud's help).
+      if (asked.current === clues) return;
+      asked.current = null;
+    } else if (!live) {
+      asked.current = picture ? null : clues;
+    }
     const id = ++seq.current;
     const stale = () => id !== seq.current;
     setBusy('find');
@@ -68,6 +78,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
     try {
       const opts = {
         saved: savedRef.current, situation: sit.current, live, stale,
+        hard: way === 'hints' && isCloudFirstGroup(group),
         // Tiles appear one by one as the words stream in.
         onPartial: (guesses: Guess[], side: Answer['side']) => {
           if (stale() || !guesses.length) return;
@@ -76,13 +87,17 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
           setAnswer({ guesses, side, ms: 0, firstMs: 0, mode: null, why: '', canAskCloud: false });
         },
       };
-      const a = picture
+      // A type-ahead guess already answered these exact clues on this device: keep its tiles
+      // instead of asking the same model the same thing again.
+      const kept = !live && !picture && shown.current?.clues === clues ? shown.current.answer : null;
+      const a = kept ?? (picture
         ? await nameImage({ data: picture, mimeType: way === 'draw' ? 'image/png' : 'image/jpeg', kind: way === 'draw' ? 'sketch' : 'photo' }, opts)
-        : await findWord(clues, opts);
+        : await findWord(clues, opts));
       if (stale()) return;
       if (live && a.blocked) return; // live guesses are a bonus; say nothing when they cannot run
       setPartial(false);
       setAnswer(a);
+      shown.current = !picture && a.side === 'device' && a.guesses.length ? { clues, answer: a } : null;
       // A short clue answered on the device: the cloud adds its ideas without being asked.
       if (!live && !picture && a.side === 'device' && a.canAskCloud && isShort(clues)) {
         setBusy('more');
@@ -91,6 +106,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
             if (stale() || m.blocked || m.guesses.length <= a.guesses.length) return;
             setAnswer({ ...a, guesses: m.guesses, canAskCloud: false, why: 'The clue was short, which is hard for the small on-device model, so the cloud added ideas.' });
             setAdded(true);
+            shown.current = null;
           })
           .catch(() => undefined)
           .finally(() => { if (!stale()) setBusy(null); });
@@ -130,6 +146,14 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
       if (id === seq.current) setBusy(null);
     }
   }
+
+  // An example clue was tapped: look it up at once, as if "Find the word" had been pressed.
+  const goNow = useRef(false);
+  useEffect(() => {
+    if (!goNow.current) return;
+    goNow.current = false;
+    if (way === 'describe' && text.trim()) run(false);
+  }, [text]);
 
   // Live guesses: while typing (on-device only), and after each hint tap or pen stroke.
   useEffect(() => {
@@ -188,7 +212,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
           {!text && (
             <div class="examples">
               <span>Try one:</span>
-              {EXAMPLES.map((ex) => <button class="example" onClick={() => setText(ex)}>{ex}</button>)}
+              {EXAMPLES.map((ex) => <button class="example" onClick={() => { goNow.current = true; setText(ex); }}>{ex}</button>)}
             </div>
           )}
         </div>
@@ -233,6 +257,10 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
       <div class="results" aria-live="polite">
         {note && <p class="note" role="status">{note}</p>}
         {answer?.blocked && !answer.guesses.length && <p class="note" role="status">{answer.blocked}</p>}
+        {/* Offline or in private mode, while the on-device model is still loading: say why it is slow. */}
+        {busy === 'find' && !answer && situation.device === 'loading' && (situation.privateOnly || !situation.online || !situation.cloud) && (
+          <p class="note" role="status">This device is still getting ready. The words will appear as soon as it is.</p>
+        )}
 
         {answer && answer.guesses.length > 0 && (
           <>

@@ -6,6 +6,7 @@ export type Mode = 'only_on_device' | 'prefer_on_device' | 'prefer_in_cloud' | '
 
 export type Task =
   | 'find'       // clues -> word
+  | 'hard'       // clues -> word, for a kind of word the on-device model is weak at (actions, feelings)
   | 'live'       // guesses while typing, tapping or drawing: many small requests
   | 'image'      // drawing or photo -> word
   | 'sentences'  // key words -> sentences
@@ -65,8 +66,12 @@ export function route(task: Task, s: Situation): Route {
     return no('This needs the internet or an on-device model.');
   }
 
-  // find, image, sentences, cue: short jobs the on-device model can do.
-  if (s.device === 'ready') return { mode: 'prefer_on_device', why: 'Answered on this device first.', canAskCloud: cloudUp };
+  // find, hard, image, sentences, cue: short jobs the on-device model can do.
+  if (s.device === 'ready') {
+    // Measured: the small model finds objects and places well, actions and feelings poorly.
+    if (task === 'hard' && cloudUp) return { mode: 'prefer_in_cloud', why: 'Actions and feelings are hard for the small on-device model, so the cloud answers first.', canAskCloud: false };
+    return { mode: 'prefer_on_device', why: 'Answered on this device first.', canAskCloud: cloudUp };
+  }
   if (s.device === 'loading') {
     if (cloudUp) return { mode: 'prefer_in_cloud', why: 'The on-device model is still getting ready, so the cloud answers for now.', canAskCloud: false };
     return { mode: 'only_on_device', why: 'Waiting for the on-device model to get ready.', canAskCloud: false };

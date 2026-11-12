@@ -1,0 +1,4184 @@
+{
+ "set": "eval/everyday.json",
+ "side": "device",
+ "at": "2026-11-12T12:24:52.368Z",
+ "report": {
+  "all": {
+   "n": 240,
+   "top1": 57.9,
+   "top3": 69.6,
+   "top6": 74.6,
+   "medianFirstMs": 862,
+   "medianMs": 1586,
+   "p90Ms": 1753
+  },
+  "plain": {
+   "n": 80,
+   "top1": 73.8,
+   "top3": 80,
+   "top6": 81.3,
+   "medianFirstMs": 863,
+   "medianMs": 1615,
+   "p90Ms": 1796
+  },
+  "broken": {
+   "n": 80,
+   "top1": 51.3,
+   "top3": 70,
+   "top6": 72.5,
+   "medianFirstMs": 871,
+   "medianMs": 1588,
+   "p90Ms": 1724
+  },
+  "sparse": {
+   "n": 80,
+   "top1": 48.8,
+   "top3": 58.8,
+   "top6": 70,
+   "medianFirstMs": 853,
+   "medianMs": 1549,
+   "p90Ms": 1669
+  },
+  "errors": 0,
+  "sides": [
+   "device"
+  ]
+ },
+ "rows": [
+  {
+   "id": "e001",
+   "style": "plain",
+   "target": "dentist",
+   "rank": 0,
+   "side": "device",
+   "ms": 1644,
+   "firstMs": 871,
+   "words": [
+    "dentist",
+    "tooth",
+    "cleaner",
+    "drill",
+    "fill",
+    "teeth"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e001",
+   "style": "broken",
+   "target": "dentist",
+   "rank": 0,
+   "side": "device",
+   "ms": 1593,
+   "firstMs": 867,
+   "words": [
+    "dentist",
+    "teeth",
+    "drill",
+    "hurt",
+    "mouth",
+    "examination"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e001",
+   "style": "sparse",
+   "target": "dentist",
+   "rank": 0,
+   "side": "device",
+   "ms": 1585,
+   "firstMs": 849,
+   "words": [
+    "dentist",
+    "dental",
+    "tooth",
+    "drill",
+    "fillings",
+    "procedure"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e002",
+   "style": "plain",
+   "target": "neighbour",
+   "rank": 0,
+   "side": "device",
+   "ms": 1379,
+   "firstMs": 865,
+   "words": [
+    "neighbor",
+    "adjacent",
+    "close",
+    "next door"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e002",
+   "style": "broken",
+   "target": "neighbour",
+   "rank": 0,
+   "side": "device",
+   "ms": 1605,
+   "firstMs": 908,
+   "words": [
+    "neighbor",
+    "woman",
+    "she",
+    "lives",
+    "nearby",
+    "friend"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e002",
+   "style": "sparse",
+   "target": "neighbour",
+   "rank": 0,
+   "side": "device",
+   "ms": 1537,
+   "firstMs": 841,
+   "words": [
+    "neighbor",
+    "house",
+    "yard",
+    "property",
+    "boundary",
+    "adjacent"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e003",
+   "style": "plain",
+   "target": "plumber",
+   "rank": 0,
+   "side": "device",
+   "ms": 1798,
+   "firstMs": 889,
+   "words": [
+    "plumber",
+    "repairman",
+    "pipe fitter",
+    "handyman",
+    "plumbing",
+    "fixer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e003",
+   "style": "broken",
+   "target": "plumber",
+   "rank": 0,
+   "side": "device",
+   "ms": 1616,
+   "firstMs": 903,
+   "words": [
+    "plumber",
+    "leak",
+    "repair",
+    "fix",
+    "pipe",
+    "water"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e003",
+   "style": "sparse",
+   "target": "plumber",
+   "rank": 3,
+   "side": "device",
+   "ms": 1773,
+   "firstMs": 862,
+   "words": [
+    "plumbing",
+    "leaky tap",
+    "pipe repair",
+    "plumber",
+    "water leak",
+    "flush"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e004",
+   "style": "plain",
+   "target": "grandson",
+   "rank": 1,
+   "side": "device",
+   "ms": 1923,
+   "firstMs": 865,
+   "words": [
+    "grandchild",
+    "grandson",
+    "nephew",
+    "great-grandchild",
+    "great-nephew",
+    "younger relative"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e004",
+   "style": "broken",
+   "target": "grandson",
+   "rank": 0,
+   "side": "device",
+   "ms": 1736,
+   "firstMs": 871,
+   "words": [
+    "grandson",
+    "boy",
+    "grandchild",
+    "nephew",
+    "great-grandson",
+    "little"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e004",
+   "style": "sparse",
+   "target": "grandson",
+   "rank": 1,
+   "side": "device",
+   "ms": 1718,
+   "firstMs": 857,
+   "words": [
+    "grandchild",
+    "grandson",
+    "grandkids",
+    "nana",
+    "grandparent",
+    "relative"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e005",
+   "style": "plain",
+   "target": "pharmacist",
+   "rank": 0,
+   "side": "device",
+   "ms": 1741,
+   "firstMs": 862,
+   "words": [
+    "pharmacist",
+    "pharmacy",
+    "prescription",
+    "counter worker",
+    "medic",
+    "dispenser"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e005",
+   "style": "broken",
+   "target": "pharmacist",
+   "rank": -1,
+   "side": "device",
+   "ms": 1684,
+   "firstMs": 900,
+   "words": [
+    "doctor",
+    "pharmacy",
+    "prescription",
+    "medicine",
+    "white coat",
+    "tablets"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e005",
+   "style": "sparse",
+   "target": "pharmacist",
+   "rank": -1,
+   "side": "device",
+   "ms": 1592,
+   "firstMs": 854,
+   "words": [
+    "medicine",
+    "pills",
+    "medication",
+    "doctor",
+    "health",
+    "treatment"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e006",
+   "style": "plain",
+   "target": "teacher",
+   "rank": 0,
+   "side": "device",
+   "ms": 1603,
+   "firstMs": 868,
+   "words": [
+    "teacher",
+    "professor",
+    "instructor",
+    "educator",
+    "coach",
+    "mentor"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e006",
+   "style": "broken",
+   "target": "teacher",
+   "rank": 0,
+   "side": "device",
+   "ms": 1597,
+   "firstMs": 883,
+   "words": [
+    "teacher",
+    "miss",
+    "school",
+    "blackboard",
+    "homework",
+    "class"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e006",
+   "style": "sparse",
+   "target": "teacher",
+   "rank": 0,
+   "side": "device",
+   "ms": 1219,
+   "firstMs": 840,
+   "words": [
+    "teacher",
+    "school",
+    "education"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e007",
+   "style": "plain",
+   "target": "waiter",
+   "rank": 0,
+   "side": "device",
+   "ms": 1583,
+   "firstMs": 870,
+   "words": [
+    "waiter",
+    "server",
+    "host",
+    "person",
+    "staff",
+    "worker"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e007",
+   "style": "broken",
+   "target": "waiter",
+   "rank": 0,
+   "side": "device",
+   "ms": 1575,
+   "firstMs": 866,
+   "words": [
+    "waiter",
+    "server",
+    "person",
+    "staff",
+    "worker",
+    "provider"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e007",
+   "style": "sparse",
+   "target": "waiter",
+   "rank": 4,
+   "side": "device",
+   "ms": 1536,
+   "firstMs": 851,
+   "words": [
+    "restaurant",
+    "dinner",
+    "bill",
+    "money",
+    "server",
+    "food"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e008",
+   "style": "plain",
+   "target": "barber",
+   "rank": 0,
+   "side": "device",
+   "ms": 1854,
+   "firstMs": 912,
+   "words": [
+    "barber",
+    "barbing shop",
+    "beard trim",
+    "pole",
+    "striped pole"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e008",
+   "style": "broken",
+   "target": "barber",
+   "rank": 0,
+   "side": "device",
+   "ms": 1662,
+   "firstMs": 892,
+   "words": [
+    "barber",
+    "cut",
+    "hair",
+    "shave",
+    "clipper",
+    "trim"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e008",
+   "style": "sparse",
+   "target": "barber",
+   "rank": 3,
+   "side": "device",
+   "ms": 1753,
+   "firstMs": 864,
+   "words": [
+    "beard",
+    "haircut",
+    "shaving",
+    "barber",
+    "men's style",
+    "trim"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e009",
+   "style": "plain",
+   "target": "surgeon",
+   "rank": 0,
+   "side": "device",
+   "ms": 1625,
+   "firstMs": 850,
+   "words": [
+    "surgeon",
+    "hospital",
+    "patient",
+    "surgery",
+    "operating theatre",
+    "anesthesia"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e009",
+   "style": "broken",
+   "target": "surgeon",
+   "rank": 0,
+   "side": "device",
+   "ms": 1545,
+   "firstMs": 875,
+   "words": [
+    "surgeon",
+    "hip",
+    "operation",
+    "mask",
+    "doctor",
+    "surgery"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e009",
+   "style": "sparse",
+   "target": "surgeon",
+   "rank": 5,
+   "side": "device",
+   "ms": 1489,
+   "firstMs": 838,
+   "words": [
+    "surgery",
+    "operation",
+    "hospital",
+    "medical",
+    "patient",
+    "surgeon"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e010",
+   "style": "plain",
+   "target": "lawyer",
+   "rank": 0,
+   "side": "device",
+   "ms": 1762,
+   "firstMs": 875,
+   "words": [
+    "lawyer",
+    "attorney",
+    "counsel",
+    "advocate",
+    "judge",
+    "legal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e010",
+   "style": "broken",
+   "target": "lawyer",
+   "rank": 0,
+   "side": "device",
+   "ms": 1574,
+   "firstMs": 849,
+   "words": [
+    "lawyer",
+    "law",
+    "court",
+    "will",
+    "estate",
+    "legal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e010",
+   "style": "sparse",
+   "target": "lawyer",
+   "rank": 1,
+   "side": "device",
+   "ms": 1626,
+   "firstMs": 843,
+   "words": [
+    "law",
+    "attorney",
+    "judge",
+    "lawyer",
+    "trial",
+    "legal aid"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e011",
+   "style": "plain",
+   "target": "nephew",
+   "rank": -1,
+   "side": "device",
+   "ms": 1572,
+   "firstMs": 854,
+   "words": [
+    "brother",
+    "sibling",
+    "relative",
+    "cousin",
+    "pal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e011",
+   "style": "broken",
+   "target": "nephew",
+   "rank": 0,
+   "side": "device",
+   "ms": 1052,
+   "firstMs": 849,
+   "words": [
+    "nephew"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e011",
+   "style": "sparse",
+   "target": "nephew",
+   "rank": 0,
+   "side": "device",
+   "ms": 1068,
+   "firstMs": 870,
+   "words": [
+    "nephew"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e012",
+   "style": "plain",
+   "target": "widow",
+   "rank": 0,
+   "side": "device",
+   "ms": 1090,
+   "firstMs": 886,
+   "words": [
+    "widow"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e012",
+   "style": "broken",
+   "target": "widow",
+   "rank": 0,
+   "side": "device",
+   "ms": 1667,
+   "firstMs": 845,
+   "words": [
+    "widow",
+    "grief",
+    "loss",
+    "lonely",
+    "separation",
+    "orphaned"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e012",
+   "style": "sparse",
+   "target": "widow",
+   "rank": 0,
+   "side": "device",
+   "ms": 1062,
+   "firstMs": 845,
+   "words": [
+    "widow"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e013",
+   "style": "plain",
+   "target": "mechanic",
+   "rank": 0,
+   "side": "device",
+   "ms": 1897,
+   "firstMs": 873,
+   "words": [
+    "mechanic",
+    "auto repair",
+    "garage worker",
+    "car fixing",
+    "vehicle repair",
+    "mechanic's shop"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e013",
+   "style": "broken",
+   "target": "mechanic",
+   "rank": 1,
+   "side": "device",
+   "ms": 1576,
+   "firstMs": 877,
+   "words": [
+    "car",
+    "mechanic",
+    "oil",
+    "engine",
+    "repair",
+    "problem"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e013",
+   "style": "sparse",
+   "target": "mechanic",
+   "rank": 0,
+   "side": "device",
+   "ms": 1545,
+   "firstMs": 854,
+   "words": [
+    "mechanic",
+    "car",
+    "garage",
+    "repair",
+    "vehicle",
+    "auto"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e014",
+   "style": "plain",
+   "target": "landlord",
+   "rank": 0,
+   "side": "device",
+   "ms": 1607,
+   "firstMs": 853,
+   "words": [
+    "landlord",
+    "property",
+    "rent",
+    "owner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e014",
+   "style": "broken",
+   "target": "landlord",
+   "rank": 0,
+   "side": "device",
+   "ms": 1491,
+   "firstMs": 885,
+   "words": [
+    "landlord",
+    "owner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e014",
+   "style": "sparse",
+   "target": "landlord",
+   "rank": 3,
+   "side": "device",
+   "ms": 1573,
+   "firstMs": 853,
+   "words": [
+    "apartment",
+    "housing",
+    "lease",
+    "landlord",
+    "rental",
+    "dwelling"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e015",
+   "style": "plain",
+   "target": "cashier",
+   "rank": 0,
+   "side": "device",
+   "ms": 1720,
+   "firstMs": 857,
+   "words": [
+    "cashier",
+    "teller",
+    "sales clerk",
+    "checkout person",
+    "shop assistant",
+    "pay taker"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e015",
+   "style": "broken",
+   "target": "cashier",
+   "rank": 2,
+   "side": "device",
+   "ms": 1610,
+   "firstMs": 883,
+   "words": [
+    "cash register",
+    "checkout",
+    "cashier",
+    "store",
+    "payment",
+    "transaction"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e015",
+   "style": "sparse",
+   "target": "cashier",
+   "rank": 0,
+   "side": "device",
+   "ms": 1631,
+   "firstMs": 859,
+   "words": [
+    "cashier",
+    "personnel",
+    "worker",
+    "teller",
+    "employee",
+    "shop"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e016",
+   "style": "plain",
+   "target": "carer",
+   "rank": 0,
+   "side": "device",
+   "ms": 1613,
+   "firstMs": 875,
+   "words": [
+    "caregiver",
+    "guardian",
+    "nurse",
+    "helper",
+    "assistant",
+    "provider"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e016",
+   "style": "broken",
+   "target": "carer",
+   "rank": 1,
+   "side": "device",
+   "ms": 1675,
+   "firstMs": 867,
+   "words": [
+    "aide",
+    "caregiver",
+    "assistant",
+    "social worker",
+    "home health",
+    "visitor"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e016",
+   "style": "sparse",
+   "target": "carer",
+   "rank": -1,
+   "side": "device",
+   "ms": 1646,
+   "firstMs": 829,
+   "words": [
+    "routine",
+    "morning",
+    "habits",
+    "personal care",
+    "getting ready",
+    "tasks"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e017",
+   "style": "plain",
+   "target": "cousin",
+   "rank": 0,
+   "side": "device",
+   "ms": 1027,
+   "firstMs": 839,
+   "words": [
+    "cousins"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e017",
+   "style": "broken",
+   "target": "cousin",
+   "rank": 0,
+   "side": "device",
+   "ms": 1178,
+   "firstMs": 870,
+   "words": [
+    "cousin",
+    "relative"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e017",
+   "style": "sparse",
+   "target": "cousin",
+   "rank": 0,
+   "side": "device",
+   "ms": 1249,
+   "firstMs": 829,
+   "words": [
+    "cousin",
+    "relative",
+    "sibling"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e018",
+   "style": "plain",
+   "target": "electrician",
+   "rank": 0,
+   "side": "device",
+   "ms": 1725,
+   "firstMs": 924,
+   "words": [
+    "electrician",
+    "wiring",
+    "worker",
+    "install",
+    "sockets",
+    "fuse boxes"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e018",
+   "style": "broken",
+   "target": "electrician",
+   "rank": 2,
+   "side": "device",
+   "ms": 1588,
+   "firstMs": 856,
+   "words": [
+    "electricity",
+    "power",
+    "electrician",
+    "problem",
+    "circuit",
+    "fault"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e018",
+   "style": "sparse",
+   "target": "electrician",
+   "rank": 0,
+   "side": "device",
+   "ms": 1605,
+   "firstMs": 854,
+   "words": [
+    "electrician",
+    "wiring",
+    "electrical",
+    "circuit",
+    "contractor",
+    "installation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e019",
+   "style": "plain",
+   "target": "optician",
+   "rank": 0,
+   "side": "device",
+   "ms": 1783,
+   "firstMs": 890,
+   "words": [
+    "optometrist",
+    "glasses",
+    "vision",
+    "sight",
+    "eyesight",
+    "frames"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e019",
+   "style": "broken",
+   "target": "optician",
+   "rank": -1,
+   "side": "device",
+   "ms": 1121,
+   "firstMs": 887,
+   "words": [
+    "magnifying glass"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e019",
+   "style": "sparse",
+   "target": "optician",
+   "rank": -1,
+   "side": "device",
+   "ms": 1638,
+   "firstMs": 859,
+   "words": [
+    "glasses",
+    "spectacles",
+    "vision",
+    "sight",
+    "eyesight",
+    "optics"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e020",
+   "style": "plain",
+   "target": "boss",
+   "rank": 0,
+   "side": "device",
+   "ms": 1585,
+   "firstMs": 875,
+   "words": [
+    "boss",
+    "manager",
+    "supervisor",
+    "principal",
+    "director",
+    "lead"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e020",
+   "style": "broken",
+   "target": "boss",
+   "rank": 0,
+   "side": "device",
+   "ms": 1552,
+   "firstMs": 889,
+   "words": [
+    "boss",
+    "manager",
+    "supervisor",
+    "employer",
+    "job",
+    "work"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e020",
+   "style": "sparse",
+   "target": "boss",
+   "rank": 0,
+   "side": "device",
+   "ms": 1537,
+   "firstMs": 871,
+   "words": [
+    "manager",
+    "supervisor",
+    "boss",
+    "leader",
+    "director",
+    "captain"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e021",
+   "style": "plain",
+   "target": "pharmacy",
+   "rank": 0,
+   "side": "device",
+   "ms": 1439,
+   "firstMs": 876,
+   "words": [
+    "pharmacy",
+    "drugstore",
+    "prescription",
+    "medicines"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e021",
+   "style": "broken",
+   "target": "pharmacy",
+   "rank": 0,
+   "side": "device",
+   "ms": 1698,
+   "firstMs": 866,
+   "words": [
+    "pharmacy",
+    "drugstore",
+    "chemist",
+    "prescription",
+    "medicines",
+    "apothecary"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e021",
+   "style": "sparse",
+   "target": "pharmacy",
+   "rank": 0,
+   "side": "device",
+   "ms": 1623,
+   "firstMs": 859,
+   "words": [
+    "pharmacy",
+    "drugstore",
+    "medicines",
+    "prescription",
+    "shop",
+    "drugs"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e022",
+   "style": "plain",
+   "target": "airport",
+   "rank": 0,
+   "side": "device",
+   "ms": 1631,
+   "firstMs": 867,
+   "words": [
+    "airport",
+    "travel",
+    "airplane",
+    "security",
+    "check-in",
+    "depart"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e022",
+   "style": "broken",
+   "target": "airport",
+   "rank": 2,
+   "side": "device",
+   "ms": 1577,
+   "firstMs": 872,
+   "words": [
+    "travel",
+    "vacation",
+    "airport",
+    "flight",
+    "departure",
+    "journey"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e022",
+   "style": "sparse",
+   "target": "airport",
+   "rank": 3,
+   "side": "device",
+   "ms": 1533,
+   "firstMs": 868,
+   "words": [
+    "airline",
+    "flight",
+    "travel",
+    "airport",
+    "departure",
+    "journey"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e023",
+   "style": "plain",
+   "target": "bank",
+   "rank": 0,
+   "side": "device",
+   "ms": 1685,
+   "firstMs": 910,
+   "words": [
+    "bank",
+    "money",
+    "loan",
+    "deposit",
+    "account",
+    "finance"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e023",
+   "style": "broken",
+   "target": "bank",
+   "rank": 0,
+   "side": "device",
+   "ms": 1598,
+   "firstMs": 894,
+   "words": [
+    "bank",
+    "ATM",
+    "cash",
+    "money",
+    "deposit",
+    "teller"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e023",
+   "style": "sparse",
+   "target": "bank",
+   "rank": 0,
+   "side": "device",
+   "ms": 1521,
+   "firstMs": 862,
+   "words": [
+    "bank",
+    "deposit",
+    "savings",
+    "finance",
+    "credit",
+    "payment"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e024",
+   "style": "plain",
+   "target": "hospital",
+   "rank": 0,
+   "side": "device",
+   "ms": 1179,
+   "firstMs": 875,
+   "words": [
+    "hospital",
+    "medical center"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e024",
+   "style": "broken",
+   "target": "hospital",
+   "rank": 1,
+   "side": "device",
+   "ms": 1554,
+   "firstMs": 862,
+   "words": [
+    "recovery",
+    "hospital",
+    "treatment",
+    "doctors",
+    "stay",
+    "therapy"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e024",
+   "style": "sparse",
+   "target": "hospital",
+   "rank": 0,
+   "side": "device",
+   "ms": 1517,
+   "firstMs": 853,
+   "words": [
+    "hospital",
+    "medical",
+    "patient",
+    "healthcare",
+    "treatment",
+    "care"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e025",
+   "style": "plain",
+   "target": "library",
+   "rank": 0,
+   "side": "device",
+   "ms": 1604,
+   "firstMs": 846,
+   "words": [
+    "library",
+    "books",
+    "reading",
+    "quiet",
+    "shelves",
+    "learning"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e025",
+   "style": "broken",
+   "target": "library",
+   "rank": 0,
+   "side": "device",
+   "ms": 1243,
+   "firstMs": 875,
+   "words": [
+    "library",
+    "books",
+    "reading"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e025",
+   "style": "sparse",
+   "target": "library",
+   "rank": 0,
+   "side": "device",
+   "ms": 1246,
+   "firstMs": 838,
+   "words": [
+    "library",
+    "bookstore",
+    "reading"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e026",
+   "style": "plain",
+   "target": "supermarket",
+   "rank": 0,
+   "side": "device",
+   "ms": 1623,
+   "firstMs": 856,
+   "words": [
+    "supermarket",
+    "grocery store",
+    "market",
+    "store",
+    "shop",
+    "aisles"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e026",
+   "style": "broken",
+   "target": "supermarket",
+   "rank": 0,
+   "side": "device",
+   "ms": 1527,
+   "firstMs": 884,
+   "words": [
+    "supermarket",
+    "grocery store",
+    "shop",
+    "store",
+    "food shopping"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e026",
+   "style": "sparse",
+   "target": "supermarket",
+   "rank": 0,
+   "side": "device",
+   "ms": 1266,
+   "firstMs": 840,
+   "words": [
+    "grocery store",
+    "supermarket",
+    "market"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e027",
+   "style": "plain",
+   "target": "restaurant",
+   "rank": 0,
+   "side": "device",
+   "ms": 1581,
+   "firstMs": 877,
+   "words": [
+    "restaurant",
+    "diner",
+    "cafe",
+    "table",
+    "food",
+    "cook"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e027",
+   "style": "broken",
+   "target": "restaurant",
+   "rank": 0,
+   "side": "device",
+   "ms": 1535,
+   "firstMs": 859,
+   "words": [
+    "restaurant",
+    "dinner",
+    "lunch",
+    "food",
+    "dining",
+    "service"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e027",
+   "style": "sparse",
+   "target": "restaurant",
+   "rank": 0,
+   "side": "device",
+   "ms": 1512,
+   "firstMs": 858,
+   "words": [
+    "restaurant",
+    "dinner",
+    "lunch",
+    "food",
+    "dining",
+    "cafe"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e028",
+   "style": "plain",
+   "target": "bakery",
+   "rank": 0,
+   "side": "device",
+   "ms": 1764,
+   "firstMs": 862,
+   "words": [
+    "bakery",
+    "bread shop",
+    "bakeries",
+    "bakery store",
+    "cafe",
+    "pastries"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e028",
+   "style": "broken",
+   "target": "bakery",
+   "rank": 0,
+   "side": "device",
+   "ms": 1713,
+   "firstMs": 865,
+   "words": [
+    "bakery",
+    "breakfast",
+    "pastries",
+    "doughnuts",
+    "fresh baked",
+    "morning"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e028",
+   "style": "sparse",
+   "target": "bakery",
+   "rank": 0,
+   "side": "device",
+   "ms": 1061,
+   "firstMs": 860,
+   "words": [
+    "bakery"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e029",
+   "style": "plain",
+   "target": "cemetery",
+   "rank": 0,
+   "side": "device",
+   "ms": 1839,
+   "firstMs": 861,
+   "words": [
+    "cemetery",
+    "graveyard",
+    "burial site",
+    "memorial park",
+    "quaint place",
+    "resting place"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e029",
+   "style": "broken",
+   "target": "cemetery",
+   "rank": 0,
+   "side": "device",
+   "ms": 1701,
+   "firstMs": 859,
+   "words": [
+    "graveyard",
+    "cemetery",
+    "burial site",
+    "plot",
+    "memorial",
+    "tomb"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e029",
+   "style": "sparse",
+   "target": "cemetery",
+   "rank": 0,
+   "side": "device",
+   "ms": 1607,
+   "firstMs": 838,
+   "words": [
+    "graveyard",
+    "cemetery",
+    "memorial",
+    "tomb",
+    "grave",
+    "deceased"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e030",
+   "style": "plain",
+   "target": "post office",
+   "rank": 0,
+   "side": "device",
+   "ms": 1070,
+   "firstMs": 862,
+   "words": [
+    "Post Office"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e030",
+   "style": "broken",
+   "target": "post office",
+   "rank": 0,
+   "side": "device",
+   "ms": 1504,
+   "firstMs": 865,
+   "words": [
+    "post office",
+    "mail",
+    "package",
+    "send",
+    "stamps"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e030",
+   "style": "sparse",
+   "target": "post office",
+   "rank": 0,
+   "side": "device",
+   "ms": 1046,
+   "firstMs": 853,
+   "words": [
+    "post office"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e031",
+   "style": "plain",
+   "target": "mosque",
+   "rank": 0,
+   "side": "device",
+   "ms": 1339,
+   "firstMs": 863,
+   "words": [
+    "mosque",
+    "prayer place",
+    "minaret"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e031",
+   "style": "broken",
+   "target": "mosque",
+   "rank": 0,
+   "side": "device",
+   "ms": 1651,
+   "firstMs": 891,
+   "words": [
+    "mosque",
+    "prayer",
+    "faith",
+    "islam",
+    "muslim",
+    "belief"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e031",
+   "style": "sparse",
+   "target": "mosque",
+   "rank": 0,
+   "side": "device",
+   "ms": 1525,
+   "firstMs": 829,
+   "words": [
+    "mosque",
+    "islam",
+    "faith",
+    "belief",
+    "religious",
+    "prayer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e032",
+   "style": "plain",
+   "target": "school",
+   "rank": 0,
+   "side": "device",
+   "ms": 1541,
+   "firstMs": 865,
+   "words": [
+    "school",
+    "classroom",
+    "students",
+    "learning",
+    "education",
+    "teachers"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e032",
+   "style": "broken",
+   "target": "school",
+   "rank": 0,
+   "side": "device",
+   "ms": 1517,
+   "firstMs": 861,
+   "words": [
+    "school",
+    "students",
+    "classroom",
+    "learning",
+    "education",
+    "children"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e032",
+   "style": "sparse",
+   "target": "school",
+   "rank": 0,
+   "side": "device",
+   "ms": 1207,
+   "firstMs": 837,
+   "words": [
+    "school",
+    "students",
+    "education"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e033",
+   "style": "plain",
+   "target": "gym",
+   "rank": 0,
+   "side": "device",
+   "ms": 1714,
+   "firstMs": 868,
+   "words": [
+    "gym",
+    "fitness center",
+    "workout facility",
+    "exercise room",
+    "health club",
+    "sport club"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e033",
+   "style": "broken",
+   "target": "gym",
+   "rank": 0,
+   "side": "device",
+   "ms": 1041,
+   "firstMs": 854,
+   "words": [
+    "gym membership"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e033",
+   "style": "sparse",
+   "target": "gym",
+   "rank": 0,
+   "side": "device",
+   "ms": 1556,
+   "firstMs": 860,
+   "words": [
+    "gym",
+    "workout",
+    "fitness",
+    "exercise",
+    "physical",
+    "strength"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e034",
+   "style": "plain",
+   "target": "beach",
+   "rank": 0,
+   "side": "device",
+   "ms": 1603,
+   "firstMs": 859,
+   "words": [
+    "beach",
+    "coast",
+    "shore",
+    "sand",
+    "coastline",
+    "vacation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e034",
+   "style": "broken",
+   "target": "beach",
+   "rank": 0,
+   "side": "device",
+   "ms": 1563,
+   "firstMs": 843,
+   "words": [
+    "beach",
+    "summer",
+    "ocean",
+    "play",
+    "children",
+    "vacation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e034",
+   "style": "sparse",
+   "target": "beach",
+   "rank": 0,
+   "side": "device",
+   "ms": 1575,
+   "firstMs": 849,
+   "words": [
+    "beach",
+    "ocean",
+    "vacation",
+    "warmth",
+    "relaxation",
+    "summer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e035",
+   "style": "plain",
+   "target": "garden",
+   "rank": 0,
+   "side": "device",
+   "ms": 1548,
+   "firstMs": 844,
+   "words": [
+    "yard",
+    "lawn",
+    "garden",
+    "outside",
+    "backyard",
+    "property"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e035",
+   "style": "broken",
+   "target": "garden",
+   "rank": 1,
+   "side": "device",
+   "ms": 1586,
+   "firstMs": 883,
+   "words": [
+    "lawn",
+    "yard",
+    "garden",
+    "outside",
+    "mow",
+    "green"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e035",
+   "style": "sparse",
+   "target": "garden",
+   "rank": 0,
+   "side": "device",
+   "ms": 1572,
+   "firstMs": 853,
+   "words": [
+    "garden",
+    "yard",
+    "plants",
+    "nature",
+    "green",
+    "outdoors"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e036",
+   "style": "plain",
+   "target": "cinema",
+   "rank": 0,
+   "side": "device",
+   "ms": 1562,
+   "firstMs": 846,
+   "words": [
+    "cinema",
+    "movie theater",
+    "theater",
+    "hall",
+    "screen",
+    "films"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e036",
+   "style": "broken",
+   "target": "cinema",
+   "rank": 0,
+   "side": "device",
+   "ms": 1539,
+   "firstMs": 866,
+   "words": [
+    "movie",
+    "cinema",
+    "film",
+    "theater",
+    "screen",
+    "tickets"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e036",
+   "style": "sparse",
+   "target": "cinema",
+   "rank": 0,
+   "side": "device",
+   "ms": 1510,
+   "firstMs": 830,
+   "words": [
+    "movie",
+    "cinema",
+    "theater",
+    "film",
+    "entertainment",
+    "television"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e037",
+   "style": "plain",
+   "target": "hotel",
+   "rank": 0,
+   "side": "device",
+   "ms": 1247,
+   "firstMs": 844,
+   "words": [
+    "hotel",
+    "motel",
+    "inn"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e037",
+   "style": "broken",
+   "target": "hotel",
+   "rank": 0,
+   "side": "device",
+   "ms": 1619,
+   "firstMs": 875,
+   "words": [
+    "hotel",
+    "accommodation",
+    "resort",
+    "travel",
+    "vacation",
+    "stay"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e037",
+   "style": "sparse",
+   "target": "hotel",
+   "rank": 0,
+   "side": "device",
+   "ms": 1659,
+   "firstMs": 861,
+   "words": [
+    "hotel",
+    "resort",
+    "vacation",
+    "travel",
+    "check-in",
+    "accommodation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e038",
+   "style": "plain",
+   "target": "park",
+   "rank": 0,
+   "side": "device",
+   "ms": 1652,
+   "firstMs": 851,
+   "words": [
+    "park",
+    "playground",
+    "garden",
+    "parkland",
+    "recreation area",
+    "lawn"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e038",
+   "style": "broken",
+   "target": "park",
+   "rank": 0,
+   "side": "device",
+   "ms": 1243,
+   "firstMs": 860,
+   "words": [
+    "park",
+    "playground",
+    "green space"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e038",
+   "style": "sparse",
+   "target": "park",
+   "rank": 0,
+   "side": "device",
+   "ms": 1556,
+   "firstMs": 857,
+   "words": [
+    "park",
+    "playground",
+    "grass",
+    "walk",
+    "public",
+    "outdoors"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e039",
+   "style": "plain",
+   "target": "museum",
+   "rank": 0,
+   "side": "device",
+   "ms": 1642,
+   "firstMs": 871,
+   "words": [
+    "museum",
+    "artifacts",
+    "exhibits",
+    "history",
+    "collection",
+    "galleries"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e039",
+   "style": "broken",
+   "target": "museum",
+   "rank": 0,
+   "side": "device",
+   "ms": 1954,
+   "firstMs": 887,
+   "words": [
+    "museum",
+    "artifacts",
+    "exhibits",
+    "discoveries",
+    "prehistoric",
+    "science"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e039",
+   "style": "sparse",
+   "target": "museum",
+   "rank": 0,
+   "side": "device",
+   "ms": 1513,
+   "firstMs": 848,
+   "words": [
+    "museum",
+    "artifacts",
+    "exhibits",
+    "history",
+    "glass cases"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e040",
+   "style": "plain",
+   "target": "office",
+   "rank": 0,
+   "side": "device",
+   "ms": 1589,
+   "firstMs": 874,
+   "words": [
+    "office",
+    "workplace",
+    "business",
+    "desk",
+    "company",
+    "establishment"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e040",
+   "style": "broken",
+   "target": "office",
+   "rank": 0,
+   "side": "device",
+   "ms": 1553,
+   "firstMs": 870,
+   "words": [
+    "office",
+    "work",
+    "job",
+    "desk",
+    "career"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e040",
+   "style": "sparse",
+   "target": "office",
+   "rank": 0,
+   "side": "device",
+   "ms": 1528,
+   "firstMs": 824,
+   "words": [
+    "office",
+    "work",
+    "business",
+    "computer",
+    "station",
+    "workplace"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e041",
+   "style": "plain",
+   "target": "borrow",
+   "rank": 1,
+   "side": "device",
+   "ms": 1546,
+   "firstMs": 866,
+   "words": [
+    "loan",
+    "borrow",
+    "lend",
+    "give",
+    "return",
+    "swap"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e041",
+   "style": "broken",
+   "target": "borrow",
+   "rank": 0,
+   "side": "device",
+   "ms": 1627,
+   "firstMs": 862,
+   "words": [
+    "borrow",
+    "loan",
+    "temporarily",
+    "return",
+    "item",
+    "thing"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e041",
+   "style": "sparse",
+   "target": "borrow",
+   "rank": -1,
+   "side": "device",
+   "ms": 1332,
+   "firstMs": 880,
+   "words": [
+    "key",
+    "unlock",
+    "return"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e042",
+   "style": "plain",
+   "target": "swallow",
+   "rank": 1,
+   "side": "device",
+   "ms": 1704,
+   "firstMs": 866,
+   "words": [
+    "drink",
+    "swallow",
+    "consume",
+    "ingest",
+    "take",
+    "liquid"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e042",
+   "style": "broken",
+   "target": "swallow",
+   "rank": 4,
+   "side": "device",
+   "ms": 1486,
+   "firstMs": 863,
+   "words": [
+    "food",
+    "meal",
+    "bite",
+    "chew",
+    "swallow"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e042",
+   "style": "sparse",
+   "target": "swallow",
+   "rank": 1,
+   "side": "device",
+   "ms": 1575,
+   "firstMs": 849,
+   "words": [
+    "drink",
+    "swallow",
+    "liquid",
+    "water",
+    "juice",
+    "soup"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e043",
+   "style": "plain",
+   "target": "apologise",
+   "rank": -1,
+   "side": "device",
+   "ms": 1786,
+   "firstMs": 869,
+   "words": [
+    "apology",
+    "regret",
+    "sorry",
+    "pardon",
+    "misdeed",
+    "remorse"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e043",
+   "style": "broken",
+   "target": "apologise",
+   "rank": -1,
+   "side": "device",
+   "ms": 1643,
+   "firstMs": 875,
+   "words": [
+    "apology",
+    "regret",
+    "friend",
+    "hurt",
+    "sorry",
+    "reparation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e043",
+   "style": "sparse",
+   "target": "apologise",
+   "rank": -1,
+   "side": "device",
+   "ms": 1315,
+   "firstMs": 861,
+   "words": [
+    "apology",
+    "regret",
+    "error"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e044",
+   "style": "plain",
+   "target": "remember",
+   "rank": 1,
+   "side": "device",
+   "ms": 1586,
+   "firstMs": 855,
+   "words": [
+    "memorize",
+    "remember",
+    "recall",
+    "think",
+    "mind",
+    "learn"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e044",
+   "style": "broken",
+   "target": "remember",
+   "rank": 2,
+   "side": "device",
+   "ms": 1724,
+   "firstMs": 885,
+   "words": [
+    "memory",
+    "mind",
+    "recall",
+    "brain",
+    "knowledge",
+    "history"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e044",
+   "style": "sparse",
+   "target": "remember",
+   "rank": 1,
+   "side": "device",
+   "ms": 1737,
+   "firstMs": 891,
+   "words": [
+    "memory",
+    "recall",
+    "brain",
+    "think",
+    "remember",
+    "thought"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e045",
+   "style": "plain",
+   "target": "forget",
+   "rank": 1,
+   "side": "device",
+   "ms": 1785,
+   "firstMs": 928,
+   "words": [
+    "amnesia",
+    "forget",
+    "recall",
+    "memory",
+    "lapse",
+    "blank"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e045",
+   "style": "broken",
+   "target": "forget",
+   "rank": 2,
+   "side": "device",
+   "ms": 1530,
+   "firstMs": 856,
+   "words": [
+    "name",
+    "memory",
+    "forget",
+    "lost",
+    "recall",
+    "brain"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e045",
+   "style": "sparse",
+   "target": "forget",
+   "rank": 1,
+   "side": "device",
+   "ms": 1369,
+   "firstMs": 842,
+   "words": [
+    "memory",
+    "forget",
+    "losing mind",
+    "brain"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e046",
+   "style": "plain",
+   "target": "promise",
+   "rank": 0,
+   "side": "device",
+   "ms": 1603,
+   "firstMs": 849,
+   "words": [
+    "promise",
+    "commit",
+    "swear",
+    "guarantee",
+    "vow",
+    "affirm"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e046",
+   "style": "broken",
+   "target": "promise",
+   "rank": 0,
+   "side": "device",
+   "ms": 1578,
+   "firstMs": 849,
+   "words": [
+    "promise",
+    "swear",
+    "affirm",
+    "guarantee",
+    "pledge",
+    "commit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e046",
+   "style": "sparse",
+   "target": "promise",
+   "rank": -1,
+   "side": "device",
+   "ms": 1631,
+   "firstMs": 866,
+   "words": [
+    "faith",
+    "belief",
+    "reliance",
+    "conviction",
+    "trustworthiness",
+    "integrity"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e047",
+   "style": "plain",
+   "target": "complain",
+   "rank": -1,
+   "side": "device",
+   "ms": 1715,
+   "firstMs": 866,
+   "words": [
+    "complaint",
+    "feedback",
+    "issue",
+    "problem",
+    "displeased",
+    "dissatisfied"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e047",
+   "style": "broken",
+   "target": "complain",
+   "rank": -1,
+   "side": "device",
+   "ms": 1680,
+   "firstMs": 864,
+   "words": [
+    "ice cream",
+    "dessert",
+    "treat",
+    "custard",
+    "popsicle",
+    "sorbet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e047",
+   "style": "sparse",
+   "target": "complain",
+   "rank": -1,
+   "side": "device",
+   "ms": 1549,
+   "firstMs": 844,
+   "words": [
+    "customer",
+    "service",
+    "company",
+    "employee",
+    "workplace",
+    "employer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e048",
+   "style": "plain",
+   "target": "cancel",
+   "rank": 0,
+   "side": "device",
+   "ms": 1671,
+   "firstMs": 835,
+   "words": [
+    "cancel",
+    "postponed",
+    "delayed",
+    "cancelled",
+    "rescheduled",
+    "superseded"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e048",
+   "style": "broken",
+   "target": "cancel",
+   "rank": -1,
+   "side": "device",
+   "ms": 1680,
+   "firstMs": 893,
+   "words": [
+    "appointment",
+    "canceled",
+    "cancelled",
+    "postponed",
+    "delayed",
+    "meeting"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e048",
+   "style": "sparse",
+   "target": "cancel",
+   "rank": -1,
+   "side": "device",
+   "ms": 1053,
+   "firstMs": 860,
+   "words": [
+    "cancellation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e049",
+   "style": "plain",
+   "target": "repair",
+   "rank": 0,
+   "side": "device",
+   "ms": 1571,
+   "firstMs": 874,
+   "words": [
+    "repair",
+    "fix",
+    "mend",
+    "restore",
+    "adjust",
+    "repairing"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e049",
+   "style": "broken",
+   "target": "repair",
+   "rank": 1,
+   "side": "device",
+   "ms": 1634,
+   "firstMs": 879,
+   "words": [
+    "screwdriver",
+    "repair",
+    "fix",
+    "tools",
+    "broken"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e049",
+   "style": "sparse",
+   "target": "repair",
+   "rank": -1,
+   "side": "device",
+   "ms": 1569,
+   "firstMs": 900,
+   "words": [
+    "computer",
+    "internet",
+    "phone",
+    "device",
+    "machine",
+    "software"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e050",
+   "style": "plain",
+   "target": "whisper",
+   "rank": 0,
+   "side": "device",
+   "ms": 1689,
+   "firstMs": 894,
+   "words": [
+    "whisper",
+    "softly",
+    "quiet",
+    "murmur",
+    "hush",
+    "silent"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e050",
+   "style": "broken",
+   "target": "whisper",
+   "rank": 0,
+   "side": "device",
+   "ms": 1666,
+   "firstMs": 879,
+   "words": [
+    "whisper",
+    "secret",
+    "quietness",
+    "shushing",
+    "private",
+    "confidential"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e050",
+   "style": "sparse",
+   "target": "whisper",
+   "rank": 0,
+   "side": "device",
+   "ms": 1561,
+   "firstMs": 848,
+   "words": [
+    "whisper",
+    "secret",
+    "quiet",
+    "talk",
+    "mute",
+    "silent"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e051",
+   "style": "plain",
+   "target": "argue",
+   "rank": 0,
+   "side": "device",
+   "ms": 1719,
+   "firstMs": 855,
+   "words": [
+    "argue",
+    "fight",
+    "dispute",
+    "quarrel",
+    "bicker",
+    "scold"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e051",
+   "style": "broken",
+   "target": "argue",
+   "rank": -1,
+   "side": "device",
+   "ms": 1627,
+   "firstMs": 878,
+   "words": [
+    "argument",
+    "disagreement",
+    "conflict",
+    "debate",
+    "dispute",
+    "fight"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e051",
+   "style": "sparse",
+   "target": "argue",
+   "rank": 5,
+   "side": "device",
+   "ms": 1646,
+   "firstMs": 876,
+   "words": [
+    "argument",
+    "fight",
+    "conflict",
+    "disagreement",
+    "discord",
+    "quarrel"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e052",
+   "style": "plain",
+   "target": "sneeze",
+   "rank": 0,
+   "side": "device",
+   "ms": 1102,
+   "firstMs": 871,
+   "words": [
+    "sneeze"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e052",
+   "style": "broken",
+   "target": "sneeze",
+   "rank": 0,
+   "side": "device",
+   "ms": 1557,
+   "firstMs": 873,
+   "words": [
+    "sneeze",
+    "nose",
+    "allergy",
+    "cold",
+    "tissue"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e052",
+   "style": "sparse",
+   "target": "sneeze",
+   "rank": 1,
+   "side": "device",
+   "ms": 1610,
+   "firstMs": 827,
+   "words": [
+    "cold",
+    "sneeze",
+    "illness",
+    "health",
+    "feeling",
+    "minor"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e053",
+   "style": "plain",
+   "target": "yawn",
+   "rank": -1,
+   "side": "device",
+   "ms": 1597,
+   "firstMs": 837,
+   "words": [
+    "sigh",
+    "exhaustion",
+    "tiredness",
+    "breath",
+    "relief",
+    "release"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e053",
+   "style": "broken",
+   "target": "yawn",
+   "rank": -1,
+   "side": "device",
+   "ms": 1645,
+   "firstMs": 881,
+   "words": [
+    "laugh",
+    "laughter",
+    "smile",
+    "happy",
+    "joyful",
+    "excited"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e053",
+   "style": "sparse",
+   "target": "yawn",
+   "rank": -1,
+   "side": "device",
+   "ms": 1552,
+   "firstMs": 844,
+   "words": [
+    "bed",
+    "sleepy",
+    "tired",
+    "dreams",
+    "night",
+    "rest"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e054",
+   "style": "plain",
+   "target": "chew",
+   "rank": -1,
+   "side": "device",
+   "ms": 1600,
+   "firstMs": 867,
+   "words": [
+    "chewing",
+    "mouth",
+    "teeth",
+    "bites",
+    "eat",
+    "food"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e054",
+   "style": "broken",
+   "target": "chew",
+   "rank": -1,
+   "side": "device",
+   "ms": 1584,
+   "firstMs": 871,
+   "words": [
+    "chewing",
+    "teeth",
+    "mouth",
+    "food",
+    "bite",
+    "gum"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e054",
+   "style": "sparse",
+   "target": "chew",
+   "rank": -1,
+   "side": "device",
+   "ms": 1567,
+   "firstMs": 876,
+   "words": [
+    "gum",
+    "teeth",
+    "mouth",
+    "chewing",
+    "breakfast"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e055",
+   "style": "plain",
+   "target": "pour",
+   "rank": 0,
+   "side": "device",
+   "ms": 1559,
+   "firstMs": 879,
+   "words": [
+    "pour",
+    "jug",
+    "cup",
+    "liquid",
+    "flow",
+    "transfer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e055",
+   "style": "broken",
+   "target": "pour",
+   "rank": -1,
+   "side": "device",
+   "ms": 1618,
+   "firstMs": 867,
+   "words": [
+    "milk",
+    "pouring",
+    "jug",
+    "cup",
+    "careful",
+    "spill"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e055",
+   "style": "sparse",
+   "target": "pour",
+   "rank": -1,
+   "side": "device",
+   "ms": 1488,
+   "firstMs": 859,
+   "words": [
+    "water",
+    "drink",
+    "fluid",
+    "glass",
+    "carafe"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e056",
+   "style": "plain",
+   "target": "shave",
+   "rank": -1,
+   "side": "device",
+   "ms": 1649,
+   "firstMs": 852,
+   "words": [
+    "razor",
+    "shaving",
+    "face",
+    "hair removal",
+    "grooming",
+    "strip"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e056",
+   "style": "broken",
+   "target": "shave",
+   "rank": -1,
+   "side": "device",
+   "ms": 1765,
+   "firstMs": 899,
+   "words": [
+    "shaving cream",
+    "razor",
+    "face",
+    "morning",
+    "whiskers",
+    "grooming"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e056",
+   "style": "sparse",
+   "target": "shave",
+   "rank": -1,
+   "side": "device",
+   "ms": 1538,
+   "firstMs": 861,
+   "words": [
+    "shaving",
+    "razor",
+    "foam",
+    "face",
+    "stubble"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e057",
+   "style": "plain",
+   "target": "celebrate",
+   "rank": 0,
+   "side": "device",
+   "ms": 1645,
+   "firstMs": 849,
+   "words": [
+    "celebrate",
+    "party",
+    "success",
+    "achievement",
+    "joy",
+    "commemorate"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e057",
+   "style": "broken",
+   "target": "celebrate",
+   "rank": -1,
+   "side": "device",
+   "ms": 1633,
+   "firstMs": 879,
+   "words": [
+    "graduation",
+    "celebration",
+    "success",
+    "achievement",
+    "party",
+    "congratulations"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e057",
+   "style": "sparse",
+   "target": "celebrate",
+   "rank": -1,
+   "side": "device",
+   "ms": 1630,
+   "firstMs": 851,
+   "words": [
+    "celebration",
+    "joy",
+    "success",
+    "achievement",
+    "festivity",
+    "happening"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e058",
+   "style": "plain",
+   "target": "explain",
+   "rank": 0,
+   "side": "device",
+   "ms": 1638,
+   "firstMs": 873,
+   "words": [
+    "explain",
+    "clarify",
+    "illustrate",
+    "demonstrate",
+    "describe",
+    "show"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e058",
+   "style": "broken",
+   "target": "explain",
+   "rank": -1,
+   "side": "device",
+   "ms": 1570,
+   "firstMs": 869,
+   "words": [
+    "instruction",
+    "explanation",
+    "process",
+    "method",
+    "guide",
+    "teaching"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e058",
+   "style": "sparse",
+   "target": "explain",
+   "rank": 1,
+   "side": "device",
+   "ms": 1228,
+   "firstMs": 827,
+   "words": [
+    "clarify",
+    "explain",
+    "reason"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e059",
+   "style": "plain",
+   "target": "choose",
+   "rank": 0,
+   "side": "device",
+   "ms": 1548,
+   "firstMs": 853,
+   "words": [
+    "choose",
+    "select",
+    "decide",
+    "pick",
+    "option",
+    "choice"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e059",
+   "style": "broken",
+   "target": "choose",
+   "rank": 2,
+   "side": "device",
+   "ms": 1558,
+   "firstMs": 848,
+   "words": [
+    "cake",
+    "two cakes",
+    "select",
+    "choose",
+    "one",
+    "favorite"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e059",
+   "style": "sparse",
+   "target": "choose",
+   "rank": 3,
+   "side": "device",
+   "ms": 1571,
+   "firstMs": 862,
+   "words": [
+    "choice",
+    "selection",
+    "prefer",
+    "choose",
+    "decide",
+    "option"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e060",
+   "style": "plain",
+   "target": "hug",
+   "rank": 0,
+   "side": "device",
+   "ms": 1630,
+   "firstMs": 857,
+   "words": [
+    "hug",
+    "embrace",
+    "cuddle",
+    "hold",
+    "affection",
+    "love"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e060",
+   "style": "broken",
+   "target": "hug",
+   "rank": 5,
+   "side": "device",
+   "ms": 1570,
+   "firstMs": 858,
+   "words": [
+    "grandmother",
+    "grandma",
+    "arms",
+    "grandchildren",
+    "love",
+    "hug"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e060",
+   "style": "sparse",
+   "target": "hug",
+   "rank": 0,
+   "side": "device",
+   "ms": 1516,
+   "firstMs": 861,
+   "words": [
+    "hug",
+    "affection",
+    "comfort",
+    "support",
+    "love",
+    "care"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e061",
+   "style": "plain",
+   "target": "exhausted",
+   "rank": -1,
+   "side": "device",
+   "ms": 1630,
+   "firstMs": 847,
+   "words": [
+    "exhaustion",
+    "tiredness",
+    "fatigue",
+    "sleep",
+    "rest",
+    "energy"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e061",
+   "style": "broken",
+   "target": "exhausted",
+   "rank": -1,
+   "side": "device",
+   "ms": 1668,
+   "firstMs": 890,
+   "words": [
+    "exhaustion",
+    "sleep",
+    "rest",
+    "tiredness",
+    "weakness",
+    "bed"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e061",
+   "style": "sparse",
+   "target": "exhausted",
+   "rank": 4,
+   "side": "device",
+   "ms": 1730,
+   "firstMs": 835,
+   "words": [
+    "exhaustion",
+    "tiredness",
+    "fatigue",
+    "weary",
+    "drained",
+    "sleepy"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e062",
+   "style": "plain",
+   "target": "dizzy",
+   "rank": 5,
+   "side": "device",
+   "ms": 1626,
+   "firstMs": 847,
+   "words": [
+    "dizziness",
+    "vertigo",
+    "spinning",
+    "balance",
+    "sick",
+    "lightheaded"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e062",
+   "style": "broken",
+   "target": "dizzy",
+   "rank": -1,
+   "side": "device",
+   "ms": 1219,
+   "firstMs": 905,
+   "words": [
+    "merry-go-round"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e062",
+   "style": "sparse",
+   "target": "dizzy",
+   "rank": -1,
+   "side": "device",
+   "ms": 1310,
+   "firstMs": 840,
+   "words": [
+    "dizziness",
+    "balance",
+    "lightheadedness"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e063",
+   "style": "plain",
+   "target": "yesterday",
+   "rank": 0,
+   "side": "device",
+   "ms": 1153,
+   "firstMs": 847,
+   "words": [
+    "yesterday",
+    "night"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e063",
+   "style": "broken",
+   "target": "yesterday",
+   "rank": 0,
+   "side": "device",
+   "ms": 1573,
+   "firstMs": 867,
+   "words": [
+    "yesterday",
+    "past",
+    "evening",
+    "night",
+    "before",
+    "already"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e063",
+   "style": "sparse",
+   "target": "yesterday",
+   "rank": 0,
+   "side": "device",
+   "ms": 1564,
+   "firstMs": 843,
+   "words": [
+    "yesterday",
+    "last night",
+    "sleep",
+    "time",
+    "past",
+    "day"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e064",
+   "style": "plain",
+   "target": "appointment",
+   "rank": 0,
+   "side": "device",
+   "ms": 1588,
+   "firstMs": 857,
+   "words": [
+    "appointment",
+    "doctor",
+    "visit",
+    "schedule",
+    "meeting",
+    "check-up"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e064",
+   "style": "broken",
+   "target": "appointment",
+   "rank": 0,
+   "side": "device",
+   "ms": 1573,
+   "firstMs": 840,
+   "words": [
+    "appointment",
+    "doctor",
+    "schedule",
+    "meeting",
+    "visit",
+    "check-up"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e064",
+   "style": "sparse",
+   "target": "appointment",
+   "rank": 0,
+   "side": "device",
+   "ms": 1395,
+   "firstMs": 935,
+   "words": [
+    "appointment",
+    "doctor",
+    "visit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e065",
+   "style": "plain",
+   "target": "tomorrow",
+   "rank": 0,
+   "side": "device",
+   "ms": 1057,
+   "firstMs": 868,
+   "words": [
+    "tomorrow"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e065",
+   "style": "broken",
+   "target": "tomorrow",
+   "rank": -1,
+   "side": "device",
+   "ms": 1574,
+   "firstMs": 889,
+   "words": [
+    "sunrise",
+    "morning",
+    "dawn",
+    "day",
+    "sun",
+    "wake"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e065",
+   "style": "sparse",
+   "target": "tomorrow",
+   "rank": 0,
+   "side": "device",
+   "ms": 1019,
+   "firstMs": 845,
+   "words": [
+    "tomorrow"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e066",
+   "style": "plain",
+   "target": "lonely",
+   "rank": -1,
+   "side": "device",
+   "ms": 1615,
+   "firstMs": 835,
+   "words": [
+    "loneliness",
+    "sadness",
+    "empty",
+    "alone",
+    "isolated",
+    "missing"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e066",
+   "style": "broken",
+   "target": "lonely",
+   "rank": 1,
+   "side": "device",
+   "ms": 1566,
+   "firstMs": 864,
+   "words": [
+    "empty",
+    "lonely",
+    "alone",
+    "deceased",
+    "quiet",
+    "house"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e066",
+   "style": "sparse",
+   "target": "lonely",
+   "rank": 0,
+   "side": "device",
+   "ms": 1620,
+   "firstMs": 842,
+   "words": [
+    "lonely",
+    "alone",
+    "isolated",
+    "sad",
+    "solitary",
+    "unaccompanied"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e067",
+   "style": "plain",
+   "target": "embarrassed",
+   "rank": 0,
+   "side": "device",
+   "ms": 1796,
+   "firstMs": 854,
+   "words": [
+    "embarrassed",
+    "flustered",
+    "ashamed",
+    "blushing",
+    "mortified",
+    "awkward"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e067",
+   "style": "broken",
+   "target": "embarrassed",
+   "rank": -1,
+   "side": "device",
+   "ms": 1790,
+   "firstMs": 861,
+   "words": [
+    "embarrassment",
+    "ashamed",
+    "blushing",
+    "shy",
+    "awkward",
+    "flustered"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e067",
+   "style": "sparse",
+   "target": "embarrassed",
+   "rank": 0,
+   "side": "device",
+   "ms": 1784,
+   "firstMs": 866,
+   "words": [
+    "embarrassed",
+    "flustered",
+    "ashamed",
+    "shy",
+    "vexed",
+    "crimson"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e068",
+   "style": "plain",
+   "target": "worried",
+   "rank": -1,
+   "side": "device",
+   "ms": 1600,
+   "firstMs": 854,
+   "words": [
+    "anxiety",
+    "worry",
+    "fear",
+    "concern",
+    "doubt",
+    "tension"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e068",
+   "style": "broken",
+   "target": "worried",
+   "rank": -1,
+   "side": "device",
+   "ms": 1609,
+   "firstMs": 857,
+   "words": [
+    "anxiety",
+    "worries",
+    "trouble",
+    "fear",
+    "concern",
+    "problem"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e068",
+   "style": "sparse",
+   "target": "worried",
+   "rank": -1,
+   "side": "device",
+   "ms": 1669,
+   "firstMs": 842,
+   "words": [
+    "anxiety",
+    "worries",
+    "stress",
+    "nervousness",
+    "problem",
+    "concern"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e069",
+   "style": "plain",
+   "target": "jealous",
+   "rank": -1,
+   "side": "device",
+   "ms": 1769,
+   "firstMs": 848,
+   "words": [
+    "jealousy",
+    "envy",
+    "resentment",
+    "dislike",
+    "sorrow",
+    "sadness"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e069",
+   "style": "broken",
+   "target": "jealous",
+   "rank": -1,
+   "side": "device",
+   "ms": 1885,
+   "firstMs": 863,
+   "words": [
+    "envy",
+    "jealousy",
+    "unfairness",
+    "resentment",
+    "dislike",
+    "comparison"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e069",
+   "style": "sparse",
+   "target": "jealous",
+   "rank": -1,
+   "side": "device",
+   "ms": 1339,
+   "firstMs": 833,
+   "words": [
+    "jealousy",
+    "envy",
+    "resentment"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e070",
+   "style": "plain",
+   "target": "proud",
+   "rank": 0,
+   "side": "device",
+   "ms": 1808,
+   "firstMs": 897,
+   "words": [
+    "proud",
+    "accomplished",
+    "satisfied",
+    "joyful",
+    "happy",
+    "celebrating"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e070",
+   "style": "broken",
+   "target": "proud",
+   "rank": 0,
+   "side": "device",
+   "ms": 1761,
+   "firstMs": 898,
+   "words": [
+    "proud",
+    "happy",
+    "heartfelt",
+    "excited",
+    "proud parent",
+    "celebration"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e070",
+   "style": "sparse",
+   "target": "proud",
+   "rank": -1,
+   "side": "device",
+   "ms": 1564,
+   "firstMs": 872,
+   "words": [
+    "medal",
+    "award",
+    "prize",
+    "accomplishment",
+    "success"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e071",
+   "style": "plain",
+   "target": "confused",
+   "rank": -1,
+   "side": "device",
+   "ms": 1786,
+   "firstMs": 879,
+   "words": [
+    "confusion",
+    "disoriented",
+    "foggy",
+    "understand",
+    "thinking",
+    "cognitive"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e071",
+   "style": "broken",
+   "target": "confused",
+   "rank": 2,
+   "side": "device",
+   "ms": 1789,
+   "firstMs": 904,
+   "words": [
+    "confusion",
+    "disoriented",
+    "bewildered",
+    "confused",
+    "lost",
+    "scattered"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e071",
+   "style": "sparse",
+   "target": "confused",
+   "rank": -1,
+   "side": "device",
+   "ms": 1550,
+   "firstMs": 846,
+   "words": [
+    "communication",
+    "difficulty",
+    "understanding",
+    "language",
+    "speech",
+    "expression"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e072",
+   "style": "plain",
+   "target": "thirsty",
+   "rank": 0,
+   "side": "device",
+   "ms": 1262,
+   "firstMs": 848,
+   "words": [
+    "thirsty",
+    "dry mouth",
+    "water"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e072",
+   "style": "broken",
+   "target": "thirsty",
+   "rank": 2,
+   "side": "device",
+   "ms": 1604,
+   "firstMs": 870,
+   "words": [
+    "drink",
+    "water",
+    "thirsty",
+    "soda",
+    "juice",
+    "refreshing"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e072",
+   "style": "sparse",
+   "target": "thirsty",
+   "rank": 2,
+   "side": "device",
+   "ms": 1219,
+   "firstMs": 862,
+   "words": [
+    "water",
+    "drink",
+    "thirsty"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e073",
+   "style": "plain",
+   "target": "frustrated",
+   "rank": -1,
+   "side": "device",
+   "ms": 1592,
+   "firstMs": 850,
+   "words": [
+    "frustration",
+    "problem",
+    "difficult",
+    "challenge",
+    "trouble",
+    "task"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e073",
+   "style": "broken",
+   "target": "frustrated",
+   "rank": -1,
+   "side": "device",
+   "ms": 1610,
+   "firstMs": 885,
+   "words": [
+    "try",
+    "attempt",
+    "persist",
+    "repeat",
+    "struggle",
+    "effort"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e073",
+   "style": "sparse",
+   "target": "frustrated",
+   "rank": -1,
+   "side": "device",
+   "ms": 1286,
+   "firstMs": 850,
+   "words": [
+    "problem",
+    "difficult",
+    "frustrating"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e074",
+   "style": "plain",
+   "target": "relieved",
+   "rank": -1,
+   "side": "device",
+   "ms": 1672,
+   "firstMs": 907,
+   "words": [
+    "relief",
+    "ease",
+    "freedom",
+    "peace",
+    "comfort",
+    "satisfaction"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e074",
+   "style": "broken",
+   "target": "relieved",
+   "rank": -1,
+   "side": "device",
+   "ms": 1663,
+   "firstMs": 879,
+   "words": [
+    "relief",
+    "easier",
+    "better",
+    "peace of mind",
+    "relaxed",
+    "okay"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e074",
+   "style": "sparse",
+   "target": "relieved",
+   "rank": -1,
+   "side": "device",
+   "ms": 1676,
+   "firstMs": 867,
+   "words": [
+    "relief",
+    "anxiety",
+    "worried",
+    "nervous",
+    "happy",
+    "calm"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e075",
+   "style": "plain",
+   "target": "bored",
+   "rank": -1,
+   "side": "device",
+   "ms": 1740,
+   "firstMs": 875,
+   "words": [
+    "boredom",
+    "lazy",
+    "ennui",
+    "unhappy",
+    "free time",
+    "dull"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e075",
+   "style": "broken",
+   "target": "bored",
+   "rank": -1,
+   "side": "device",
+   "ms": 1559,
+   "firstMs": 852,
+   "words": [
+    "time",
+    "clock",
+    "routine",
+    "daily",
+    "boring",
+    "schedule"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e075",
+   "style": "sparse",
+   "target": "bored",
+   "rank": -1,
+   "side": "device",
+   "ms": 1321,
+   "firstMs": 851,
+   "words": [
+    "boredom",
+    "lazy",
+    "unstimulated"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e076",
+   "style": "plain",
+   "target": "weekend",
+   "rank": 0,
+   "side": "device",
+   "ms": 1576,
+   "firstMs": 836,
+   "words": [
+    "weekend",
+    "leisure",
+    "relaxation",
+    "time off",
+    "rest",
+    "break"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e076",
+   "style": "broken",
+   "target": "weekend",
+   "rank": 1,
+   "side": "device",
+   "ms": 1540,
+   "firstMs": 849,
+   "words": [
+    "vacation",
+    "weekend",
+    "relax",
+    "sleep",
+    "family",
+    "free"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e076",
+   "style": "sparse",
+   "target": "weekend",
+   "rank": 0,
+   "side": "device",
+   "ms": 1030,
+   "firstMs": 855,
+   "words": [
+    "weekend"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e077",
+   "style": "plain",
+   "target": "midnight",
+   "rank": 0,
+   "side": "device",
+   "ms": 1606,
+   "firstMs": 862,
+   "words": [
+    "midnight",
+    "new year",
+    "twelve",
+    "dark",
+    "calendar",
+    "date"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e077",
+   "style": "broken",
+   "target": "midnight",
+   "rank": 0,
+   "side": "device",
+   "ms": 1595,
+   "firstMs": 886,
+   "words": [
+    "midnight",
+    "twelve",
+    "clock",
+    "night",
+    "dark",
+    "evening"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e077",
+   "style": "sparse",
+   "target": "midnight",
+   "rank": -1,
+   "side": "device",
+   "ms": 1549,
+   "firstMs": 849,
+   "words": [
+    "november",
+    "birthday",
+    "calendar",
+    "month",
+    "days",
+    "anniversary"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e078",
+   "style": "plain",
+   "target": "birthday",
+   "rank": 0,
+   "side": "device",
+   "ms": 1613,
+   "firstMs": 845,
+   "words": [
+    "birthday",
+    "birthdate",
+    "anniversary",
+    "celebration",
+    "year",
+    "age"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e078",
+   "style": "broken",
+   "target": "birthday",
+   "rank": 0,
+   "side": "device",
+   "ms": 1578,
+   "firstMs": 851,
+   "words": [
+    "birthday",
+    "celebration",
+    "anniversary",
+    "party",
+    "holiday",
+    "festival"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e078",
+   "style": "sparse",
+   "target": "birthday",
+   "rank": 0,
+   "side": "device",
+   "ms": 1604,
+   "firstMs": 865,
+   "words": [
+    "birthday",
+    "celebration",
+    "anniversary",
+    "party",
+    "cake",
+    "years"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e079",
+   "style": "plain",
+   "target": "anniversary",
+   "rank": 0,
+   "side": "device",
+   "ms": 1559,
+   "firstMs": 829,
+   "words": [
+    "anniversary",
+    "wedding",
+    "date",
+    "couple",
+    "celebration",
+    "year"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e079",
+   "style": "broken",
+   "target": "anniversary",
+   "rank": 0,
+   "side": "device",
+   "ms": 1096,
+   "firstMs": 879,
+   "words": [
+    "wedding anniversary"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e079",
+   "style": "sparse",
+   "target": "anniversary",
+   "rank": 0,
+   "side": "device",
+   "ms": 1475,
+   "firstMs": 860,
+   "words": [
+    "anniversary",
+    "wedding",
+    "couple",
+    "date",
+    "yearly"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e080",
+   "style": "plain",
+   "target": "numb",
+   "rank": -1,
+   "side": "device",
+   "ms": 1809,
+   "firstMs": 856,
+   "words": [
+    "numbness",
+    "loss of feeling",
+    "body part",
+    "sensitive",
+    "tingling",
+    "phantom"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e080",
+   "style": "broken",
+   "target": "numb",
+   "rank": -1,
+   "side": "device",
+   "ms": 1088,
+   "firstMs": 864,
+   "words": [
+    "numbness"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "e080",
+   "style": "sparse",
+   "target": "numb",
+   "rank": -1,
+   "side": "device",
+   "ms": 1600,
+   "firstMs": 849,
+   "words": [
+    "numbing",
+    "lidocaine",
+    "dental",
+    "pain",
+    "treatment",
+    "procedure"
+   ],
+   "blocked": null
+  }
+ ]
+}

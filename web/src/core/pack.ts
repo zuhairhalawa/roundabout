@@ -21,6 +21,9 @@ export function rowsFor(groupId: string | null): Row[] {
   return ((HINTS.rows as Record<string, Row[]>)[groupId] ?? []);
 }
 
+/** Groups where the small on-device model is measurably weak, so the cloud is asked first. */
+export const isCloudFirstGroup = (groupId: string | null): boolean => Boolean(groupId) && (HINTS.cloudFirst as string[]).includes(groupId!);
+
 /** Turn tapped chips into the plain-English clue line the model reads. */
 export function cluesFromChips(groupId: string | null, picked: string[]): string {
   if (!groupId) return '';

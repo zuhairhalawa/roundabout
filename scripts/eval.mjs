@@ -5,6 +5,7 @@
 // style: plain | broken | sparse | all (default all). Results: eval/results-<side>-<set>.json
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { chromium } from '../../video/node_modules/playwright/index.mjs';
+import { rankOf } from './score.mjs'; // the scoring rule, shared with the report
 
 const [side = 'cloud', file = 'eval/pnt.json', styleArg = 'all', limitArg] = process.argv.slice(2);
 const set = JSON.parse(readFileSync(file, 'utf8'));
@@ -25,14 +26,6 @@ const outFile = `eval/results-${side}-${name}${label}.json`;
 const base = process.env.RB_URL || 'http://localhost:5196';
 const env = Object.fromEntries(readFileSync('web/.env.local', 'utf8').split(/\r?\n/).filter((l) => l.includes('=')).map((l) => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1)]));
 
-// Lower case, letters and digits only, and simple singular/plural forms treated as equal.
-const stem = (t) => (t.length > 3 ? t.replace(/(?:es|s)$/, '') : t);
-const key = (w) => w.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim().split(' ').map(stem).join(' ');
-/** A guess counts if it equals an accepted answer, or contains it as a whole word ("wall clock" for "clock"). */
-const rankOf = (words, accept) => {
-  const acc = accept.map(key);
-  return words.findIndex((w) => { const k = ` ${key(w)} `; return acc.some((a) => k.includes(` ${a} `)); });
-};
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
 // Resume support: keep rows already done.

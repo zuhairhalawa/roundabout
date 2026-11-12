@@ -68,6 +68,13 @@ try {
   check('no model request left the machine for it', modelRequests.length === before, `${modelRequests.length - before} requests`);
   await page.screenshot({ path: `${out}/1-on-device.png` });
 
+  // Type-ahead: guesses appear while typing, with no button pressed, and nothing is sent.
+  before = modelRequests.length;
+  await page.fill('#clues', 'you wear them on your feet, with laces');
+  await until(() => [...document.querySelectorAll('.tiles .sign-word')].some((e) => /shoe|boot|sneaker|trainer/i.test(e.textContent)) && Boolean(document.querySelector('.source')), 30_000, 'type-ahead guesses').catch(() => {});
+  t = await tiles();
+  check('guesses appear while typing, with no button pressed, and nothing is sent', t.some((w) => /shoe|boot|sneaker|trainer/.test(w)) && modelRequests.length === before, t.join(', '));
+
   // A very short clue: the device answers first, then the cloud adds ideas (blue tiles).
   before = modelRequests.length;
   await find('money, cards, pocket');
@@ -98,6 +105,15 @@ try {
   await done();
   t = await tiles();
   check('hints (thing, kitchen, cut) find "knife" on the device', t.includes('knife') && /this device/.test(await page.textContent('.source')), t.join(', '));
+
+  // Actions and feelings are the small model's weak spot (measured), so those go to the cloud first.
+  before = modelRequests.length;
+  await page.getByRole('button', { name: /a thing\. Tap to change/ }).click();
+  await page.getByRole('button', { name: 'something you do' }).click();
+  await page.getByRole('button', { name: 'with your mouth' }).click();
+  await page.getByRole('button', { name: 'at night' }).click();
+  await until(() => Boolean(document.querySelector('.tiles .sign-cloud')) && /cloud/.test(document.querySelector('.source')?.textContent ?? ''), 30_000, 'a cloud answer for an action').catch(() => {});
+  check('an action goes to the cloud first, though the on-device model is ready', (await page.locator('.tiles .sign-cloud').count()) > 0 && (await page.locator('.tiles .sign-device').count()) === 0 && modelRequests.length > before, `${(await page.textContent('.source'))?.trim()} [${(await tiles()).slice(0, 4).join(', ')}]`);
 
   await page.getByRole('tab', { name: 'Draw it' }).click();
   const box = await page.locator('.pad-canvas').boundingBox();
