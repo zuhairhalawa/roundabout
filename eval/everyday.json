@@ -57,7 +57,7 @@
       ],
       "plain": "Trained worker who makes up your prescription behind the counter",
       "broken": "white coat, in the, um, medicine shop, gives the tablets, checks prescription",
-      "sparse": "prescription, tablets, counter"
+      "sparse": "person, prescription, tablets, counter"
     },
     {
       "id": "e006",
@@ -68,7 +68,7 @@
       ],
       "plain": "Adult in the classroom who gives children their lessons",
       "broken": "at school, in front of the kids, er, blackboard, gives homework, Miss",
-      "sparse": "school, classroom, lessons"
+      "sparse": "gives lessons, classroom, homework"
     },
     {
       "id": "e007",
@@ -148,7 +148,7 @@
       ],
       "plain": "Works in overalls at a garage, repairing engines and brakes",
       "broken": "car wouldn't start, took it to the, er, oily hands, under bonnet",
-      "sparse": "cars, engine, garage, repairs"
+      "sparse": "repairs cars, overalls, garage"
     },
     {
       "id": "e014",
@@ -171,7 +171,7 @@
       ],
       "plain": "Shop worker at the till who takes your payment",
       "broken": "at the till, beep beep the shopping, takes the money, gives receipt",
-      "sparse": "till, checkout, payment"
+      "sparse": "person, till, checkout"
     },
     {
       "id": "e016",
@@ -205,7 +205,7 @@
       ],
       "plain": "Qualified worker who installs wiring, sockets and fuse boxes",
       "broken": "lights went off, called the, the wires man, fuse box, plugs, dangerous",
-      "sparse": "wiring, sockets, fuse box"
+      "sparse": "installs wiring, sockets, fuses"
     },
     {
       "id": "e019",
@@ -732,7 +732,7 @@
       ],
       "plain": "The date just before this one, one sleep ago",
       "broken": "not now, the the one before, one sleep ago, already gone",
-      "sparse": "one before, just gone"
+      "sparse": "previous, one sleep, gone"
     },
     {
       "id": "e064",

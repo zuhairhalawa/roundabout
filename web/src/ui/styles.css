@@ -135,6 +135,18 @@ h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0
 .pic { display: inline-grid; place-items: center; width: 52px; height: 52px; margin: 0 6px 6px 0; border: 2.5px solid var(--line); border-radius: 12px; font-size: 1.6rem; cursor: pointer; background: var(--white); }
 .pic-on { border-color: var(--ink); background: var(--yellow); }
 
+/* sharing */
+.share-card { margin-top: 18px; }
+.share-card h2 { font-size: 1.3rem; font-weight: 800; }
+.share-card label { font-weight: 700; }
+.invite { display: grid; gap: 4px; justify-items: start; padding: 12px 14px; background: var(--yellow); border: 2.5px solid var(--ink); border-radius: 12px; }
+.invite-label { font-weight: 700; }
+.invite-code { font-size: 2.4rem; font-weight: 800; letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+.code-in { text-transform: uppercase; letter-spacing: .08em; }
+.helpers { display: grid; gap: 6px; }
+.helpers li { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.helping-bar { margin: 0 0 14px; border-style: solid; background: var(--yellow); }
+
 /* practice */
 .card-panel { display: grid; justify-items: center; gap: 12px; padding: 20px 16px; }
 .bigpic { font-size: clamp(6rem, 22vw, 9rem); line-height: 1.1; }

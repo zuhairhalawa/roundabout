@@ -43,5 +43,16 @@
   },
   "remoteconfig": {
     "template": "remoteconfig.template.json"
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "nam5",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "auth": {
+    "providers": {
+      "anonymous": true
+    }
   }
 }

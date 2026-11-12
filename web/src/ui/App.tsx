@@ -6,6 +6,7 @@ import { IconClose, IconCloud, IconDevice, IconFind, IconGear, IconPractice, Ico
 import { Practice } from './Practice';
 import { Say } from './Say';
 import { newId, situationOf, useCloudUp, useDevice, useOnline, usePersisted, type Device } from './store';
+import { useSharing } from './sharing';
 import { Words } from './Words';
 
 type Tab = 'find' | 'say' | 'practice' | 'words';
@@ -18,9 +19,11 @@ export function App() {
   const online = useOnline();
   const cloud = useCloudUp();
   const situation = situationOf(device.phase, online, cloud, s.privateOnly);
+  const sharing = useSharing(s, set, cloudConfigured && online && !s.privateOnly);
 
   function save(g: Guess) {
-    set((x) => (x.words.some((w) => w.word.toLowerCase() === g.word.toLowerCase()) ? x : { ...x, words: [{ id: newId(), word: g.word, emoji: g.emoji || '⭐', note: '' }, ...x.words] }));
+    if (s.words.some((w) => w.word.toLowerCase() === g.word.toLowerCase())) return;
+    sharing.addWord({ id: newId(), word: g.word, emoji: g.emoji || '⭐', note: '' });
   }
 
   return (
@@ -41,7 +44,7 @@ export function App() {
         )}
         {tab === 'say' && <Say strip={s.strip} situation={situation} naturalVoice={s.naturalVoice && settings.naturalVoice} onStrip={(strip) => set((x) => ({ ...x, strip }))} />}
         {tab === 'practice' && <Practice saved={s.words} situation={situation} tally={s.practice} onTally={(practice) => set((x) => ({ ...x, practice }))} />}
-        {tab === 'words' && <Words words={s.words} onChange={(words) => set((x) => ({ ...x, words }))} />}
+        {tab === 'words' && <Words words={s.words} sharing={sharing} />}
       </main>
 
       <nav class="tabs" aria-label="Sections">
@@ -63,7 +66,7 @@ export function App() {
             <span><b>Natural voice for sentences</b><br />Uses the cloud when it can. Single words always use this device's voice, which is instant.</span>
           </label>
           <DeviceCard device={device} />
-          <p class="fine">Your saved words and sentences are kept in this browser only.</p>
+          <p class="fine">{s.share.on ? 'Your saved words are kept in this browser and, because sharing is on, in the cloud for your helper.' : 'Your saved words and sentences are kept in this browser only.'}</p>
           <button class="btn btn-quiet" onClick={() => setSheet('how')}>How answers are made</button>
         </Sheet>
       )}

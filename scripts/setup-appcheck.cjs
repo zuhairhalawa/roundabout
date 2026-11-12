@@ -2,7 +2,7 @@
 //  1. a reCAPTCHA Enterprise score key for the hosted domains,
 //  2. the web app registered with App Check using that key,
 //  3. a debug token for local development and automated tests (saved to web/.env.local only),
-//  4. App Check enforced for Firebase AI Logic.
+//  4. App Check enforced for Firebase AI Logic and for Cloud Firestore.
 // Safe to run again: existing keys and tokens are reused. Never prints the debug token.
 const fs = require('node:fs');
 const crypto = require('node:crypto');
@@ -56,7 +56,8 @@ const ok = (r, what) => { if (r.status >= 300) throw new Error(`${what}: HTTP ${
   // 4. enforcement for AI Logic
   const services = ok(await call('GET', `${ac}/services`), 'list services').services || [];
   console.log('App Check services:', services.map((s) => `${s.name.split('/').pop()}=${s.enforcementMode || 'UNENFORCED'}`).join(', ') || '(none listed)');
-  for (const id of ['firebaseml.googleapis.com']) {
+  // firebaseml = Firebase AI Logic; firestore = the saved-words database.
+  for (const id of ['firebaseml.googleapis.com', 'firestore.googleapis.com']) {
     const r = await call('PATCH', `${ac}/services/${id}?updateMask=enforcementMode`, { enforcementMode: 'ENFORCED' });
     console.log(`enforce ${id}:`, r.status, r.status < 300 ? r.body.enforcementMode : JSON.stringify(r.body).slice(0, 300));
   }

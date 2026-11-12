@@ -14,10 +14,12 @@ export interface Saved {
   practice: { done: number; noHint: number };
   /** Speak sentences with the natural cloud voice when possible. */
   naturalVoice: boolean;
+  /** Sharing saved words with a helper. Off until the person turns it on. */
+  share: { on: boolean; name: string; helping: { owner: string; name: string } | null };
 }
 
 const KEY = 'roundabout:v1';
-const fresh = (): Saved => ({ words: [], strip: [], privateOnly: false, seenWelcome: false, practice: { done: 0, noHint: 0 }, naturalVoice: true });
+const fresh = (): Saved => ({ words: [], strip: [], privateOnly: false, seenWelcome: false, practice: { done: 0, noHint: 0 }, naturalVoice: true, share: { on: false, name: '', helping: null } });
 
 function load(): Saved {
   try {

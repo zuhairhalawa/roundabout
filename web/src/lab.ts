@@ -97,3 +97,39 @@ document.getElementById('go')!.addEventListener('click', () => { if (!started) {
     return { words: a.guesses.map((g) => g.word), side: a.side, ms: a.ms, fellBack: a.fellBack ?? false, blocked: a.blocked ?? null };
   },
 };
+
+// Used by scripts/rules-test.mjs: try one raw Firestore operation as this browser's anonymous
+// user and report whether the security rules allowed it.
+import { collection as fsCollection, deleteDoc as fsDelete, doc as fsDoc, getDoc as fsGet, getDocs as fsList, getFirestore, serverTimestamp as fsNow, setDoc as fsSet, Timestamp as FsTimestamp } from 'firebase/firestore';
+import { firebaseApp } from './core/ai';
+import { signIn } from './core/sync';
+
+function reviveData(data: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(data)) {
+    if (v === '__now__') out[k] = fsNow();
+    else if (typeof v === 'string' && /^__in:\d+m__$/.test(v)) out[k] = FsTimestamp.fromMillis(Date.now() + Number(v.slice(5, -3)) * 60_000);
+    else if (typeof v === 'string' && /^__repeat:\d+__$/.test(v)) out[k] = 'x'.repeat(Number(v.slice(9, -2)));
+    else out[k] = v;
+  }
+  return out;
+}
+
+(window as unknown as { fs: unknown }).fs = {
+  uid: () => signIn(),
+  async attempt(op: 'get' | 'list' | 'set' | 'delete', path: string, data?: Record<string, unknown>): Promise<string> {
+    await signIn();
+    const db = getFirestore(firebaseApp());
+    const parts = path.split('/');
+    try {
+      if (op === 'get') { const d = await fsGet(fsDoc(db, parts[0], ...parts.slice(1))); return d.exists() ? 'ok' : 'ok-missing'; }
+      if (op === 'list') { await fsList(fsCollection(db, parts[0], ...parts.slice(1))); return 'ok'; }
+      if (op === 'set') { await fsSet(fsDoc(db, parts[0], ...parts.slice(1)), reviveData(data ?? {})); return 'ok'; }
+      await fsDelete(fsDoc(db, parts[0], ...parts.slice(1)));
+      return 'ok';
+    } catch (e) {
+      const code = (e as { code?: string }).code ?? '';
+      return code === 'permission-denied' ? 'denied' : `error:${code || String(e).slice(0, 80)}`;
+    }
+  },
+};

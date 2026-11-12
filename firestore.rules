@@ -1,0 +1,217 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Everyone signs in with Firebase Anonymous Auth. A person (the "owner") keeps a private list
+// of saved words. They can invite a "helper" (for example a family member on another device)
+// with a short-lived code. A helper can read and edit that owner's words. Nobody else can
+// read or write anything.
+//
+// Collection: people
+// Document ID: the owner's uid
+// Fields:
+//   - name: string (optional, 0..40 chars) - the label a helper sees, chosen by the owner
+//   - updatedAt: timestamp (required, must equal the request time)
+//
+// Collection: people/{ownerId}/words
+// Document ID: 1..40 chars, chosen by the app
+// Fields (exactly these):
+//   - word: string (required, 1..40 chars)
+//   - emoji: string (required, 0..16 chars)
+//   - note: string (required, 0..80 chars) - e.g. "my granddaughter"
+//   - by: string (required) - uid of whoever wrote this version; always the caller
+//   - updatedAt: timestamp (required, must equal the request time)
+//
+// Collection: people/{ownerId}/helpers
+// Document ID: the helper's uid. The existence of this document is what makes them a helper.
+// Fields (exactly these, never updated):
+//   - code: string (required, 8..12 chars, A-Z and 2-9) - the invite code that was used
+//   - joinedAt: timestamp (required, must equal the request time)
+//
+// Collection: invites
+// Document ID: the invite code (8..12 chars, A-Z and 2-9). Codes cannot be listed.
+// Fields (exactly these, never updated):
+//   - owner: string (required) - uid of the person inviting; always the caller
+//   - name: string (required, 0..40 chars) - label shown to the person who enters the code
+//   - expires: timestamp (required, in the future, at most one hour ahead)
+//
+// Who may do what
+//   people/{o}           owner: read, write      helper: read        others: nothing
+//   people/{o}/words     owner: read, write      helper: read, write others: nothing
+//   people/{o}/helpers   owner: read, delete     helper: get/create/delete own doc (create needs
+//                                                an open invite for {o})   others: nothing
+//   invites/{code}       signed-in: get (must know the code), create own; owner: delete
+//                        nobody: list, update
+//   everything else      denied
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    // Signed in (anonymous sign-in counts).
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // The caller is the person this path belongs to.
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // The caller was admitted as a helper of this owner.
+    function isHelper(ownerId) {
+      return isAuthenticated() &&
+        exists(/databases/$(database)/documents/people/$(ownerId)/helpers/$(request.auth.uid));
+    }
+
+    // Owner first, so the owner never pays for the helper lookup.
+    function canUseWords(ownerId) {
+      return isOwner(ownerId) || isHelper(ownerId);
+    }
+
+    // On create, the identity field must be the caller: nobody can write as someone else.
+    function uidUnchanged(field) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field] == request.auth.uid;
+    }
+
+    // There is no "identity must not change on update" helper here on purpose: the documents
+    // that carry an owner id (invites and helpers) cannot be updated at all, and a word's `by`
+    // field is re-checked against the caller on every write.
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function validStringLength(field, minLen, maxLen) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field].size() >= minLen &&
+        request.resource.data[field].size() <= maxLen;
+    }
+
+    function isValidOptionalString(field, minLen, maxLen) {
+      return !(field in request.resource.data) || validStringLength(field, minLen, maxLen);
+    }
+
+    function isNow(field) {
+      return request.resource.data[field] is timestamp &&
+        request.resource.data[field] == request.time;
+    }
+
+    function isInviteCode(code) {
+      return code is string && code.matches('^[A-Z2-9]{8,12}$');
+    }
+
+    // ===============================================================
+    // Domain Validators (used by both create and update)
+    // ===============================================================
+
+    function isValidProfile() {
+      return hasOnlyAllowedFields(['name', 'updatedAt']) &&
+        hasRequiredFields(['updatedAt']) &&
+        isValidOptionalString('name', 0, 40) &&
+        isNow('updatedAt');
+    }
+
+    function isValidWord() {
+      return hasOnlyAllowedFields(['word', 'emoji', 'note', 'by', 'updatedAt']) &&
+        hasRequiredFields(['word', 'emoji', 'note', 'by', 'updatedAt']) &&
+        validStringLength('word', 1, 40) &&
+        validStringLength('emoji', 0, 16) &&
+        validStringLength('note', 0, 80) &&
+        uidUnchanged('by') &&
+        isNow('updatedAt');
+    }
+
+    function isValidHelper() {
+      return hasOnlyAllowedFields(['code', 'joinedAt']) &&
+        hasRequiredFields(['code', 'joinedAt']) &&
+        isInviteCode(request.resource.data.code) &&
+        isNow('joinedAt');
+    }
+
+    function isValidInvite() {
+      return hasOnlyAllowedFields(['owner', 'name', 'expires']) &&
+        hasRequiredFields(['owner', 'name', 'expires']) &&
+        uidUnchanged('owner') &&
+        validStringLength('name', 0, 40) &&
+        request.resource.data.expires is timestamp &&
+        request.resource.data.expires > request.time &&
+        request.resource.data.expires <= request.time + duration.value(1, 'h');
+    }
+
+    // The code names an invite made by this owner that has not run out.
+    function inviteIsOpen(code, ownerId) {
+      return exists(/databases/$(database)/documents/invites/$(code)) &&
+        get(/databases/$(database)/documents/invites/$(code)).data.owner == ownerId &&
+        request.time < get(/databases/$(database)/documents/invites/$(code)).data.expires;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /people/{ownerId} {
+      // The owner and their helpers may read the profile (it only holds the owner's label).
+      allow read: if isOwner(ownerId) || isHelper(ownerId);
+      // Only the owner writes their profile, and only in the valid shape.
+      allow create, update: if isOwner(ownerId) && isValidProfile();
+      allow delete: if isOwner(ownerId);
+
+      match /words/{wordId} {
+        // The owner and their helpers may read and list the words.
+        allow read: if canUseWords(ownerId);
+        // They may add a word, in the valid shape, with a sensible id.
+        allow create: if canUseWords(ownerId) &&
+          wordId.size() >= 1 && wordId.size() <= 40 &&
+          isValidWord();
+        // Edits go through the same validator, so a word can never be edited into a bad shape.
+        allow update: if canUseWords(ownerId) && isValidWord();
+        allow delete: if canUseWords(ownerId);
+      }
+
+      match /helpers/{helperId} {
+        // The owner sees who their helpers are; a helper can check their own entry.
+        allow get: if isOwner(ownerId) || isOwner(helperId);
+        allow list: if isOwner(ownerId);
+        // A person adds themself as a helper, and only with an open invite from this owner.
+        // They cannot add anyone else, and an owner cannot be their own helper.
+        allow create: if isOwner(helperId) &&
+          helperId != ownerId &&
+          isValidHelper() &&
+          inviteIsOpen(request.resource.data.code, ownerId);
+        // A helper entry never changes.
+        allow update: if false;
+        // The owner can remove a helper; a helper can leave.
+        allow delete: if isOwner(ownerId) || isOwner(helperId);
+      }
+    }
+
+    match /invites/{code} {
+      // Reading one invite needs its code. Codes cannot be listed or searched.
+      allow get: if isAuthenticated();
+      allow list: if false;
+      // Anyone signed in may make an invite for themself, with a well-formed code.
+      allow create: if isAuthenticated() && isInviteCode(code) && isValidInvite();
+      allow update: if false;
+      // Only the person who made the invite may delete it.
+      allow delete: if isAuthenticated() && resource.data.owner == request.auth.uid;
+    }
+
+    // Everything else is denied.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -15,7 +15,9 @@ const outFile = `eval/results-${side}-${name}.json`;
 const base = process.env.RB_URL || 'http://localhost:5196';
 const env = Object.fromEntries(readFileSync('web/.env.local', 'utf8').split(/\r?\n/).filter((l) => l.includes('=')).map((l) => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1)]));
 
-const key = (w) => w.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+// Lower case, letters and digits only, and simple singular/plural forms treated as equal.
+const stem = (t) => (t.length > 3 ? t.replace(/(?:es|s)$/, '') : t);
+const key = (w) => w.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim().split(' ').map(stem).join(' ');
 /** A guess counts if it equals an accepted answer, or contains it as a whole word ("wall clock" for "clock"). */
 const rankOf = (words, accept) => {
   const acc = accept.map(key);
@@ -68,9 +70,9 @@ for (const item of items) {
         // device runs use private mode: Gemini Nano only, the cloud can never answer for it
         r = await page.evaluate(([c, dev, priv]) => window.rb.find(c, dev, priv), [item[style], side === 'device' ? 'ready' : 'none', side === 'device']);
       } catch (e) {
-        const msg = String(e).slice(0, 160);
-        if (/429|quota|RESOURCE_EXHAUSTED/i.test(msg)) { console.log('quota reached, waiting 65 s'); await sleep(65_000); }
-        else { console.log('error', item.id, style, msg); await sleep(3000); }
+        const msg = String(e);
+        if (/429|quota|RESOURCE_EXHAUSTED|rate/i.test(msg)) { console.log(`rate limit at ${item.id}/${style}: waiting 65 s (${msg.replace(/\s+/g, ' ').slice(-180)})`); await sleep(65_000); }
+        else { console.log('error', item.id, style, msg.replace(/\s+/g, ' ').slice(0, 400)); await sleep(3000); }
       }
     }
     if (!r) { rows.push({ id: item.id, style, target: item.target, error: true }); continue; }
@@ -80,7 +82,7 @@ for (const item of items) {
       save();
       console.log(`${n} done; last: ${item.target}/${style} -> ${rank >= 0 ? 'hit ' + (rank + 1) : 'miss'} [${r.words.slice(0, 3).join(', ')}] ${r.side} ${r.ms} ms`);
     }
-    if (side === 'cloud') await sleep(900); // stay well under the per-minute limit
+    if (side === 'cloud') await sleep(Number(process.env.RB_GAP_MS || 3300)); // stay under the free tier's per-minute limit
   }
 }
 
