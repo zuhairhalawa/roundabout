@@ -2,10 +2,12 @@
 // and attaches over the DevTools protocol. Playwright's own launcher adds switches that stop
 // Chrome's on-device model service, so Chrome is started plainly here.
 import { execFileSync, spawn } from 'node:child_process';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 import { chromium } from '../../video/node_modules/playwright/index.mjs';
 
 const EXE = process.env.CHROME_EXE || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-export const PROFILE = process.env.RB_PROFILE || 'C:/Users/ZUHAIR/.chrome-hybrid-profile';
+export const PROFILE = process.env.RB_PROFILE || join(homedir(), '.chrome-hybrid-profile').split('\\').join('/');
 
 export async function startChrome({ port = 9334, size = '1320,940', extra = [] } = {}) {
   // RB_KEEP_CHROME=1: reuse a test Chrome that is already running and leave it running, so the
