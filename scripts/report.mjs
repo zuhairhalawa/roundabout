@@ -95,6 +95,38 @@ for (const set of SETS) {
   }
 }
 
+// ---- the backup cloud model ----
+const PACK = readJson('shared/prompts.json');
+const backupRows = [];
+for (const set of SETS) {
+  const main = load(`eval/results-cloud-${set.file}.json`, set.items);
+  const backup = load(`eval/results-cloud-${set.file}-backup.json`, set.items);
+  if (!main?.rows.length || !backup?.rows.length) continue;
+  const total = readJson(set.items).items.length;
+  const covered = new Set(backup.rows.map((r) => r.id)).size;
+  const row = (model, res) => `| ${set.title.replace(/ \(.*/, '')} | \`${model}\` | ${res.rows.length} | ${pct(res.rows, (r) => r.rank === 0)} | ${pct(res.rows, (r) => r.rank >= 0 && r.rank < 3)} | ${pct(res.rows, (r) => r.rank >= 0)} | ${secs(mid(res.rows, (r) => r.firstMs ?? 0))} | ${secs(mid(res.rows, (r) => r.ms))} | ${secs(p90(res.rows))} |\n`;
+  backupRows.push({ text: row(PACK.cloudModel, main) + row(backup.model ?? PACK.cloudBackupModels[0], backup), at: backup.at, partial: covered < total ? `${covered} of ${total} words` : '', failed: backup.failed, misses: backup.rows.filter((r) => r.rank < 0), title: set.title.replace(/ \(.*/, '') });
+  headline.push(`${set.title}, backup cloud model: ${pct(backup.rows, (r) => r.rank === 0)} first, ${pct(backup.rows, (r) => r.rank >= 0 && r.rank < 3)} top three, ${pct(backup.rows, (r) => r.rank >= 0)} in six; first word ${secs(mid(backup.rows, (r) => r.firstMs ?? 0))} (${backup.rows.length} tries)`);
+}
+if (backupRows.length) {
+  md += `## The backup cloud model
+
+A cloud request that has not started answering after a second and a half is also sent to a second cloud model, and the first answer is used (see "How a request is routed" in the README). So a cloud answer can come from the backup model, \`${PACK.cloudBackupModels[0]}\`. It was measured on the same words, one clue per word, with the same prompt. During these runs a request was never asked twice, so each row is one model alone.
+
+| Word set | Cloud model | Tries | Right word first | In the first three | Among the six | First word shown | All words shown | Slowest tenth |
+|---|---|---|---|---|---|---|---|---|
+${backupRows.map((r) => r.text).join('')}
+The backup was measured on ${[...new Set(backupRows.map((r) => r.at.slice(0, 10)))].join(' and ')}, at a different time of day from the main model, so the times in this table are not a like-for-like comparison of speed.${backupRows.some((r) => r.partial) ? ` Not every run was complete: ${backupRows.filter((r) => r.partial).map((r) => `${r.title}: ${r.partial}`).join('; ')}.` : ''}${backupRows.some((r) => r.failed) ? ` ${backupRows.reduce((n, r) => n + r.failed, 0)} tries failed to run and are not counted.` : ''}
+
+`;
+  for (const r of backupRows) {
+    if (!r.misses.length) continue;
+    md += `<details><summary>The backup model's ${r.misses.length} misses: ${r.title}</summary>\n\n| Word | Clue style | Offered instead |\n|---|---|---|\n`;
+    for (const m of r.misses) md += `| ${m.target} | ${m.style} | ${m.words.join(', ')} |\n`;
+    md += '\n</details>\n\n';
+  }
+}
+
 // ---- how the answer format and the prompt were chosen (not test results) ----
 const DEV = 'eval/dev.json';
 const devRuns = [

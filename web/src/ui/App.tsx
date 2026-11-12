@@ -132,7 +132,7 @@ function How({ device, online, cloud, privateOnly }: { device: Device; online: b
       <ol class="how-list">
         <li><span class="dot dot-saved" /><div><b>Your own words come first.</b> If a clue matches a note on one of your saved words, it is offered straight away. No model is used.</div></li>
         <li><span class="dot dot-device" /><div><b>Then this device answers.</b> Gemini Nano runs inside Chrome. It is quick, it works offline, and nothing you type or draw leaves the device.</div></li>
-        <li><span class="dot dot-cloud" /><div><b>The cloud helps when it is needed.</b> If this device has no on-device model, if the model is still loading, or if you tap "None of these", {settings.cloudModel} in Google's cloud answers.</div></li>
+        <li><span class="dot dot-cloud" /><div><b>The cloud helps when it is needed.</b> If this device has no on-device model, if the model is still loading, or if you tap "None of these", {settings.cloudModel} in Google's cloud answers. If it is slow to start, a second cloud model is asked as well, and the first to answer is used.</div></li>
       </ol>
       <p>Guesses while you type or draw only ever run on the device, so they cost nothing and stay private. In Private mode the cloud is never used.</p>
       <p class="fine">Built with Firebase AI Logic hybrid inference. Tile colours: green from this device, blue from the cloud, brown from your saved words.</p>

@@ -2,6 +2,7 @@
   "version": 3,
   "about": "One prompt pack for every platform (web, Android, iOS). Placeholders in {braces} are filled in by the app. The same text and the same JSON schema go to the on-device model and to the cloud model, so results can be compared like for like. Answers are kept short on purpose: a short answer is a fast answer on a small on-device model, and the pictures on the tiles come from a look-up table (shared/emoji.json), not from the model.",
   "cloudModel": "gemini-3.5-flash-lite",
+  "cloudBackupModels": ["gemini-3.1-flash-lite", "gemini-3.6-flash"],
   "voiceModel": "gemini-3.1-flash-tts-preview",
   "guessCount": 6,
   "find": {

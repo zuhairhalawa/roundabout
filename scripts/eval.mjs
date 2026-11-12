@@ -50,7 +50,10 @@ if (side === 'device') {
   stop = () => b.close();
 }
 page.on('pageerror', (e) => console.log('pageerror', String(e).slice(0, 200)));
-await page.goto(`${base}/lab.html`);
+// RB_MODEL measures another cloud model, e.g. RB_MODEL=gemini-3.1-flash-lite (use RB_LABEL too, to keep
+// its results apart). On the lab page a request is never asked twice, so one model is measured at a time.
+await page.goto(`${base}/lab.html${process.env.RB_MODEL ? `?model=${process.env.RB_MODEL}` : ''}`);
+if (side === 'cloud') console.log('cloud model:', process.env.RB_MODEL || 'the main one, from the prompt pack');
 await page.waitForFunction(() => window.rb);
 if (process.env.RB_OVERRIDES) console.log('prompt override applied:', await page.evaluate((j) => window.rb.override(j), readFileSync(process.env.RB_OVERRIDES, 'utf8')));
 if (side === 'device') {
@@ -66,7 +69,7 @@ if (side === 'device') {
   console.log(`model awake after ${((Date.now() - t0) / 1000).toFixed(0)} s`);
 }
 
-const save = (report) => writeFileSync(outFile, JSON.stringify({ set: file, side, at: new Date().toISOString(), ...(report ? { report } : {}), rows }, null, 1));
+const save = (report) => writeFileSync(outFile, JSON.stringify({ set: file, side, ...(process.env.RB_MODEL ? { model: process.env.RB_MODEL } : {}), at: new Date().toISOString(), ...(report ? { report } : {}), rows }, null, 1));
 let n = 0;
 for (const item of items) {
   for (const style of styles) {

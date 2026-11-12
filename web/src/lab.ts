@@ -9,6 +9,13 @@ void loadPictures();
 const out = document.getElementById('out')!;
 const log = (s: string) => { out.textContent += s + '\n'; console.log('LAB ' + s); };
 const q = new URLSearchParams(location.search);
+// Settings from the address, applied before anything runs (so the accuracy script gets them too).
+if (q.get('lut') === '0') settings.limitedUseTokens = false;
+if (q.has('think')) settings.cloudThinking = q.get('think')!.toUpperCase() as typeof settings.cloudThinking;
+if (q.has('model')) settings.cloudModel = q.get('model')!;
+// Measurements are of one model at a time, so asking again is off here unless asked for (hedge=1500).
+settings.cloudHedgeMs = Number(q.get('hedge')) || 0;
+if (q.has('backup')) settings.cloudBackupModels = q.get('backup')!;
 
 const DEFAULT: Array<[string, string]> = [
   ['you open the door with it, small, metal', 'key'],
@@ -20,10 +27,7 @@ const DEFAULT: Array<[string, string]> = [
 ];
 
 async function main() {
-  if (q.get('lut') === '0') settings.limitedUseTokens = false;
-  if (q.has('think')) settings.cloudThinking = q.get('think')!.toUpperCase() as typeof settings.cloudThinking;
-  if (q.has('model')) settings.cloudModel = q.get('model')!;
-  log(`cloud model=${settings.cloudModel} thinking=${settings.cloudThinking || 'default'}`);
+  log(`cloud model=${settings.cloudModel} thinking=${settings.cloudThinking || 'default'} ask again after=${settings.cloudHedgeMs || 'never'} backup=${settings.cloudBackupModels || 'none'}`);
   if (q.get('timing') === '1') {
     const { model } = await import('./core/ai');
     const m = model('find', 'only_in_cloud');

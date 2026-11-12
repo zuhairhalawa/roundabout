@@ -7,6 +7,20 @@
       "description": "Cloud model for word-finding, sentences and hints.",
       "valueType": "STRING"
     },
+    "cloud_backup_models": {
+      "defaultValue": {
+        "value": "gemini-3.1-flash-lite,gemini-3.6-flash"
+      },
+      "description": "Other cloud models, asked as well when the main one is slow to start answering. Comma-separated, in the order they are asked. Empty = none.",
+      "valueType": "STRING"
+    },
+    "cloud_hedge_ms": {
+      "defaultValue": {
+        "value": "1500"
+      },
+      "description": "If a cloud request has not started answering after this long, the same request also goes to the next cloud model in turn (main, then each backup, then round again), up to four requests. The first to start answering is used. 0 = never ask again.",
+      "valueType": "NUMBER"
+    },
     "voice_model": {
       "defaultValue": {
         "value": "gemini-3.1-flash-tts-preview"

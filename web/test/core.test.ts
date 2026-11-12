@@ -217,9 +217,22 @@ describe('remote settings', () => {
 
   it('ignores values that would break the app', () => {
     const before = { ...settings };
-    const changed = applyRemote({ cloud_model: 'not a model!', guess_count: '99', device_timeout_ms: 'soon', cloud_patience_ms: '-5', cloud_thinking: 'EXTREME', limited_use_tokens: 'maybe' });
+    const changed = applyRemote({ cloud_model: 'not a model!', cloud_backup_models: 'gemini-3.6-flash,gpt-4', cloud_hedge_ms: '50', guess_count: '99', device_timeout_ms: 'soon', cloud_patience_ms: '-5', cloud_thinking: 'EXTREME', limited_use_tokens: 'maybe' });
     expect(changed).toEqual([]);
     expect(settings).toEqual(before);
+  });
+
+  it('lets the second cloud model and asking again be switched off', () => {
+    expect(settings.cloudBackupModels).toBe('gemini-3.1-flash-lite,gemini-3.6-flash');
+    expect(settings.cloudHedgeMs).toBe(1500);
+    expect(applyRemote({ cloud_backup_models: '', cloud_hedge_ms: '0' }).sort()).toEqual(['cloud_backup_models', 'cloud_hedge_ms']);
+    expect(settings.cloudBackupModels).toBe('');
+    expect(settings.cloudHedgeMs).toBe(0);
+    expect(applyRemote({ cloud_backup_models: ' gemini-3.6-flash , gemini-3.1-flash-lite ' })).toEqual(['cloud_backup_models']);
+    expect(settings.cloudBackupModels).toBe('gemini-3.6-flash,gemini-3.1-flash-lite');
+    applyRemote({ cloud_backup_models: REMOTE_DEFAULTS.cloud_backup_models, cloud_hedge_ms: String(REMOTE_DEFAULTS.cloud_hedge_ms) });
+    expect(settings.cloudBackupModels).toBe('gemini-3.1-flash-lite,gemini-3.6-flash');
+    expect(settings.cloudHedgeMs).toBe(1500);
   });
 
   it('replaces prompt text by path, but never the schemas', () => {
@@ -230,5 +243,85 @@ describe('remote settings', () => {
     applyPromptOverrides(JSON.stringify({ 'cue.user': original }));
     expect(applyPromptOverrides('not json')).toBe(false);
     expect(applyPromptOverrides('{}')).toBe(false);
+  });
+});
+
+import { attemptOrder, hedge } from '../src/core/hedge';
+
+describe('asking again when an answer is slow to start', () => {
+  const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+  /** An attempt that starts answering after `startMs`, then finishes 5 ms later (or fails instead of starting). */
+  const attempt = (name: string, startMs: number, started: () => boolean, shown: string[], fail = false) =>
+    wait(startMs).then(async () => {
+      if (fail) throw new Error(`${name} failed`);
+      if (started()) shown.push(name);
+      await wait(5);
+      if (started()) shown.push(name);
+      return name;
+    });
+
+  it('a quick answer is asked for once', async () => {
+    let begun = 0;
+    const r = await hedge((i, started) => { begun++; return attempt(`a${i}`, 5, started, []); }, 40, 3);
+    expect(r).toEqual({ value: 'a0', attempt: 0, attempts: 1 });
+    await wait(100);
+    expect(begun).toBe(1);
+  });
+
+  it('a slow answer is asked for again, and the attempt that starts first is the only one shown', async () => {
+    const shown: string[] = [];
+    const r = await hedge((i, started) => attempt(`a${i}`, i === 0 ? 300 : 5, started, shown), 40, 3);
+    expect(r).toEqual({ value: 'a1', attempt: 1, attempts: 2 });
+    await wait(320); // the first attempt arrives late: nothing of it is shown
+    expect(shown).toEqual(['a1', 'a1']);
+  });
+
+  it('asks a third time if the second is slow too, and never more than the limit', async () => {
+    let begun = 0;
+    const r = await hedge((i, started) => { begun++; return attempt(`a${i}`, i < 2 ? 400 : 5, started, []); }, 30, 3);
+    expect(r).toEqual({ value: 'a2', attempt: 2, attempts: 3 });
+    const slow = await hedge((i, started) => attempt(`b${i}`, 150, started, []), 20, 3);
+    expect(slow).toEqual({ value: 'b0', attempt: 0, attempts: 3 });
+    expect(begun).toBe(3);
+  });
+
+  it('an attempt that fails is replaced at once, without waiting', async () => {
+    const t0 = Date.now();
+    const r = await hedge((i, started) => attempt(`a${i}`, 5, started, [], i === 0), 2000, 3);
+    expect(r).toEqual({ value: 'a1', attempt: 1, attempts: 2 });
+    expect(Date.now() - t0).toBeLessThan(500);
+  });
+
+  it('fails with the first error only when every attempt has failed', async () => {
+    await expect(hedge((i, started) => attempt(`a${i}`, 5, started, [], true), 20, 3)).rejects.toThrow('a0 failed');
+  });
+
+  it('if the attempt being shown fails part-way, another takes its place', async () => {
+    const shown: string[] = [];
+    const r = await hedge((i, started) => (i === 0
+      ? wait(50).then(async () => { if (started()) shown.push('a0'); await wait(60); throw new Error('a0 broke'); })
+      : attempt(`a${i}`, 40, started, shown)), 30, 3);
+    expect(r.value).toBe('a1');
+    expect(shown).toEqual(['a0']); // the second attempt's pieces were held back while the first was showing
+  });
+
+  it('takes turns between the cloud models, skips one that is resting, and can start with the quick one', () => {
+    expect(attemptOrder('main', ['b1', 'b2'])).toEqual(['main', 'b1', 'b2']);
+    expect(attemptOrder('main', [''])).toEqual(['main']);
+    expect(attemptOrder('main', ['b1', 'main', 'b1'])).toEqual(['main', 'b1']);
+    expect(attemptOrder('main', ['b1', 'b2'], (m) => m === 'b1')).toEqual(['main', 'b2']);
+    expect(attemptOrder('main', ['b1', 'b2'], (m) => m === 'main')).toEqual(['b1', 'b2']);
+    expect(attemptOrder('main', ['b1'], () => true)).toEqual(['main']);
+    expect(attemptOrder('main', ['b1', 'b2'], () => false, 'b2')).toEqual(['b2', 'main', 'b1']);
+    expect(attemptOrder('main', ['b1', 'b2'], (m) => m === 'b2', 'b2')).toEqual(['main', 'b1']);
+  });
+
+  it('with timed repeats off, a slow attempt is not asked again, but a failed one is still replaced', async () => {
+    let begun = 0;
+    const r = await hedge((i, started) => { begun++; return attempt(`a${i}`, 80, started, []); }, 0, 3);
+    expect(r).toEqual({ value: 'a0', attempt: 0, attempts: 1 });
+    expect(begun).toBe(1);
+    expect(await hedge((i, started) => attempt(`b${i}`, 5, started, [], i === 0), 0, 2)).toEqual({ value: 'b1', attempt: 1, attempts: 2 });
+    await expect(hedge((i, started) => attempt(`c${i}`, 5, started, [], true), 0, 1)).rejects.toThrow('c0 failed');
   });
 });

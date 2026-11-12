@@ -14,6 +14,10 @@ export const cloudConfigured = Boolean(env.VITE_FB_API_KEY && env.VITE_FB_PROJEC
 /** Values that can be changed without a new release (filled from Remote Config when it loads). */
 export const settings = {
   cloudModel: PACK.cloudModel,
+  /** Other cloud models, asked as well when the main one is slow to start answering. Comma-separated; '' = none. */
+  cloudBackupModels: PACK.cloudBackupModels.join(','),
+  /** How long a cloud request gets to start answering before it is asked again. 0 = never ask again. */
+  cloudHedgeMs: 1_500,
   voiceModel: PACK.voiceModel,
   guessCount: PACK.guessCount,
   /** How long to wait for the on-device model to start answering before asking the cloud instead. */
@@ -102,8 +106,8 @@ const cache = new Map<string, GenerativeModel>();
  * A hybrid model for one job in one inference mode. The same system prompt and the same JSON
  * schema go to both sides: `responseConstraint` for Gemini Nano, `responseSchema` for the cloud.
  */
-export function model(kind: Kind, mode: Mode): GenerativeModel {
-  const key = `${kind}:${mode}:${settings.cloudModel}:${settings.guessCount}:${settings.cloudThinking}`;
+export function model(kind: Kind, mode: Mode, cloudModel: string = settings.cloudModel): GenerativeModel {
+  const key = `${kind}:${mode}:${cloudModel}:${settings.guessCount}:${settings.cloudThinking}`;
   let m = cache.get(key);
   if (m) return m;
   const { system, schema, maxTokens } = spec(kind);
@@ -118,7 +122,7 @@ export function model(kind: Kind, mode: Mode): GenerativeModel {
       promptOptions: { responseConstraint: schema },
     },
     inCloudParams: {
-      model: settings.cloudModel,
+      model: cloudModel,
       systemInstruction: system,
       generationConfig: {
         responseMimeType: 'application/json',

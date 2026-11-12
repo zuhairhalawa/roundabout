@@ -28,6 +28,13 @@ const voiceRequests = [];
 page.on('response', (r) => { if (/firebaseremoteconfig\.googleapis\.com/.test(r.url())) remoteConfig.push(r.status()); });
 page.on('request', (r) => { if (/tts/.test(r.url()) && /generateContent/i.test(r.url())) voiceRequests.push(new URL(r.url()).pathname.split('/').pop()); });
 page.on('pageerror', (e) => console.log('pageerror', String(e).slice(0, 200)));
+// A model that says its per-minute quota is used up is left alone for a minute by the app. Note it here.
+const quotaReplies = [];
+page.on('response', async (r) => {
+  if (r.status() !== 429 || !/generateContent/i.test(r.url())) return;
+  const body = await r.text().catch(() => '');
+  quotaReplies.push(`${/models\/([^:/?]+)/.exec(r.url())?.[1]} (limit ${/limit: (\d+)/.exec(body)?.[1] ?? '?'} a minute)`);
+});
 
 const tiles = async () => (await page.locator('.tiles .sign-word').allTextContents()).map((t) => t.trim().toLowerCase());
 const waitTiles = async () => { await page.waitForFunction(() => document.querySelector('.tiles .sign-word') && !/Looking/.test(document.querySelector('.btn-go')?.textContent ?? ''), null, { timeout: 60_000 }); return tiles(); };
@@ -153,6 +160,32 @@ try {
   check('when the cloud is slow, the app says it is still looking, and then answers', said && t.some((w) => /pen/.test(w)) && !/taking longer/.test(await page.textContent('.results')), `note shown: ${said}; ${t.slice(0, 4).join(', ')}`);
   await page.unroute(/generateContent/i, slowModel);
 
+  // 7d. the cloud is slow to start (9 s added to the first request for this clue): after a
+  //     moment the same request is asked again, of a second cloud model unless the others are
+  //     resting after a quota reply, and that answer is used. The repeat's reply is a stand-in
+  //     with an unmistakable word, so this step does not depend on how busy the real cloud is.
+  const cors = { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'POST, OPTIONS' };
+  const modelOf = (url) => /models\/([^:/?]+)/.exec(url)?.[1] ?? '';
+  const asked = [];
+  const slowFirstModel = async (r) => {
+    if (r.request().method() === 'OPTIONS') return r.fulfill({ status: 204, headers: cors }).catch(() => {});
+    if (!(r.request().postData() ?? '').includes('cut paper')) return r.continue().catch(() => {});
+    const m = modelOf(r.request().url());
+    asked.push(m);
+    if (asked.length === 1) { await new Promise((res) => setTimeout(res, 9000)); return r.continue().catch(() => {}); }
+    const reply = { candidates: [{ content: { role: 'model', parts: [{ text: JSON.stringify({ words: ['umbrella', 'key', 'clock'] }) }] }, finishReason: 'STOP', index: 0 }] };
+    await r.fulfill({ status: 200, headers: { ...cors, 'content-type': 'text/event-stream' }, body: `data: ${JSON.stringify(reply)}\r\n\r\n` }).catch(() => {});
+  };
+  await page.route(/generateContent/i, slowFirstModel);
+  await page.fill('#clues', 'you cut paper with it');
+  const tAsk = Date.now();
+  await page.getByRole('button', { name: 'Find the word' }).click();
+  t = await waitTiles();
+  const askMs = Date.now() - tAsk;
+  const whySecond = (await page.getAttribute('.source .textlink', 'title').catch(() => '')) ?? '';
+  check('when the cloud is slow to start, the request is asked again and that answer is used', t[0] === 'umbrella' && askMs < 6000 && asked.length >= 2 && (asked[1] !== asked[0] ? /second cloud model/ : /asked again/).test(whySecond), `${askMs} ms; asked ${asked.join(' > ')}; ${whySecond}`);
+  await page.unroute(/generateContent/i, slowFirstModel);
+
   // 8. private mode never uses the cloud
   const reqBefore = [...aiHosts.values()].reduce((a, b) => a + b, 0);
   await page.getByRole('button', { name: 'Settings' }).click();
@@ -181,6 +214,7 @@ try {
 
   // 10. every model request went through Firebase AI Logic
   const hosts = [...aiHosts.keys()];
+  if (quotaReplies.length) console.log(`note: ${quotaReplies.length} "quota used up" replies during this run: ${[...new Set(quotaReplies)].join(', ')}`);
   check('all model requests go to Firebase AI Logic only', hosts.length === 1 && hosts[0] === 'firebasevertexai.googleapis.com', JSON.stringify(Object.fromEntries(aiHosts)));
 } catch (e) {
   check('no crash', false, String(e).slice(0, 300));

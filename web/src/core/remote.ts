@@ -8,6 +8,8 @@ import { PACK } from './pack';
 /** Parameter names in the Remote Config template, with the built-in defaults. */
 export const REMOTE_DEFAULTS = {
   cloud_model: PACK.cloudModel,
+  cloud_backup_models: PACK.cloudBackupModels.join(','),
+  cloud_hedge_ms: 1_500,
   voice_model: PACK.voiceModel,
   guess_count: PACK.guessCount,
   device_timeout_ms: 8_000,
@@ -39,6 +41,10 @@ export function applyRemote(v: Values): string[] {
     if (settings[key] !== value) { settings[key] = value; changed.push(name); }
   };
   if (/^gemini-[\w.-]+$/.test(v.cloud_model ?? '')) set('cloudModel', v.cloud_model, 'cloud_model');
+  // An empty list of backup models means "no backup"; 0 ms means "never ask again".
+  const backups = v.cloud_backup_models?.replace(/\s+/g, '');
+  if (backups !== undefined && /^(gemini-[\w.-]+(,gemini-[\w.-]+){0,3})?$/.test(backups)) set('cloudBackupModels', backups, 'cloud_backup_models');
+  set('cloudHedgeMs', v.cloud_hedge_ms?.trim() === '0' ? 0 : num(v.cloud_hedge_ms, 500, 20_000, settings.cloudHedgeMs), 'cloud_hedge_ms');
   if (/^gemini-[\w.-]+$/.test(v.voice_model ?? '')) set('voiceModel', v.voice_model, 'voice_model');
   set('guessCount', num(v.guess_count, 3, 8, settings.guessCount), 'guess_count');
   set('deviceTimeoutMs', num(v.device_timeout_ms, 2000, 60_000, settings.deviceTimeoutMs), 'device_timeout_ms');

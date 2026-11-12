@@ -2,6 +2,7 @@
 // sentence, write practice hints. Each job asks route() where to run, calls the hybrid model,
 // and reports which side answered and how long it took.
 import { cloudConfigured, model, serial, settings, StaleError, type Kind } from './ai';
+import { attemptOrder, hedge } from './hedge';
 import { fill, PACK } from './pack';
 import { applySaved, matchSaved, mergeGuesses, parseGuesses, parsePartialGuesses, wordKey, type Guess, type SavedWord } from './guess';
 import { pictureFor } from './pictures';
@@ -49,14 +50,20 @@ export const isQuotaError = (e: unknown) => /\b429\b|RESOURCE_EXHAUSTED|quota/i.
 
 type Request = Parameters<ReturnType<typeof model>['generateContent']>[0];
 
-interface Reply { text: string; side: Side; ms: number; firstMs: number; fellBack: boolean }
+/**
+ * How a cloud request was answered when a cloud model was slow or busy: by a second model asked
+ * as well, by the same model asked again, or by a backup model that is asked first for now.
+ */
+type Repeat = 'backup' | 'again' | 'quick';
+
+interface Reply { text: string; side: Side; ms: number; firstMs: number; fellBack: boolean; repeat?: Repeat }
 
 /** Called with the text received so far and the side it is coming from. */
 type OnText = (textSoFar: string, side: Side) => void;
 
 /** One streamed call in one mode. Resolves when the whole answer is in. */
-async function stream(kind: Kind, mode: Mode, request: Request, t0: number, onText?: OnText): Promise<Omit<Reply, 'fellBack'>> {
-  const result = await model(kind, mode).generateContentStream(request);
+async function stream(kind: Kind, mode: Mode, request: Request, t0: number, onText?: OnText, opts: { cloudModel?: string; signal?: AbortSignal } = {}): Promise<Omit<Reply, 'fellBack'>> {
+  const result = await model(kind, mode, opts.cloudModel).generateContentStream(request, opts.signal ? { signal: opts.signal } : undefined);
   // The stream is read below; a failure is reported there. Without this, the SDK's second
   // promise for the same response would fail with nobody listening.
   result.response.catch(() => undefined);
@@ -75,11 +82,54 @@ async function stream(kind: Kind, mode: Mode, request: Request, t0: number, onTe
   return { text, side, ms, firstMs: firstMs || ms };
 }
 
+/** A cloud model that has just said its quota is used up is left alone for a minute. */
+const resting = new Map<string, number>();
+/** True when every cloud model is resting: only then is the cloud as a whole paused. */
+const noCloudModelAwake = () => [settings.cloudModel, ...settings.cloudBackupModels.split(',')].every((m) => !m || Date.now() < (resting.get(m) ?? 0));
+/**
+ * The backup model that answered last time when the main model was slow. It is asked first for
+ * a few minutes: a busy model stays busy for a while.
+ */
+let quick: { model: string; until: number } | null = null;
+const QUICK_MS = 3 * 60_000;
+
+/**
+ * A request that goes to the cloud, asked again if it is slow to start answering (see
+ * hedge.ts): the request as routed, then the same request to each backup cloud model, then
+ * round again. Whichever starts answering first is used; the others are dropped.
+ * `stopFirst`: the first attempt can be cancelled when it loses. That is not so for a
+ * cloud-first request on a device with a model: cancelling it would make the SDK fall back to
+ * the device for an answer nobody reads.
+ */
+async function cloudStream(kind: Kind, mode: Mode, request: Request, t0: number, onText: OnText | undefined, stopFirst: boolean): Promise<Omit<Reply, 'fellBack'>> {
+  const now = Date.now();
+  const order = attemptOrder(settings.cloudModel, settings.cloudBackupModels.split(','), (m) => now < (resting.get(m) ?? 0), quick && now < quick.until ? quick.model : '');
+  const stops: Array<AbortController | null> = [];
+  const { value, attempt } = await hedge((i, started) => {
+    const cloudModel = order[i % order.length];
+    const stop = i > 0 || stopFirst ? new AbortController() : null;
+    stops[i] = stop;
+    return stream(kind, i ? 'only_in_cloud' : mode, request, t0, (text, side) => { if (started()) onText?.(text, side); }, { cloudModel, signal: stop?.signal })
+      .catch((e) => { if (isQuotaError(e)) resting.set(cloudModel, Date.now() + 60_000); throw e; });
+    // Pictures for the tiles are a help, not a need: a slow request for them is not asked
+    // again. If it fails (a model over its quota), one other model is tried.
+  }, kind === 'picture' ? 0 : settings.cloudHedgeMs, settings.cloudHedgeMs > 0 ? (kind === 'picture' ? 2 : 4) : 1);
+  stops.forEach((stop, i) => { if (i !== attempt) stop?.abort(); });
+  if (value.side !== 'cloud') return value;
+  const used = order[attempt % order.length];
+  if (attempt) quick = used === settings.cloudModel ? null : { model: used, until: Date.now() + QUICK_MS };
+  // What to tell the person: a different model from the one asked first answered ('backup'),
+  // the same model answered when asked again ('again'), or a backup model was asked first
+  // because the main one is busy or resting ('quick').
+  const repeat: Repeat | undefined = attempt ? (used !== order[0] ? 'backup' : 'again') : used !== settings.cloudModel ? 'quick' : undefined;
+  return repeat ? { ...value, repeat } : value;
+}
+
 async function cloudOnly(kind: Kind, request: Request, t0: number, fellBack: boolean, onText?: OnText): Promise<Reply> {
   try {
-    return { ...(await stream(kind, 'only_in_cloud', request, t0, onText)), fellBack };
+    return { ...(await cloudStream(kind, 'only_in_cloud', request, t0, onText, true)), fellBack };
   } catch (e) {
-    if (isQuotaError(e)) pauseCloud(60_000);
+    if (isQuotaError(e) && noCloudModelAwake()) pauseCloud(60_000);
     throw e;
   }
 }
@@ -93,20 +143,23 @@ class SlowError extends Error {
  * - PREFER_ON_DEVICE: if the on-device call fails, or has produced nothing within the time
  *   limit, the same request goes to the cloud (when that is allowed).
  * - PREFER_IN_CLOUD: the SDK already falls back to the device on network and quota errors.
+ * - Any request that the cloud will answer is asked again if the cloud is slow to start.
  */
 async function ask(kind: Kind, mode: Mode, request: Request, s: Situation, opts: { stale?: () => boolean; onText?: OnText } = {}): Promise<Reply> {
   const t0 = performance.now();
   if (mode === 'only_in_cloud') return cloudOnly(kind, request, t0, false, opts.onText);
 
-  const canFallBack = mode === 'prefer_on_device' && s.online && cloudUp() && !s.privateOnly;
+  // PREFER_ON_DEVICE on a device with no model: the SDK sends it to the cloud by itself.
+  const cloudBound = mode === 'prefer_in_cloud' || (mode === 'prefer_on_device' && s.device === 'none');
+  const canFallBack = mode === 'prefer_on_device' && s.device !== 'none' && s.online && cloudUp() && !s.privateOnly;
   let abandoned = false;
   let started = false;
   const onText: OnText = (text, side) => { started = true; if (!abandoned) opts.onText?.(text, side); };
-  // Cloud-first calls do not wait in the on-device queue. They are used while the device model
+  // Calls for the cloud do not wait in the on-device queue. They are used while the device model
   // is still loading, and its first prompt can hold that queue for minutes: the whole point of
   // asking the cloud first is that nobody waits for it.
-  const run = () => stream(kind, mode, request, t0, onText);
-  const call = mode === 'prefer_in_cloud' ? (opts.stale?.() ? Promise.reject<never>(new StaleError()) : run()) : serial(run, opts.stale);
+  const run = () => (cloudBound ? cloudStream(kind, mode, request, t0, onText, s.device === 'none') : stream(kind, mode, request, t0, onText));
+  const call = cloudBound ? (opts.stale?.() ? Promise.reject<never>(new StaleError()) : run()) : serial(run, opts.stale);
   try {
     const reply = canFallBack && s.device === 'ready'
       ? await Promise.race([call, new Promise<never>((_, no) => setTimeout(() => { if (!started) no(new SlowError()); }, settings.deviceTimeoutMs))])
@@ -116,7 +169,7 @@ async function ask(kind: Kind, mode: Mode, request: Request, s: Situation, opts:
     abandoned = true;
     call.catch(() => undefined); // a slow device call may still finish later; ignore it
     if (e instanceof StaleError) throw e;
-    if (isQuotaError(e)) pauseCloud(60_000);
+    if (isQuotaError(e) && (!cloudBound || noCloudModelAwake())) pauseCloud(60_000);
     if (canFallBack) return cloudOnly(kind, request, t0, true, opts.onText);
     throw e;
   }
@@ -148,6 +201,12 @@ export interface FindOptions {
 }
 
 const FELL_BACK = 'The on-device model could not answer, so the cloud did.';
+const REPEAT_WHY: Record<Repeat, string> = {
+  backup: 'The cloud model was slow to answer, so a second cloud model was asked as well, and it answered first.',
+  again: 'The cloud was slow to answer, so it was asked again.',
+  quick: 'The main cloud model is busy, so a second cloud model is answering for now.',
+};
+const whyFor = (reply: Reply, routed: string) => (reply.fellBack ? FELL_BACK : reply.repeat ? REPEAT_WHY[reply.repeat] : routed);
 
 /** Clues in, word tiles out. Saved words that match come first, with no model involved. */
 export async function findWord(clues: string, o: FindOptions): Promise<Answer> {
@@ -180,7 +239,7 @@ export async function findWord(clues: string, o: FindOptions): Promise<Answer> {
       cloud.then(() => false, () => true),
       new Promise<boolean>((yes) => setTimeout(() => yes(!cloudStarted), settings.cloudPatienceMs)),
     ]);
-    if (!slow) return answer(await cloud, r.why);
+    if (!slow) { const reply = await cloud; return answer(reply, whyFor(reply, r.why)); }
     covering = true;
     let first: Answer;
     try {
@@ -189,7 +248,8 @@ export async function findWord(clues: string, o: FindOptions): Promise<Answer> {
     } catch (e) {
       if (e instanceof StaleError) throw e;
       covering = false;
-      return answer(await cloud, r.why); // the device could not answer either: wait for the cloud after all
+      const reply = await cloud; // the device could not answer either: wait for the cloud after all
+      return answer(reply, whyFor(reply, r.why));
     }
     const shown = first.guesses;
     first.later = cloud.then(
@@ -205,7 +265,7 @@ export async function findWord(clues: string, o: FindOptions): Promise<Answer> {
   try {
     if (mode === 'prefer_in_cloud' && o.situation.device === 'ready') return await cloudFirstCovered();
     const reply = await ask('find', mode, prompt, o.situation, { stale: o.stale, onText: partial });
-    return answer(reply, reply.fellBack ? FELL_BACK : r.why);
+    return answer(reply, whyFor(reply, r.why));
   } catch (e) {
     // No model could answer. A saved word that matched is still an answer.
     if (e instanceof StaleError || !mine.length) throw e;
@@ -242,7 +302,7 @@ export async function nameImage(pic: Picture, o: FindOptions & { exclude?: strin
   return {
     guesses: applySaved(parseGuesses(reply.text, reply.side, parseOpts), o.saved),
     side: reply.side, ms: reply.ms, firstMs: reply.firstMs, mode: r.mode, fellBack: reply.fellBack,
-    why: reply.fellBack ? FELL_BACK : r.why,
+    why: whyFor(reply, r.why),
     canAskCloud: reply.side === 'device' && o.situation.online && cloudUp() && !o.situation.privateOnly,
   };
 }

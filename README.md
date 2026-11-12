@@ -46,11 +46,12 @@ One function, [`web/src/core/route.ts`](web/src/core/route.ts), picks a Firebase
 | "None of these": a second opinion | `ONLY_IN_CLOUD` | The bigger model looks again, told what was already offered. |
 | Private mode (a setting) | `ONLY_ON_DEVICE` | Nothing leaves the device, ever. |
 
-On top of the SDK's own fallback, [`web/src/core/find.ts`](web/src/core/find.ts) adds three things the SDK does not do:
+On top of the SDK's own fallback, [`web/src/core/find.ts`](web/src/core/find.ts) adds four things the SDK does not do:
 
 - **A slow device is covered by the cloud.** If an on-device call fails or does not start answering in time, the same request is sent to the cloud.
-- **A slow cloud is covered by the device.** When the cloud is asked first and has not started answering after 1.5 seconds, the on-device model answers meanwhile (green tiles), and the cloud's words are added in blue when they arrive. The free cloud tier is not always quick: on the day of the accuracy test, replies that took about a second in the morning were taking about 20 seconds by the evening, after a day of heavy testing.
-- **A used-up quota does not stop the app.** After a "quota used up" reply the cloud is rested for a minute while the device carries on.
+- **A slow cloud is covered by the device.** When the cloud is asked first and has not started answering after 1.5 seconds, the on-device model answers meanwhile (green tiles), and the cloud's words are added in blue when they arrive.
+- **A slow cloud model is covered by another cloud model.** A device with no on-device model has only the cloud, and a free cloud model is not always quick. In the accuracy run 41 of 255 cloud requests took more than 3 seconds to start answering. On the evening of the same day the model reported "high demand" and held most requests for 8 seconds or more (the longest for 43 seconds), while a second cloud model was answering the same request in under a second. So a cloud request that has not started answering after 1.5 seconds is also sent to the next cloud model on a short list, then the next, up to four requests. The first to start answering is used and the others are dropped. The model that answered is asked first for the next few minutes. The list and the delay are Remote Config values; the logic is in [`web/src/core/hedge.ts`](web/src/core/hedge.ts).
+- **A used-up quota does not stop the app.** A cloud model that says its quota is used up is rested for a minute while the other cloud models and the device carry on. Only when every cloud model is resting does the app say that the cloud is resting.
 
 The line under the tiles always says what happened, including when the cloud was asked as well. "Nothing was sent" is shown only when that is true.
 
@@ -115,7 +116,7 @@ A small service worker ([`web/public/sw.js`](web/public/sw.js)) keeps a copy of 
 
 - **Firebase AI Logic**: every model call ([`web/src/core/ai.ts`](web/src/core/ai.ts)): hybrid inference in all four modes, structured output, image input, and text-to-speech for the natural voice ([`web/src/core/speech.ts`](web/src/core/speech.ts)).
 - **App Check** with reCAPTCHA Enterprise, enforced for AI Logic and for Firestore. A request without a token is refused (`node scripts/check-appcheck.mjs` shows the 401).
-- **Remote Config** ([`web/src/core/remote.ts`](web/src/core/remote.ts), [`remoteconfig.template.json`](remoteconfig.template.json)): the cloud model names, the number of guesses, the on-device time limit, the voice switch and even prompt text can be changed without a release. Values are checked before use, so a typo in the console cannot break the app.
+- **Remote Config** ([`web/src/core/remote.ts`](web/src/core/remote.ts), [`remoteconfig.template.json`](remoteconfig.template.json)): the cloud model names (the main one and the backups), the number of guesses, the time limits for a slow device and a slow cloud, the voice switch and even prompt text can be changed without a release. Values are checked before use, so a typo in the console cannot break the app.
 - **Authentication** (anonymous sign-in, no email or password) and **Cloud Firestore** for sharing saved words with a helper ([`web/src/core/sync.ts`](web/src/core/sync.ts)). The words stay readable offline. This code is only downloaded when sharing is turned on.
 - **Security rules** ([`firestore.rules`](firestore.rules)): only the person and the helpers they admitted can read or change their words; every write is checked for shape and size.
 - **Hosting** for the web app.
@@ -139,9 +140,9 @@ On-device answers need Chrome on a desktop computer that can run Gemini Nano. Ev
 
 ## Tests
 
-- `npm test` (in `web/`): unit tests for the routing rule, cleaning model output into tiles, saved-word matching, the hint chips and the remote settings checks.
+- `npm test` (in `web/`): unit tests for the routing rule, asking again when an answer is slow to start, cleaning model output into tiles, saved-word matching, the hint chips and the remote settings checks.
 - `node scripts/e2e-device.mjs`: drives the live site in real Chrome with Gemini Nano, 18 checks: the cloud answering while the on-device model loads, answers on the device with no model request leaving the machine, guesses while typing, the cloud adding ideas for a short clue, private mode, hints, an action going to the cloud first with the device covering for a late cloud reply, drawing, sentences, and finding a word after a reload with the network off.
-- `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, the natural voice, saved words, a saved word still found when every model request fails, a slow cloud, private mode, offline, Remote Config, and a check that every model request goes to Firebase AI Logic.
+- `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, the natural voice, saved words, a saved word still found when every model request fails, a slow cloud, a slow cloud model covered by a second request, private mode, offline, Remote Config, and a check that every model request goes to Firebase AI Logic.
 - `node scripts/rules-test.mjs`: three real anonymous users (owner, helper, stranger) try 45 operations against the deployed security rules.
 - `node scripts/e2e-share.mjs`: two browsers on the live site, one person and one helper: invite code, a name added by the helper appears on the other device, removal cuts access.
 - `node scripts/eval.mjs cloud|device eval/pnt.json`: accuracy on an independent test set (see [`docs/ACCURACY.md`](docs/ACCURACY.md)).
