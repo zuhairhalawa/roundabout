@@ -1,0 +1,3199 @@
+{
+ "set": "eval/pnt.json",
+ "side": "cloud",
+ "model": "gemini-3.1-flash-lite",
+ "at": "2026-11-12T19:52:34.308Z",
+ "report": {
+  "all": {
+   "n": 175,
+   "top1": 98.9,
+   "top3": 100,
+   "top6": 100,
+   "medianFirstMs": 752,
+   "medianMs": 884,
+   "p90Ms": 3463
+  },
+  "plain": {
+   "n": 59,
+   "top1": 100,
+   "top3": 100,
+   "top6": 100,
+   "medianFirstMs": 752,
+   "medianMs": 871,
+   "p90Ms": 6258
+  },
+  "broken": {
+   "n": 58,
+   "top1": 100,
+   "top3": 100,
+   "top6": 100,
+   "medianFirstMs": 787,
+   "medianMs": 922,
+   "p90Ms": 3173
+  },
+  "sparse": {
+   "n": 58,
+   "top1": 96.6,
+   "top3": 100,
+   "top6": 100,
+   "medianFirstMs": 751,
+   "medianMs": 863,
+   "p90Ms": 3289
+  },
+  "errors": 0,
+  "sides": [
+   "cloud"
+  ]
+ },
+ "rows": [
+  {
+   "id": "p001",
+   "style": "plain",
+   "target": "candle",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 72883,
+   "firstMs": 72764,
+   "words": [
+    "candle",
+    "wax light",
+    "taper",
+    "birthday candle",
+    "pillar candle",
+    "wick"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p002",
+   "style": "broken",
+   "target": "ghost",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 966,
+   "firstMs": 859,
+   "words": [
+    "ghost",
+    "spirit",
+    "specter",
+    "phantom",
+    "haunted",
+    "apparition"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p003",
+   "style": "sparse",
+   "target": "dinosaur",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1264,
+   "firstMs": 1149,
+   "words": [
+    "dinosaur",
+    "t-rex",
+    "prehistoric animal",
+    "reptile",
+    "fossil",
+    "monster"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p004",
+   "style": "plain",
+   "target": "tree",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 6258,
+   "firstMs": 6172,
+   "words": [
+    "tree",
+    "oak tree",
+    "maple tree",
+    "pine tree",
+    "large plant",
+    "wood"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p005",
+   "style": "broken",
+   "target": "pen",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 747,
+   "firstMs": 669,
+   "words": [
+    "ballpoint pen",
+    "pen",
+    "ink pen",
+    "click pen",
+    "writing tool",
+    "felt tip pen"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p006",
+   "style": "sparse",
+   "target": "scissors",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 958,
+   "firstMs": 767,
+   "words": [
+    "scissors",
+    "shears",
+    "clippers",
+    "snips",
+    "secateurs",
+    "cutting tool"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p007",
+   "style": "plain",
+   "target": "cane",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 839,
+   "firstMs": 758,
+   "words": [
+    "cane",
+    "walking stick",
+    "walker",
+    "crutch",
+    "walking frame",
+    "rollator"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p008",
+   "style": "broken",
+   "target": "comb",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 825,
+   "firstMs": 739,
+   "words": [
+    "comb",
+    "hair comb",
+    "pocket comb",
+    "plastic comb",
+    "hair tool",
+    "grooming tool"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p009",
+   "style": "sparse",
+   "target": "thermometer",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 8876,
+   "firstMs": 8774,
+   "words": [
+    "thermometer",
+    "body temperature",
+    "fever check",
+    "medical device",
+    "degree",
+    "health monitor"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p010",
+   "style": "plain",
+   "target": "well",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 27240,
+   "firstMs": 27072,
+   "words": [
+    "well",
+    "water well",
+    "artesian well",
+    "borehole",
+    "water source",
+    "spring"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p011",
+   "style": "broken",
+   "target": "grapes",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 734,
+   "firstMs": 636,
+   "words": [
+    "grapes",
+    "vineyard",
+    "wine",
+    "fruit",
+    "bunch of grapes",
+    "raisins"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p012",
+   "style": "sparse",
+   "target": "strawberries",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 729,
+   "firstMs": 632,
+   "words": [
+    "strawberry",
+    "strawberry ice cream",
+    "fruit salad",
+    "watermelon",
+    "berries",
+    "strawberry shortcake"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p013",
+   "style": "plain",
+   "target": "bread",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 849,
+   "firstMs": 752,
+   "words": [
+    "bread",
+    "loaf of bread",
+    "sliced bread",
+    "white bread",
+    "wheat bread",
+    "bakery bread"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p014",
+   "style": "broken",
+   "target": "football",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 851,
+   "firstMs": 684,
+   "words": [
+    "football",
+    "pigskin",
+    "american football",
+    "ball",
+    "sports ball",
+    "game ball"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p015",
+   "style": "sparse",
+   "target": "pig",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 796,
+   "firstMs": 707,
+   "words": [
+    "pig",
+    "swine",
+    "hog",
+    "farm animal",
+    "sow",
+    "boar"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p016",
+   "style": "plain",
+   "target": "apple",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 774,
+   "firstMs": 645,
+   "words": [
+    "apple",
+    "red apple",
+    "green apple",
+    "fruit",
+    "gala apple",
+    "granny smith"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p017",
+   "style": "broken",
+   "target": "hand",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 713,
+   "firstMs": 574,
+   "words": [
+    "hand",
+    "palm",
+    "fingers",
+    "fist",
+    "thumb",
+    "wrist"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p018",
+   "style": "sparse",
+   "target": "towel",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 725,
+   "firstMs": 610,
+   "words": [
+    "towel",
+    "bath mat",
+    "washcloth",
+    "robe",
+    "dryer",
+    "towel rack"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p019",
+   "style": "plain",
+   "target": "lion",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2466,
+   "firstMs": 2313,
+   "words": [
+    "lion",
+    "male lion",
+    "big cat",
+    "king of jungle",
+    "african lion",
+    "simba"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p020",
+   "style": "broken",
+   "target": "glass",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3125,
+   "firstMs": 2981,
+   "words": [
+    "glass",
+    "drinking glass",
+    "tumbler",
+    "wine glass",
+    "water glass",
+    "goblet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p021",
+   "style": "sparse",
+   "target": "fork",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1149,
+   "firstMs": 1046,
+   "words": [
+    "fork",
+    "cutlery",
+    "silverware",
+    "eating utensil",
+    "tableware",
+    "flatware"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p022",
+   "style": "plain",
+   "target": "plant",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 8525,
+   "firstMs": 8400,
+   "words": [
+    "houseplant",
+    "potted plant",
+    "fern",
+    "indoor plant",
+    "flower",
+    "succulent"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p023",
+   "style": "broken",
+   "target": "garage",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 12935,
+   "firstMs": 12803,
+   "words": [
+    "garage",
+    "carport",
+    "driveway",
+    "shed",
+    "parking spot",
+    "storage unit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p024",
+   "style": "sparse",
+   "target": "can",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 9922,
+   "firstMs": 9824,
+   "words": [
+    "can opener",
+    "tin opener",
+    "can",
+    "soup can",
+    "metal tin",
+    "kitchen tool"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p025",
+   "style": "plain",
+   "target": "table",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 727,
+   "firstMs": 635,
+   "words": [
+    "dining table",
+    "table",
+    "kitchen table",
+    "desk",
+    "counter",
+    "breakfast nook"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p026",
+   "style": "broken",
+   "target": "waterfall",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 815,
+   "firstMs": 679,
+   "words": [
+    "waterfall",
+    "niagara falls",
+    "cataract",
+    "cascade",
+    "rapids",
+    "drop"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p027",
+   "style": "sparse",
+   "target": "king",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3523,
+   "firstMs": 3403,
+   "words": [
+    "king",
+    "queen",
+    "monarch",
+    "royalty",
+    "kingdom",
+    "ruler"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p028",
+   "style": "plain",
+   "target": "boot",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 821,
+   "firstMs": 669,
+   "words": [
+    "boots",
+    "hiking boots",
+    "rain boots",
+    "wellies",
+    "work boots",
+    "footwear"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p029",
+   "style": "broken",
+   "target": "foot",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 929,
+   "firstMs": 794,
+   "words": [
+    "foot",
+    "feet",
+    "toes",
+    "sole",
+    "heel",
+    "instep"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p030",
+   "style": "sparse",
+   "target": "chair",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1113,
+   "firstMs": 959,
+   "words": [
+    "chair",
+    "dining chair",
+    "seat",
+    "stool",
+    "armchair",
+    "bench"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p031",
+   "style": "plain",
+   "target": "banana",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 799,
+   "firstMs": 660,
+   "words": [
+    "banana",
+    "fruit",
+    "yellow fruit",
+    "snack",
+    "peelable fruit",
+    "tropical fruit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p032",
+   "style": "broken",
+   "target": "ring",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1246,
+   "firstMs": 1145,
+   "words": [
+    "wedding ring",
+    "engagement ring",
+    "diamond ring",
+    "gold ring",
+    "band",
+    "jewelry"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p033",
+   "style": "sparse",
+   "target": "dice",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1349,
+   "firstMs": 1235,
+   "words": [
+    "dice",
+    "die",
+    "board game",
+    "yahtzee",
+    "craps",
+    "gaming"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p034",
+   "style": "plain",
+   "target": "calendar",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 779,
+   "firstMs": 671,
+   "words": [
+    "calendar",
+    "wall calendar",
+    "date book",
+    "planner",
+    "daily planner",
+    "schedule"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p035",
+   "style": "broken",
+   "target": "knife",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 807,
+   "firstMs": 660,
+   "words": [
+    "knife",
+    "table knife",
+    "steak knife",
+    "cutlery",
+    "silverware",
+    "kitchen knife"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p036",
+   "style": "sparse",
+   "target": "vest",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 738,
+   "firstMs": 637,
+   "words": [
+    "vest",
+    "waistcoat",
+    "cardigan",
+    "sweater vest",
+    "tank top",
+    "sleeveless shirt"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p037",
+   "style": "plain",
+   "target": "turkey",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 810,
+   "firstMs": 694,
+   "words": [
+    "turkey",
+    "thanksgiving bird",
+    "roast bird",
+    "poultry",
+    "big bird",
+    "holiday meal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p038",
+   "style": "broken",
+   "target": "rake",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 796,
+   "firstMs": 659,
+   "words": [
+    "rake",
+    "garden rake",
+    "leaf rake",
+    "yard tool",
+    "lawn rake",
+    "garden tool"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p039",
+   "style": "sparse",
+   "target": "balloon",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 860,
+   "firstMs": 751,
+   "words": [
+    "balloon",
+    "party balloon",
+    "helium balloon",
+    "rubber balloon",
+    "inflatable",
+    "decoration"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p040",
+   "style": "plain",
+   "target": "duck",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 871,
+   "firstMs": 754,
+   "words": [
+    "duck",
+    "mallard",
+    "waterfowl",
+    "drake",
+    "bird",
+    "pond bird"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p041",
+   "style": "broken",
+   "target": "fireplace",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 722,
+   "firstMs": 587,
+   "words": [
+    "fireplace",
+    "hearth",
+    "fire",
+    "mantel",
+    "wood stove",
+    "chimney"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p042",
+   "style": "sparse",
+   "target": "pineapple",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 751,
+   "firstMs": 623,
+   "words": [
+    "pineapple",
+    "tropical fruit",
+    "fruit",
+    "piña colada",
+    "yellow fruit",
+    "spiky fruit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p043",
+   "style": "plain",
+   "target": "fan",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 58859,
+   "firstMs": 58689,
+   "words": [
+    "fan",
+    "electric fan",
+    "ceiling fan",
+    "box fan",
+    "desk fan",
+    "cooling fan"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p044",
+   "style": "broken",
+   "target": "window",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 788,
+   "firstMs": 695,
+   "words": [
+    "window",
+    "pane",
+    "glass",
+    "casement",
+    "view",
+    "opening"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p045",
+   "style": "sparse",
+   "target": "lamp",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1015,
+   "firstMs": 852,
+   "words": [
+    "lamp",
+    "bedside lamp",
+    "light",
+    "nightstand lamp",
+    "reading light",
+    "table lamp"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p046",
+   "style": "plain",
+   "target": "drum",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 910,
+   "firstMs": 781,
+   "words": [
+    "drums",
+    "snare drum",
+    "drum kit",
+    "percussion",
+    "tom tom",
+    "bass drum"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p047",
+   "style": "broken",
+   "target": "skull",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 802,
+   "firstMs": 670,
+   "words": [
+    "skull",
+    "skeleton",
+    "bones",
+    "head bone",
+    "cranium",
+    "death head"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p048",
+   "style": "sparse",
+   "target": "bridge",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 906,
+   "firstMs": 754,
+   "words": [
+    "bridge",
+    "ferry",
+    "tunnel",
+    "ford",
+    "overpass",
+    "causeway"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p049",
+   "style": "plain",
+   "target": "eskimo",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 803,
+   "firstMs": 690,
+   "words": [
+    "inuit",
+    "eskimo",
+    "arctic person",
+    "native arctic",
+    "indigenous person",
+    "polar resident"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p050",
+   "style": "broken",
+   "target": "dog",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1026,
+   "firstMs": 886,
+   "words": [
+    "dog",
+    "puppy",
+    "pet dog",
+    "canine",
+    "hound",
+    "man's best friend"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p051",
+   "style": "sparse",
+   "target": "iron",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3259,
+   "firstMs": 3109,
+   "words": [
+    "iron",
+    "ironing board",
+    "steam iron",
+    "clothes steamer",
+    "press clothes",
+    "dry cleaner"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p052",
+   "style": "plain",
+   "target": "cheerleaders",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 913,
+   "firstMs": 800,
+   "words": [
+    "cheerleader",
+    "cheerleading",
+    "pep squad",
+    "dance team",
+    "spirit squad",
+    "cheer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p053",
+   "style": "broken",
+   "target": "snake",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 967,
+   "firstMs": 837,
+   "words": [
+    "snake",
+    "serpent",
+    "viper",
+    "cobra",
+    "rattlesnake",
+    "python"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p054",
+   "style": "sparse",
+   "target": "ambulance",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 765,
+   "firstMs": 665,
+   "words": [
+    "ambulance",
+    "paramedics",
+    "emergency room",
+    "siren",
+    "first responders"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p055",
+   "style": "plain",
+   "target": "carrot",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 835,
+   "firstMs": 693,
+   "words": [
+    "carrot",
+    "carrots",
+    "orange vegetable",
+    "root vegetable",
+    "garden vegetable",
+    "crunchy snack"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p056",
+   "style": "broken",
+   "target": "sailor",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 778,
+   "firstMs": 711,
+   "words": [
+    "sailor",
+    "seaman",
+    "navy officer",
+    "mariner",
+    "deckhand",
+    "naval officer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p057",
+   "style": "sparse",
+   "target": "book",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 924,
+   "firstMs": 764,
+   "words": [
+    "book",
+    "novel",
+    "reading material",
+    "hardcover",
+    "paperback",
+    "textbook"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p058",
+   "style": "plain",
+   "target": "bus",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 759,
+   "firstMs": 685,
+   "words": [
+    "bus",
+    "train",
+    "subway",
+    "taxi",
+    "tram",
+    "public transport"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p059",
+   "style": "broken",
+   "target": "map",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1195,
+   "firstMs": 1057,
+   "words": [
+    "map",
+    "road map",
+    "atlas",
+    "directions",
+    "street guide",
+    "navigation"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p060",
+   "style": "sparse",
+   "target": "squirrel",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 740,
+   "firstMs": 660,
+   "words": [
+    "squirrel",
+    "chipmunk",
+    "acorn",
+    "rodent",
+    "tree climber",
+    "forest animal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p061",
+   "style": "plain",
+   "target": "microscope",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 846,
+   "firstMs": 702,
+   "words": [
+    "microscope",
+    "magnifying glass",
+    "lens",
+    "telescope",
+    "optics",
+    "viewer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p062",
+   "style": "broken",
+   "target": "bowl",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 846,
+   "firstMs": 732,
+   "words": [
+    "bowl",
+    "soup bowl",
+    "cereal bowl",
+    "dish",
+    "container",
+    "basin"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p063",
+   "style": "sparse",
+   "target": "van",
+   "rank": 1,
+   "side": "cloud",
+   "ms": 855,
+   "firstMs": 685,
+   "words": [
+    "delivery truck",
+    "van",
+    "mail truck",
+    "moving truck",
+    "parcel van",
+    "lorry"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p064",
+   "style": "plain",
+   "target": "helicopter",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 32292,
+   "firstMs": 32179,
+   "words": [
+    "helicopter",
+    "chopper",
+    "whirlybird",
+    "rotorcraft",
+    "air ambulance",
+    "military helicopter"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p065",
+   "style": "broken",
+   "target": "bottle",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 745,
+   "firstMs": 639,
+   "words": [
+    "wine bottle",
+    "bottle",
+    "decanter",
+    "carafe",
+    "glass bottle",
+    "wine glass"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p066",
+   "style": "sparse",
+   "target": "scarf",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 811,
+   "firstMs": 664,
+   "words": [
+    "scarf",
+    "sweater",
+    "turtleneck",
+    "jumper",
+    "pullover",
+    "knitwear"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p067",
+   "style": "plain",
+   "target": "ball",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 789,
+   "firstMs": 651,
+   "words": [
+    "ball",
+    "soccer ball",
+    "basketball",
+    "sports ball",
+    "toy ball",
+    "football"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p068",
+   "style": "broken",
+   "target": "frog",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2123,
+   "firstMs": 2026,
+   "words": [
+    "frog",
+    "toad",
+    "bullfrog",
+    "amphibian",
+    "tree frog",
+    "pond frog"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p069",
+   "style": "sparse",
+   "target": "cow",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3289,
+   "firstMs": 3141,
+   "words": [
+    "cow",
+    "dairy farm",
+    "milk",
+    "cattle",
+    "farm animal",
+    "pasture"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p070",
+   "style": "plain",
+   "target": "beard",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2727,
+   "firstMs": 2639,
+   "words": [
+    "beard",
+    "facial hair",
+    "stubble",
+    "goatee",
+    "scruff",
+    "chin hair"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p071",
+   "style": "broken",
+   "target": "glove",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1128,
+   "firstMs": 952,
+   "words": [
+    "gloves",
+    "mittens",
+    "winter gloves",
+    "leather gloves",
+    "hand warmers",
+    "gauntlets"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p072",
+   "style": "sparse",
+   "target": "owl",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 837,
+   "firstMs": 708,
+   "words": [
+    "owl",
+    "great horned owl",
+    "barn owl",
+    "nocturnal bird",
+    "wise bird",
+    "screech owl"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p073",
+   "style": "plain",
+   "target": "pipe",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1064,
+   "firstMs": 915,
+   "words": [
+    "pipe",
+    "tobacco pipe",
+    "smoking pipe",
+    "briar pipe",
+    "long pipe",
+    "wooden pipe"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p074",
+   "style": "broken",
+   "target": "scale",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1655,
+   "firstMs": 1547,
+   "words": [
+    "bathroom scale",
+    "scale",
+    "weight scale",
+    "weighing machine",
+    "body scale",
+    "weighing scale"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p075",
+   "style": "sparse",
+   "target": "tent",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2227,
+   "firstMs": 2083,
+   "words": [
+    "tent",
+    "camping tent",
+    "shelter",
+    "canopy",
+    "tarp",
+    "camping gear"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p076",
+   "style": "plain",
+   "target": "flashlight",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2323,
+   "firstMs": 2195,
+   "words": [
+    "flashlight",
+    "torch",
+    "lantern",
+    "headlamp",
+    "spotlight",
+    "emergency light"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p077",
+   "style": "broken",
+   "target": "camel",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3173,
+   "firstMs": 3003,
+   "words": [
+    "camel",
+    "dromedary",
+    "bactrian camel",
+    "desert animal",
+    "humped animal",
+    "camelid"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p078",
+   "style": "sparse",
+   "target": "goat",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 4121,
+   "firstMs": 4024,
+   "words": [
+    "goat",
+    "billy goat",
+    "farm animal",
+    "kid",
+    "nanny goat",
+    "livestock"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p079",
+   "style": "plain",
+   "target": "fish",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3404,
+   "firstMs": 3314,
+   "words": [
+    "fish",
+    "goldfish",
+    "trout",
+    "salmon",
+    "sea creature",
+    "aquatic animal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p080",
+   "style": "broken",
+   "target": "cannon",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 4000,
+   "firstMs": 3842,
+   "words": [
+    "cannon",
+    "artillery",
+    "mortar",
+    "field gun",
+    "howitzer",
+    "siege engine"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p081",
+   "style": "sparse",
+   "target": "shoe",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 4301,
+   "firstMs": 4181,
+   "words": [
+    "shoe",
+    "sneaker",
+    "boot",
+    "tennis shoe",
+    "footwear",
+    "trainer"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p082",
+   "style": "plain",
+   "target": "sandwich",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 4452,
+   "firstMs": 4317,
+   "words": [
+    "sandwich",
+    "lunch",
+    "ham sandwich",
+    "snack",
+    "meal",
+    "sub"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p083",
+   "style": "broken",
+   "target": "spider",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2090,
+   "firstMs": 1980,
+   "words": [
+    "spider",
+    "house spider",
+    "arachnid",
+    "cobweb",
+    "creepy crawly",
+    "bug"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p084",
+   "style": "sparse",
+   "target": "belt",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1149,
+   "firstMs": 1040,
+   "words": [
+    "belt",
+    "waistband",
+    "leather strap",
+    "buckle",
+    "sash",
+    "cinch"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p085",
+   "style": "plain",
+   "target": "toilet",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 649,
+   "firstMs": 547,
+   "words": [
+    "toilet",
+    "commode",
+    "loo",
+    "restroom",
+    "bathroom",
+    "water closet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p086",
+   "style": "broken",
+   "target": "wagon",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 855,
+   "firstMs": 718,
+   "words": [
+    "wagon",
+    "red wagon",
+    "toy wagon",
+    "pull toy",
+    "cart",
+    "little red wagon"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p087",
+   "style": "sparse",
+   "target": "ruler",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 736,
+   "firstMs": 640,
+   "words": [
+    "ruler",
+    "measuring tape",
+    "yardstick",
+    "scale",
+    "straight edge",
+    "meter stick"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p088",
+   "style": "plain",
+   "target": "tractor",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 817,
+   "firstMs": 674,
+   "words": [
+    "tractor",
+    "farm vehicle",
+    "plough",
+    "heavy machinery",
+    "towing vehicle",
+    "agricultural equipment"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p089",
+   "style": "broken",
+   "target": "queen",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 781,
+   "firstMs": 683,
+   "words": [
+    "queen",
+    "monarch",
+    "royal",
+    "princess",
+    "sovereign",
+    "ruler"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p090",
+   "style": "sparse",
+   "target": "train",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 852,
+   "firstMs": 738,
+   "words": [
+    "train",
+    "railway",
+    "subway",
+    "locomotive",
+    "metro",
+    "tram"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p091",
+   "style": "plain",
+   "target": "church",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1057,
+   "firstMs": 954,
+   "words": [
+    "church",
+    "place of worship",
+    "chapel",
+    "cathedral",
+    "house of god",
+    "parish"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p092",
+   "style": "broken",
+   "target": "anchor",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 745,
+   "firstMs": 656,
+   "words": [
+    "anchor",
+    "boat anchor",
+    "heavy hook",
+    "mooring",
+    "ship anchor",
+    "docking gear"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p093",
+   "style": "sparse",
+   "target": "whistle",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 780,
+   "firstMs": 699,
+   "words": [
+    "whistle",
+    "sports whistle",
+    "referee whistle",
+    "game whistle",
+    "metal whistle",
+    "loud whistle"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p094",
+   "style": "plain",
+   "target": "corn",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 813,
+   "firstMs": 644,
+   "words": [
+    "corn",
+    "sweet corn",
+    "maize",
+    "corn on the cob",
+    "vegetable",
+    "yellow corn"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p095",
+   "style": "broken",
+   "target": "pyramid",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 17627,
+   "firstMs": 17551,
+   "words": [
+    "pyramids",
+    "great pyramid",
+    "tomb",
+    "sphinx",
+    "ancient ruins",
+    "desert monument"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p096",
+   "style": "sparse",
+   "target": "typewriter",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 747,
+   "firstMs": 660,
+   "words": [
+    "typewriter",
+    "piano",
+    "music box",
+    "cash register",
+    "telegram",
+    "computer keyboard"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p097",
+   "style": "plain",
+   "target": "rope",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 821,
+   "firstMs": 724,
+   "words": [
+    "rope",
+    "climbing rope",
+    "twine",
+    "cord",
+    "string",
+    "cable"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p098",
+   "style": "broken",
+   "target": "basket",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 900,
+   "firstMs": 734,
+   "words": [
+    "basket",
+    "picnic basket",
+    "wicker basket",
+    "tote bag",
+    "hamper",
+    "straw bag"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p099",
+   "style": "sparse",
+   "target": "letter",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 819,
+   "firstMs": 685,
+   "words": [
+    "letter",
+    "mail",
+    "postcard",
+    "package",
+    "post office",
+    "parcel"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p100",
+   "style": "plain",
+   "target": "nose",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1121,
+   "firstMs": 943,
+   "words": [
+    "nose",
+    "nostrils",
+    "bridge of nose",
+    "nasal passage",
+    "snout",
+    "scent organ"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p101",
+   "style": "broken",
+   "target": "chimney",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 940,
+   "firstMs": 840,
+   "words": [
+    "chimney",
+    "fireplace",
+    "flue",
+    "hearth",
+    "smoke stack",
+    "vent"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p102",
+   "style": "sparse",
+   "target": "horse",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 857,
+   "firstMs": 693,
+   "words": [
+    "horse",
+    "pony",
+    "stallion",
+    "equestrian",
+    "mare",
+    "colt"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p103",
+   "style": "plain",
+   "target": "key",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 742,
+   "firstMs": 632,
+   "words": [
+    "key",
+    "door key",
+    "house key",
+    "metal key",
+    "lock key",
+    "keychain"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p104",
+   "style": "broken",
+   "target": "fireman",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 701,
+   "firstMs": 601,
+   "words": [
+    "firefighter",
+    "fire truck",
+    "fire station",
+    "fire engine",
+    "fire department",
+    "fire"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p105",
+   "style": "sparse",
+   "target": "cross",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 927,
+   "firstMs": 789,
+   "words": [
+    "cross",
+    "crucifix",
+    "christianity",
+    "church altar",
+    "religious symbol",
+    "good friday"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p106",
+   "style": "plain",
+   "target": "crutches",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 714,
+   "firstMs": 596,
+   "words": [
+    "crutches",
+    "walking aid",
+    "arm supports",
+    "mobility aid",
+    "medical crutches",
+    "support sticks"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p107",
+   "style": "broken",
+   "target": "bone",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 782,
+   "firstMs": 644,
+   "words": [
+    "bone",
+    "teeth",
+    "skeleton",
+    "skull",
+    "ribs",
+    "jaw"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p108",
+   "style": "sparse",
+   "target": "cat",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 789,
+   "firstMs": 711,
+   "words": [
+    "cat",
+    "kitten",
+    "kitty",
+    "feline",
+    "house cat",
+    "pet cat"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p109",
+   "style": "plain",
+   "target": "kitchen",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 894,
+   "firstMs": 759,
+   "words": [
+    "kitchen",
+    "cooking area",
+    "cookhouse",
+    "galley",
+    "scullery",
+    "food prep room"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p110",
+   "style": "broken",
+   "target": "dragon",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1021,
+   "firstMs": 886,
+   "words": [
+    "dragon",
+    "mythical creature",
+    "fire breathing dragon",
+    "fantasy monster",
+    "wyvern",
+    "fictional beast"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p111",
+   "style": "sparse",
+   "target": "saddle",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 735,
+   "firstMs": 609,
+   "words": [
+    "saddle",
+    "horse tack",
+    "riding gear",
+    "equestrian equipment",
+    "seat",
+    "bridle"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p112",
+   "style": "plain",
+   "target": "pie",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1919,
+   "firstMs": 1801,
+   "words": [
+    "pie",
+    "tart",
+    "pastry",
+    "quiche",
+    "turnover",
+    "pot pie"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p113",
+   "style": "broken",
+   "target": "snail",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 992,
+   "firstMs": 851,
+   "words": [
+    "snail",
+    "slug",
+    "garden snail",
+    "shell",
+    "gastropod",
+    "land snail"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p114",
+   "style": "sparse",
+   "target": "pirate",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 806,
+   "firstMs": 643,
+   "words": [
+    "pirate",
+    "treasure chest",
+    "eye patch",
+    "ship",
+    "parrot",
+    "captain"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p115",
+   "style": "plain",
+   "target": "clock",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1320,
+   "firstMs": 1181,
+   "words": [
+    "clock",
+    "watch",
+    "wall clock",
+    "timepiece",
+    "alarm clock",
+    "wrist watch"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p116",
+   "style": "broken",
+   "target": "pumpkin",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1237,
+   "firstMs": 1111,
+   "words": [
+    "pumpkin",
+    "jack o lantern",
+    "carved pumpkin",
+    "halloween gourd",
+    "orange squash",
+    "lantern"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p117",
+   "style": "sparse",
+   "target": "sock",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 948,
+   "firstMs": 766,
+   "words": [
+    "sock",
+    "stocking",
+    "wool sock",
+    "footwear",
+    "slipper",
+    "bootie"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p118",
+   "style": "plain",
+   "target": "closet",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 833,
+   "firstMs": 694,
+   "words": [
+    "closet",
+    "wardrobe",
+    "cupboard",
+    "coat closet",
+    "walk in closet",
+    "armoire"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p119",
+   "style": "broken",
+   "target": "hair",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 820,
+   "firstMs": 664,
+   "words": [
+    "hair",
+    "haircut",
+    "hairstyle",
+    "locks",
+    "mane",
+    "tresses"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p120",
+   "style": "sparse",
+   "target": "baby",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1091,
+   "firstMs": 980,
+   "words": [
+    "baby",
+    "infant",
+    "newborn",
+    "toddler",
+    "child",
+    "neonate"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p121",
+   "style": "plain",
+   "target": "bat",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1365,
+   "firstMs": 1254,
+   "words": [
+    "bat",
+    "fruit bat",
+    "vampire bat",
+    "flying mammal",
+    "nocturnal animal",
+    "cave dweller"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p122",
+   "style": "broken",
+   "target": "leaf",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 27237,
+   "firstMs": 27106,
+   "words": [
+    "leaf",
+    "leaves",
+    "autumn leaf",
+    "foliage",
+    "tree leaf",
+    "dead leaf"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p123",
+   "style": "sparse",
+   "target": "slippers",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 873,
+   "firstMs": 772,
+   "words": [
+    "slippers",
+    "house shoes",
+    "socks",
+    "moccasins",
+    "slides",
+    "fluffy slippers"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p124",
+   "style": "plain",
+   "target": "mountain",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 838,
+   "firstMs": 695,
+   "words": [
+    "mountain",
+    "peak",
+    "mount",
+    "summit",
+    "high mountain",
+    "large mountain"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p125",
+   "style": "broken",
+   "target": "sun",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 736,
+   "firstMs": 608,
+   "words": [
+    "sun",
+    "sunlight",
+    "daytime",
+    "solar",
+    "sunshine",
+    "star"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p126",
+   "style": "sparse",
+   "target": "mustache",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 736,
+   "firstMs": 644,
+   "words": [
+    "mustache",
+    "facial hair",
+    "beard",
+    "stubble",
+    "goatee",
+    "grooming"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p127",
+   "style": "plain",
+   "target": "ear",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 791,
+   "firstMs": 685,
+   "words": [
+    "ear",
+    "ears",
+    "hearing",
+    "outer ear",
+    "pinna",
+    "auditory canal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p128",
+   "style": "broken",
+   "target": "door",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 935,
+   "firstMs": 788,
+   "words": [
+    "door",
+    "front door",
+    "house entrance",
+    "key",
+    "doorknob",
+    "lock"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p129",
+   "style": "sparse",
+   "target": "house",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 721,
+   "firstMs": 626,
+   "words": [
+    "house",
+    "home",
+    "apartment",
+    "residence",
+    "dwelling",
+    "family home"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p130",
+   "style": "plain",
+   "target": "nail",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 775,
+   "firstMs": 646,
+   "words": [
+    "nail",
+    "tack",
+    "brad",
+    "spike",
+    "fastener",
+    "metal pin"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p131",
+   "style": "broken",
+   "target": "binoculars",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 811,
+   "firstMs": 726,
+   "words": [
+    "binoculars",
+    "field glasses",
+    "telescope",
+    "spyglass",
+    "opera glasses",
+    "monocular"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p132",
+   "style": "sparse",
+   "target": "celery",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 693,
+   "firstMs": 579,
+   "words": [
+    "celery",
+    "lettuce",
+    "cucumber",
+    "asparagus",
+    "broccoli",
+    "salad greens"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p133",
+   "style": "plain",
+   "target": "vase",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 784,
+   "firstMs": 674,
+   "words": [
+    "vase",
+    "flower pot",
+    "pitcher",
+    "urn",
+    "jug",
+    "centerpiece"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p134",
+   "style": "broken",
+   "target": "pencil",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 766,
+   "firstMs": 643,
+   "words": [
+    "pencil",
+    "lead pencil",
+    "graphite pencil",
+    "drawing pencil",
+    "writing tool",
+    "number two pencil"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p135",
+   "style": "sparse",
+   "target": "elephant",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 862,
+   "firstMs": 731,
+   "words": [
+    "elephant",
+    "zoo animal",
+    "jumbo",
+    "wild animal",
+    "mammal",
+    "safari animal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p136",
+   "style": "plain",
+   "target": "hose",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 791,
+   "firstMs": 685,
+   "words": [
+    "garden hose",
+    "hose",
+    "water hose",
+    "sprinkler hose",
+    "rubber hose",
+    "soaker hose"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p137",
+   "style": "broken",
+   "target": "bench",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1050,
+   "firstMs": 933,
+   "words": [
+    "park bench",
+    "bench",
+    "wooden bench",
+    "garden seat",
+    "outdoor bench",
+    "public seat"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p138",
+   "style": "sparse",
+   "target": "zebra",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 863,
+   "firstMs": 721,
+   "words": [
+    "zebra",
+    "wild animal",
+    "safari animal",
+    "striped horse",
+    "equine",
+    "savanna animal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p139",
+   "style": "plain",
+   "target": "man",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 952,
+   "firstMs": 867,
+   "words": [
+    "man",
+    "guy",
+    "male",
+    "gentleman",
+    "father",
+    "husband"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p140",
+   "style": "broken",
+   "target": "seal",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1002,
+   "firstMs": 902,
+   "words": [
+    "seal",
+    "sea lion",
+    "walrus",
+    "circus animal",
+    "aquatic mammal",
+    "performing seal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p141",
+   "style": "sparse",
+   "target": "wig",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 827,
+   "firstMs": 713,
+   "words": [
+    "wig",
+    "toupee",
+    "hairpiece",
+    "extensions",
+    "hair transplant",
+    "fake hair"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p142",
+   "style": "plain",
+   "target": "necklace",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 742,
+   "firstMs": 656,
+   "words": [
+    "necklace",
+    "pendant",
+    "chain",
+    "choker",
+    "jewellery",
+    "locket"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p143",
+   "style": "broken",
+   "target": "desk",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 922,
+   "firstMs": 787,
+   "words": [
+    "desk",
+    "office desk",
+    "workstation",
+    "writing table",
+    "computer desk",
+    "study table"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p144",
+   "style": "sparse",
+   "target": "bell",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1177,
+   "firstMs": 1068,
+   "words": [
+    "bell",
+    "church bell",
+    "chime",
+    "gong",
+    "tower bell",
+    "alarm"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p145",
+   "style": "plain",
+   "target": "star",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 884,
+   "firstMs": 729,
+   "words": [
+    "star",
+    "night sky",
+    "twinkling star",
+    "constellation",
+    "celestial body",
+    "distant sun"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p146",
+   "style": "broken",
+   "target": "hammer",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 781,
+   "firstMs": 617,
+   "words": [
+    "hammer",
+    "claw hammer",
+    "mallet",
+    "tool",
+    "sledgehammer",
+    "carpentry tool"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p147",
+   "style": "sparse",
+   "target": "pillow",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 789,
+   "firstMs": 619,
+   "words": [
+    "pillow",
+    "cushion",
+    "bedding",
+    "headrest",
+    "feather pillow",
+    "bolster"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p148",
+   "style": "plain",
+   "target": "spoon",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 759,
+   "firstMs": 664,
+   "words": [
+    "spoon",
+    "teaspoon",
+    "silverware",
+    "cutlery",
+    "utensil",
+    "soup spoon"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p149",
+   "style": "broken",
+   "target": "zipper",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 823,
+   "firstMs": 689,
+   "words": [
+    "zipper",
+    "zip",
+    "fastener",
+    "jacket closure",
+    "slide fastener",
+    "zip up"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p150",
+   "style": "sparse",
+   "target": "top",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 837,
+   "firstMs": 749,
+   "words": [
+    "top",
+    "spinner",
+    "fidget spinner",
+    "spinning top",
+    "gyroscope",
+    "dreidel"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p151",
+   "style": "plain",
+   "target": "flower",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 903,
+   "firstMs": 801,
+   "words": [
+    "flower",
+    "rose",
+    "blossom",
+    "bouquet",
+    "petal",
+    "garden plant"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p152",
+   "style": "broken",
+   "target": "kite",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 928,
+   "firstMs": 757,
+   "words": [
+    "kite",
+    "toy kite",
+    "flying kite",
+    "paper kite",
+    "string toy",
+    "sky toy"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p153",
+   "style": "sparse",
+   "target": "suit",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1214,
+   "firstMs": 1111,
+   "words": [
+    "suit",
+    "tuxedo",
+    "blazer",
+    "formal wear",
+    "dress clothes",
+    "outfit"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p154",
+   "style": "plain",
+   "target": "cake",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1408,
+   "firstMs": 1300,
+   "words": [
+    "birthday cake",
+    "cake",
+    "cupcake",
+    "dessert",
+    "pastry",
+    "gateau"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p155",
+   "style": "broken",
+   "target": "hat",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1233,
+   "firstMs": 1128,
+   "words": [
+    "hat",
+    "fedora",
+    "cap",
+    "cowboy hat",
+    "sun hat",
+    "panama hat"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p156",
+   "style": "sparse",
+   "target": "crown",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1022,
+   "firstMs": 919,
+   "words": [
+    "crown",
+    "tiara",
+    "diadem",
+    "royal headpiece",
+    "coronet",
+    "circlet"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p157",
+   "style": "plain",
+   "target": "piano",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 763,
+   "firstMs": 676,
+   "words": [
+    "piano",
+    "keyboard",
+    "grand piano",
+    "synthesizer",
+    "electric piano",
+    "organ"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p158",
+   "style": "broken",
+   "target": "stethoscope",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 898,
+   "firstMs": 792,
+   "words": [
+    "stethoscope",
+    "medical tool",
+    "heart monitor",
+    "doctor gear",
+    "listening device",
+    "chest scope"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p159",
+   "style": "sparse",
+   "target": "bride",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2052,
+   "firstMs": 1932,
+   "words": [
+    "bride",
+    "wedding gown",
+    "marriage",
+    "ceremony",
+    "wedding dress",
+    "matrimony"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p160",
+   "style": "plain",
+   "target": "butterfly",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2684,
+   "firstMs": 2553,
+   "words": [
+    "butterfly",
+    "monarch",
+    "moth",
+    "flying insect",
+    "winged creature",
+    "caterpillar"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p161",
+   "style": "broken",
+   "target": "heart",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 2294,
+   "firstMs": 2179,
+   "words": [
+    "heart",
+    "cardiac muscle",
+    "pulse",
+    "ticker",
+    "blood pump",
+    "cardiovascular system"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p162",
+   "style": "sparse",
+   "target": "skis",
+   "rank": 2,
+   "side": "cloud",
+   "ms": 3224,
+   "firstMs": 3094,
+   "words": [
+    "skiing",
+    "snowboard",
+    "skis",
+    "ski resort",
+    "winter sports",
+    "downhill skiing"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p163",
+   "style": "plain",
+   "target": "clown",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 3463,
+   "firstMs": 3366,
+   "words": [
+    "clown",
+    "jester",
+    "circus performer",
+    "comedian",
+    "entertainer",
+    "buffoon"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p164",
+   "style": "broken",
+   "target": "volcano",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 822,
+   "firstMs": 698,
+   "words": [
+    "volcano",
+    "lava",
+    "eruption",
+    "mount vesuvius",
+    "magma",
+    "mountain"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p165",
+   "style": "sparse",
+   "target": "pear",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1662,
+   "firstMs": 1550,
+   "words": [
+    "pear",
+    "avocado",
+    "lime",
+    "green apple",
+    "kiwi",
+    "guava"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p166",
+   "style": "plain",
+   "target": "octopus",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 898,
+   "firstMs": 718,
+   "words": [
+    "octopus",
+    "squid",
+    "sea creature",
+    "cephalopod",
+    "tentacles",
+    "marine animal"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p167",
+   "style": "broken",
+   "target": "saw",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 895,
+   "firstMs": 747,
+   "words": [
+    "saw",
+    "handsaw",
+    "hacksaw",
+    "wood saw",
+    "tool",
+    "carpentry tool"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p168",
+   "style": "sparse",
+   "target": "camera",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1141,
+   "firstMs": 1041,
+   "words": [
+    "camera",
+    "photograph",
+    "taking pictures",
+    "shutter",
+    "snapshot",
+    "digital camera"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p169",
+   "style": "plain",
+   "target": "bed",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1531,
+   "firstMs": 1375,
+   "words": [
+    "bed",
+    "mattress",
+    "bedroom",
+    "cot",
+    "bunk bed",
+    "sleeping bag"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p170",
+   "style": "broken",
+   "target": "harp",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 127982,
+   "firstMs": 127857,
+   "words": [
+    "harp",
+    "lyre",
+    "cello",
+    "double bass",
+    "upright bass",
+    "lute"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p171",
+   "style": "sparse",
+   "target": "broom",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 831,
+   "firstMs": 667,
+   "words": [
+    "broom",
+    "dustpan",
+    "brush",
+    "sweeper",
+    "cleaning tool",
+    "mop"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p172",
+   "style": "plain",
+   "target": "nurse",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 1071,
+   "firstMs": 920,
+   "words": [
+    "nurse",
+    "registered nurse",
+    "nursing assistant",
+    "healthcare worker",
+    "medical staff",
+    "hospital aide"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p173",
+   "style": "broken",
+   "target": "eye",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 926,
+   "firstMs": 821,
+   "words": [
+    "eyes",
+    "eyeballs",
+    "vision",
+    "sight",
+    "peepers",
+    "eye color"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p174",
+   "style": "sparse",
+   "target": "cowboy",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 819,
+   "firstMs": 676,
+   "words": [
+    "cowboy",
+    "ranch",
+    "rodeo",
+    "western",
+    "cattle rancher",
+    "cowhand"
+   ],
+   "blocked": null
+  },
+  {
+   "id": "p175",
+   "style": "plain",
+   "target": "monkey",
+   "rank": 0,
+   "side": "cloud",
+   "ms": 841,
+   "firstMs": 731,
+   "words": [
+    "monkey",
+    "chimp",
+    "primate",
+    "ape",
+    "baboon",
+    "gorilla"
+   ],
+   "blocked": null
+  }
+ ]
+}

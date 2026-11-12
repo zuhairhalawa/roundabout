@@ -175,6 +175,33 @@ Within the last row, the 7 time words (yesterday, appointment, tomorrow, weekend
 
 </details>
 
+## The backup cloud model
+
+A cloud request that has not started answering after a second and a half is also sent to a second cloud model, and the first answer is used (see "How a request is routed" in the README). So a cloud answer can come from the backup model, `gemini-3.1-flash-lite`. It was measured on the same words, one clue per word, with the same prompt. During these runs a request was never asked twice, so each row is one model alone.
+
+| Word set | Cloud model | Tries | Right word first | In the first three | Among the six | First word shown | All words shown | Slowest tenth |
+|---|---|---|---|---|---|---|---|---|
+| Philadelphia Naming Test nouns | `gemini-3.5-flash-lite` | 175 | 99.4% | 100.0% | 100.0% | 1.1 s | 1.2 s | 3.2 s |
+| Philadelphia Naming Test nouns | `gemini-3.1-flash-lite` | 175 | 98.9% | 100.0% | 100.0% | 0.8 s | 0.9 s | 3.5 s |
+| Everyday words | `gemini-3.5-flash-lite` | 80 | 82.5% | 92.5% | 95.0% | 1.8 s | 1.9 s | 4.9 s |
+| Everyday words | `gemini-3.1-flash-lite` | 80 | 78.8% | 90.0% | 91.3% | 0.7 s | 0.8 s | 4.0 s |
+
+The backup was measured on 2026-11-12, at a different time of day from the main model, so the times in this table are not a like-for-like comparison of speed.
+
+<details><summary>The backup model's 7 misses: Everyday words</summary>
+
+| Word | Clue style | Offered instead |
+|---|---|---|
+| forget | sparse | forgetting, memory loss, blank mind, brain fog, losing track, mental lapse |
+| complain | broken | complaint, bad service, refund, customer service, feedback, restaurant issue |
+| chew | sparse | teeth, molars, jaw, mouth, dentures, chewing |
+| shave | broken | shaving cream, shaving, razor, grooming, beard, bathroom |
+| celebrate | sparse | celebration, toast, party, anniversary, wedding, birthday |
+| worried | broken | anxiety, worry, stress, nervousness, unease, dread |
+| relieved | broken | relief, good news, peace of mind, all clear, reassurance, calm |
+
+</details>
+
 ## How the answer format and the wording were chosen
 
 These are not test results. They are the measurements that guided the build, shown so the choices can be checked.

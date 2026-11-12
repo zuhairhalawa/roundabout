@@ -81,6 +81,8 @@ The second set shows where the small model stops. Among the six tiles, on the de
 
 So the device is the right first answer for things and places: nearly as accurate as the cloud, a little faster to the first tile, free, private and offline. For actions and feelings the cloud is clearly better, and the routing rule above sends those there first. That rule came from this measurement, not the other way round.
 
+The cloud rows above are the main cloud model. The backup cloud model, which answers when the main one is slow or out of quota, was measured on the same words: on the nouns the right word came first in 98.9% of 175 tries and was among the first three every time; on the everyday words it came first in 78.8% of 80 tries and was among the six tiles in 91.3%.
+
 These numbers say how often a model finds a word from a written clue. They do not say whether Roundabout helps a person with aphasia in a real conversation; that needs testing with people who have aphasia, which has not been done.
 
 ## Fast enough for a conversation
