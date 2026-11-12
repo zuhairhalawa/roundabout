@@ -246,7 +246,7 @@ describe('remote settings', () => {
   });
 });
 
-import { attemptOrder, hedge } from '../src/core/hedge';
+import { attemptOrder, hedge, restAfterQuota } from '../src/core/hedge';
 
 describe('asking again when an answer is slow to start', () => {
   const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
@@ -314,6 +314,15 @@ describe('asking again when an answer is slow to start', () => {
     expect(attemptOrder('main', ['b1'], () => true)).toEqual(['main']);
     expect(attemptOrder('main', ['b1', 'b2'], () => false, 'b2')).toEqual(['b2', 'main', 'b1']);
     expect(attemptOrder('main', ['b1', 'b2'], (m) => m === 'b2', 'b2')).toEqual(['main', 'b1']);
+  });
+
+  it('rests a model for as long as its "quota used up" reply asks, within limits', () => {
+    expect(restAfterQuota('Generate content requests per minute limit exceeded on Free Tier.\nPlease retry in 50.854541844s.')).toBe(50_855);
+    expect(restAfterQuota('requests per day limit exceeded on Free Tier.\nPlease retry in 12h35m27.048490716s.')).toBe(30 * 60_000);
+    expect(restAfterQuota('Please retry in 4m10s.')).toBe(250_000);
+    expect(restAfterQuota('Please retry in 2.5s.')).toBe(10_000);
+    expect(restAfterQuota('Please retry in 250ms.')).toBe(60_000);
+    expect(restAfterQuota('[429] RESOURCE_EXHAUSTED')).toBe(60_000);
   });
 
   it('with timed repeats off, a slow attempt is not asked again, but a failed one is still replaced', async () => {

@@ -2,7 +2,7 @@
 // sentence, write practice hints. Each job asks route() where to run, calls the hybrid model,
 // and reports which side answered and how long it took.
 import { cloudConfigured, model, serial, settings, StaleError, type Kind } from './ai';
-import { attemptOrder, hedge } from './hedge';
+import { attemptOrder, hedge, restAfterQuota } from './hedge';
 import { fill, PACK } from './pack';
 import { applySaved, matchSaved, mergeGuesses, parseGuesses, parsePartialGuesses, wordKey, type Guess, type SavedWord } from './guess';
 import { pictureFor } from './pictures';
@@ -82,7 +82,7 @@ async function stream(kind: Kind, mode: Mode, request: Request, t0: number, onTe
   return { text, side, ms, firstMs: firstMs || ms };
 }
 
-/** A cloud model that has just said its quota is used up is left alone for a minute. */
+/** A cloud model that has just said its quota is used up is left alone for as long as its reply asks (see restAfterQuota). */
 const resting = new Map<string, number>();
 /** True when every cloud model is resting: only then is the cloud as a whole paused. */
 const noCloudModelAwake = () => [settings.cloudModel, ...settings.cloudBackupModels.split(',')].every((m) => !m || Date.now() < (resting.get(m) ?? 0));
@@ -104,20 +104,23 @@ const QUICK_MS = 3 * 60_000;
 async function cloudStream(kind: Kind, mode: Mode, request: Request, t0: number, onText: OnText | undefined, stopFirst: boolean): Promise<Omit<Reply, 'fellBack'>> {
   const now = Date.now();
   const order = attemptOrder(settings.cloudModel, settings.cloudBackupModels.split(','), (m) => now < (resting.get(m) ?? 0), quick && now < quick.until ? quick.model : '');
+  // Pictures for the tiles are a help, not a need: they ask a backup model first, which keeps
+  // the main model's daily quota for finding words.
+  if (kind === 'picture' && order.length > 1 && order[0] === settings.cloudModel) order.push(order.shift()!);
   const stops: Array<AbortController | null> = [];
   const { value, attempt } = await hedge((i, started) => {
     const cloudModel = order[i % order.length];
     const stop = i > 0 || stopFirst ? new AbortController() : null;
     stops[i] = stop;
     return stream(kind, i ? 'only_in_cloud' : mode, request, t0, (text, side) => { if (started()) onText?.(text, side); }, { cloudModel, signal: stop?.signal })
-      .catch((e) => { if (isQuotaError(e)) resting.set(cloudModel, Date.now() + 60_000); throw e; });
+      .catch((e) => { if (isQuotaError(e)) resting.set(cloudModel, Date.now() + restAfterQuota(String((e as Error)?.message ?? e))); throw e; });
     // Pictures for the tiles are a help, not a need: a slow request for them is not asked
     // again. If it fails (a model over its quota), one other model is tried.
   }, kind === 'picture' ? 0 : settings.cloudHedgeMs, settings.cloudHedgeMs > 0 ? (kind === 'picture' ? 2 : 4) : 1);
   stops.forEach((stop, i) => { if (i !== attempt) stop?.abort(); });
   if (value.side !== 'cloud') return value;
   const used = order[attempt % order.length];
-  if (attempt) quick = used === settings.cloudModel ? null : { model: used, until: Date.now() + QUICK_MS };
+  if (attempt && kind !== 'picture') quick = used === settings.cloudModel ? null : { model: used, until: Date.now() + QUICK_MS };
   // What to tell the person: a different model from the one asked first answered ('backup'),
   // the same model answered when asked again ('again'), or a backup model was asked first
   // because the main one is busy or resting ('quick').

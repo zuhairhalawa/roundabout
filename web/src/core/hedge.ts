@@ -96,3 +96,15 @@ export function attemptOrder(main: string, backups: string[], resting: (model: s
   if (at > 0) list.unshift(...list.splice(at, 1));
   return list;
 }
+
+/**
+ * How long to leave a cloud model alone after it has said that its quota is used up. The reply
+ * says when to try again ("Please retry in 50.8s", or "in 12h35m27s" when the day's quota is
+ * gone). That is used, but never less than 10 seconds and never more than half an hour, so a
+ * model whose quota has been raised or reset is found again without a restart.
+ */
+export function restAfterQuota(message: string): number {
+  const m = /retry in\s+(?:(\d+)h)?(?:(\d+)m(?!s))?(?:([\d.]+)s)?/i.exec(message);
+  const asked = m ? Math.round((Number(m[1] ?? 0) * 3600 + Number(m[2] ?? 0) * 60 + Number(m[3] ?? 0)) * 1000) : 0;
+  return Math.min(Math.max(asked || 60_000, 10_000), 30 * 60_000);
+}

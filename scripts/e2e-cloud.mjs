@@ -28,12 +28,13 @@ const voiceRequests = [];
 page.on('response', (r) => { if (/firebaseremoteconfig\.googleapis\.com/.test(r.url())) remoteConfig.push(r.status()); });
 page.on('request', (r) => { if (/tts/.test(r.url()) && /generateContent/i.test(r.url())) voiceRequests.push(new URL(r.url()).pathname.split('/').pop()); });
 page.on('pageerror', (e) => console.log('pageerror', String(e).slice(0, 200)));
-// A model that says its per-minute quota is used up is left alone for a minute by the app. Note it here.
+// A model that says its quota is used up is left alone for a while by the app. Note it here.
 const quotaReplies = [];
 page.on('response', async (r) => {
   if (r.status() !== 429 || !/generateContent/i.test(r.url())) return;
   const body = await r.text().catch(() => '');
-  quotaReplies.push(`${/models\/([^:/?]+)/.exec(r.url())?.[1]} (limit ${/limit: (\d+)/.exec(body)?.[1] ?? '?'} a minute)`);
+  const q = /limit: (\d+), model: [^,]+, description: Generate content requests per (minute|day)/.exec(body);
+  quotaReplies.push(`${/models\/([^:/?]+)/.exec(r.url())?.[1]} (${q ? `limit ${q[1]} a ${q[2]}` : 'limit not stated'})`);
 });
 
 const tiles = async () => (await page.locator('.tiles .sign-word').allTextContents()).map((t) => t.trim().toLowerCase());
