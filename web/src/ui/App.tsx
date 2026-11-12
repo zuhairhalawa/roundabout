@@ -39,7 +39,7 @@ export function App() {
             onUse={(w) => set((x) => (x.strip.includes(w) ? x : { ...x, strip: [...x.strip, w] }))}
             onSave={save} onWhy={() => setSheet('how')} onGoSay={() => setTab('say')} />
         )}
-        {tab === 'say' && <Say strip={s.strip} situation={situation} onStrip={(strip) => set((x) => ({ ...x, strip }))} />}
+        {tab === 'say' && <Say strip={s.strip} situation={situation} naturalVoice={s.naturalVoice && settings.naturalVoice} onStrip={(strip) => set((x) => ({ ...x, strip }))} />}
         {tab === 'practice' && <Practice saved={s.words} situation={situation} tally={s.practice} onTally={(practice) => set((x) => ({ ...x, practice }))} />}
         {tab === 'words' && <Words words={s.words} onChange={(words) => set((x) => ({ ...x, words }))} />}
       </main>
@@ -57,6 +57,10 @@ export function App() {
           <label class="switch">
             <input type="checkbox" checked={s.privateOnly} onChange={(e) => set((x) => ({ ...x, privateOnly: (e.target as HTMLInputElement).checked }))} />
             <span><b>Private mode</b><br />Never use the cloud. Everything stays on this device.</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" checked={s.naturalVoice} onChange={(e) => set((x) => ({ ...x, naturalVoice: (e.target as HTMLInputElement).checked }))} />
+            <span><b>Natural voice for sentences</b><br />Uses the cloud when it can. Single words always use this device's voice, which is instant.</span>
           </label>
           <DeviceCard device={device} />
           <p class="fine">Your saved words and sentences are kept in this browser only.</p>

@@ -162,3 +162,34 @@ describe('routing', () => {
     expect(route('find', p).canAskCloud).toBe(false);
   });
 });
+
+import { applyPromptOverrides, applyRemote, REMOTE_DEFAULTS } from '../src/core/remote';
+import { settings } from '../src/core/ai';
+
+describe('remote settings', () => {
+  it('applies valid values and reports what changed', () => {
+    const changed = applyRemote({ cloud_model: 'gemini-3.8-flash', guess_count: '5', natural_voice: 'false' });
+    expect(changed.sort()).toEqual(['cloud_model', 'guess_count', 'natural_voice']);
+    expect(settings.cloudModel).toBe('gemini-3.8-flash');
+    expect(settings.guessCount).toBe(5);
+    expect(settings.naturalVoice).toBe(false);
+    applyRemote({ cloud_model: REMOTE_DEFAULTS.cloud_model, guess_count: '6', natural_voice: 'true' });
+  });
+
+  it('ignores values that would break the app', () => {
+    const before = { ...settings };
+    const changed = applyRemote({ cloud_model: 'not a model!', guess_count: '99', device_timeout_ms: 'soon', cloud_thinking: 'EXTREME', limited_use_tokens: 'maybe' });
+    expect(changed).toEqual([]);
+    expect(settings).toEqual(before);
+  });
+
+  it('replaces prompt text by path, but never the schemas', () => {
+    const original = PACK.cue.user;
+    expect(applyPromptOverrides(JSON.stringify({ 'cue.user': 'Word: {word}', 'schemas.cue': 'x', 'nope.missing': 'y' }))).toBe(true);
+    expect(PACK.cue.user).toBe('Word: {word}');
+    expect(typeof PACK.schemas.cue).toBe('object');
+    applyPromptOverrides(JSON.stringify({ 'cue.user': original }));
+    expect(applyPromptOverrides('not json')).toBe(false);
+    expect(applyPromptOverrides('{}')).toBe(false);
+  });
+});

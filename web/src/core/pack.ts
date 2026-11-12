@@ -3,7 +3,8 @@
 import prompts from '../../../shared/prompts.json';
 import hints from '../../../shared/hints.json';
 
-export const PACK = prompts;
+/** A copy, so Remote Config can replace prompt text at run time without touching the import. */
+export const PACK: typeof prompts = structuredClone(prompts);
 export const HINTS = hints;
 
 export interface Chip { id: string; label: string; emoji: string; clue: string }

@@ -1,0 +1,931 @@
+{
+  "about": "Independent evaluation set, part 2, for a clue-to-word (word-finding) aid for people with aphasia: 80 common adult-life words that are not simple object nouns - 20 people and roles (kind 'person'), 20 places ('place'), 20 actions ('action') and 20 feelings, states and time words ('state'). Same three clue styles and rules as pnt.json: 'plain' (5-12 words), 'broken' (anomic-aphasia style, 4-14 words) and 'sparse' (2-4 key words). No clue contains its target, an accepted answer, a word built from them, or either half of a compound target. 'accept' lists the answers to count as correct (the target plus true synonyms or regional variants only); compare case-insensitively and treat simple inflections as equal. The clues were written without sight of the tool's prompts or code.",
+  "source": "Words chosen for this project as common adult-life vocabulary; not taken from any published test.",
+  "items": [
+    {
+      "id": "e001",
+      "kind": "person",
+      "target": "dentist",
+      "accept": [
+        "dentist"
+      ],
+      "plain": "Professional who drills, fills and cleans your teeth",
+      "broken": "the tooth doctor, um, open wide, the drill, I hate going",
+      "sparse": "teeth, drill, fillings"
+    },
+    {
+      "id": "e002",
+      "kind": "person",
+      "target": "neighbour",
+      "accept": [
+        "neighbour",
+        "neighbor"
+      ],
+      "plain": "Someone whose home is right beside your own",
+      "broken": "lives next door, you know, over the fence, borrows my ladder, nice lady",
+      "sparse": "next door, lives, fence"
+    },
+    {
+      "id": "e003",
+      "kind": "person",
+      "target": "plumber",
+      "accept": [
+        "plumber"
+      ],
+      "plain": "Tradesman you call to fix leaking pipes and taps",
+      "broken": "the tap was dripping so I rang the, the pipe man, under sink",
+      "sparse": "pipes, leak, taps, fix"
+    },
+    {
+      "id": "e004",
+      "kind": "person",
+      "target": "grandson",
+      "accept": [
+        "grandson"
+      ],
+      "plain": "Your own child's little boy, two generations below you",
+      "broken": "my daughter's boy, he's seven, calls me nana, the the little one",
+      "sparse": "daughter's boy, nana"
+    },
+    {
+      "id": "e005",
+      "kind": "person",
+      "target": "pharmacist",
+      "accept": [
+        "pharmacist",
+        "chemist"
+      ],
+      "plain": "Trained worker who makes up your prescription behind the counter",
+      "broken": "white coat, in the, um, medicine shop, gives the tablets, checks prescription",
+      "sparse": "prescription, tablets, counter"
+    },
+    {
+      "id": "e006",
+      "kind": "person",
+      "target": "teacher",
+      "accept": [
+        "teacher"
+      ],
+      "plain": "Adult in the classroom who gives children their lessons",
+      "broken": "at school, in front of the kids, er, blackboard, gives homework, Miss",
+      "sparse": "school, classroom, lessons"
+    },
+    {
+      "id": "e007",
+      "kind": "person",
+      "target": "waiter",
+      "accept": [
+        "waiter",
+        "server"
+      ],
+      "plain": "Man who takes your order and brings food in a restaurant",
+      "broken": "cook... no, the one who brings it, restaurant, takes the order, tip him",
+      "sparse": "restaurant, order, tip, tray"
+    },
+    {
+      "id": "e008",
+      "kind": "person",
+      "target": "barber",
+      "accept": [
+        "barber"
+      ],
+      "plain": "His shop has a striped pole and he trims beards",
+      "broken": "for my haircut, the man with scissors, short back and sides, um, razor",
+      "sparse": "men's haircut, clippers, shave"
+    },
+    {
+      "id": "e009",
+      "kind": "person",
+      "target": "surgeon",
+      "accept": [
+        "surgeon"
+      ],
+      "plain": "Doctor who operates on patients in the operating theatre",
+      "broken": "the doctor who cuts you, you know, the operation, mask, did my hip",
+      "sparse": "doctor, operation, scalpel"
+    },
+    {
+      "id": "e010",
+      "kind": "person",
+      "target": "lawyer",
+      "accept": [
+        "lawyer",
+        "solicitor",
+        "attorney"
+      ],
+      "plain": "You hire one for legal advice or to speak in court",
+      "broken": "for the court, the legal, legal person, did our will, very expensive",
+      "sparse": "legal, court, contracts, advice"
+    },
+    {
+      "id": "e011",
+      "kind": "person",
+      "target": "nephew",
+      "accept": [
+        "nephew"
+      ],
+      "plain": "The son of your brother or your sister",
+      "broken": "my sister's boy, not my son, the, um, I'm his uncle",
+      "sparse": "sister's son, uncle, aunt"
+    },
+    {
+      "id": "e012",
+      "kind": "person",
+      "target": "widow",
+      "accept": [
+        "widow"
+      ],
+      "plain": "Woman whose husband has died and who has not remarried",
+      "broken": "her husband died, you know, on her own now, the wife left",
+      "sparse": "husband died, woman"
+    },
+    {
+      "id": "e013",
+      "kind": "person",
+      "target": "mechanic",
+      "accept": [
+        "mechanic"
+      ],
+      "plain": "Works in overalls at a garage, repairing engines and brakes",
+      "broken": "car wouldn't start, took it to the, er, oily hands, under bonnet",
+      "sparse": "cars, engine, garage, repairs"
+    },
+    {
+      "id": "e014",
+      "kind": "person",
+      "target": "landlord",
+      "accept": [
+        "landlord",
+        "landlady"
+      ],
+      "plain": "You pay this owner rent for the flat you live in",
+      "broken": "owns the flat, er, I pay him rent every month, fixes nothing",
+      "sparse": "rent, owner, tenant"
+    },
+    {
+      "id": "e015",
+      "kind": "person",
+      "target": "cashier",
+      "accept": [
+        "cashier"
+      ],
+      "plain": "Shop worker at the till who takes your payment",
+      "broken": "at the till, beep beep the shopping, takes the money, gives receipt",
+      "sparse": "till, checkout, payment"
+    },
+    {
+      "id": "e016",
+      "kind": "person",
+      "target": "carer",
+      "accept": [
+        "carer",
+        "caregiver"
+      ],
+      "plain": "Someone paid or unpaid who looks after a disabled or elderly person",
+      "broken": "nurse... no, she comes every morning, helps me wash, dress, not family",
+      "sparse": "helps, washing, dressing, daily"
+    },
+    {
+      "id": "e017",
+      "kind": "person",
+      "target": "cousin",
+      "accept": [
+        "cousin"
+      ],
+      "plain": "Your aunt and uncle's children are this to you",
+      "broken": "my aunt's daughter, same age as me, family, not sister, the the other",
+      "sparse": "aunt, uncle, their child"
+    },
+    {
+      "id": "e018",
+      "kind": "person",
+      "target": "electrician",
+      "accept": [
+        "electrician"
+      ],
+      "plain": "Qualified worker who installs wiring, sockets and fuse boxes",
+      "broken": "lights went off, called the, the wires man, fuse box, plugs, dangerous",
+      "sparse": "wiring, sockets, fuse box"
+    },
+    {
+      "id": "e019",
+      "kind": "person",
+      "target": "optician",
+      "accept": [
+        "optician",
+        "optometrist"
+      ],
+      "plain": "Tests your eyesight with a letter chart and sells glasses",
+      "broken": "for my glasses, um, read letters on the wall, one or two",
+      "sparse": "eye test, glasses, lenses"
+    },
+    {
+      "id": "e020",
+      "kind": "person",
+      "target": "boss",
+      "accept": [
+        "boss",
+        "manager",
+        "supervisor"
+      ],
+      "plain": "Person in charge of you at your workplace",
+      "broken": "at work, the the top one, tells me what to do, pays wages",
+      "sparse": "work, in charge, orders"
+    },
+    {
+      "id": "e021",
+      "kind": "place",
+      "target": "pharmacy",
+      "accept": [
+        "pharmacy",
+        "chemist",
+        "drugstore"
+      ],
+      "plain": "Shop where you collect the medicines your doctor prescribed",
+      "broken": "the shop, green cross sign, um, for my tablets, hand in the prescription",
+      "sparse": "medicines, prescription, shop"
+    },
+    {
+      "id": "e022",
+      "kind": "place",
+      "target": "airport",
+      "accept": [
+        "airport"
+      ],
+      "plain": "You check in here, go through security and board a plane",
+      "broken": "for holiday, the the planes take off, check in bags, security, gate",
+      "sparse": "planes, check-in, runway"
+    },
+    {
+      "id": "e023",
+      "kind": "place",
+      "target": "bank",
+      "accept": [
+        "bank"
+      ],
+      "plain": "It keeps your money safe and lends you more",
+      "broken": "where the money is, my account, the, um, hole in the wall outside",
+      "sparse": "money, account, loan"
+    },
+    {
+      "id": "e024",
+      "kind": "place",
+      "target": "hospital",
+      "accept": [
+        "hospital"
+      ],
+      "plain": "Large building where sick people have operations and stay overnight",
+      "broken": "after the stroke I was there, uh, the ward, doctors, three weeks",
+      "sparse": "wards, doctors, operations"
+    },
+    {
+      "id": "e025",
+      "kind": "place",
+      "target": "library",
+      "accept": [
+        "library"
+      ],
+      "plain": "Quiet public building where you borrow books for free",
+      "broken": "books, lots, you take them home, bring back, shh, have to be quiet",
+      "sparse": "books, borrow, quiet"
+    },
+    {
+      "id": "e026",
+      "kind": "place",
+      "target": "supermarket",
+      "accept": [
+        "supermarket",
+        "grocery store"
+      ],
+      "plain": "Big shop with aisles and trolleys for the weekly food",
+      "broken": "big shop, the trolley, up and down the, the aisles, food for week",
+      "sparse": "trolley, aisles, food shopping"
+    },
+    {
+      "id": "e027",
+      "kind": "place",
+      "target": "restaurant",
+      "accept": [
+        "restaurant"
+      ],
+      "plain": "Eating place with waiters, a chef and a wine list",
+      "broken": "cafe... no, posher, book a table, the menu, waiter, pay the bill",
+      "sparse": "menu, table, eat out"
+    },
+    {
+      "id": "e028",
+      "kind": "place",
+      "target": "bakery",
+      "accept": [
+        "bakery",
+        "baker's",
+        "bakers"
+      ],
+      "plain": "Shop that sells fresh bread, rolls and cakes",
+      "broken": "smells lovely in morning, the bread shop, hot rolls, crossants, buns",
+      "sparse": "bread, rolls, pastries, shop"
+    },
+    {
+      "id": "e029",
+      "kind": "place",
+      "target": "cemetery",
+      "accept": [
+        "cemetery",
+        "graveyard"
+      ],
+      "plain": "Quiet ground full of headstones where the dead lie buried",
+      "broken": "where my husband is, um, buried, the stones, I take flowers Sundays",
+      "sparse": "buried, headstones, flowers"
+    },
+    {
+      "id": "e030",
+      "kind": "place",
+      "target": "post office",
+      "accept": [
+        "post office"
+      ],
+      "plain": "Go here to buy stamps, send parcels or collect a pension",
+      "broken": "to send a parcel, stamps, you queue, er, get the pension there",
+      "sparse": "stamps, parcels, counter"
+    },
+    {
+      "id": "e031",
+      "kind": "place",
+      "target": "mosque",
+      "accept": [
+        "mosque",
+        "masjid"
+      ],
+      "plain": "Building where Muslims gather to pray, often with a minaret",
+      "broken": "for the prayers, Friday, shoes off, the the tower, call to prayer, imam",
+      "sparse": "Muslims, prayer, minaret"
+    },
+    {
+      "id": "e032",
+      "kind": "place",
+      "target": "school",
+      "accept": [
+        "school"
+      ],
+      "plain": "Children spend weekdays here learning to read, write and count",
+      "broken": "kids go there, nine o'clock, lessons, playground, um, teachers, uniform",
+      "sparse": "children, lessons, classrooms"
+    },
+    {
+      "id": "e033",
+      "kind": "place",
+      "target": "gym",
+      "accept": [
+        "gym",
+        "gymnasium"
+      ],
+      "plain": "Indoor club full of treadmills and weights for keeping fit",
+      "broken": "to get fit, the running machine thing, weights, sweaty, pay every month",
+      "sparse": "exercise, weights, treadmill"
+    },
+    {
+      "id": "e034",
+      "kind": "place",
+      "target": "beach",
+      "accept": [
+        "beach"
+      ],
+      "plain": "Sandy strip beside the sea where people sunbathe and swim",
+      "broken": "by the sea, the sand, lie in sun, kids with buckets, you know",
+      "sparse": "sand, sea, sunbathing"
+    },
+    {
+      "id": "e035",
+      "kind": "place",
+      "target": "garden",
+      "accept": [
+        "garden",
+        "yard",
+        "backyard"
+      ],
+      "plain": "Ground behind the house with a lawn and flowers",
+      "broken": "outside the house, grass, flowers, I sit there, I I mow the lawn",
+      "sparse": "lawn, flowers, outdoors"
+    },
+    {
+      "id": "e036",
+      "kind": "place",
+      "target": "cinema",
+      "accept": [
+        "cinema",
+        "movie theater",
+        "movie theatre",
+        "movies"
+      ],
+      "plain": "Dark hall with a huge screen for watching new films",
+      "broken": "to see a film, big screen, dark, popcorn, er, buy a ticket",
+      "sparse": "films, big screen, popcorn"
+    },
+    {
+      "id": "e037",
+      "kind": "place",
+      "target": "hotel",
+      "accept": [
+        "hotel"
+      ],
+      "plain": "Travellers pay to sleep here, it has rooms and a reception",
+      "broken": "on holiday, you stay, sleep there, the the reception, room key, breakfast",
+      "sparse": "stay, rooms, reception, holiday"
+    },
+    {
+      "id": "e038",
+      "kind": "place",
+      "target": "park",
+      "accept": [
+        "park"
+      ],
+      "plain": "Public green space in town with paths, trees and benches",
+      "broken": "in town, the green, um, walk the dog, swings for kids, ducks",
+      "sparse": "grass, playground, public, walk"
+    },
+    {
+      "id": "e039",
+      "kind": "place",
+      "target": "museum",
+      "accept": [
+        "museum"
+      ],
+      "plain": "Old and valuable objects are displayed here for visitors to see",
+      "broken": "old things in glass cases, dinosaur bones, paintings... no that's gallery, history",
+      "sparse": "exhibits, history, glass cases"
+    },
+    {
+      "id": "e040",
+      "kind": "place",
+      "target": "office",
+      "accept": [
+        "office"
+      ],
+      "plain": "Room or building with desks where people do paperwork jobs",
+      "broken": "where I worked, desks, computers, phones ringing, you know, nine to five",
+      "sparse": "desks, computers, workplace"
+    },
+    {
+      "id": "e041",
+      "kind": "action",
+      "target": "borrow",
+      "accept": [
+        "borrow"
+      ],
+      "plain": "To take something from someone and give it back later",
+      "broken": "can I have it, um, just for a bit, I'll bring it back",
+      "sparse": "take, use, give back"
+    },
+    {
+      "id": "e042",
+      "kind": "action",
+      "target": "swallow",
+      "accept": [
+        "swallow"
+      ],
+      "plain": "To make food or drink go down your throat",
+      "broken": "the food, after chewing, it goes down, down the throat, gulp",
+      "sparse": "throat, gulp, food down"
+    },
+    {
+      "id": "e043",
+      "kind": "action",
+      "target": "apologise",
+      "accept": [
+        "apologise",
+        "apologize"
+      ],
+      "plain": "To say you are sorry for something you did wrong",
+      "broken": "I did wrong, so I say, um, sorry, make it up to her",
+      "sparse": "say sorry, regret, mistake"
+    },
+    {
+      "id": "e044",
+      "kind": "action",
+      "target": "remember",
+      "accept": [
+        "remember",
+        "recall"
+      ],
+      "plain": "To keep something in your mind and not lose it",
+      "broken": "it stays in my head, you know, names, faces, comes back to me",
+      "sparse": "mind, keep, not forget"
+    },
+    {
+      "id": "e045",
+      "kind": "action",
+      "target": "forget",
+      "accept": [
+        "forget"
+      ],
+      "plain": "When something slips out of your mind completely",
+      "broken": "it's gone, gone from my head, the name, er, slipped away",
+      "sparse": "mind, gone, slip, blank"
+    },
+    {
+      "id": "e046",
+      "kind": "action",
+      "target": "promise",
+      "accept": [
+        "promise"
+      ],
+      "plain": "To tell someone you will definitely do something",
+      "broken": "I said I will, cross my heart, my word, so I I must",
+      "sparse": "my word, definitely, trust"
+    },
+    {
+      "id": "e047",
+      "kind": "action",
+      "target": "complain",
+      "accept": [
+        "complain"
+      ],
+      "plain": "To let a company know you are unhappy with its service",
+      "broken": "food was cold so I told the manager, um, not happy, refund",
+      "sparse": "unhappy, manager, bad service"
+    },
+    {
+      "id": "e048",
+      "kind": "action",
+      "target": "cancel",
+      "accept": [
+        "cancel"
+      ],
+      "plain": "To say a planned event will not happen after all",
+      "broken": "the appointment, I rang, can't come, so it's, it's off, not happening",
+      "sparse": "booking, not happening, stop"
+    },
+    {
+      "id": "e049",
+      "kind": "action",
+      "target": "repair",
+      "accept": [
+        "repair",
+        "fix",
+        "mend"
+      ],
+      "plain": "To make something broken work properly again",
+      "broken": "it's broke, he makes it work again, the tools, uh, good as new",
+      "sparse": "broken, tools, working again"
+    },
+    {
+      "id": "e050",
+      "kind": "action",
+      "target": "whisper",
+      "accept": [
+        "whisper"
+      ],
+      "plain": "To speak very quietly so that others cannot hear",
+      "broken": "talk very very quiet, in the ear, a secret, shh, so nobody hears",
+      "sparse": "speak, very quiet, secret"
+    },
+    {
+      "id": "e051",
+      "kind": "action",
+      "target": "argue",
+      "accept": [
+        "argue",
+        "quarrel",
+        "row",
+        "bicker"
+      ],
+      "plain": "To disagree with someone angrily using raised voices",
+      "broken": "me and the wife, shouting, I say yes, she says no, um, angry",
+      "sparse": "disagree, shout, angry words"
+    },
+    {
+      "id": "e052",
+      "kind": "action",
+      "target": "sneeze",
+      "accept": [
+        "sneeze"
+      ],
+      "plain": "A sudden loud burst of air from your nose, achoo",
+      "broken": "achoo, when the nose tickles, pepper does it, bless you, need tissue",
+      "sparse": "nose, achoo, bless you"
+    },
+    {
+      "id": "e053",
+      "kind": "action",
+      "target": "yawn",
+      "accept": [
+        "yawn"
+      ],
+      "plain": "Opening your mouth wide and breathing in deeply when tired",
+      "broken": "tired, mouth opens big, haaah, can't stop, then everybody does it too",
+      "sparse": "tired, mouth wide, sleepy"
+    },
+    {
+      "id": "e054",
+      "kind": "action",
+      "target": "chew",
+      "accept": [
+        "chew"
+      ],
+      "plain": "To crush food with your teeth before it goes down",
+      "broken": "with the teeth, up down up down, the meat, before it goes down, gum",
+      "sparse": "teeth, crush food, gum"
+    },
+    {
+      "id": "e055",
+      "kind": "action",
+      "target": "pour",
+      "accept": [
+        "pour"
+      ],
+      "plain": "Making liquid flow from a jug into a cup",
+      "broken": "tip the jug, milk goes in the the cup, careful, don't spill",
+      "sparse": "jug, tip, liquid, cup"
+    },
+    {
+      "id": "e056",
+      "kind": "action",
+      "target": "shave",
+      "accept": [
+        "shave"
+      ],
+      "plain": "To remove hair from your face with a razor",
+      "broken": "in the morning, foam on my face, the razer, whiskers off",
+      "sparse": "razor, foam, face, stubble"
+    },
+    {
+      "id": "e057",
+      "kind": "action",
+      "target": "celebrate",
+      "accept": [
+        "celebrate"
+      ],
+      "plain": "What you do with a party when something good happens",
+      "broken": "she passed the exam so we, we had a party, champagne, cheers",
+      "sparse": "party, good news, champagne"
+    },
+    {
+      "id": "e058",
+      "kind": "action",
+      "target": "explain",
+      "accept": [
+        "explain"
+      ],
+      "plain": "To make something clear by describing how it works",
+      "broken": "he didn't understand so I tell him how, um, why, step by step",
+      "sparse": "make clear, how, why"
+    },
+    {
+      "id": "e059",
+      "kind": "action",
+      "target": "choose",
+      "accept": [
+        "choose",
+        "pick",
+        "select"
+      ],
+      "plain": "To decide which one you want from several options",
+      "broken": "two cakes, which one, um, I have to, I point at that one",
+      "sparse": "decide, which one, options"
+    },
+    {
+      "id": "e060",
+      "kind": "action",
+      "target": "hug",
+      "accept": [
+        "hug",
+        "cuddle",
+        "embrace"
+      ],
+      "plain": "Putting your arms around someone and holding them close",
+      "broken": "arms round her, squeeze, kiss... no, hold tight, when grandchildren come",
+      "sparse": "arms around, squeeze, affection"
+    },
+    {
+      "id": "e061",
+      "kind": "state",
+      "target": "exhausted",
+      "accept": [
+        "exhausted",
+        "worn out",
+        "shattered",
+        "drained"
+      ],
+      "plain": "So tired that you have no energy left at all",
+      "broken": "so so tired, no energy, can't lift my arms, need bed, finished",
+      "sparse": "very tired, no energy"
+    },
+    {
+      "id": "e062",
+      "kind": "state",
+      "target": "dizzy",
+      "accept": [
+        "dizzy",
+        "giddy",
+        "lightheaded"
+      ],
+      "plain": "Feeling that the room is spinning and you might fall",
+      "broken": "the room goes round, my head, whoa, have to sit down, wobbly",
+      "sparse": "spinning, unsteady, faint"
+    },
+    {
+      "id": "e063",
+      "kind": "state",
+      "target": "yesterday",
+      "accept": [
+        "yesterday"
+      ],
+      "plain": "The date just before this one, one sleep ago",
+      "broken": "not now, the the one before, one sleep ago, already gone",
+      "sparse": "one before, just gone"
+    },
+    {
+      "id": "e064",
+      "kind": "state",
+      "target": "appointment",
+      "accept": [
+        "appointment"
+      ],
+      "plain": "A fixed time you arranged to see the doctor",
+      "broken": "at the doctor, Tuesday at ten, I booked it, er, on the calendar",
+      "sparse": "booked time, doctor, diary"
+    },
+    {
+      "id": "e065",
+      "kind": "state",
+      "target": "tomorrow",
+      "accept": [
+        "tomorrow"
+      ],
+      "plain": "The day that comes straight after today",
+      "broken": "not today, the next, after I sleep tonight, um, sun comes up",
+      "sparse": "after today, next day"
+    },
+    {
+      "id": "e066",
+      "kind": "state",
+      "target": "lonely",
+      "accept": [
+        "lonely",
+        "lonesome"
+      ],
+      "plain": "Sad feeling when you have no company and nobody to talk to",
+      "broken": "since she died nobody comes, house is quiet, you know, just me",
+      "sparse": "no company, sad, isolated"
+    },
+    {
+      "id": "e067",
+      "kind": "state",
+      "target": "embarrassed",
+      "accept": [
+        "embarrassed"
+      ],
+      "plain": "Red-faced and awkward after doing something silly in public",
+      "broken": "my face went red, everybody looking, wanted to hide, oh, so silly",
+      "sparse": "red face, awkward, blushing"
+    },
+    {
+      "id": "e068",
+      "kind": "state",
+      "target": "worried",
+      "accept": [
+        "worried",
+        "anxious",
+        "concerned"
+      ],
+      "plain": "Unable to relax because you think something bad may happen",
+      "broken": "can't sleep, thinking what if, what if it's bad news, stomach in knots",
+      "sparse": "can't relax, what if"
+    },
+    {
+      "id": "e069",
+      "kind": "state",
+      "target": "jealous",
+      "accept": [
+        "jealous",
+        "envious"
+      ],
+      "plain": "Unhappy because someone else has what you want",
+      "broken": "he's got the new car and I want it, er, why him, not fair",
+      "sparse": "want theirs, resentful, green-eyed"
+    },
+    {
+      "id": "e070",
+      "kind": "state",
+      "target": "proud",
+      "accept": [
+        "proud"
+      ],
+      "plain": "Pleased with yourself or your family after a big achievement",
+      "broken": "my granddaughter graduated, I was so, so, chest out, told everyone",
+      "sparse": "achievement, pleased, chest out"
+    },
+    {
+      "id": "e071",
+      "kind": "state",
+      "target": "confused",
+      "accept": [
+        "confused",
+        "muddled",
+        "bewildered"
+      ],
+      "plain": "Not able to understand what is happening or think clearly",
+      "broken": "don't know what's going on, er, all mixed in my head, lost",
+      "sparse": "mixed up, unclear, lost"
+    },
+    {
+      "id": "e072",
+      "kind": "state",
+      "target": "thirsty",
+      "accept": [
+        "thirsty"
+      ],
+      "plain": "How you feel when your mouth is dry and you need water",
+      "broken": "hungry... no, mouth all dry, need water, big glass, hot day",
+      "sparse": "dry mouth, need drink"
+    },
+    {
+      "id": "e073",
+      "kind": "state",
+      "target": "frustrated",
+      "accept": [
+        "frustrated"
+      ],
+      "plain": "Annoyed because you keep trying and still cannot do it",
+      "broken": "I know the word, can't get it, again and again, aargh",
+      "sparse": "keep trying, blocked, annoyed"
+    },
+    {
+      "id": "e074",
+      "kind": "state",
+      "target": "relieved",
+      "accept": [
+        "relieved"
+      ],
+      "plain": "The glad feeling when something you feared does not happen",
+      "broken": "the test came back fine, phew, weight off my shoulders, can breathe again",
+      "sparse": "phew, fear gone, glad"
+    },
+    {
+      "id": "e075",
+      "kind": "state",
+      "target": "bored",
+      "accept": [
+        "bored"
+      ],
+      "plain": "Fed up, with nothing interesting to do and time dragging",
+      "broken": "nothing to do, all day the same, um, looking at the clock",
+      "sparse": "nothing interesting, restless, idle"
+    },
+    {
+      "id": "e076",
+      "kind": "state",
+      "target": "weekend",
+      "accept": [
+        "weekend"
+      ],
+      "plain": "Saturday and Sunday, when most people are off work",
+      "broken": "Saturday, Sunday, you know, no work, kids are home, lie in",
+      "sparse": "Saturday, Sunday, days off"
+    },
+    {
+      "id": "e077",
+      "kind": "state",
+      "target": "midnight",
+      "accept": [
+        "midnight"
+      ],
+      "plain": "Twelve o'clock when it is dark and the date changes",
+      "broken": "twelve o'clock, not lunch, the the dark one, clock strikes, Cinderella ran",
+      "sparse": "twelve, dark, date changes"
+    },
+    {
+      "id": "e078",
+      "kind": "state",
+      "target": "birthday",
+      "accept": [
+        "birthday"
+      ],
+      "plain": "The date each year when you become one year older",
+      "broken": "once a year, I get older, um, cake, candles, cards, presents",
+      "sparse": "cake, candles, year older"
+    },
+    {
+      "id": "e079",
+      "kind": "state",
+      "target": "anniversary",
+      "accept": [
+        "anniversary"
+      ],
+      "plain": "Yearly date when a couple marks their wedding",
+      "broken": "forty years married, same date every year, birthday... no, for the wedding",
+      "sparse": "wedding date, yearly, couple"
+    },
+    {
+      "id": "e080",
+      "kind": "state",
+      "target": "numb",
+      "accept": [
+        "numb"
+      ],
+      "plain": "When part of your body has lost all feeling",
+      "broken": "can't feel my arm, nothing, like after dentist needle, um, gone dead",
+      "sparse": "no feeling, dentist injection"
+    }
+  ]
+}

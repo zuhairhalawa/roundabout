@@ -1,0 +1,60 @@
+{
+  "parameters": {
+    "cloud_model": {
+      "defaultValue": {
+        "value": "gemini-3.5-flash-lite"
+      },
+      "description": "Cloud model for word-finding, sentences and hints.",
+      "valueType": "STRING"
+    },
+    "voice_model": {
+      "defaultValue": {
+        "value": "gemini-3.1-flash-tts-preview"
+      },
+      "description": "Cloud model for the natural voice.",
+      "valueType": "STRING"
+    },
+    "guess_count": {
+      "defaultValue": {
+        "value": "6"
+      },
+      "description": "How many word tiles to ask for (3 to 8).",
+      "valueType": "NUMBER"
+    },
+    "device_timeout_ms": {
+      "defaultValue": {
+        "value": "12000"
+      },
+      "description": "How long to wait for the on-device model before asking the cloud.",
+      "valueType": "NUMBER"
+    },
+    "cloud_thinking": {
+      "defaultValue": {
+        "value": "MINIMAL"
+      },
+      "description": "Cloud thinking level: MINIMAL, LOW, MEDIUM, HIGH, or empty for the model default.",
+      "valueType": "STRING"
+    },
+    "limited_use_tokens": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "One-time App Check tokens (replay protection). Adds about half a second per cloud request.",
+      "valueType": "BOOLEAN"
+    },
+    "natural_voice": {
+      "defaultValue": {
+        "value": "true"
+      },
+      "description": "Allow the natural cloud voice for sentences.",
+      "valueType": "BOOLEAN"
+    },
+    "prompt_overrides": {
+      "defaultValue": {
+        "value": "{}"
+      },
+      "description": "JSON of prompt-pack paths to replacement text, e.g. {\"find.system\": \"...\"}.",
+      "valueType": "JSON"
+    }
+  }
+}

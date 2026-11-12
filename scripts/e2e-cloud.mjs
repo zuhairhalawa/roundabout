@@ -23,6 +23,10 @@ page.on('request', (r) => {
   const u = new URL(r.url());
   if (/generateContent|streamGenerateContent/.test(u.pathname)) aiHosts.set(u.host, (aiHosts.get(u.host) ?? 0) + 1);
 });
+const remoteConfig = [];
+const voiceRequests = [];
+page.on('response', (r) => { if (/firebaseremoteconfig\.googleapis\.com/.test(r.url())) remoteConfig.push(r.status()); });
+page.on('request', (r) => { if (/tts/.test(r.url()) && /generateContent/i.test(r.url())) voiceRequests.push(new URL(r.url()).pathname.split('/').pop()); });
 page.on('pageerror', (e) => console.log('pageerror', String(e).slice(0, 200)));
 
 const tiles = async () => (await page.locator('.tiles .sign-word').allTextContents()).map((t) => t.trim().toLowerCase());
@@ -110,6 +114,10 @@ try {
   await page.waitForSelector('.sentences .sentence', { timeout: 60_000 });
   const sentences = await page.locator('.sentences .sentence').allTextContents();
   check('sentence builder returns three sentences that use the key words', sentences.length === 3 && sentences.every((s) => /key/i.test(s)), sentences[0]);
+  await page.locator('.sentences .sentence').first().click();
+  await page.waitForSelector('.voice-line', { timeout: 30_000 });
+  const voiceLine = await page.textContent('.voice-line');
+  check('a sentence is spoken with the natural cloud voice, through Firebase AI Logic', /natural voice/.test(voiceLine) && voiceRequests.length > 0, `${voiceLine.trim()} (${voiceRequests[0] ?? 'no request'})`);
   await page.screenshot({ path: `${out}/4-say.png` });
 
   // 7. saved words come first, with no model
@@ -127,7 +135,7 @@ try {
   // 8. private mode never uses the cloud
   const reqBefore = [...aiHosts.values()].reduce((a, b) => a + b, 0);
   await page.getByRole('button', { name: 'Settings' }).click();
-  await page.locator('.switch input').check();
+  await page.getByRole('checkbox', { name: /Private mode/ }).check();
   await page.getByRole('button', { name: 'Close' }).click();
   await page.fill('#clues', 'you sit on it');
   await page.getByRole('button', { name: 'Find the word' }).click();
@@ -136,7 +144,7 @@ try {
   const reqAfter = [...aiHosts.values()].reduce((a, b) => a + b, 0);
   check('private mode: nothing is sent, and the app says why', reqAfter === reqBefore && /Private mode/.test(privateNote), privateNote.trim());
   await page.getByRole('button', { name: 'Settings' }).click();
-  await page.locator('.switch input').uncheck();
+  await page.getByRole('checkbox', { name: /Private mode/ }).uncheck();
   await page.getByRole('button', { name: 'Close' }).click();
 
   // 9. offline with no on-device model: a clear message, no crash
@@ -147,6 +155,8 @@ try {
   const offNote = await page.textContent('.note');
   check('offline without an on-device model: the app explains', /offline/i.test(offNote), offNote.trim());
   await ctx.setOffline(false);
+
+  check('Remote Config was fetched', remoteConfig.includes(200), `statuses ${remoteConfig.join(',') || 'none'}`);
 
   // 10. every model request went through Firebase AI Logic
   const hosts = [...aiHosts.keys()];

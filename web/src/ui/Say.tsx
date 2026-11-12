@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 import { isQuotaError, makeSentences, type Sentences, type Tone } from '../core/find';
 import type { Situation } from '../core/route';
-import { speak } from '../core/speech';
+import { saySentence, type Voice } from '../core/speech';
 import { IconCloud, IconDevice, IconSpeak, Ring } from './icons';
 
 const TONES: Array<{ id: Tone; label: string }> = [
@@ -11,13 +11,14 @@ const TONES: Array<{ id: Tone; label: string }> = [
 ];
 
 /** A few key words in, whole sentences out. */
-export function Say({ strip, situation, onStrip }: { strip: string[]; situation: Situation; onStrip: (words: string[]) => void }) {
+export function Say({ strip, situation, naturalVoice, onStrip }: { strip: string[]; situation: Situation; naturalVoice: boolean; onStrip: (words: string[]) => void }) {
   const [draft, setDraft] = useState('');
   const [tone, setTone] = useState<Tone>('plain');
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<Sentences | null>(null);
   const [note, setNote] = useState<string | null>(null);
   const [said, setSaid] = useState<number | null>(null);
+  const [voice, setVoice] = useState<Voice | null>(null);
 
   function add() {
     const words = draft.split(/[,\n]+/).map((w) => w.trim()).filter(Boolean);
@@ -30,7 +31,7 @@ export function Say({ strip, situation, onStrip }: { strip: string[]; situation:
     const words = [...strip, ...draft.split(/[,\n]+/).map((w) => w.trim()).filter(Boolean)];
     if (!words.length) return;
     if (draft.trim()) add();
-    setBusy(true); setNote(null); setSaid(null);
+    setBusy(true); setNote(null); setSaid(null); setVoice(null);
     try {
       const r = await makeSentences(words, tone, situation);
       if (r.blocked) setNote(r.blocked);
@@ -85,7 +86,7 @@ export function Say({ strip, situation, onStrip }: { strip: string[]; situation:
             <ul class="sentences">
               {result.sentences.map((s, i) => (
                 <li key={s}>
-                  <button class={`sentence sentence-${result.side ?? 'device'} ${said === i ? 'sentence-on' : ''}`} onClick={() => { setSaid(i); speak(s); }} aria-label={`${s} Tap to hear it.`}>
+                  <button class={`sentence sentence-${result.side ?? 'device'} ${said === i ? 'sentence-on' : ''}`} onClick={() => { setSaid(i); setVoice(null); saySentence(s, situation, naturalVoice).then(setVoice); }} aria-label={`${s} Tap to hear it.`}>
                     <IconSpeak size={26} /><span>{s}</span>
                   </button>
                 </li>
@@ -97,6 +98,7 @@ export function Say({ strip, situation, onStrip }: { strip: string[]; situation:
                 <span>{result.side === 'device' ? `Written on this device in ${(result.ms / 1000).toFixed(1)} s. Nothing was sent.` : `Written in the cloud in ${(result.ms / 1000).toFixed(1)} s.`}</span>
               </p>
             )}
+            {voice && <p class="fine voice-line">{voice === 'natural' ? 'Spoken with a natural voice from the cloud.' : "Spoken with this device's voice."}</p>}
           </>
         )}
       </div>

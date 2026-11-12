@@ -1,0 +1,1790 @@
+{
+  "about": "Independent evaluation set for a clue-to-word (word-finding) aid for people with aphasia. Targets are the 175 test items of the Philadelphia Naming Test (PNT; Roach, Schwartz, Martin, Grewal & Brecher, 1996; Moss Rehabilitation Research Institute), in administration order (p001 = PNT item 1 ... p175 = PNT item 175); the 10 practice items are excluded. Each target has three written clue styles: 'plain' (a clear description in ordinary words, 5-12 words), 'broken' (how a person with anomic aphasia might type or say it: fragments, fillers, restarts, corrected wrong words, loose grammar, an occasional misspelling; 4-14 words) and 'sparse' (2-4 key words, no sentence). No clue contains its target, an accepted answer, a word built from them, or either half of a compound target. 'accept' lists the answers to count as correct (the target plus true synonyms or regional variants only); compare case-insensitively and treat simple singular/plural forms as equal. The clues were written without sight of the tool's prompts or code. Where a PNT name has more than one meaning (for example bat, nail, pipe, fan, top, seal, can, glass, iron, letter, ring, ruler, scale, well, football, vest, wagon) the clues describe one everyday sense chosen for this set; the pictured sense was not re-checked against the PNT picture file. Only the target words come from the PNT; the clues are original, and this file is not a clinical instrument.",
+  "source": "Official alphabetised target list 'PNT Targets ABC order' (PDF, copyright 1996 AEHN / Moss Rehabilitation Research Institute): https://www.jefferson.edu/content/dam/academic/research/rehabilitation-research-institute/documents/pnt-targets-abc-order.pdf - linked from the MRRI Philadelphia Naming Test page https://rehabilitationresearch.jefferson.edu/innovations/philadelphia-naming-test.html (accessed 2026-11-12). 175 of 175 test items verified against that list, each with its administration position 1-175. The 10 practice items (A-J: peas, umbrella, waitress, tank, dress, hamburger, mirror, tiger, guitar, whale) are not included.",
+  "items": [
+    {
+      "id": "p001",
+      "target": "candle",
+      "accept": [
+        "candle"
+      ],
+      "plain": "Wax stick with a wick that you burn for light",
+      "broken": "wax thing, you burn it... um, on the birthday cake, little flame",
+      "sparse": "wax, wick, flame"
+    },
+    {
+      "id": "p002",
+      "target": "ghost",
+      "accept": [
+        "ghost",
+        "phantom",
+        "spook"
+      ],
+      "plain": "Dead person who comes back and haunts a house",
+      "broken": "dead person but, you know, comes back, white sheet, says boo",
+      "sparse": "dead, haunting, white sheet"
+    },
+    {
+      "id": "p003",
+      "target": "dinosaur",
+      "accept": [
+        "dinosaur"
+      ],
+      "plain": "Giant reptile that lived millions of years ago, now extinct",
+      "broken": "big big lizard... no, the long ago ones, all gone, bones in museum",
+      "sparse": "huge, extinct, reptile"
+    },
+    {
+      "id": "p004",
+      "target": "tree",
+      "accept": [
+        "tree"
+      ],
+      "plain": "Tall plant with a trunk, branches and leaves",
+      "broken": "tall, in the garden, the the wood one, leafs on it, birds sit",
+      "sparse": "trunk, branches, leaves"
+    },
+    {
+      "id": "p005",
+      "target": "pen",
+      "accept": [
+        "pen"
+      ],
+      "plain": "You write with it using ink, keep it in your pocket",
+      "broken": "for signing, ink comes out, er, not the lead one, you click it",
+      "sparse": "ink, write, sign"
+    },
+    {
+      "id": "p006",
+      "target": "scissors",
+      "accept": [
+        "scissors"
+      ],
+      "plain": "Two blades joined together that you use to cut paper",
+      "broken": "to cut paper, the... snip snip, two finger holes, what's it called",
+      "sparse": "cut, two blades, snip"
+    },
+    {
+      "id": "p007",
+      "target": "cane",
+      "accept": [
+        "cane",
+        "walking stick"
+      ],
+      "plain": "Old people lean on it when their legs are weak",
+      "broken": "my father had one, wooden, to lean on when, when legs are bad",
+      "sparse": "lean, elderly, wooden, support"
+    },
+    {
+      "id": "p008",
+      "target": "comb",
+      "accept": [
+        "comb"
+      ],
+      "plain": "Small toothed strip you run through your hair to neaten it",
+      "broken": "for hair, the flat plastic thing with teeth, not brush, in my pocket",
+      "sparse": "hair, teeth, tidy"
+    },
+    {
+      "id": "p009",
+      "target": "thermometer",
+      "accept": [
+        "thermometer"
+      ],
+      "plain": "It measures your temperature when you have a fever",
+      "broken": "under the tongue, nurse reads it, if you got feever, the numbers",
+      "sparse": "temperature, fever, measure"
+    },
+    {
+      "id": "p010",
+      "target": "well",
+      "accept": [
+        "well"
+      ],
+      "plain": "Deep hole in the ground where you draw up water",
+      "broken": "old days, bucket goes down on rope, uh, water comes up, deep hole",
+      "sparse": "deep hole, bucket, water"
+    },
+    {
+      "id": "p011",
+      "target": "grapes",
+      "accept": [
+        "grapes",
+        "grape"
+      ],
+      "plain": "They grow in bunches on a vine and are pressed for wine",
+      "broken": "little round ones, purple or green, a bunch, sort of, makes the wine",
+      "sparse": "bunch, vine, wine"
+    },
+    {
+      "id": "p012",
+      "target": "strawberries",
+      "accept": [
+        "strawberries",
+        "strawberry"
+      ],
+      "plain": "Small red summer fruit with tiny seeds on the outside",
+      "broken": "red fruit, with cream, oh what is it, summer, tiny seeds outside",
+      "sparse": "red, seeds, cream, summer"
+    },
+    {
+      "id": "p013",
+      "target": "bread",
+      "accept": [
+        "bread"
+      ],
+      "plain": "Baked loaf that you slice for toast and sandwiches",
+      "broken": "from the baker, you slice it, toast, um, butter goes on",
+      "sparse": "loaf, slice, bakery"
+    },
+    {
+      "id": "p014",
+      "target": "football",
+      "accept": [
+        "football"
+      ],
+      "plain": "Oval leather thing thrown and kicked in the American game",
+      "broken": "brown, pointy both ends, they throw it, touchdown, the Super Bowl thing",
+      "sparse": "oval, leather, touchdown"
+    },
+    {
+      "id": "p015",
+      "target": "pig",
+      "accept": [
+        "pig",
+        "hog"
+      ],
+      "plain": "Pink farm animal with a curly tail, gives us bacon",
+      "broken": "on the farm, the pink one, fat, er, oink oink, we get bacon",
+      "sparse": "pink, snout, bacon"
+    },
+    {
+      "id": "p016",
+      "target": "apple",
+      "accept": [
+        "apple"
+      ],
+      "plain": "Crunchy fruit from an orchard, red or green, with a core",
+      "broken": "fruit, round, the red one, crunchy, you know, one a day, doctor away",
+      "sparse": "fruit, red, crunchy, pips"
+    },
+    {
+      "id": "p017",
+      "target": "hand",
+      "accept": [
+        "hand"
+      ],
+      "plain": "Part of your body at the end of your arm",
+      "broken": "end of the arm, five fingers, wave with it, this, this here",
+      "sparse": "fingers, palm, wrist"
+    },
+    {
+      "id": "p018",
+      "target": "towel",
+      "accept": [
+        "towel"
+      ],
+      "plain": "Soft cloth you dry yourself with after a shower",
+      "broken": "after the shower, to get dry, the, um, fluffy cloth on the rail",
+      "sparse": "dry, bath, cloth"
+    },
+    {
+      "id": "p019",
+      "target": "lion",
+      "accept": [
+        "lion"
+      ],
+      "plain": "Big wild cat from Africa, the male has a mane",
+      "broken": "tiger... no, the one with hair round the face, Africa, roars, king of jungle",
+      "sparse": "mane, roar, Africa"
+    },
+    {
+      "id": "p020",
+      "target": "glass",
+      "accept": [
+        "glass"
+      ],
+      "plain": "You drink water or juice from it and it can shatter",
+      "broken": "for a drink, not cup, the see-through one, er, breaks if dropped",
+      "sparse": "drink, clear, breakable"
+    },
+    {
+      "id": "p021",
+      "target": "fork",
+      "accept": [
+        "fork"
+      ],
+      "plain": "Has prongs, lifts food to your mouth, sits beside the knife",
+      "broken": "at dinner, stab the food, spoon... no, the pointy one, with the knife",
+      "sparse": "eat, prongs, stab"
+    },
+    {
+      "id": "p022",
+      "target": "plant",
+      "accept": [
+        "plant",
+        "houseplant"
+      ],
+      "plain": "Green leafy thing growing in a pot that needs watering",
+      "broken": "in a pot, by the window, green, I water it, it it grows",
+      "sparse": "pot, green, leaves, grows"
+    },
+    {
+      "id": "p023",
+      "target": "garage",
+      "accept": [
+        "garage"
+      ],
+      "plain": "Building beside the house where you keep the car",
+      "broken": "car goes in there at night, erm, big door lifts up, beside house",
+      "sparse": "car, park, big door"
+    },
+    {
+      "id": "p024",
+      "target": "can",
+      "accept": [
+        "can",
+        "tin"
+      ],
+      "plain": "Metal container that soup or beans are sold in",
+      "broken": "metal, round, soup inside, you need the, the opener, from the supermarket",
+      "sparse": "metal, soup, opener"
+    },
+    {
+      "id": "p025",
+      "target": "table",
+      "accept": [
+        "table"
+      ],
+      "plain": "Furniture with a flat surface and legs, you eat at it",
+      "broken": "we all sit round it, four legs, plates go on, um, dining room",
+      "sparse": "furniture, flat, four legs"
+    },
+    {
+      "id": "p026",
+      "target": "waterfall",
+      "accept": [
+        "waterfall"
+      ],
+      "plain": "Where a river drops straight down over a cliff",
+      "broken": "river goes over the edge, straight down, crashing, like Niagara, you know",
+      "sparse": "river, cliff, Niagara"
+    },
+    {
+      "id": "p027",
+      "target": "king",
+      "accept": [
+        "king"
+      ],
+      "plain": "Man who rules a country and wears a crown",
+      "broken": "prince... no, the father, wears the crown, on the throne, queen's husband",
+      "sparse": "crown, throne, royal"
+    },
+    {
+      "id": "p028",
+      "target": "boot",
+      "accept": [
+        "boot"
+      ],
+      "plain": "Heavy footwear that covers your ankle, for rain or hiking",
+      "broken": "like shoe but higher up, um, for snow, for mud, heavy, laces",
+      "sparse": "footwear, ankle, hiking"
+    },
+    {
+      "id": "p029",
+      "target": "foot",
+      "accept": [
+        "foot"
+      ],
+      "plain": "You stand on it, it has five toes and a heel",
+      "broken": "bottom of the leg, toes on it, uh, it goes in the shoe",
+      "sparse": "toes, heel, ankle"
+    },
+    {
+      "id": "p030",
+      "target": "chair",
+      "accept": [
+        "chair"
+      ],
+      "plain": "Seat for one person with a back and four legs",
+      "broken": "to sit, the thing at the table, has a back, four legs, not sofa",
+      "sparse": "sit, four legs, back"
+    },
+    {
+      "id": "p031",
+      "target": "banana",
+      "accept": [
+        "banana"
+      ],
+      "plain": "Long curved yellow fruit that you peel, monkeys love it",
+      "broken": "yellow, long, kind of bent, you peel it, monkeys like them",
+      "sparse": "yellow, peel, curved"
+    },
+    {
+      "id": "p032",
+      "target": "ring",
+      "accept": [
+        "ring"
+      ],
+      "plain": "Small gold band you wear on your finger when married",
+      "broken": "on the finger, gold, he gave me at the weding, a diamond",
+      "sparse": "finger, gold, wedding"
+    },
+    {
+      "id": "p033",
+      "target": "dice",
+      "accept": [
+        "dice",
+        "die"
+      ],
+      "plain": "Small cubes with dots that you roll in board games",
+      "broken": "you roll them, dots, one to six, for the game, um, little cubes",
+      "sparse": "roll, dots, six, game"
+    },
+    {
+      "id": "p034",
+      "target": "calendar",
+      "accept": [
+        "calendar"
+      ],
+      "plain": "Hangs on the wall and shows the days and months",
+      "broken": "on the wall, days, months, turn the page, I write my apointments",
+      "sparse": "dates, months, wall"
+    },
+    {
+      "id": "p035",
+      "target": "knife",
+      "accept": [
+        "knife"
+      ],
+      "plain": "Sharp blade with a handle for cutting food",
+      "broken": "sharp, careful, cuts the meat, er, goes with the fork, in the drawer",
+      "sparse": "sharp, blade, cut"
+    },
+    {
+      "id": "p036",
+      "target": "vest",
+      "accept": [
+        "vest",
+        "waistcoat"
+      ],
+      "plain": "Sleeveless garment with buttons worn over a shirt, under a jacket",
+      "broken": "jacket... no, under the jacket, no sleeves, buttons, with the suit",
+      "sparse": "sleeveless, buttons, over shirt"
+    },
+    {
+      "id": "p037",
+      "target": "turkey",
+      "accept": [
+        "turkey"
+      ],
+      "plain": "Large bird that Americans roast for Thanksgiving dinner",
+      "broken": "big bird, Thanksgiving, in the oven for hours, what's it, gobble gobble",
+      "sparse": "bird, Thanksgiving, roast"
+    },
+    {
+      "id": "p038",
+      "target": "rake",
+      "accept": [
+        "rake"
+      ],
+      "plain": "Garden tool with long handle and teeth for gathering leaves",
+      "broken": "in autumn, the garden thing, pull leaves into a pile, long, teeth",
+      "sparse": "garden, leaves, gather, teeth"
+    },
+    {
+      "id": "p039",
+      "target": "balloon",
+      "accept": [
+        "balloon"
+      ],
+      "plain": "Rubber bag you blow up with air for parties",
+      "broken": "at the party, blow it, blow it up, on a string, then bang",
+      "sparse": "blow up, party, pops"
+    },
+    {
+      "id": "p040",
+      "target": "duck",
+      "accept": [
+        "duck"
+      ],
+      "plain": "Water bird with a flat bill that goes quack",
+      "broken": "bird on the pond, quack quack, we throw bread, um, it swims",
+      "sparse": "pond, quack, webbed feet"
+    },
+    {
+      "id": "p041",
+      "target": "fireplace",
+      "accept": [
+        "fireplace",
+        "hearth"
+      ],
+      "plain": "Opening in the living room wall where logs burn",
+      "broken": "living room, where the logs burn, you know, chimney above, cosy",
+      "sparse": "logs, flames, mantel"
+    },
+    {
+      "id": "p042",
+      "target": "pineapple",
+      "accept": [
+        "pineapple"
+      ],
+      "plain": "Tropical, spiky outside, sweet and yellow inside, with a leafy crown",
+      "broken": "coconut... no, the prickly one, leaves on top, yellow inside, rings in tin",
+      "sparse": "tropical, spiky, yellow, Hawaii"
+    },
+    {
+      "id": "p043",
+      "target": "fan",
+      "accept": [
+        "fan"
+      ],
+      "plain": "Electric machine with spinning blades that blows cool air",
+      "broken": "hot day, plug it in, the the blades go round, blows air at you",
+      "sparse": "blades, spin, cool air"
+    },
+    {
+      "id": "p044",
+      "target": "window",
+      "accept": [
+        "window"
+      ],
+      "plain": "Glass opening in a wall that lets you see outside",
+      "broken": "glass, in the wall, I look out, open for air, curtins on it",
+      "sparse": "glass, wall, look out"
+    },
+    {
+      "id": "p045",
+      "target": "lamp",
+      "accept": [
+        "lamp"
+      ],
+      "plain": "Stands on a bedside table and gives light for reading",
+      "broken": "by the bed, uh, switch on to read, the shade, a bulb",
+      "sparse": "bulb, shade, bedside"
+    },
+    {
+      "id": "p046",
+      "target": "drum",
+      "accept": [
+        "drum"
+      ],
+      "plain": "Round instrument you hit with sticks to keep the beat",
+      "broken": "music, you bang it, boom boom, with the, the sticks, in a band",
+      "sparse": "bang, sticks, beat"
+    },
+    {
+      "id": "p047",
+      "target": "skull",
+      "accept": [
+        "skull"
+      ],
+      "plain": "The bone inside your head that protects the brain",
+      "broken": "the head, um, the bone of it, when you dead, on pirate flag",
+      "sparse": "head, bone, brain"
+    },
+    {
+      "id": "p048",
+      "target": "bridge",
+      "accept": [
+        "bridge"
+      ],
+      "plain": "Structure that carries a road across a river",
+      "broken": "the thing over the river, cars go across, like Golden Gate",
+      "sparse": "river, crossing, road"
+    },
+    {
+      "id": "p049",
+      "target": "eskimo",
+      "accept": [
+        "eskimo",
+        "inuit"
+      ],
+      "plain": "Native of the frozen Arctic, pictured in a fur hooded coat",
+      "broken": "people far north, ice, the snow house, um, igloo, fur hood",
+      "sparse": "Arctic, igloo, fur parka"
+    },
+    {
+      "id": "p050",
+      "target": "dog",
+      "accept": [
+        "dog"
+      ],
+      "plain": "Pet animal that barks and wags its tail",
+      "broken": "pet, cat... no, the one that barks, take for walk, wags tail",
+      "sparse": "pet, barks, tail"
+    },
+    {
+      "id": "p051",
+      "target": "iron",
+      "accept": [
+        "iron"
+      ],
+      "plain": "Hot appliance you press on clothes to remove wrinkles",
+      "broken": "for shirts, hot, flat, steam, gets the, the creases out, on a board",
+      "sparse": "hot, press, clothes, wrinkles"
+    },
+    {
+      "id": "p052",
+      "target": "cheerleaders",
+      "accept": [
+        "cheerleaders",
+        "cheerleader"
+      ],
+      "plain": "Girls with pom-poms who jump and shout for the team",
+      "broken": "the girls at the game, you know, pom-poms, jumping, yell for the team",
+      "sparse": "pom-poms, team, jump, shout"
+    },
+    {
+      "id": "p053",
+      "target": "snake",
+      "accept": [
+        "snake"
+      ],
+      "plain": "Long reptile with no legs that slithers and hisses",
+      "broken": "oh, long, no legs, on the ground, hisss, it bites, poison",
+      "sparse": "no legs, slither, hiss"
+    },
+    {
+      "id": "p054",
+      "target": "ambulance",
+      "accept": [
+        "ambulance"
+      ],
+      "plain": "Emergency vehicle that rushes sick people to hospital",
+      "broken": "siren, nee-naw, when I had the stroke it came, to hospital, fast",
+      "sparse": "emergency, siren, hospital"
+    },
+    {
+      "id": "p055",
+      "target": "carrot",
+      "accept": [
+        "carrot"
+      ],
+      "plain": "Rabbits love this orange root that grows under the ground",
+      "broken": "orange one, long, vegetable, er, rabbits eat it, good for eyes",
+      "sparse": "orange, vegetable, rabbit"
+    },
+    {
+      "id": "p056",
+      "target": "sailor",
+      "accept": [
+        "sailor",
+        "seaman"
+      ],
+      "plain": "Crew member in the navy who lives and works on ships",
+      "broken": "soldier... no, on the ship, navy, white hat, my uncle was one",
+      "sparse": "navy, ship, crew"
+    },
+    {
+      "id": "p057",
+      "target": "book",
+      "accept": [
+        "book"
+      ],
+      "plain": "Pages bound together with a cover that you read",
+      "broken": "you read it, pages, um, from the library, story inside, has cover",
+      "sparse": "pages, read, library"
+    },
+    {
+      "id": "p058",
+      "target": "bus",
+      "accept": [
+        "bus"
+      ],
+      "plain": "Passengers pay a fare and ride it along a fixed route",
+      "broken": "bigger than car, lots of people, you wait, wait at the stop",
+      "sparse": "passengers, route, driver, fare"
+    },
+    {
+      "id": "p059",
+      "target": "map",
+      "accept": [
+        "map"
+      ],
+      "plain": "Drawing of an area that shows roads and towns",
+      "broken": "to find the way, you know, paper, roads on it, folds up",
+      "sparse": "roads, directions, fold"
+    },
+    {
+      "id": "p060",
+      "target": "squirrel",
+      "accept": [
+        "squirrel"
+      ],
+      "plain": "Small bushy-tailed animal that climbs trees and collects nuts",
+      "broken": "rat... no, nicer, up the tree, big fluffy tail, hides the nuts",
+      "sparse": "nuts, bushy tail, trees"
+    },
+    {
+      "id": "p061",
+      "target": "microscope",
+      "accept": [
+        "microscope"
+      ],
+      "plain": "Scientists look through it to see very tiny things",
+      "broken": "science lab, erm, look down the tube, tiny things get big, germs",
+      "sparse": "lab, tiny, magnify"
+    },
+    {
+      "id": "p062",
+      "target": "bowl",
+      "accept": [
+        "bowl"
+      ],
+      "plain": "Deep round dish you eat soup or cereal from",
+      "broken": "for soup, plate... no, deeper, round, cereal in it in the morning",
+      "sparse": "round dish, soup, cereal"
+    },
+    {
+      "id": "p063",
+      "target": "van",
+      "accept": [
+        "van"
+      ],
+      "plain": "Boxy vehicle for delivering goods, bigger than a car",
+      "broken": "delivery driver has it, er, like car but tall, no back windows, parcels",
+      "sparse": "delivery, boxy, vehicle"
+    },
+    {
+      "id": "p064",
+      "target": "helicopter",
+      "accept": [
+        "helicopter",
+        "chopper"
+      ],
+      "plain": "Aircraft with spinning blades on top that can hover",
+      "broken": "it flies, plane... no, the blades go round on top, loud, it hovers",
+      "sparse": "flies, rotor, hover"
+    },
+    {
+      "id": "p065",
+      "target": "bottle",
+      "accept": [
+        "bottle"
+      ],
+      "plain": "Container with a narrow neck for wine, milk or water",
+      "broken": "wine comes in it, uh, glass, narrow at the top, a cork",
+      "sparse": "glass, narrow neck, cork"
+    },
+    {
+      "id": "p066",
+      "target": "scarf",
+      "accept": [
+        "scarf"
+      ],
+      "plain": "Long piece of wool you wrap around your neck in winter",
+      "broken": "round the neck, winter, wool, long, my wife knited me one",
+      "sparse": "neck, wool, winter"
+    },
+    {
+      "id": "p067",
+      "target": "ball",
+      "accept": [
+        "ball"
+      ],
+      "plain": "Round thing you throw, kick or bounce in games",
+      "broken": "round, you throw it, you know, dog fetches, kick it, bounces",
+      "sparse": "round, bounce, throw"
+    },
+    {
+      "id": "p068",
+      "target": "frog",
+      "accept": [
+        "frog"
+      ],
+      "plain": "Green pond creature that hops and croaks",
+      "broken": "green, it jumps, in the pond, ribbit, um, was a tadpole first",
+      "sparse": "green, hops, pond, croak"
+    },
+    {
+      "id": "p069",
+      "target": "cow",
+      "accept": [
+        "cow"
+      ],
+      "plain": "She grazes in fields, says moo and gives us milk",
+      "broken": "farm, the big one, black and white, we get the the milk, moo",
+      "sparse": "farm, milk, moo"
+    },
+    {
+      "id": "p070",
+      "target": "beard",
+      "accept": [
+        "beard"
+      ],
+      "plain": "Hair that grows on a man's chin and cheeks",
+      "broken": "on the chin, hair, when he don't shave, Santa has a white one",
+      "sparse": "chin, hair, unshaven"
+    },
+    {
+      "id": "p071",
+      "target": "glove",
+      "accept": [
+        "glove"
+      ],
+      "plain": "Has five fingers and keeps one hand warm in winter",
+      "broken": "for the hand, in the cold, fingers go in, a pair, lether",
+      "sparse": "hand, fingers, warm"
+    },
+    {
+      "id": "p072",
+      "target": "owl",
+      "accept": [
+        "owl"
+      ],
+      "plain": "It hoots at night and can turn its head right round",
+      "broken": "bird, night time, big eyes, sits in the tree, er, hoo hoo",
+      "sparse": "night bird, hoot, wise"
+    },
+    {
+      "id": "p073",
+      "target": "pipe",
+      "accept": [
+        "pipe"
+      ],
+      "plain": "Thing you fill with tobacco and smoke, has a stem",
+      "broken": "grandad smoked one, not cigarette, the the wooden one, tobacco in, puff",
+      "sparse": "tobacco, smoke, wooden stem"
+    },
+    {
+      "id": "p074",
+      "target": "scale",
+      "accept": [
+        "scale",
+        "scales"
+      ],
+      "plain": "Device that shows how much you or something weighs",
+      "broken": "in the bathroom, step on it, numbers, how heavy, um, too many kilos",
+      "sparse": "weight, heavy, kilos"
+    },
+    {
+      "id": "p075",
+      "target": "tent",
+      "accept": [
+        "tent"
+      ],
+      "plain": "Canvas shelter you sleep in when camping outdoors",
+      "broken": "for camping, you sleep in it, poles, pegs, you know, in a field",
+      "sparse": "camping, canvas, poles, shelter"
+    },
+    {
+      "id": "p076",
+      "target": "flashlight",
+      "accept": [
+        "flashlight",
+        "torch"
+      ],
+      "plain": "Battery-powered thing you carry to see in the dark",
+      "broken": "power cut, the thing with batteries, you shine it, in the dark",
+      "sparse": "batteries, beam, dark"
+    },
+    {
+      "id": "p077",
+      "target": "camel",
+      "accept": [
+        "camel"
+      ],
+      "plain": "It carries people across the desert and has a hump",
+      "broken": "horse... no, desert one, hump on the back, long time no water",
+      "sparse": "desert, hump, ride"
+    },
+    {
+      "id": "p078",
+      "target": "goat",
+      "accept": [
+        "goat"
+      ],
+      "plain": "Horned farm creature with a little beard that eats anything",
+      "broken": "farm, like sheep but horns, the little beard, um, eats anything, that cheese",
+      "sparse": "horns, beard, farm, bleat"
+    },
+    {
+      "id": "p079",
+      "target": "fish",
+      "accept": [
+        "fish"
+      ],
+      "plain": "Scaly swimmer with fins and gills that lives underwater",
+      "broken": "it swims, sea, river, you catch it, the rod, uh, with chips",
+      "sparse": "swims, fins, gills"
+    },
+    {
+      "id": "p080",
+      "target": "cannon",
+      "accept": [
+        "cannon"
+      ],
+      "plain": "Big old gun on wheels that fires heavy iron balls",
+      "broken": "old wars, the big gun thing on wheels, boom, iron balls, pirate ships",
+      "sparse": "big gun, wheels, boom"
+    },
+    {
+      "id": "p081",
+      "target": "shoe",
+      "accept": [
+        "shoe"
+      ],
+      "plain": "It goes over your sock, has a sole, heel and laces",
+      "broken": "goes on the foot, over the sock, er, tie the laces, a pair",
+      "sparse": "foot, laces, sole"
+    },
+    {
+      "id": "p082",
+      "target": "sandwich",
+      "accept": [
+        "sandwich"
+      ],
+      "plain": "Two slices of bread with a filling in between",
+      "broken": "for lunch, two breads, ham in the the middle, cut in half",
+      "sparse": "bread, filling, lunch"
+    },
+    {
+      "id": "p083",
+      "target": "spider",
+      "accept": [
+        "spider"
+      ],
+      "plain": "It has eight legs and spins a web to trap flies",
+      "broken": "eight legs, makes a web, catches flies, in the bath, ugh, hate them",
+      "sparse": "eight legs, web"
+    },
+    {
+      "id": "p084",
+      "target": "belt",
+      "accept": [
+        "belt"
+      ],
+      "plain": "Leather strap with a buckle that holds your trousers up",
+      "broken": "round the waist, leather, a buckle, so trousers don't, don't come down",
+      "sparse": "waist, leather, buckle"
+    },
+    {
+      "id": "p085",
+      "target": "toilet",
+      "accept": [
+        "toilet",
+        "lavatory",
+        "loo"
+      ],
+      "plain": "Bathroom fixture you sit on and flush after using",
+      "broken": "in the bathroom, you sit, you go, then flush, um, lid down",
+      "sparse": "bathroom, flush, seat"
+    },
+    {
+      "id": "p086",
+      "target": "wagon",
+      "accept": [
+        "wagon",
+        "waggon",
+        "cart"
+      ],
+      "plain": "Open box on four wheels that a child pulls along",
+      "broken": "kids have it, red, four wheels, you pull the, the handle, toys in",
+      "sparse": "four wheels, pull, child"
+    },
+    {
+      "id": "p087",
+      "target": "ruler",
+      "accept": [
+        "ruler"
+      ],
+      "plain": "Straight strip marked in centimetres for measuring and drawing lines",
+      "broken": "at school, the straight thing, draw a line, measure, inches on the edge",
+      "sparse": "measure, straight, centimetres"
+    },
+    {
+      "id": "p088",
+      "target": "tractor",
+      "accept": [
+        "tractor"
+      ],
+      "plain": "Powerful farm vehicle used for ploughing and towing trailers",
+      "broken": "farmer drives it, in the field, um, huge back wheels, slow on road",
+      "sparse": "farm, big wheels, plough"
+    },
+    {
+      "id": "p089",
+      "target": "queen",
+      "accept": [
+        "queen"
+      ],
+      "plain": "Royal woman on the throne, like Elizabeth in England",
+      "broken": "the lady with crown, Elizabeth was one, you know, palace, on the stamps",
+      "sparse": "royal, woman, crown"
+    },
+    {
+      "id": "p090",
+      "target": "train",
+      "accept": [
+        "train"
+      ],
+      "plain": "It runs on rails and pulls carriages between stations",
+      "broken": "on the tracks, choo choo, carriages, get on at the, the station",
+      "sparse": "rails, station, carriages"
+    },
+    {
+      "id": "p091",
+      "target": "church",
+      "accept": [
+        "church"
+      ],
+      "plain": "Christians gather here on Sundays to pray and sing hymns",
+      "broken": "Sunday, we go to pray, the priest, um, steeple, weddings there",
+      "sparse": "pray, Sunday, steeple"
+    },
+    {
+      "id": "p092",
+      "target": "anchor",
+      "accept": [
+        "anchor"
+      ],
+      "plain": "Heavy metal hook dropped from a ship to hold it still",
+      "broken": "on the boat, the heavy hook thing, drop it down, boat stays put",
+      "sparse": "ship, heavy hook, chain"
+    },
+    {
+      "id": "p093",
+      "target": "whistle",
+      "accept": [
+        "whistle"
+      ],
+      "plain": "Small thing the referee blows to make a shrill sound",
+      "broken": "referee has it, er, round his neck, he blows, peeep, game stops",
+      "sparse": "referee, blow, shrill"
+    },
+    {
+      "id": "p094",
+      "target": "corn",
+      "accept": [
+        "corn",
+        "maize",
+        "sweetcorn"
+      ],
+      "plain": "Yellow kernels growing on a cob, eaten as a vegetable",
+      "broken": "yellow, on the cob, butter on, the little, little bits in rows",
+      "sparse": "yellow, cob, kernels"
+    },
+    {
+      "id": "p095",
+      "target": "pyramid",
+      "accept": [
+        "pyramid"
+      ],
+      "plain": "Huge pointed stone tomb built in ancient Egypt",
+      "broken": "in Egypt, the big stone, um, triangle ones, pharaoh buried inside, camels",
+      "sparse": "Egypt, pointed, tomb"
+    },
+    {
+      "id": "p096",
+      "target": "typewriter",
+      "accept": [
+        "typewriter"
+      ],
+      "plain": "Old machine with keys that prints letters onto paper",
+      "broken": "before computers, you know, secretary, tap tap on keys, ding, paper in",
+      "sparse": "old, keys, ribbon, paper"
+    },
+    {
+      "id": "p097",
+      "target": "rope",
+      "accept": [
+        "rope"
+      ],
+      "plain": "Thick strong cord used for tying or climbing",
+      "broken": "string... no, thicker, strong, tie up the boat, climb it, knots",
+      "sparse": "thick cord, tie, knots"
+    },
+    {
+      "id": "p098",
+      "target": "basket",
+      "accept": [
+        "basket"
+      ],
+      "plain": "Woven from cane or straw, with a handle, for carrying shopping",
+      "broken": "you carry things in, woven, er, straw, eggs in it, for picnic",
+      "sparse": "woven, carry, picnic"
+    },
+    {
+      "id": "p099",
+      "target": "letter",
+      "accept": [
+        "letter"
+      ],
+      "plain": "Written message you put in an envelope and post",
+      "broken": "in the envelope, stamp on, postman brings, you know, Dear John",
+      "sparse": "envelope, stamp, post"
+    },
+    {
+      "id": "p100",
+      "target": "nose",
+      "accept": [
+        "nose"
+      ],
+      "plain": "Part of your face that you smell and breathe through",
+      "broken": "middle of face, you smell, smell with it, runs when I'm cold",
+      "sparse": "face, smell, nostrils"
+    },
+    {
+      "id": "p101",
+      "target": "chimney",
+      "accept": [
+        "chimney"
+      ],
+      "plain": "Tall pipe on the roof that lets smoke out",
+      "broken": "on the roof, the smoke goes up it, oh, Santa comes down",
+      "sparse": "roof, smoke, bricks"
+    },
+    {
+      "id": "p102",
+      "target": "horse",
+      "accept": [
+        "horse"
+      ],
+      "plain": "People saddle it and ride it in races, it gallops",
+      "broken": "cow... no, you ride it, gallops, at the races, eats hay",
+      "sparse": "ride, gallop, mane"
+    },
+    {
+      "id": "p103",
+      "target": "key",
+      "accept": [
+        "key"
+      ],
+      "plain": "Small metal thing that locks and unlocks a door",
+      "broken": "for the door, the little metal thing, opens the lock, always lose mine",
+      "sparse": "lock, door, metal"
+    },
+    {
+      "id": "p104",
+      "target": "fireman",
+      "accept": [
+        "fireman",
+        "firefighter"
+      ],
+      "plain": "Person with a hose and helmet who puts out blazes",
+      "broken": "house is burning, they come, red truck, the hose, uh, big ladder",
+      "sparse": "blaze, hose, red truck"
+    },
+    {
+      "id": "p105",
+      "target": "cross",
+      "accept": [
+        "cross",
+        "crucifix"
+      ],
+      "plain": "Christian symbol with two bars, Jesus died on one",
+      "broken": "on the church, Jesus, two bits like a plus, er, wear on chain",
+      "sparse": "Jesus, church, two beams"
+    },
+    {
+      "id": "p106",
+      "target": "crutches",
+      "accept": [
+        "crutches",
+        "crutch"
+      ],
+      "plain": "Pair of supports under your arms for a broken leg",
+      "broken": "broke my leg, couldn't walk, the the two sticks under arms, hopping",
+      "sparse": "broken leg, underarm, support"
+    },
+    {
+      "id": "p107",
+      "target": "bone",
+      "accept": [
+        "bone"
+      ],
+      "plain": "Hard white part inside the body, dogs chew them",
+      "broken": "inside the body, hard, white, you know, dog chews it, skeleton",
+      "sparse": "skeleton, hard, dog chews"
+    },
+    {
+      "id": "p108",
+      "target": "cat",
+      "accept": [
+        "cat"
+      ],
+      "plain": "Furry pet that purrs, meows and chases mice",
+      "broken": "sits on my lap, purrs, meow, whiskers, oh, chases the mouse",
+      "sparse": "pet, purr, whiskers"
+    },
+    {
+      "id": "p109",
+      "target": "kitchen",
+      "accept": [
+        "kitchen"
+      ],
+      "plain": "Room in the house where you cook the meals",
+      "broken": "the room, bedroom... no, where I cook, stove, fridge, the sink",
+      "sparse": "room, cook, stove"
+    },
+    {
+      "id": "p110",
+      "target": "dragon",
+      "accept": [
+        "dragon"
+      ],
+      "plain": "Fairy-tale monster with wings that breathes flames",
+      "broken": "not real, in stories, sort of lizard with wings, flames from mouth",
+      "sparse": "mythical, wings, breathes fire"
+    },
+    {
+      "id": "p111",
+      "target": "saddle",
+      "accept": [
+        "saddle"
+      ],
+      "plain": "Leather seat strapped on a horse for the rider",
+      "broken": "on the horse, the leather, um, where you sit, feet in stirrups",
+      "sparse": "horse, leather seat, stirrups"
+    },
+    {
+      "id": "p112",
+      "target": "pie",
+      "accept": [
+        "pie"
+      ],
+      "plain": "Baked pastry dish with a fruit or meat filling",
+      "broken": "cake... no, pastry lid, apple inside, a slice with cream, grandma made",
+      "sparse": "pastry, filling, baked"
+    },
+    {
+      "id": "p113",
+      "target": "snail",
+      "accept": [
+        "snail"
+      ],
+      "plain": "Slow little creature that carries a shell on its back",
+      "broken": "in the garden, very slow, carries its, its house, slimy, eats lettuce",
+      "sparse": "slow, shell, slimy"
+    },
+    {
+      "id": "p114",
+      "target": "pirate",
+      "accept": [
+        "pirate"
+      ],
+      "plain": "Robber at sea with an eye patch and treasure",
+      "broken": "on the ship, bad one, eye patch, parrot, steals the gold, arrr",
+      "sparse": "sea robber, patch, treasure"
+    },
+    {
+      "id": "p115",
+      "target": "clock",
+      "accept": [
+        "clock"
+      ],
+      "plain": "Two hands move round its face to show the hour",
+      "broken": "on the wall, tick tock, the the hands go round, tells time",
+      "sparse": "time, tick, wall, hands"
+    },
+    {
+      "id": "p116",
+      "target": "pumpkin",
+      "accept": [
+        "pumpkin"
+      ],
+      "plain": "Big orange vegetable carved into lanterns at Halloween",
+      "broken": "orange, big, round, for Haloween, cut a face in, candle inside",
+      "sparse": "orange, Halloween, carve"
+    },
+    {
+      "id": "p117",
+      "target": "sock",
+      "accept": [
+        "sock"
+      ],
+      "plain": "Soft knitted covering for your foot, worn inside shoes",
+      "broken": "on the foot, before the shoe, er, always lose one in wash",
+      "sparse": "foot, knitted, inside shoe"
+    },
+    {
+      "id": "p118",
+      "target": "closet",
+      "accept": [
+        "closet",
+        "wardrobe"
+      ],
+      "plain": "Small room or space with a rail where clothes hang",
+      "broken": "in the bedroom, what do you call, hang clothes inside, on hangers",
+      "sparse": "clothes, hangers, storage"
+    },
+    {
+      "id": "p119",
+      "target": "hair",
+      "accept": [
+        "hair"
+      ],
+      "plain": "It grows on your head and you brush it",
+      "broken": "on my head, it grows, went grey, the barber cuts, cuts it",
+      "sparse": "head, grows, shampoo"
+    },
+    {
+      "id": "p120",
+      "target": "baby",
+      "accept": [
+        "baby",
+        "infant"
+      ],
+      "plain": "Very young child, just born, still in nappies",
+      "broken": "just born, tiny, cries, in the pram, my daughter had one, napies",
+      "sparse": "tiny, cries, nappies"
+    },
+    {
+      "id": "p121",
+      "target": "bat",
+      "accept": [
+        "bat"
+      ],
+      "plain": "Furry night flyer that hangs upside down in caves",
+      "broken": "bird... no, flies at night, mouse with wings, hangs upside down, cave",
+      "sparse": "wings, cave, upside down"
+    },
+    {
+      "id": "p122",
+      "target": "leaf",
+      "accept": [
+        "leaf"
+      ],
+      "plain": "Flat green part of a tree that drops in autumn",
+      "broken": "on the tree, green, then brown, um, comes down in autumn",
+      "sparse": "tree, green, autumn"
+    },
+    {
+      "id": "p123",
+      "target": "slippers",
+      "accept": [
+        "slippers",
+        "slipper"
+      ],
+      "plain": "Soft comfortable footwear you put on indoors at home",
+      "broken": "shoes... no, soft ones, for at home, warm, by the bed, pyjamas",
+      "sparse": "soft, indoor, footwear"
+    },
+    {
+      "id": "p124",
+      "target": "mountain",
+      "accept": [
+        "mountain"
+      ],
+      "plain": "Very high piece of land, much bigger than a hill",
+      "broken": "very high, snow on top, you climb, you know, Everest is one",
+      "sparse": "high, peak, climb"
+    },
+    {
+      "id": "p125",
+      "target": "sun",
+      "accept": [
+        "sun"
+      ],
+      "plain": "Bright ball in the sky that gives daylight and heat",
+      "broken": "moon... no, daytime one, in the sky, yellow, hot, don't look at it",
+      "sparse": "sky, hot, daytime"
+    },
+    {
+      "id": "p126",
+      "target": "mustache",
+      "accept": [
+        "mustache",
+        "moustache"
+      ],
+      "plain": "Hair a man grows on his upper lip",
+      "broken": "hair, under the nose, on the lip, uh, not beard, Chaplin had",
+      "sparse": "upper lip, hair, men"
+    },
+    {
+      "id": "p127",
+      "target": "ear",
+      "accept": [
+        "ear"
+      ],
+      "plain": "It sticks out from the side of your head and catches sounds",
+      "broken": "side of the head, for, for listening, two, the lobe, I'm deaf in one",
+      "sparse": "listening, lobe, head"
+    },
+    {
+      "id": "p128",
+      "target": "door",
+      "accept": [
+        "door"
+      ],
+      "plain": "You open it to go into a room or house",
+      "broken": "to come in, open it, shut it, knock knock, er, lock it",
+      "sparse": "open, knock, entrance, hinges"
+    },
+    {
+      "id": "p129",
+      "target": "house",
+      "accept": [
+        "house"
+      ],
+      "plain": "Building with rooms and a roof where a family lives",
+      "broken": "where we live, the, the building, roof, rooms, garden, not a flat",
+      "sparse": "building, family, live, roof"
+    },
+    {
+      "id": "p130",
+      "target": "nail",
+      "accept": [
+        "nail"
+      ],
+      "plain": "Thin pointed metal pin you hit into wood with a hammer",
+      "broken": "screw... no, you bang it in with hammer, metal, hang a picture",
+      "sparse": "metal, pointed, hammer in"
+    },
+    {
+      "id": "p131",
+      "target": "binoculars",
+      "accept": [
+        "binoculars"
+      ],
+      "plain": "You hold them to your eyes to see far away",
+      "broken": "for looking far, the two tubes thing, both eyes, bird watching",
+      "sparse": "far, two lenses, birdwatching"
+    },
+    {
+      "id": "p132",
+      "target": "celery",
+      "accept": [
+        "celery"
+      ],
+      "plain": "Crunchy pale green vegetable with long stringy stalks",
+      "broken": "green, long stalks, crunchy, stringy, er, in salad, tastes of nothing",
+      "sparse": "green stalks, crunchy, salad"
+    },
+    {
+      "id": "p133",
+      "target": "vase",
+      "accept": [
+        "vase"
+      ],
+      "plain": "Cut flowers stand in it with water, often made of china",
+      "broken": "for the flowers, put water in, the the tall china one, on table",
+      "sparse": "flowers, water, china"
+    },
+    {
+      "id": "p134",
+      "target": "pencil",
+      "accept": [
+        "pencil"
+      ],
+      "plain": "Wooden stick with lead inside for writing and drawing",
+      "broken": "for drawing, wood, grey lead, sharpen it, oh, rubber on the end",
+      "sparse": "lead, sharpen, draw"
+    },
+    {
+      "id": "p135",
+      "target": "elephant",
+      "accept": [
+        "elephant"
+      ],
+      "plain": "Biggest land mammal, grey, with a trunk and tusks",
+      "broken": "biggest animal, grey, long nose... trunk, big ears, tusks, never forgets",
+      "sparse": "trunk, tusks, huge, grey"
+    },
+    {
+      "id": "p136",
+      "target": "hose",
+      "accept": [
+        "hose",
+        "hosepipe"
+      ],
+      "plain": "Long rubber tube for watering the garden or washing cars",
+      "broken": "in the garden, long green snake thing, water comes out, wash car",
+      "sparse": "garden, water, long tube"
+    },
+    {
+      "id": "p137",
+      "target": "bench",
+      "accept": [
+        "bench"
+      ],
+      "plain": "Long wooden seat in a park for several people",
+      "broken": "in the park, chair... no, long one, wood, two three people sit",
+      "sparse": "park, long seat, wooden"
+    },
+    {
+      "id": "p138",
+      "target": "zebra",
+      "accept": [
+        "zebra"
+      ],
+      "plain": "Looks like a horse painted in black and white stripes",
+      "broken": "horse but, um, Africa, black and white, the stripes, at the zoo",
+      "sparse": "stripes, Africa, horse-like"
+    },
+    {
+      "id": "p139",
+      "target": "man",
+      "accept": [
+        "man"
+      ],
+      "plain": "Adult male person, a husband or father is one",
+      "broken": "a person, not lady, the the other, grown up, he, a father",
+      "sparse": "adult, male, person"
+    },
+    {
+      "id": "p140",
+      "target": "seal",
+      "accept": [
+        "seal"
+      ],
+      "plain": "Sleek sea mammal with flippers that barks and eats fish",
+      "broken": "in the sea, flippers, on the ice, claps, uh, balances a ball",
+      "sparse": "flippers, sea, barks"
+    },
+    {
+      "id": "p141",
+      "target": "wig",
+      "accept": [
+        "wig"
+      ],
+      "plain": "False hair worn on the head by bald people",
+      "broken": "not real hair, you put it on, when bald, after kemo",
+      "sparse": "false hair, bald"
+    },
+    {
+      "id": "p142",
+      "target": "necklace",
+      "accept": [
+        "necklace"
+      ],
+      "plain": "Jewellery on a chain that hangs around your throat",
+      "broken": "jewellery, ring... no, round here, the throat, pearls, on a chain",
+      "sparse": "jewellery, chain, pearls, throat"
+    },
+    {
+      "id": "p143",
+      "target": "desk",
+      "accept": [
+        "desk"
+      ],
+      "plain": "Table with drawers where you sit to work or study",
+      "broken": "office, the the table for work, computer on it, drawers, paperwork",
+      "sparse": "office, drawers, work, study"
+    },
+    {
+      "id": "p144",
+      "target": "bell",
+      "accept": [
+        "bell"
+      ],
+      "plain": "Metal cup shape that rings when it is struck",
+      "broken": "ding dong, in the church tower, metal, it rings, school has one",
+      "sparse": "ding, metal, church tower"
+    },
+    {
+      "id": "p145",
+      "target": "star",
+      "accept": [
+        "star"
+      ],
+      "plain": "Tiny point of light in the night sky, it twinkles",
+      "broken": "at night, up in sky, twinkle twinkle little, you know, lots of them",
+      "sparse": "night sky, twinkle"
+    },
+    {
+      "id": "p146",
+      "target": "hammer",
+      "accept": [
+        "hammer"
+      ],
+      "plain": "Tool with a heavy head for banging in nails",
+      "broken": "the tool, bang bang, hits the nail, er, heavy end, wooden handle",
+      "sparse": "tool, bang, nails"
+    },
+    {
+      "id": "p147",
+      "target": "pillow",
+      "accept": [
+        "pillow"
+      ],
+      "plain": "Soft stuffed thing you rest your head on in bed",
+      "broken": "on the bed, soft, for my, my head, feathers inside, fluff it",
+      "sparse": "bed, head, soft, feathers"
+    },
+    {
+      "id": "p148",
+      "target": "spoon",
+      "accept": [
+        "spoon"
+      ],
+      "plain": "You eat soup with it and stir your tea",
+      "broken": "for the soup, stir my tea, um, the round one, sugar in",
+      "sparse": "soup, stir, cutlery"
+    },
+    {
+      "id": "p149",
+      "target": "zipper",
+      "accept": [
+        "zipper",
+        "zip"
+      ],
+      "plain": "Metal fastener with teeth that slides to close a jacket",
+      "broken": "on my jacket, pull it up, zzzt, little teeth close, gets stuck",
+      "sparse": "fastener, teeth, slide, jacket"
+    },
+    {
+      "id": "p150",
+      "target": "top",
+      "accept": [
+        "top",
+        "spinning top"
+      ],
+      "plain": "Child's toy that whirls round fast, balanced on its point",
+      "broken": "a toy, you twist it, it goes round round, er, then wobbles",
+      "sparse": "toy, whirls, point, wobbles"
+    },
+    {
+      "id": "p151",
+      "target": "flower",
+      "accept": [
+        "flower"
+      ],
+      "plain": "Colourful part of a plant with petals, smells nice",
+      "broken": "in the garden, pretty, the petals, smells nice, you know, rose is one",
+      "sparse": "petals, garden, scent"
+    },
+    {
+      "id": "p152",
+      "target": "kite",
+      "accept": [
+        "kite"
+      ],
+      "plain": "Light frame with a tail that you fly on a string",
+      "broken": "windy day, on a string, up up in the sky, has tail",
+      "sparse": "wind, string, sky"
+    },
+    {
+      "id": "p153",
+      "target": "suit",
+      "accept": [
+        "suit"
+      ],
+      "plain": "Matching jacket and trousers worn to the office or weddings",
+      "broken": "for the office, smart, jacket and, and trousers same, with tie",
+      "sparse": "jacket, trousers, smart, matching"
+    },
+    {
+      "id": "p154",
+      "target": "cake",
+      "accept": [
+        "cake"
+      ],
+      "plain": "Sweet baked treat with icing, served at birthdays",
+      "broken": "sweet, for the birthday, candles on, blow them, oh, cut a slice",
+      "sparse": "sweet, icing, birthday"
+    },
+    {
+      "id": "p155",
+      "target": "hat",
+      "accept": [
+        "hat"
+      ],
+      "plain": "You wear it on your head outdoors, has a brim",
+      "broken": "on the head, keeps sun off, the the brim, men tip it",
+      "sparse": "head, brim, wear"
+    },
+    {
+      "id": "p156",
+      "target": "crown",
+      "accept": [
+        "crown"
+      ],
+      "plain": "Gold circle with jewels that a king wears on his head",
+      "broken": "hat... no, gold one, on the king's head, jewels, coronation",
+      "sparse": "gold, jewels, king, head"
+    },
+    {
+      "id": "p157",
+      "target": "piano",
+      "accept": [
+        "piano"
+      ],
+      "plain": "You sit and press its black and white keys for music",
+      "broken": "music, the black and white, um, keys, you sit, press with fingers",
+      "sparse": "keys, pedals, music"
+    },
+    {
+      "id": "p158",
+      "target": "stethoscope",
+      "accept": [
+        "stethoscope"
+      ],
+      "plain": "Doctor uses it to listen to your heart and lungs",
+      "broken": "doctor has it round his neck, listens to chest, you know, cold",
+      "sparse": "doctor, listen, chest"
+    },
+    {
+      "id": "p159",
+      "target": "bride",
+      "accept": [
+        "bride"
+      ],
+      "plain": "Woman in a white dress on her wedding day",
+      "broken": "at the wedding, the woman, er, white dress, veil, says I do",
+      "sparse": "wedding, white dress, veil"
+    },
+    {
+      "id": "p160",
+      "target": "butterfly",
+      "accept": [
+        "butterfly"
+      ],
+      "plain": "Insect with large colourful wings that starts as a caterpillar",
+      "broken": "moth... no, pretty wings, in the garden, on flowers, was a caterpillar",
+      "sparse": "insect, colourful wings, caterpillar"
+    },
+    {
+      "id": "p161",
+      "target": "heart",
+      "accept": [
+        "heart"
+      ],
+      "plain": "Organ in your chest that pumps blood around the body",
+      "broken": "in the chest, it beats, boom boom, pumps blood, shape for love",
+      "sparse": "chest, beats, blood, love"
+    },
+    {
+      "id": "p162",
+      "target": "skis",
+      "accept": [
+        "skis",
+        "ski"
+      ],
+      "plain": "Long narrow boards strapped to your boots for sliding on snow",
+      "broken": "on the snow, the two long, long boards on feet, downhill, poles",
+      "sparse": "snow, long boards, downhill"
+    },
+    {
+      "id": "p163",
+      "target": "clown",
+      "accept": [
+        "clown"
+      ],
+      "plain": "Circus performer with a red nose and painted face",
+      "broken": "at the circus, the funny one, red nose, big shoes, uh, painted face",
+      "sparse": "circus, red nose, funny"
+    },
+    {
+      "id": "p164",
+      "target": "volcano",
+      "accept": [
+        "volcano"
+      ],
+      "plain": "Mountain that erupts with lava, smoke and ash",
+      "broken": "the mountain that, that blows up, hot red stuff runs down, ash",
+      "sparse": "erupts, lava, mountain"
+    },
+    {
+      "id": "p165",
+      "target": "pear",
+      "accept": [
+        "pear"
+      ],
+      "plain": "Green fruit that is narrow at the stalk and wide below",
+      "broken": "fruit, apple... no, the green one, fat at the bottom, juicy",
+      "sparse": "fruit, green, wide bottom"
+    },
+    {
+      "id": "p166",
+      "target": "octopus",
+      "accept": [
+        "octopus"
+      ],
+      "plain": "Sea creature with eight long arms covered in suckers",
+      "broken": "in the sea, eight arms... legs, suckers, squirts ink, soft head",
+      "sparse": "eight arms, sea, suckers"
+    },
+    {
+      "id": "p167",
+      "target": "saw",
+      "accept": [
+        "saw"
+      ],
+      "plain": "Jagged steel blade with a handle that a carpenter cuts wood with",
+      "broken": "the tool, back and forth, zzz zzz, cuts wood, teeth, in the shed",
+      "sparse": "tool, jagged blade, wood"
+    },
+    {
+      "id": "p168",
+      "target": "camera",
+      "accept": [
+        "camera"
+      ],
+      "plain": "You take photographs with it, press the button, click",
+      "broken": "for photos, you point it, say cheese, click, um, on holiday",
+      "sparse": "photos, lens, click"
+    },
+    {
+      "id": "p169",
+      "target": "bed",
+      "accept": [
+        "bed"
+      ],
+      "plain": "You lie on its mattress under a blanket to sleep",
+      "broken": "where I sleep, at night, the the mattress, pillow, lie down",
+      "sparse": "sleep, mattress, night"
+    },
+    {
+      "id": "p170",
+      "target": "harp",
+      "accept": [
+        "harp"
+      ],
+      "plain": "Tall instrument with many strings plucked with the fingers, angels play it",
+      "broken": "guitar... no, tall, lots of strings, pluck with fingers, angels have",
+      "sparse": "strings, pluck, angels"
+    },
+    {
+      "id": "p171",
+      "target": "broom",
+      "accept": [
+        "broom"
+      ],
+      "plain": "Long-handled brush for sweeping the floor",
+      "broken": "to sweep the floor, long pole, bristles, you know, witch rides one",
+      "sparse": "sweep, floor, bristles"
+    },
+    {
+      "id": "p172",
+      "target": "nurse",
+      "accept": [
+        "nurse"
+      ],
+      "plain": "Hospital worker who looks after patients and helps doctors",
+      "broken": "in the hospital, doctor... no, she looked after me, gave tablets, kind",
+      "sparse": "hospital, patients, care, uniform"
+    },
+    {
+      "id": "p173",
+      "target": "eye",
+      "accept": [
+        "eye"
+      ],
+      "plain": "You see with it, and it closes when you blink",
+      "broken": "on the face, two, for, for seeing, blink, mine are blue",
+      "sparse": "see, blink, pupil"
+    },
+    {
+      "id": "p174",
+      "target": "cowboy",
+      "accept": [
+        "cowboy"
+      ],
+      "plain": "Rider in the Wild West who herds cattle on horseback",
+      "broken": "in western films, John Wayne, er, the horse, big hat, lasso, cattle",
+      "sparse": "western, horse, lasso, cattle"
+    },
+    {
+      "id": "p175",
+      "target": "monkey",
+      "accept": [
+        "monkey"
+      ],
+      "plain": "Cheeky long-tailed climber that swings through jungle trees",
+      "broken": "in the jungle, swings in the, the trees, long tail, eats bananas",
+      "sparse": "jungle, swings, tail, bananas"
+    }
+  ]
+}

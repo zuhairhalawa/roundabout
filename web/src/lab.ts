@@ -1,6 +1,6 @@
 // Dev-only harness: runs the real jobs (same code as the app) and prints what came back.
 // ?device=none|ready  ?cases=<json array of [clues, target]>  ?job=find|sentences|cue
-import { deviceAvailability, wakeDevice } from './core/ai';
+import { deviceAvailability, settings, wakeDevice } from './core/ai';
 import { findWord, makeCues, makeSentences, moreFromCloud } from './core/find';
 import type { Situation } from './core/route';
 
@@ -18,6 +18,38 @@ const DEFAULT: Array<[string, string]> = [
 ];
 
 async function main() {
+  if (q.get('lut') === '0') settings.limitedUseTokens = false;
+  if (q.has('think')) settings.cloudThinking = q.get('think')!.toUpperCase() as typeof settings.cloudThinking;
+  if (q.has('model')) settings.cloudModel = q.get('model')!;
+  log(`cloud model=${settings.cloudModel} thinking=${settings.cloudThinking || 'default'}`);
+  if (q.get('timing') === '1') {
+    const { model } = await import('./core/ai');
+    const m = model('find', 'only_in_cloud');
+    for (const clues of ['you open the door with it', 'thing for the rain over your head', 'the man who fixes teeth', 'cold box in the kitchen keeps food']) {
+      const t0 = performance.now();
+      const st = await m.generateContentStream(`Clues: ${clues}`);
+      let first = 0, text = '';
+      for await (const c of st.stream) { if (!first) first = performance.now() - t0; text += c.text(); }
+      log(`stream first=${Math.round(first)}ms total=${Math.round(performance.now() - t0)}ms len=${text.length} lut=${settings.limitedUseTokens}`);
+    }
+    (window as unknown as { labDone: unknown }).labDone = [];
+    return log('DONE');
+  }
+  if (q.get('voice') === '1') {
+    const { fetchSpeech } = await import('./core/speech');
+    for (const text of ['Could I please change my doctor appointment to Tuesday?', 'I lost the key to the door.']) {
+      const t0 = performance.now();
+      let first = 0;
+      try {
+        const chunks = await fetchSpeech(text, () => { if (!first) first = performance.now() - t0; });
+        const samples = chunks.reduce((a, c) => a + c.length, 0);
+        const peak = chunks.reduce((m, c) => Math.max(m, c.reduce((x, v) => Math.max(x, Math.abs(v)), 0)), 0);
+        log(`voice first=${Math.round(first)}ms total=${Math.round(performance.now() - t0)}ms seconds=${(samples / 24000).toFixed(2)} peak=${peak.toFixed(2)} lut=${settings.limitedUseTokens}`);
+      } catch (e) { log('ERROR voice ' + String(e).slice(0, 300)); }
+    }
+    (window as unknown as { labDone: unknown }).labDone = [];
+    return log('DONE');
+  }
   const avail = await deviceAvailability();
   const wantDevice = q.get('device') ?? (avail === 'available' ? 'ready' : 'none');
   log(`availability=${avail} device=${wantDevice}`);

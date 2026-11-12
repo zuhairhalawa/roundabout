@@ -3,7 +3,7 @@
 // prompt pack, protected by App Check.
 import { initializeApp, type FirebaseApp } from 'firebase/app';
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check';
-import { getAI, getGenerativeModel, GoogleAIBackend, InferenceMode, type AI, type GenerativeModel } from 'firebase/ai';
+import { getAI, getGenerativeModel, GoogleAIBackend, InferenceMode, ThinkingLevel, type AI, type GenerativeModel } from 'firebase/ai';
 import { fill, PACK } from './pack';
 import type { Mode } from './route';
 
@@ -18,6 +18,16 @@ export const settings = {
   guessCount: PACK.guessCount,
   /** How long to wait for the on-device model before asking the cloud instead. */
   deviceTimeoutMs: 12_000,
+  /**
+   * One-time-use App Check tokens (replay protection). Measured cost: about half a second per
+   * cloud request, which is a lot in a conversation, so it is off by default. It can be turned
+   * on from Remote Config without a release.
+   */
+  limitedUseTokens: false,
+  /** Speak whole sentences with the natural cloud voice when the cloud is reachable. */
+  naturalVoice: true,
+  /** Cloud "thinking" level for these short jobs: '' leaves the model's default. */
+  cloudThinking: 'MINIMAL' as '' | 'MINIMAL' | 'LOW' | 'MEDIUM' | 'HIGH',
 };
 
 let app: FirebaseApp | null = null;
@@ -55,7 +65,7 @@ function readLocal(key: string): string {
 export function firebaseAI(): AI {
   if (ai) return ai;
   // Limited-use App Check tokens give replay protection, which preview models require.
-  ai = getAI(firebaseApp(), { backend: new GoogleAIBackend(), useLimitedUseAppCheckTokens: true });
+  ai = getAI(firebaseApp(), { backend: new GoogleAIBackend(), useLimitedUseAppCheckTokens: settings.limitedUseTokens });
   return ai;
 }
 
@@ -86,7 +96,7 @@ const cache = new Map<string, GenerativeModel>();
  * schema go to both sides: `responseConstraint` for Gemini Nano, `responseSchema` for the cloud.
  */
 export function model(kind: Kind, mode: Mode): GenerativeModel {
-  const key = `${kind}:${mode}:${settings.cloudModel}:${settings.guessCount}`;
+  const key = `${kind}:${mode}:${settings.cloudModel}:${settings.guessCount}:${settings.cloudThinking}`;
   let m = cache.get(key);
   if (m) return m;
   const { system, schema, maxTokens } = spec(kind);
@@ -108,6 +118,8 @@ export function model(kind: Kind, mode: Mode): GenerativeModel {
         responseSchema: schema as never,
         temperature: 0.2,
         maxOutputTokens: maxTokens,
+        // These are quick look-ups, not reasoning problems: keep the cloud model's thinking short.
+        ...(settings.cloudThinking ? { thinkingConfig: { thinkingLevel: ThinkingLevel[settings.cloudThinking] } } : {}),
       },
     },
   });
@@ -115,8 +127,22 @@ export function model(kind: Kind, mode: Mode): GenerativeModel {
   return m;
 }
 
+let voice: GenerativeModel | null = null;
+
+/** The speech model: text in, natural spoken audio out. Cloud only (there is no on-device voice model). */
+export function voiceModel(): GenerativeModel {
+  voice ??= getGenerativeModel(firebaseAI(), {
+    model: settings.voiceModel,
+    generationConfig: {
+      responseModalities: ['AUDIO'],
+      speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: PACK.voice.name } }, languageCode: 'en-US' },
+    } as never,
+  });
+  return voice;
+}
+
 /** Drop cached models, e.g. after Remote Config changes the cloud model name. */
-export function resetModels() { cache.clear(); }
+export function resetModels() { cache.clear(); voice = null; }
 
 // ---- on-device model state ----
 

@@ -12,10 +12,12 @@ export interface Saved {
   privateOnly: boolean;
   seenWelcome: boolean;
   practice: { done: number; noHint: number };
+  /** Speak sentences with the natural cloud voice when possible. */
+  naturalVoice: boolean;
 }
 
 const KEY = 'roundabout:v1';
-const fresh = (): Saved => ({ words: [], strip: [], privateOnly: false, seenWelcome: false, practice: { done: 0, noHint: 0 } });
+const fresh = (): Saved => ({ words: [], strip: [], privateOnly: false, seenWelcome: false, practice: { done: 0, noHint: 0 }, naturalVoice: true });
 
 function load(): Saved {
   try {
