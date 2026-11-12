@@ -7,6 +7,8 @@ Live: https://roundabout-words.web.app
 
 Built for #BuildHybridAI 2026 with **Firebase AI Logic hybrid inference** (Gemini Nano on the device, Gemini in the cloud).
 
+![Roundabout: clues in, word tiles out](docs/screenshots/find.png)
+
 ## The problem
 
 Aphasia is a language disorder, most often caused by a stroke. Studies put it at 18–38% of stroke survivors, and estimates for the United States run from one to two and a half million people. Intelligence is intact. The most common symptom is *anomia*: the person knows exactly what they mean, and the word will not come.
@@ -55,9 +57,11 @@ Tiles are coloured like road signs: **green** found on this device, **blue** fro
   - *Tap hints*: one question at a time (what kind of thing, where, what for, what it is like). This follows Semantic Feature Analysis, a standard therapy technique for anomia.
   - *Draw it*: drawing is a recognised strategy when words fail.
   - *Show a photo*.
-- **Say a sentence**: a few key words become three full sentences to choose from, plain, polite or firm.
+- **Say a sentence**: a few key words become three full sentences to choose from, plain, polite or firm. Sentences are spoken with a natural Gemini voice when the cloud is reachable, and with the device's own voice otherwise.
+- **Practice**: naming practice with a cueing hierarchy, the order a therapist gives hints in: what it means, a sentence to finish, the first letter, and only then the word.
 - **My words**: names and words that matter (family, places). They are offered first when a clue matches.
-- **Speaks every word and sentence aloud**, also slowly.
+- **A helper can add words from their own device**: the person shows an 8-character code that works for 15 minutes; a family member types it in and can then add names to the list, which appear on the person's device at once. Sharing is off until the person turns it on.
+- **Private mode**: one switch, and nothing is ever sent to the cloud.
 
 ## One prompt pack for every platform
 
@@ -65,12 +69,17 @@ Tiles are coloured like road signs: **green** found on this device, **blue** fro
 
 ## Firebase
 
-- **Firebase AI Logic**: all model calls ([`web/src/core/ai.ts`](web/src/core/ai.ts)): hybrid inference in all four modes, structured output, image input.
-- **App Check** with reCAPTCHA Enterprise, enforced for AI Logic, with limited-use tokens. A request without a token is refused (`node scripts/check-appcheck.mjs` shows the 401).
+- **Firebase AI Logic**: every model call ([`web/src/core/ai.ts`](web/src/core/ai.ts)): hybrid inference in all four modes, structured output, image input, and text-to-speech for the natural voice ([`web/src/core/speech.ts`](web/src/core/speech.ts)).
+- **App Check** with reCAPTCHA Enterprise, enforced for AI Logic and for Firestore. A request without a token is refused (`node scripts/check-appcheck.mjs` shows the 401).
+- **Remote Config** ([`web/src/core/remote.ts`](web/src/core/remote.ts), [`remoteconfig.template.json`](remoteconfig.template.json)): the cloud model names, the number of guesses, the on-device time limit, the voice switch and even prompt text can be changed without a release. Values are checked before use, so a typo in the console cannot break the app.
+- **Authentication** (anonymous sign-in, no email or password) and **Cloud Firestore** for sharing saved words with a helper ([`web/src/core/sync.ts`](web/src/core/sync.ts)). The words stay readable offline. This code is only downloaded when sharing is turned on.
+- **Security rules** ([`firestore.rules`](firestore.rules)): only the person and the helpers they admitted can read or change their words; every write is checked for shape and size.
 - **Hosting** for the web app.
 - Project set-up is scripted in [`scripts/`](scripts): `fetch-web-config.mjs`, `provision-ailogic.cjs`, `setup-appcheck.cjs`.
 
 The project is on the free Spark plan with no billing account, so the cloud side cannot cost money.
+
+One measured trade-off: one-time-use App Check tokens (replay protection) add about half a second to every cloud request. In a conversation that is a lot, so they are off by default and can be switched on from Remote Config.
 
 ## Run it
 
@@ -86,8 +95,10 @@ On-device answers need Chrome on a desktop computer that can run Gemini Nano. Ev
 
 ## Tests
 
-- `npm test` (in `web/`): unit tests for the routing rule, cleaning model output into tiles, saved-word matching and the hint chips.
-- `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, saved words, private mode, offline, and a check that every model request goes to Firebase AI Logic.
+- `npm test` (in `web/`): unit tests for the routing rule, cleaning model output into tiles, saved-word matching, the hint chips and the remote settings checks.
+- `node scripts/e2e-cloud.mjs`: drives the live site in a browser with no on-device model: describe, hints, drawing, photo, sentences, the natural voice, saved words, private mode, offline, Remote Config, and a check that every model request goes to Firebase AI Logic.
+- `node scripts/rules-test.mjs`: three real anonymous users (owner, helper, stranger) try 45 operations against the deployed security rules.
+- `node scripts/e2e-share.mjs`: two browsers on the live site, one person and one helper: invite code, a name added by the helper appears on the other device, removal cuts access.
 - `node scripts/eval.mjs cloud|device eval/pnt.json`: accuracy on an independent test set (see `eval/`).
 
 ## Limits, stated plainly
