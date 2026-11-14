@@ -8,7 +8,7 @@ const ctx = await b.newContext({ viewport: { width: 1280, height: 860 }, deviceS
 await ctx.addInitScript((t) => { try { localStorage.setItem('roundabout:appcheck-debug', t); } catch { /* ignore */ } }, env.APPCHECK_DEBUG_TOKEN);
 const p = await ctx.newPage();
 // Pictures the look-up table does not know arrive a moment after the words.
-const picturesReady = () => p.waitForFunction(() => ![...document.querySelectorAll('.tiles .sign-pic')].some((e) => e.textContent.trim() === '·'), null, { timeout: 40000 }).catch(() => {});
+const picturesReady = () => p.waitForFunction(() => ![...document.querySelectorAll('.tiles .sign-pic')].some((e) => e.textContent.trim() === ''), null, { timeout: 8000 }).catch(() => {});
 const tilesReady = () => p.waitForFunction(() => document.querySelector('.tiles .sign-word') && !/Looking/.test(document.querySelector('.btn-go')?.textContent ?? ''), null, { timeout: 60000 });
 await p.goto(base);
 await p.fill('#clues', 'thing for the rain, you hold it over your head');

@@ -42,6 +42,10 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
   const [photo, setPhoto] = useState<string | null>(null);
   const [answer, setAnswer] = useState<Answer | null>(null);
   const [busy, setBusy] = useState<'find' | 'more' | null>(null);
+  // A type-ahead guess is on its way and "Find the word" has not been pressed for it. The button
+  // stays usable meanwhile: pressing it must never do nothing.
+  const [guessing, setGuessing] = useState(false);
+  const liveRun = useRef<{ clues: string; id: number } | null>(null);
   const [partial, setPartial] = useState(false); // words are still arriving
   const [cloudPart, setCloudPart] = useState<CloudPart>(null); // what the cloud did for an answer this device gave
   const [note, setNote] = useState<string | null>(null);
@@ -63,6 +67,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
 
   async function run(live: boolean) {
     if (!hasInput) return;
+    const hard = way === 'hints' && isCloudFirstGroup(group);
     if (live && !picture) {
       // "Find the word" was pressed for exactly these clues: a type-ahead guess that fires a
       // moment later must not replace that answer (it would also skip the cloud's help).
@@ -70,9 +75,15 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
       asked.current = null;
     } else if (!live) {
       asked.current = picture ? null : clues;
+      // Pressed while a type-ahead guess for these very clues is on its way: the same model is
+      // not asked the same thing twice. That answer counts as the pressed one when it arrives,
+      // so it gets its pictures and, for a short clue, the cloud's help.
+      if (!picture && !hard && liveRun.current?.clues === clues && liveRun.current.id === seq.current) { setGuessing(false); return; }
     }
     const id = ++seq.current;
     const stale = () => id !== seq.current;
+    liveRun.current = live && !picture ? { clues, id } : null;
+    setGuessing(live);
     setBusy('find');
     setNote(null);
     setCloudPart(null);
@@ -82,7 +93,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
     try {
       const opts = {
         saved: savedRef.current, situation: sit.current, live, stale,
-        hard: way === 'hints' && isCloudFirstGroup(group),
+        hard,
         // Tiles appear one by one as the words stream in.
         onPartial: (guesses: Guess[], side: Answer['side']) => {
           if (stale() || !guesses.length) return;
@@ -98,13 +109,20 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
         ? await nameImage({ data: picture, mimeType: way === 'draw' ? 'image/png' : 'image/jpeg', kind: way === 'draw' ? 'sketch' : 'photo' }, opts)
         : await findWord(clues, opts));
       if (stale()) return;
-      if (live && a.blocked) return; // live guesses are a bonus; say nothing when they cannot run
+      // True for a pressed answer, and for a type-ahead guess that was pressed while on its way.
+      const pressed = !live || (!picture && asked.current === clues);
+      if (live && a.blocked) {
+        // Live guesses are a bonus: say nothing when they cannot run. If the button was pressed
+        // meanwhile, look the word up the ordinary way.
+        if (pressed) { liveRun.current = null; void run(false); }
+        return;
+      }
       setPartial(false);
       setAnswer(a);
       shown.current = !picture && a.side === 'device' && a.guesses.length && !a.later ? { clues, answer: a } : null;
       // Words the picture table does not know get a picture from one short follow-up request.
       const pictures = (gs: Guess[]) => {
-        if (live || !gs.some((g) => !g.emoji)) return;
+        if (!pressed || !gs.some((g) => !g.emoji)) return;
         fillPictures(gs, sit.current).then((filled) => { if (!stale()) setAnswer((cur) => (cur ? { ...cur, guesses: cur.guesses.map((g) => (g.emoji ? g : filled.find((x) => x.word === g.word) ?? g)) } : cur)); });
       };
       // The cloud's words join the tiles already on screen (which may have gained pictures meanwhile).
@@ -133,7 +151,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
         return;
       }
       // A short clue answered on the device: the cloud adds its ideas without being asked.
-      if (!live && !picture && a.side === 'device' && a.canAskCloud && isShort(clues)) {
+      if (pressed && !picture && a.side === 'device' && a.canAskCloud && isShort(clues)) {
         setBusy('more');
         setCloudPart('asking');
         moreFromCloud(clues, a.guesses, { saved: savedRef.current, situation: sit.current })
@@ -148,10 +166,11 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
       }
     } catch (e) {
       if (e instanceof StaleError || stale()) return;
-      if (!live) setNote(friendly(e));
+      if (!live || (!picture && asked.current === clues)) setNote(friendly(e));
     } finally {
       clearTimeout(slowTimer);
-      if (!stale()) { setBusy((cur) => (cur === 'find' ? null : cur)); setPartial(false); setWaiting(false); }
+      if (liveRun.current?.id === id) liveRun.current = null;
+      if (!stale()) { setBusy((cur) => (cur === 'find' ? null : cur)); setPartial(false); setWaiting(false); setGuessing(false); }
     }
   }
 
@@ -277,7 +296,7 @@ export function Find({ saved, situation, strip, onUse, onSave, onWhy, onGoSay }:
       )}
 
       <div class="go-row">
-        <button class="btn btn-go" disabled={!hasInput || busy === 'find'} onClick={() => run(false)}>
+        <button class="btn btn-go" disabled={!hasInput || (busy === 'find' && !guessing)} onClick={() => run(false)}>
           {busy === 'find' ? <Ring size={26} spin /> : null}
           <span>{busy === 'find' ? 'Looking…' : 'Find the word'}</span>
         </button>

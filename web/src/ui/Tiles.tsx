@@ -11,7 +11,7 @@ export function Tiles({ guesses, chosen, onChoose }: { guesses: Guess[]; chosen:
       {guesses.map((g, i) => (
         <li key={`${g.word}-${g.source}`} style={{ '--i': i } as never}>
           <button class={`sign sign-${g.source} ${chosen === g.word ? 'sign-chosen' : ''}`} onClick={() => onChoose(g)} aria-pressed={chosen === g.word} aria-label={`${g.word}, ${SOURCE_LABEL[g.source]}. Tap to hear it.`}>
-            <span class="sign-pic" aria-hidden="true">{g.emoji || '·'}</span>
+            <span class="sign-pic" aria-hidden="true">{g.emoji}</span>
             <span class="sign-word">{g.word}</span>
             <span class="sign-src" aria-hidden="true">{g.source === 'device' ? <IconDevice size={16} /> : g.source === 'cloud' ? <IconCloud size={16} /> : <IconStar size={16} />}</span>
           </button>
