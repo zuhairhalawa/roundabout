@@ -23,7 +23,8 @@ export interface Hedged<T> {
  * attempt's partial answer is ever shown. The first attempt to start answering is the one that
  * is used; if it then fails, another attempt takes its place.
  *
- * Fails only when all attempts have failed, with the first attempt's error.
+ * A failed attempt does not count towards `max`, but no more than twice `max` attempts are
+ * ever begun. Fails only when all attempts have failed, with the first attempt's error.
  * `everyMs` of 0 means a slow attempt is never asked again (a failed one is still replaced);
  * `max` of 1 means one plain attempt.
  */
@@ -33,18 +34,23 @@ export function hedge<T>(launch: (attempt: number, started: () => boolean) => Pr
     let open = 0;
     let over = false;
     let lead = -1;
-    let failed = false;
+    let fails = 0;
     let firstError: unknown;
+    // An attempt that failed does not use up one of the `max` tries: a model that refuses at
+    // once (its quota is used up) must not crowd out a second try of a model that is only slow.
+    // The total is still limited, so that a service that is down is not asked for ever.
+    const limit = max > 1 ? max * 2 : 1;
+    const room = () => begun - fails < max && begun < limit;
     let spare: { value: T; attempt: number } | null = null;
     let timer: ReturnType<typeof setTimeout> | undefined;
 
     const win = (value: T, attempt: number) => { over = true; clearTimeout(timer); resolve({ value, attempt, attempts: begun }); };
     const arm = () => {
       clearTimeout(timer);
-      if (!over && everyMs > 0 && begun < max && lead < 0) timer = setTimeout(next, everyMs);
+      if (!over && everyMs > 0 && room() && lead < 0) timer = setTimeout(next, everyMs);
     };
     function next() {
-      if (over || begun >= max || lead >= 0) return;
+      if (over || !room() || lead >= 0) return;
       const i = begun++;
       open++;
       const started = () => {
@@ -63,14 +69,15 @@ export function hedge<T>(launch: (attempt: number, started: () => boolean) => Pr
         },
         (e) => {
           open--;
-          if (!failed || i === 0) { failed = true; firstError = e; }
+          if (!fails || i === 0) firstError = e;
+          fails++;
           if (over) return;
           if (lead === i) {
             lead = -1;
             if (spare) return win(spare.value, spare.attempt);
           }
           // A failed attempt is replaced at once, unless another attempt is already answering.
-          if (lead < 0 && begun < max) return next();
+          if (lead < 0 && room()) return next();
           if (open > 0) return;
           over = true;
           clearTimeout(timer);

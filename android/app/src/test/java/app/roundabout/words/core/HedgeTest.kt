@@ -61,6 +61,30 @@ class HedgeTest {
     }
 
     @Test
+    fun anAttemptThatFailsDoesNotUseUpATry() = runTest {
+        // Attempts 0, 2 and 3 are refused at once (models over their quota) and attempt 1 is slow:
+        // with a limit of 4 there is still room to ask a fifth time.
+        val begun = ArrayList<Int>()
+        val r = hedge(1_000, 4) { i ->
+            begun += i
+            if (i == 0 || i == 2 || i == 3) throw IllegalStateException("a$i refused")
+            delay(if (i == 1) 60_000 else 200)
+            "a$i"
+        }
+        assertEquals("a4", r.value)
+        assertEquals(listOf(0, 1, 2, 3, 4), begun)
+        assertEquals(1_200L, currentTime)
+    }
+
+    @Test
+    fun itNeverBeginsMoreThanTwiceTheLimit() = runTest {
+        var begun = 0
+        val error = runCatching { hedge<String>(1_000, 4) { begun++; throw IllegalStateException("down") } }.exceptionOrNull()
+        assertEquals("down", error?.message)
+        assertEquals(8, begun)
+    }
+
+    @Test
     fun withTimedRepeatsOffASlowAttemptIsNotAskedAgain() = runTest {
         var begun = 0
         val r = hedge(0, 4) { i -> begun++; delay(30_000); "a$i" }

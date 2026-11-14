@@ -100,6 +100,23 @@ class FinderTest {
     }
 
     @Test
+    fun aSlowBackupIsAskedAgainWhenTheOtherModelsRefuse() = runTest {
+        // The main model and the last backup are over their quota; the first backup is slow once.
+        var backupCalls = 0
+        val rig = rig { _, model ->
+            when (model) {
+                backup -> { delay(if (backupCalls++ == 0) 40_000 else 800); cloud("ladder") }
+                else -> { delay(100); throw QuotaError("requests per day limit exceeded. Please retry in 11h0m0s.") }
+            }
+        }
+        val a = rig.finder.find("you climb it to reach the roof", noModel, hard = false, scope = this)
+        assertEquals(listOf("ladder"), a.guesses.map { it.word })
+        assertEquals(listOf(main, backup, Shared.pack.cloudBackupModels[1], backup), rig.calls.map { it.model })
+        assertEquals("the refusals did not use up the tries, and the resting main model was skipped", 2_500L, a.ms)
+        assertTrue(a.why.contains("asked again") || a.why.contains("second cloud model"))
+    }
+
+    @Test
     fun whenEveryCloudModelIsOverItsQuotaTheCloudIsPaused() = runTest {
         val rig = rig { _, _ -> delay(100); throw QuotaError("Please retry in 50s.") }
         val error = runCatching { rig.finder.find("anything", noModel, hard = false, scope = this) }.exceptionOrNull()

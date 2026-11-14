@@ -90,9 +90,21 @@ class Finder(
     private suspend fun cloud(mode: Mode, prompt: String): CloudReply {
         val quickModel = quick?.takeIf { now() < it.second }?.first ?: ""
         val order = attemptOrder(settings.cloudModel, settings.cloudBackupModels, ::isResting, quickModel)
+        // Which model each attempt asked. The models take turns; one that has started resting
+        // during this very request (it has just refused) is skipped.
+        val asked = HashMap<Int, String>()
+        var turn = 0
+        fun nextModel(): String? {
+            repeat(order.size) {
+                val model = order[turn++ % order.size]
+                if (asked.isEmpty() || !isResting(model)) return model
+            }
+            return null
+        }
         try {
             val hedged = hedge(settings.cloudHedgeMs, if (settings.cloudHedgeMs > 0) 4 else 1) { i ->
-                val model = order[i % order.size]
+                val model = synchronized(asked) { nextModel()?.also { asked[i] = it } }
+                    ?: throw IllegalStateException("Every cloud model is resting.")
                 try {
                     asker.ask(if (i == 0) mode else Mode.ONLY_IN_CLOUD, prompt, model)
                 } catch (e: CancellationException) {
@@ -104,10 +116,11 @@ class Finder(
             }
             val reply = hedged.value
             if (reply.side != Side.CLOUD) return CloudReply(reply, null)
-            val used = order[hedged.attempt % order.size]
+            val used = synchronized(asked) { asked.getValue(hedged.attempt) }
+            val first = synchronized(asked) { asked.getValue(0) }
             if (hedged.attempt > 0) quick = if (used == settings.cloudModel) null else used to (now() + QUICK_MS)
             val why = when {
-                hedged.attempt > 0 && used != order[0] -> "The cloud model was slow to answer, so a second cloud model was asked as well, and it answered first."
+                hedged.attempt > 0 && used != first -> "The cloud model was slow to answer, so a second cloud model was asked as well, and it answered first."
                 hedged.attempt > 0 -> "The cloud was slow to answer, so it was asked again."
                 used != settings.cloudModel -> "The main cloud model is busy, so a second cloud model is answering for now."
                 else -> null

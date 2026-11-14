@@ -204,6 +204,7 @@ describe('routing', () => {
 
 import { applyPromptOverrides, applyRemote, REMOTE_DEFAULTS } from '../src/core/remote';
 import { settings } from '../src/core/ai';
+import { CloudUnavailable, isQuotaError } from '../src/core/find';
 
 describe('remote settings', () => {
   it('applies valid values and reports what changed', () => {
@@ -247,6 +248,14 @@ describe('remote settings', () => {
 });
 
 import { attemptOrder, hedge, restAfterQuota } from '../src/core/hedge';
+
+describe('what a refused cloud request means', () => {
+  it('a quota reply is a quota error; "no cloud model answered" is not', () => {
+    expect(isQuotaError(new Error('[429 ] You exceeded your current quota'))).toBe(true);
+    expect(isQuotaError(new Error('Failed to fetch'))).toBe(false);
+    expect(isQuotaError(new CloudUnavailable())).toBe(false);
+  });
+});
 
 describe('asking again when an answer is slow to start', () => {
   const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
@@ -314,6 +323,25 @@ describe('asking again when an answer is slow to start', () => {
     expect(attemptOrder('main', ['b1'], () => true)).toEqual(['main']);
     expect(attemptOrder('main', ['b1', 'b2'], () => false, 'b2')).toEqual(['b2', 'main', 'b1']);
     expect(attemptOrder('main', ['b1', 'b2'], (m) => m === 'b2', 'b2')).toEqual(['main', 'b1']);
+  });
+
+  it('an attempt that fails does not use up a try, so a slow model is still asked again', async () => {
+    // Attempt 0 fails at once (a model over its quota), attempt 1 is slow, attempt 2 fails at once,
+    // attempt 3 fails at once: with a limit of 4 there is still room to ask a fifth time.
+    const begun: number[] = [];
+    const r = await hedge((i, started) => {
+      begun.push(i);
+      if (i === 0 || i === 2 || i === 3) return Promise.reject(new Error(`a${i} refused`));
+      return attempt(`a${i}`, i === 1 ? 400 : 10, started, []);
+    }, 30, 4);
+    expect(r.value).toBe('a4');
+    expect(begun).toEqual([0, 1, 2, 3, 4]);
+  });
+
+  it('never begins more than twice the limit, even when every attempt fails at once', async () => {
+    let begun = 0;
+    await expect(hedge(() => { begun++; return Promise.reject(new Error('down')); }, 30, 4)).rejects.toThrow('down');
+    expect(begun).toBe(8);
   });
 
   it('rests a model for as long as its "quota used up" reply asks, within limits', () => {

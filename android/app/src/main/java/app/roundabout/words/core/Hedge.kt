@@ -30,7 +30,8 @@ private class Outcome<T>(val attempt: Int, val value: T?, val error: Throwable?)
  * `max` attempts. An attempt that fails is replaced at once. The first attempt to answer wins
  * and the others are cancelled.
  *
- * Fails only when all attempts have failed, with the first attempt's error. `everyMs` of 0
+ * A failed attempt does not count towards `max`, but no more than twice `max` attempts are
+ * ever begun. Fails only when all attempts have failed, with the first attempt's error. `everyMs` of 0
  * means a slow attempt is never asked again (a failed one is still replaced); `max` of 1 means
  * one plain attempt.
  */
@@ -40,7 +41,14 @@ suspend fun <T> hedge(everyMs: Long, max: Int, ask: suspend (attempt: Int) -> T)
     val jobs = ArrayList<Job>()
     var begun = 0
     var open = 0
+    var fails = 0
     var firstError: Throwable? = null
+
+    // An attempt that failed does not use up one of the `max` tries: a model that refuses at
+    // once (its quota is used up) must not crowd out a second try of a model that is only slow.
+    // The total is still limited, so that a service that is down is not asked for ever.
+    val limit = if (max > 1) max * 2 else 1
+    fun room() = begun - fails < max && begun < limit
 
     fun begin() {
         val i = begun++
@@ -61,7 +69,7 @@ suspend fun <T> hedge(everyMs: Long, max: Int, ask: suspend (attempt: Int) -> T)
         begin()
         var answer: Hedged<T>? = null
         while (answer == null) {
-            val canAskAgain = everyMs > 0 && begun < max
+            val canAskAgain = everyMs > 0 && room()
             val outcome: Outcome<T>? = select {
                 outcomes.onReceive { it }
                 if (canAskAgain) onTimeout(everyMs) { null }
@@ -77,7 +85,8 @@ suspend fun <T> hedge(everyMs: Long, max: Int, ask: suspend (attempt: Int) -> T)
                 answer = Hedged(outcome.value as T, outcome.attempt, begun)
             } else {
                 if (firstError == null || outcome.attempt == 0) firstError = error
-                if (begun < max) begin() else if (open == 0) throw checkNotNull(firstError)
+                fails++
+                if (room()) begin() else if (open == 0) throw checkNotNull(firstError)
             }
         }
         checkNotNull(answer)

@@ -44,7 +44,12 @@ function pauseCloud(ms: number) {
   setTimeout(() => listeners.forEach((f) => f()), ms + 50);
 }
 
-export const isQuotaError = (e: unknown) => /\b429\b|RESOURCE_EXHAUSTED|quota/i.test(String((e as Error)?.message ?? e));
+/** No cloud model answered, and not because all of them are over their quota. Trying again may work. */
+export class CloudUnavailable extends Error {
+  constructor() { super('One cloud model has no requests left for now and the others did not answer.'); this.name = 'CloudUnavailable'; }
+}
+
+export const isQuotaError = (e: unknown) => !(e instanceof CloudUnavailable) && /\b429\b|RESOURCE_EXHAUSTED|quota/i.test(String((e as Error)?.message ?? e));
 
 // ---- one model call, with the fallbacks the SDK does not do by itself ----
 
@@ -108,23 +113,36 @@ async function cloudStream(kind: Kind, mode: Mode, request: Request, t0: number,
   // the main model's daily quota for finding words.
   if (kind === 'picture' && order.length > 1 && order[0] === settings.cloudModel) order.push(order.shift()!);
   const stops: Array<AbortController | null> = [];
+  // Which model each attempt asked. The models take turns; one that has started resting during
+  // this very request (it has just refused) is skipped.
+  const asked: string[] = [];
+  let turn = 0;
+  const nextModel = (): string => {
+    for (let n = 0; n < order.length; n++) {
+      const m = order[turn++ % order.length];
+      if (asked.length === 0 || Date.now() >= (resting.get(m) ?? 0)) return m;
+    }
+    return '';
+  };
   const { value, attempt } = await hedge((i, started) => {
-    const cloudModel = order[i % order.length];
+    const cloudModel = nextModel();
+    if (!cloudModel) return Promise.reject(new Error('Every cloud model is resting.'));
+    asked[i] = cloudModel;
     const stop = i > 0 || stopFirst ? new AbortController() : null;
     stops[i] = stop;
     return stream(kind, i ? 'only_in_cloud' : mode, request, t0, (text, side) => { if (started()) onText?.(text, side); }, { cloudModel, signal: stop?.signal })
       .catch((e) => { if (isQuotaError(e)) resting.set(cloudModel, Date.now() + restAfterQuota(String((e as Error)?.message ?? e))); throw e; });
     // Pictures for the tiles are a help, not a need: a slow request for them is not asked
-    // again. If it fails (a model over its quota), one other model is tried.
+    // again. If it fails (a model over its quota), another model is tried.
   }, kind === 'picture' ? 0 : settings.cloudHedgeMs, settings.cloudHedgeMs > 0 ? (kind === 'picture' ? 2 : 4) : 1);
   stops.forEach((stop, i) => { if (i !== attempt) stop?.abort(); });
   if (value.side !== 'cloud') return value;
-  const used = order[attempt % order.length];
+  const used = asked[attempt];
   if (attempt && kind !== 'picture') quick = used === settings.cloudModel ? null : { model: used, until: Date.now() + QUICK_MS };
   // What to tell the person: a different model from the one asked first answered ('backup'),
   // the same model answered when asked again ('again'), or a backup model was asked first
   // because the main one is busy or resting ('quick').
-  const repeat: Repeat | undefined = attempt ? (used !== order[0] ? 'backup' : 'again') : used !== settings.cloudModel ? 'quick' : undefined;
+  const repeat: Repeat | undefined = attempt ? (used !== asked[0] ? 'backup' : 'again') : used !== settings.cloudModel ? 'quick' : undefined;
   return repeat ? { ...value, repeat } : value;
 }
 
@@ -132,9 +150,20 @@ async function cloudOnly(kind: Kind, request: Request, t0: number, fellBack: boo
   try {
     return { ...(await cloudStream(kind, 'only_in_cloud', request, t0, onText, true)), fellBack };
   } catch (e) {
-    if (isQuotaError(e) && noCloudModelAwake()) pauseCloud(60_000);
-    throw e;
+    throw cloudFailure(e);
   }
+}
+
+/**
+ * What a failed cloud request means. Only when every cloud model is resting is the cloud as a
+ * whole paused. If one model is over its quota and the others failed for another reason, that
+ * is not "the cloud is resting": the next try may well be answered.
+ */
+function cloudFailure(e: unknown): unknown {
+  if (!isQuotaError(e)) return e;
+  if (!noCloudModelAwake()) return new CloudUnavailable();
+  pauseCloud(60_000);
+  return e;
 }
 
 class SlowError extends Error {
@@ -172,7 +201,8 @@ async function ask(kind: Kind, mode: Mode, request: Request, s: Situation, opts:
     abandoned = true;
     call.catch(() => undefined); // a slow device call may still finish later; ignore it
     if (e instanceof StaleError) throw e;
-    if (isQuotaError(e) && (!cloudBound || noCloudModelAwake())) pauseCloud(60_000);
+    if (cloudBound) throw cloudFailure(e);
+    if (isQuotaError(e)) pauseCloud(60_000);
     if (canFallBack) return cloudOnly(kind, request, t0, true, opts.onText);
     throw e;
   }
