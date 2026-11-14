@@ -3,7 +3,7 @@
 **A word-finding aid for people with aphasia.** When a word will not come, describe it, tap a few hints, draw it or show a photo. Roundabout offers the word and says it aloud. It answers on the device when it can, and uses the cloud when the device cannot.
 
 Live: https://roundabout-words.web.app
-<!-- VIDEO -->
+Demo video (2:32): https://youtu.be/YBKWO9rv1Oc
 
 Built for #BuildHybridAI 2026 with **Firebase AI Logic hybrid inference** (Gemini Nano on the device, Gemini in the cloud).
 
