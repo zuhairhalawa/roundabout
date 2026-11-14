@@ -9,6 +9,8 @@ on:
       - 'android/**'
       - 'shared/**'
       - 'scripts/android-shots.py'
+      - 'scripts/android-demo.py'
+      - 'scripts/adbui.py'
       - '.github/workflows/android.yml'
   workflow_dispatch:
 
@@ -96,7 +98,9 @@ jobs:
             adb shell settings put global hide_error_dialogs 1
             adb install -r apk/app-debug.apk
             if [ -n "$APPCHECK_DEBUG_TOKEN" ]; then adb shell "run-as app.roundabout.words sh -c 'mkdir -p files && echo $APPCHECK_DEBUG_TOKEN > files/appcheck-debug-token'"; fi
-            python3 scripts/android-shots.py android-shots
+            python3 scripts/android-shots.py android-shots || echo failed > android-shots/failed
+            python3 scripts/android-demo.py android-demo
+            test ! -f android-shots/failed
         env:
           # A debug token that is registered with App Check. It is handed to the app on the
           # emulator at run time and is never part of the app file.
@@ -108,5 +112,14 @@ jobs:
         with:
           name: android-screenshots
           path: android-shots/
+          if-no-files-found: ignore
+
+      # A screen recording of the app being used, for the demo video.
+      - name: Walkthrough recording
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-demo
+          path: android-demo/
           if-no-files-found: ignore
 

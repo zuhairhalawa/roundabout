@@ -9,67 +9,14 @@ its Firebase settings, it also asks for a word and waits for the tiles.
 """
 import os
 import re
-import subprocess
 import sys
 import time
 
+from adbui import APP, adb, centre, find, nodes, on_screen, tap, words
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else "android-shots"
-APP = "app.roundabout.words"
 os.makedirs(OUT, exist_ok=True)
 results = []
-
-
-def adb(*args, binary=False):
-    done = subprocess.run(["adb", *args], capture_output=True, timeout=180)
-    return done.stdout if binary else done.stdout.decode("utf8", "replace")
-
-
-def words(node):
-    return (node.get("text", "") + " " + node.get("content-desc", "")).strip()
-
-
-def centre(node):
-    x1, y1, x2, y2 = map(int, re.findall(r"\d+", node["bounds"]))
-    return str((x1 + x2) // 2), str((y1 + y2) // 2)
-
-
-def nodes():
-    found = []
-    for _ in range(4):
-        adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
-        xml = adb("shell", "cat", "/sdcard/ui.xml")
-        found = [dict(re.findall(r'([\w-]+)="([^"]*)"', tag)) for tag in re.findall(r"<node [^>]*>", xml)]
-        # On a slow emulator the system sometimes says that one of its own apps (the launcher,
-        # the system screen) is not responding, and that notice covers the app. Tap "Wait".
-        wait = next((n for n in found if words(n) == "Wait"), None)
-        if wait is None or not any("responding" in words(n) for n in found):
-            break
-        print("NOTE the emulator said one of its own apps is not responding; tapped Wait.", flush=True)
-        adb("shell", "input", "tap", *centre(wait))
-        time.sleep(3)
-    return found
-
-
-def on_screen():
-    return [words(n) for n in nodes() if words(n)]
-
-
-def find(text, tries=20):
-    for _ in range(tries):
-        for n in nodes():
-            if text in words(n):
-                return n
-        time.sleep(1)
-    return None
-
-
-def tap(text):
-    node = find(text)
-    if not node:
-        return False
-    adb("shell", "input", "tap", *centre(node))
-    time.sleep(1.2)
-    return True
 
 
 def shot(name):
